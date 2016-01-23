@@ -15,8 +15,8 @@ import org.jsfml.window.event.*;
 import org.jsfml.graphics.*;
 
 class Test {
-	private static int screenWidth  = 1024;
-	private static int screenHeight = 768;
+	private static int screenWidth  = 1280;
+	private static int screenHeight = 720;
 
 	//
 	// The Java install comes with a set of fonts but these will
