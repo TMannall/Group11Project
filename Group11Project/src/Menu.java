@@ -8,6 +8,7 @@ public class Menu implements FSMState {
     GameDriver driver;
     RenderWindow window;
     Textures textures;
+
     public Menu(GameDriver driver, RenderWindow window, Textures textures){
         this.driver = driver;
         this.window = window;
@@ -20,10 +21,5 @@ public class Menu implements FSMState {
         textures.mainMenu.setPosition(driver.getWinWidth()/2, driver.getWinHeight()/2);
         window.draw(textures.mainMenu);
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
