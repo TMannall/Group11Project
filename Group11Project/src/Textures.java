@@ -6,9 +6,13 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class Textures {
+
+    public LoadTexture mainMenu;
+    public LoadTexture captainTestPortrait;
+
     public Textures() {
-        LoadTexture mainMenu = new LoadTexture("textures/main_menu.png");
-        LoadTexture captainTestPortrait = new LoadTexture("textures/captain_portrait_example.png");
+        mainMenu = new LoadTexture("textures/main_menu.png");
+        captainTestPortrait = new LoadTexture("textures/captain_portrait_example.png");
     }
 
 
@@ -24,6 +28,9 @@ public class Textures {
         }
     }
 
+    /**
+     * takes the
+     */
     public class LoadSprite {
         public LoadSprite(String fileName) {
             Texture texture = new Texture( );
@@ -39,6 +46,7 @@ public class Textures {
                     new Vector2f(texture.getSize()), 2));
         }
     }
+
 
     public class LoadFrameTexture {
         public LoadFrameTexture(String fileName) {
