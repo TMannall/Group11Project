@@ -15,7 +15,6 @@ public class Textures {
         captainTestPortrait = LoadTexture("textures/captain_portrait_example.png");
     }
 
-
     public Sprite LoadTexture(String fileName) {
         Texture texture = new Texture( );
 
@@ -27,20 +26,25 @@ public class Textures {
 
         texture.setSmooth(true);
 
-        Sprite image = new Sprite(texture);
-        return image;
+        Sprite sprite = new Sprite(texture);
+        sprite.setOrigin(Vector2f.div(
+                new Vector2f(texture.getSize()), 2));
+
+        return sprite;
     }
 
+    public Sprite LoadFrameTexture(String fileName) {
+        Texture texture = new Texture( );
 
-    public class LoadFrameTexture {
-        public LoadFrameTexture(String fileName) {
-            Texture texture = new Texture();
-            try {
-                texture.loadFromFile(Paths.get(fileName));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            texture.setSmooth(true);
+        try {
+            texture.loadFromFile(Paths.get(fileName));
+        } catch (IOException ex) {
+            ex.printStackTrace( );
         }
+
+        texture.setSmooth(true);
+        Sprite sprite = new Sprite(texture);
+        //sprite.setTextureRect();
+        return sprite;
     }
 }
