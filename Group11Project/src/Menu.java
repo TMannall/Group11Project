@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 
 /**
  * Main menu state for Endless Sea
@@ -6,8 +7,10 @@ import org.jsfml.graphics.RenderWindow;
 public class Menu implements FSMState {
 
     RenderWindow window;
-    public Menu(RenderWindow window){
+    Textures textures;
+    public Menu(RenderWindow window, Textures textures){
         this.window = window;
+        this.textures = textures;
     }
 
     @Override
@@ -15,6 +18,9 @@ public class Menu implements FSMState {
     public void execute() {
         System.out.println("Menu executing!");
 
+        textures.mainMenu.setPosition(0, 0);
+        window.draw(textures.mainMenu);
+        
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

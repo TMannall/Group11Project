@@ -14,15 +14,17 @@ public class GameDriver {
     private FSM machine;
     private FSMState menu;
     private FSMState game;
-
+    private Textures textures;
     public void run(){
         // Initial setup
         RenderWindow window = new RenderWindow();
         window.create(new VideoMode(WIN_WIDTH, WIN_HEIGHT), TITLE, WindowStyle.DEFAULT);
         window.setFramerateLimit(30);
 
+        Textures textures = new Textures();
+
         machine = new FSM();
-        menu = new Menu(window);
+        menu = new Menu(window, textures);
         game = new Game(window);
 
         // Set menu state for game launch
