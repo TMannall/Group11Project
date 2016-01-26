@@ -80,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/Textures.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.52307695">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -397,12 +397,12 @@
       <option name="number" value="Default" />
       <updated>1453803206411</updated>
       <workItem from="1453808107949" duration="115000" />
-      <workItem from="1453808298131" duration="1487000" />
+      <workItem from="1453808298131" duration="1919000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1602000" />
+    <option name="totallyTimeSpent" value="2034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
@@ -593,7 +593,7 @@
     <entry file="file://$PROJECT_DIR$/src/Textures.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.52307695">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
           <folding />
         </state>
       </provider>
