@@ -34,7 +34,7 @@ public class GameDriver {
         Textures textures = new Textures();
         machine = new FSM();
         menu = new Menu(machine, driver, window, textures);
-        game = new Game(window);
+        game = new Game(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
