@@ -12,11 +12,13 @@ public class Textures {
     public Sprite mainMenu = LoadTexture("textures/main_menu.png");
     public Sprite ocean = LoadTexture("textures/ocean.png");
 
-    // user interface (will be frames)
-    public Sprite button = LoadFrameTexture("textures/user_interface.png", 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
-    public Sprite buttonSmall = LoadFrameTexture("textures/user_interface.png", 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
-    public Sprite shipIcon = LoadFrameTexture("textures/user_interface.png", 549, 11, 254, 92);
-    public Sprite waypoint = LoadFrameTexture("textures/user_interface.png", 466, 24, 56, 56); // visited: 466, 103, 56, 56
+    // user interface
+    private Sprite userInterface = LoadTexture("textures/user_interface.png");
+    public Sprite button = setFrame(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
+    public Sprite buttonSmall = setFrame(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite shipIcon = setFrame(userInterface, 549, 11, 254, 92);
+    public Sprite waypoint = setFrame(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+
     public Sprite sailor1 = LoadTexture("textures/sailor_1.png");
 
     // ship models
@@ -53,18 +55,21 @@ public class Textures {
         return sprite;
     }
 
-    // frames wip
-    public Sprite LoadFrameTexture(String fileName, int ax, int ay, int bx, int by) {
-        Texture texture = new Texture( );
-
-        try {
-            texture.loadFromFile(Paths.get(fileName));
-        } catch (IOException ex) {
-            ex.printStackTrace( );
-        }
-
-        texture.setSmooth(true);
-        Sprite sprite = new Sprite(texture);
+    /**
+     * takes a loaded texture and returns a defined section as a frame
+     * this allows us to only load the texture once.
+     *
+     * to change frames, use textureName.setTextureRect(new IntRect(a, b, c, d));
+     * where a, b, c, d corresponds to the new frame.
+     *
+     * @param sprite
+     * @param ax
+     * @param ay
+     * @param bx
+     * @param by
+     * @return
+     */
+    public Sprite setFrame(Sprite sprite, int ax, int ay, int bx, int by) {
         sprite.setTextureRect(new IntRect(ax, ay, bx, by));
         return sprite;
     }
