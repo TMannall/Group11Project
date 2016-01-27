@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<TradeEvents>
+    <!--easyItems!-->
+    <easyItems>
+        <easyItem price="201">Item Text 1</easyItem>
+        <easyItem price="202">Item Text 2</easyItem>
+        <easyItem price="203">Item Text 3</easyItem>
+        <easyItem price="204">Item Text 4</easyItem>
+        <easyItem price="205">Item Text 5</easyItem>
+        <easyItem price="206">Item Text 6</easyItem>
+        <easyItem price="207">Item Text 7</easyItem>
+        <easyItem price="208">Item Text 8</easyItem>
+        <easyItem price="209">Item Text 9</easyItem>
+        <easyItem price="210">Item Text 10</easyItem>
+    </easyItems>
+    <!--mediumItems!-->
+    <mediumItems>
+        <mediumItem price="201">Item Text 1</mediumItem>
+        <mediumItem price="202">Item Text 2</mediumItem>
+        <mediumItem price="203">Item Text 3</mediumItem>
+        <mediumItem price="204">Item Text 4</mediumItem>
+        <mediumItem price="205">Item Text 5</mediumItem>
+        <mediumItem price="206">Item Text 6</mediumItem>
+        <mediumItem price="207">Item Text 7</mediumItem>
+        <mediumItem price="208">Item Text 8</mediumItem>
+        <mediumItem price="209">Item Text 9</mediumItem>
+        <mediumItem price="210">Item Text 10</mediumItem>
+    </mediumItems>
+    <!--hardItems!-->
+    <hardItems>
+        <hardItem price="201">Item Text 1</hardItem>
+        <hardItem price="202">Item Text 2</hardItem>
+        <hardItem price="203">Item Text 3</hardItem>
+        <hardItem price="204">Item Text 4</hardItem>
+        <hardItem price="205">Item Text 5</hardItem>
+        <hardItem price="206">Item Text 6</hardItem>
+        <hardItem price="207">Item Text 7</hardItem>
+        <hardItem price="208">Item Text 8</hardItem>
+        <hardItem price="209">Item Text 9</hardItem>
+        <hardItem price="210">Item Text 10</hardItem>
+    </hardItems>
+    <tradeEventSettings>
+        <setting>Trade Event Text 1</setting>
+        <setting>Trade Event Text 2</setting>
+        <setting>Trade Event Text 3</setting>
+        <setting>Trade Event Text 4</setting>
+        <setting>Trade Event Text 5</setting>
+    </tradeEventSettings>
+</TradeEvents>

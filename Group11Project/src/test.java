@@ -266,6 +266,11 @@ class Test {
 
 	public static void main (String args[ ]) {
 		Test t = new Test( );
-		t.run( );
+//		t.run( );
+//		EventExampleDriver exampleAssistEvents = new EventExampleDriver(100, 0, 0, 0, 0);
+//		EventExampleDriver exampleCombatEvents = new EventExampleDriver(0, 100, 0, 0, 0);
+//		EventExampleDriver exampleExplorationEvents = new EventExampleDriver(0, 0, 100, 0, 0);
+//		EventExampleDriver exampleTextEvents = new EventExampleDriver(0, 0, 0, 100, 0);
+		EventExampleDriver exampleTradeEvents = new EventExampleDriver(0, 0, 0, 0, 100);
 	}
 }
