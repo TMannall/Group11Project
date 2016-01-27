@@ -1,3 +1,4 @@
+import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Texture;
 import org.jsfml.system.Vector2f;
@@ -12,7 +13,10 @@ public class Textures {
     public Sprite ocean = LoadTexture("textures/ocean.png");
 
     // user interface (will be frames)
-    public Sprite userInterface = LoadTexture("textures/user_interface.png");
+    public Sprite button = LoadFrameTexture("textures/user_interface.png", 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
+    public Sprite buttonSmall = LoadFrameTexture("textures/user_interface.png", 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite shipIcon = LoadFrameTexture("textures/user_interface.png", 549, 11, 254, 92);
+    public Sprite waypoint = LoadFrameTexture("textures/user_interface.png", 466, 24, 56, 56); // visited: 466, 103, 56, 56
     public Sprite sailor1 = LoadTexture("textures/sailor_1.png");
 
     // ship models
@@ -50,7 +54,7 @@ public class Textures {
     }
 
     // frames wip
-    public Sprite LoadFrameTexture(String fileName) {
+    public Sprite LoadFrameTexture(String fileName, int ax, int ay, int bx, int by) {
         Texture texture = new Texture( );
 
         try {
@@ -61,7 +65,7 @@ public class Textures {
 
         texture.setSmooth(true);
         Sprite sprite = new Sprite(texture);
-        //sprite.setTextureRect();
+        sprite.setTextureRect(new IntRect(ax, ay, bx, by));
         return sprite;
     }
 }
