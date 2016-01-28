@@ -20,6 +20,14 @@ public class Textures {
     public Sprite waypoint = setFrame(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
     public Sprite sailor1 = LoadTexture("textures/sailor_1.png");
+    private Sprite britishMarine = LoadTexture("textures/marine_british_fire_musket.png");
+    private Sprite frenchMarine = LoadTexture("textures/marine_french_fire_musket.png");
+    private Sprite spanishMarine = LoadTexture("textures/marine_spanish_fire_musket.png");
+    private Sprite neutralMarine = LoadTexture("textures/marine_neutral_fire_musket.png");
+    public Sprite britishMarineFire = setFrame(britishMarine, 0, 0, 65, 185);
+    public Sprite frenchMarineFire = setFrame(frenchMarine, 0, 0, 65, 185);
+    public Sprite spanishMarineFire = setFrame(spanishMarine, 0, 0, 65, 185);
+    public Sprite neutralMarineFire = setFrame(neutralMarine, 0, 0, 65, 185);
 
     // ship models
     public Sprite shipLv1 = LoadTexture("textures/ship_level_1.png");
