@@ -6,6 +6,8 @@ import org.jsfml.graphics.*;
 import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 
+import java.util.ArrayList;
+
 public class GameDriver {
     public static int getWinWidth() {
         return WIN_WIDTH;
@@ -31,8 +33,12 @@ public class GameDriver {
 
         Textures textures = new Textures();
         machine = new FSM();
-        menu = new Menu(driver, window, textures);
-        game = new Game(window);
+        menu = new Menu(machine, driver, window, textures);
+        game = new Game(machine, driver, window, textures);
+
+        // Add all states the FSM controls to its ArrayList for access later
+        machine.getStates().add(menu);
+        machine.getStates().add(game);
 
         // Set menu state for game launch
         machine.setState(menu);
@@ -44,19 +50,9 @@ public class GameDriver {
             // Add to window relevant objects depending on state
             machine.run();
 
-            // Update window with changes made
-            window.display();
-
-            // Handle events
-            for(Event event : window.pollEvents()) {
-                if(event.type == Event.Type.CLOSED)
-                    window.close();
-            }
-
+            // NOTE: States must call window.display() and poll for relevant events themselves
         }
     }
-
-
 
     public static void main(String[] args) {
         GameDriver driver = new GameDriver();
