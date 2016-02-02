@@ -7,7 +7,11 @@ import org.jsfml.system.Clock;
 import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 
+<<<<<<< HEAD
 import java.util.Random;
+=======
+import java.util.ArrayList;
+>>>>>>> 2b8d9976aa53e9a84bdc80d8a7cb228bfb3c6460
 
 public class GameDriver {
     public static int getWinWidth() {
@@ -34,8 +38,12 @@ public class GameDriver {
 
         Textures textures = new Textures();
         machine = new FSM();
-        menu = new Menu(driver, window, textures);
-        game = new Game(window);
+        menu = new Menu(machine, driver, window, textures);
+        game = new Game(machine, driver, window, textures);
+
+        // Add all states the FSM controls to its ArrayList for access later
+        machine.getStates().add(menu);
+        machine.getStates().add(game);
 
         // Set menu state for game launch
         machine.setState(menu);
@@ -58,6 +66,7 @@ public class GameDriver {
             // Add to window relevant objects depending on state
             machine.run();
 
+<<<<<<< HEAD
 
             // jack: frame test
             if(animClock.getElapsedTime().asMicroseconds() >= 50) {
@@ -101,10 +110,11 @@ public class GameDriver {
                     window.close();
             }
 
+=======
+            // NOTE: States must call window.display() and poll for relevant events themselves
+>>>>>>> 2b8d9976aa53e9a84bdc80d8a7cb228bfb3c6460
         }
     }
-
-
 
     public static void main(String[] args) {
         GameDriver driver = new GameDriver();
