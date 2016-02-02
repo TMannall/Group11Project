@@ -1,4 +1,4 @@
-public class Driver
+public class SoundTest
 {
 	public static void main(String[] Args)
 	{
