@@ -39,11 +39,11 @@ public class Textures {
     public Sprite shipLv1 = LoadTexture("textures/ship_level_1.png");
     public Sprite shipLv2 = LoadTexture("textures/ship_level_1.png");
     public Sprite shipLv3 = LoadTexture("textures/ship_level_3.png");
-    public Sprite shipBridge = setFrame(shipLv3, 549, 11, 254, 92);
-    public Sprite shipGunDeck = setFrame(shipLv3, 549, 11, 254, 92);
-    public Sprite shipMasts = setFrame(shipLv3, 549, 11, 254, 92);
-    public Sprite shipSupplies = setFrame(shipLv3, 549, 11, 254, 92);
-    public Sprite shipMedical = setFrame(shipLv3, 549, 11, 254, 92);
+    public Sprite shipBridge = setFrame(shipLv3, 0, 0, 525, 365);
+    public Sprite shipGunDeck = setFrame(shipLv3, 525, 0, 343, 125);
+    public Sprite shipMasts = setFrame(shipLv3, 525, 129, 343, 115);
+    public Sprite shipSupplies = setFrame(shipLv3, 525, 241, 343, 125);
+    public Sprite shipMedical = setFrame(shipLv3, 868, 0, 826, 365);
 
 
     // character portraits
