@@ -120,12 +120,12 @@ public class Menu extends FSMState{
 //        window.draw(textures.neutralMarineFire);
         // jack: testing animations end
 
-        try {
-            Thread.sleep(10); //1000); // this delays the animation frames if it's too high
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+ //       try {
+ //           Thread.sleep(10); //1000); // this delays the animation frames if it's too high
+ //       } catch (InterruptedException e) {
+ //           e.printStackTrace();
         displayMenu();
-        }
+ //       }
     }
 
     public void displayMenu() {

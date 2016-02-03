@@ -32,6 +32,7 @@ public class Game extends FSMState {
         window.draw(textures.ocean);
         playerShip.draw();
 
+
         window.display();
 
         for(Event event : window.pollEvents()){

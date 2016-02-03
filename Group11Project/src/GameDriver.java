@@ -47,12 +47,12 @@ public class GameDriver {
 
 
         // jack: testing frames
-        int frame = new Random().nextInt(40);
-        int frame2 = new Random().nextInt(40);
-        int frame3 = new Random().nextInt(40);
-        int frame4 = new Random().nextInt(40);
+       // int frame = new Random().nextInt(40);
+       // int frame2 = new Random().nextInt(40);
+       // int frame3 = new Random().nextInt(40);
+       // int frame4 = new Random().nextInt(40);
 
-        Clock animClock = new Clock();
+       // Clock animClock = new Clock();
         // jack: frame test end
 
 
@@ -95,15 +95,6 @@ public class GameDriver {
 //            }
             // jack: frame test end
 
-
-            // Update window with changes made
-            window.display();
-
-            // Handle events
-            for(Event event : window.pollEvents()) {
-                if(event.type == Event.Type.CLOSED)
-                    window.close();
-            }
 
             // NOTE: States must call window.display() and poll for relevant events themselves
         }

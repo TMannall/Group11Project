@@ -2,11 +2,15 @@ import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
-public class Ship extends Actor{
+public class Ship{
+    private Textures textures;
+    private GameDriver driver;
+    private RenderWindow window;
+
     private int hullHP;  // Overall ship integrity; 0 = game over, ship sinks
     private int gunStr; // Cannon strength (modifies damage dealt)
 
-    private ShipSection guns;
+    public ShipSection guns;
     private ShipSection masts;
     private ShipSection bridge;
     private ShipSection hold;
@@ -15,13 +19,18 @@ public class Ship extends Actor{
     private enum Sections{GUNS, MASTS, BRIDGE, HOLD, QUARTERS};
 
     public Ship(Textures textures, GameDriver driver, RenderWindow window){
-        guns = new ShipSection(Textures textures, GameDriver driver, RenderWindow window, SPRITE);
-        masts = new ShipSection(Textures textures, GameDriver driver, RenderWindow window, SPRITE);
-        bridge = new ShipSection(Textures textures, GameDriver driver, RenderWindow window, SPRITE);
-        hold = new ShipSection(Textures textures, GameDriver driver, RenderWindow window, SPRITE);
-        quarters = new ShipSection(Textures textures, GameDriver driver, RenderWindow window, SPRITE);
+        this.textures = textures;
+        this.driver = driver;
+        this.window = window;
+        guns = new ShipSection(textures, driver, window, textures.shipGunDeck);
+        masts = new ShipSection(textures, driver, window, textures.shipMasts);
+        bridge = new ShipSection(textures, driver, window, textures.shipBridge);
+        hold = new ShipSection(textures, driver, window, textures.shipSupplies);
+        quarters = new ShipSection(textures, driver, window, textures.shipMedical);
     }
 
+
+    // CHANGE THIS SO YOU CAN JUST SET POSITION OF THE SHIP AND ALL SECTIONS ARE POSITIONED AUTOMATICALLY TO THAT SECTION
     public void setPos(Sections section, float xPos, float yPos){
         switch(section){
             case GUNS:
@@ -42,6 +51,7 @@ public class Ship extends Actor{
     }
 
     public void draw(){
+        guns.sprite.setPosition(driver.getWinWidth(), driver.getWinHeight());
         window.draw(guns.sprite);
         window.draw(masts.sprite);
         window.draw(bridge.sprite);
