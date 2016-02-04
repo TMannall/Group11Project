@@ -51,7 +51,8 @@ public class Ship{
     }
 
     public void draw(){
-        guns.sprite.setPosition(driver.getWinWidth(), driver.getWinHeight());
+       // guns.sprite.setOrigin(0,0);
+        guns.sprite.setPosition(driver.getWinWidth()/2, driver.getWinHeight()/2);
         window.draw(guns.sprite);
         window.draw(masts.sprite);
         window.draw(bridge.sprite);
