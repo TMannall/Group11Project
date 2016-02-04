@@ -54,6 +54,8 @@ public class Textures {
      * takes the location of the texture and returns the image as a sprite ready
      * to be used in-game
      *
+     * sets the origin of the texture to the centre
+     *
      * @param fileName texture file path
      * @return loaded texture file
      */
@@ -82,6 +84,8 @@ public class Textures {
      * to change frames, use textureName.setTextureRect(new IntRect(a, b, c, d));
      * where a, b, c, d corresponds to the new frame.
      *
+     * sets the origin of the frame to the centre
+     *
      * @param sprite texture file to use
      * @param ax x starting coordinate
      * @param ay y starting coordinate
@@ -91,6 +95,8 @@ public class Textures {
      */
     public Sprite setFrame(Sprite sprite, int ax, int ay, int bx, int by) {
         sprite.setTextureRect(new IntRect(ax, ay, bx, by));
+        sprite.setOrigin(Vector2f.div(
+                new Vector2f(bx, by), 2));
         return sprite;
     }
 }
