@@ -1,6 +1,4 @@
-import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
 
 public class Ship{
     private Textures textures;
@@ -10,7 +8,7 @@ public class Ship{
     private int hullHP;  // Overall ship integrity; 0 = game over, ship sinks
     private int gunStr; // Cannon strength (modifies damage dealt)
 
-    public ShipSection guns;
+    private ShipSection guns;
     private ShipSection masts;
     private ShipSection bridge;
     private ShipSection hold;
@@ -51,12 +49,12 @@ public class Ship{
     }
 
     public void draw(){
-       // guns.sprite.setOrigin(0,0);
-        guns.sprite.setPosition(driver.getWinWidth()/2, driver.getWinHeight()/2);
-        window.draw(guns.sprite);
-        window.draw(masts.sprite);
-        window.draw(bridge.sprite);
-        window.draw(hold.sprite);
-        window.draw(quarters.sprite);
+        //guns.sprite.setPosition(800, 300);
+          masts.sprite.setPosition(800,300);
+          window.draw(guns.sprite);
+       // window.draw(masts.sprite);
+        //window.draw(bridge.sprite);
+        //window.draw(hold.sprite);
+        //window.draw(quarters.sprite);
     }
 }
