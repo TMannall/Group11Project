@@ -1,6 +1,4 @@
-import org.jsfml.graphics.IntRect;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 import java.io.IOException;
@@ -17,11 +15,14 @@ public class Textures {
     public Sprite ocean = LoadTexture("textures/ocean.png");
 
     // user interface
-    public Sprite userInterface = LoadTexture("textures/user_interface.png");
-    public Sprite button = setFrame(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
-    public Sprite buttonSmall = setFrame(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
-    public Sprite shipIcon = setFrame(userInterface, 549, 11, 254, 92);
-    public Sprite waypoint = setFrame(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+    public Sprite userInterface1 = LoadTexture("textures/user_interface.png");
+    public Sprite userInterface2 = LoadTexture("textures/user_interface.png");
+    public Sprite userInterface3 = LoadTexture("textures/user_interface.png");
+    public Sprite userInterface4 = LoadTexture("textures/user_interface.png");
+    public Sprite button = setFrame(userInterface1, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
+    public Sprite buttonSmall = setFrame(userInterface2, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite shipIcon = setFrame(userInterface3, 549, 11, 254, 92);
+    public Sprite waypoint = setFrame(userInterface4, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
     // unit sprites
     public Sprite sailor1 = LoadTexture("textures/sailor_1.png"); // hello sailor!
@@ -36,15 +37,22 @@ public class Textures {
     public Sprite neutralMarineFire = setFrame(neutralMarine, 0, 0, 65, 185);
 
     // ship models
-    public Sprite shipLv1 = LoadTexture("textures/ship_level_1.png");
-    public Sprite shipLv2 = LoadTexture("textures/ship_level_1.png");
-    public Sprite shipLv3 = LoadTexture("textures/ship_level_3.png");
-    public Sprite shipBridge = setFrame(shipLv3, 0, 0, 525, 365);
-    public Sprite shipGunDeck = setFrame(shipLv3, 525, 0, 343, 125);
-    public Sprite shipMasts = setFrame(shipLv3, 525, 129, 343, 115);
-    public Sprite shipSupplies = setFrame(shipLv3, 525, 241, 343, 125);
-    public Sprite shipMedical = setFrame(shipLv3, 868, 0, 826, 365);
+    public Sprite ship1 = LoadTexture("textures/ship_level_3.png");
+    public Sprite ship2 = LoadTexture("textures/ship_level_3.png");
+    public Sprite ship3 = LoadTexture("textures/ship_level_3.png");
+    public Sprite ship4 = LoadTexture("textures/ship_level_3.png");
+    public Sprite ship5 = LoadTexture("textures/ship_level_3.png");
+    public Sprite shipBridge = setFrame(ship1, 0, 0, 525, 365);
+    public Sprite shipGunDeck = setFrame(ship2, 525, 0, 343, 125);
+    public Sprite shipMasts = setFrame(ship3, 525, 129, 343, 115);
+    public Sprite shipSupplies = setFrame(ship4, 525, 241, 343, 125);
+    public Sprite shipMedical = setFrame(ship5, 868, 0, 826, 365);
 
+//    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
+//    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
+//    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
+//    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
+//    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
     // character portraits
     public Sprite captainTestPortrait = LoadTexture("textures/captain_portrait_example.png");
