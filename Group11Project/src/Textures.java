@@ -48,6 +48,11 @@ public class Textures {
     public Sprite shipSupplies = setFrame(ship4, 525, 241, 343, 125);
     public Sprite shipMedical = setFrame(ship5, 868, 0, 826, 365);
 
+//    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
+//    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
+//    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
+//    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
+//    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
     // character portraits
     public Sprite captainTestPortrait = LoadTexture("textures/captain_portrait_example.png");
