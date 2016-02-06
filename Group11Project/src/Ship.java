@@ -1,4 +1,6 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.system.Clock;
+import org.jsfml.system.Time;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,9 @@ public class Ship{
 
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
     private int gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
+    private int reloadBoost = 1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
+    private boolean gunLoaded = true;   // True when cannons can fire; false when reloading
+    private Clock reloadTimer;
 
     protected ShipSection guns;
     protected ShipSection masts;
@@ -74,6 +79,8 @@ public class Ship{
         for(ShipSection section : sections){
             section.sprite.scale(scale, scale);
         }
+
+        reloadTimer = new Clock();          // Move this to somewhere better so clock isn't started at construction?
     }
 
     public void draw(){
@@ -82,30 +89,33 @@ public class Ship{
         }
     }
 
-    public void validateClick(int x, int y){
-        for(ShipSection section: sections){
-            float leftBound = section.sprite.getGlobalBounds().left;
-            float rightBound = leftBound + section.sprite.getGlobalBounds().width;
-            float topBound = section.sprite.getGlobalBounds().top;
-            float bottomBound = topBound + section.sprite.getGlobalBounds().height;
+    public ShipSection validateClick(int x, int y){
+        if(!gunLoaded)
+            System.out.println("CANNONS STILL RELOADING!");
+        else {
+            for (ShipSection section : sections) {
+                float leftBound = section.sprite.getGlobalBounds().left;
+                float rightBound = leftBound + section.sprite.getGlobalBounds().width;
+                float topBound = section.sprite.getGlobalBounds().top;
+                float bottomBound = topBound + section.sprite.getGlobalBounds().height;
 
-            if(section.isTargetable() && x > leftBound && x < rightBound && y > topBound && y < bottomBound){
-                System.out.println("---------------------------------");
-                System.out.println("ENEMY " +section.getType() + " CLICKED!");
-                System.out.println(section.getType() + "HP: " + section.getHP());
-                System.out.println("FIRING GUNS!");
-
-                section.damage(10 * gunStr);          // CHANGE THIS TO DO RANDOM DAMAGE BASED ON GUNSTR MODIFIER
-
-                System.out.println(section.getType() + "HP: " + section.getHP());
-                System.out.println("---------------------------------");
-                break;
+                if (x > leftBound && x < rightBound && y > topBound && y < bottomBound) {
+                    return section;
+                }
             }
-            else if(!section.isTargetable() && x > leftBound && x < rightBound && y > topBound && y < bottomBound){
-                System.out.println("---------------------------------");
-                System.out.println(section.getType() + " HAS BEEN DESTROYED! CANNOT TARGET!");
-                System.out.println("---------------------------------");
-            }
+        }
+        return null;
+    }
+
+    public void checkReload(){
+        Time time = reloadTimer.getElapsedTime();
+        float elapsed = time.asSeconds();
+        if(elapsed >= (2/reloadBoost)){
+            gunLoaded = true;
+            System.out.println("CANNONS RELOADED - FIRE!");
+        }
+        else{
+            gunLoaded = false;
         }
     }
 
@@ -123,5 +133,21 @@ public class Ship{
         hullHP += change;
         if(hullHP > 100)
             hullHP = 100;
+    }
+
+    public boolean isGunLoaded(){
+        return gunLoaded;
+    }
+
+    public void setGunLoaded(boolean loaded){
+        gunLoaded = loaded;
+    }
+
+    public int getGunStr(){
+        return gunStr;
+    }
+
+    public Clock getReloadTimer(){
+        return reloadTimer;
     }
 }
