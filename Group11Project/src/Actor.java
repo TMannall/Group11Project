@@ -7,11 +7,11 @@ public abstract class Actor {
     protected RenderWindow window;
     protected Sprite sprite;
 
-    public Actor(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite){
+    public Actor(Textures textures, GameDriver driver, RenderWindow window, String texture){
         this.textures = textures;
         this.driver = driver;
         this.window = window;
-        this.sprite = sprite;
+        sprite = textures.LoadTexture(texture);
     }
 
 }

@@ -11,6 +11,7 @@ public class Game extends FSMState {
     private Textures textures;
 
     private Ship playerShip;
+    private Ship enemyShip;
 
     public Game(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
         this.stateMachine = stateMachine;
@@ -22,7 +23,8 @@ public class Game extends FSMState {
     }
 
     public void setup(){
-        playerShip = new Ship(textures, driver, window);
+        playerShip = new Ship(textures, driver, window, Ship.ShipType.PLAYER, (float)0.5, 500, 300);
+        enemyShip = new Ship(textures, driver, window, Ship.ShipType.STANDARD, (float)0.5, 500, 800);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class Game extends FSMState {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         playerShip.draw();
-
+        enemyShip.draw();
 
         window.display();
 
@@ -41,7 +43,9 @@ public class Game extends FSMState {
                     window.close();
                     break;
                 case MOUSE_BUTTON_PRESSED:
-                    System.out.println(event.asMouseEvent().position);
+                    int xPos = event.asMouseEvent().position.x;
+                    int yPos = event.asMouseEvent().position.y;
+                    enemyShip.validateClick(xPos, yPos);
             }
         }
     }

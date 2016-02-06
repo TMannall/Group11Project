@@ -42,17 +42,17 @@ public class Textures {
     public Sprite ship3 = LoadTexture("textures/ship_level_3.png");
     public Sprite ship4 = LoadTexture("textures/ship_level_3.png");
     public Sprite ship5 = LoadTexture("textures/ship_level_3.png");
-    public Sprite shipBridge = setFrame(ship1, 0, 0, 525, 365);
-    public Sprite shipGunDeck = setFrame(ship2, 525, 0, 343, 125);
-    public Sprite shipMasts = setFrame(ship3, 525, 129, 343, 115);
-    public Sprite shipSupplies = setFrame(ship4, 525, 241, 343, 125);
-    public Sprite shipMedical = setFrame(ship5, 868, 0, 826, 365);
+//    public Sprite shipBridge = setFrame(ship1, 0, 0, 525, 365);
+//    public Sprite shipGunDeck = setFrame(ship2, 525, 0, 343, 125);
+//    public Sprite shipMasts = setFrame(ship3, 525, 129, 343, 115);
+//    public Sprite shipSupplies = setFrame(ship4, 525, 241, 343, 125);
+//    public Sprite shipMedical = setFrame(ship5, 868, 0, 826, 365);
 
-//    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
-//    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
-//    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
-//    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
-//    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
+    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
+    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
+    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
+    public Sprite shipSupplies = LoadTexture("textures/ship_hold.png");
+    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
     // character portraits
     public Sprite captainTestPortrait = LoadTexture("textures/captain_portrait_example.png");
