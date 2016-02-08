@@ -106,7 +106,8 @@ public class Menu extends FSMState{
             Thread.sleep(10); //1000); // this delays the animation frames if it's too high
         } catch (InterruptedException e) {
             e.printStackTrace();
-        displayMenu();
+
+            displayMenu();
         }
     }
 
