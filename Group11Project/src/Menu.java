@@ -34,12 +34,12 @@ public class Menu extends FSMState{
     Text title;
 
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-    private static String JdkFontPath = "C:\\Program Files\\Java\\jdk" + JavaVersion + "\\jre\\lib\\fonts\\";
-    private static String JreFontPath = "C:\\Program Files\\Java\\jre" + JavaVersion + "\\lib\\fonts\\";
+    private static String JdkFontPath = "textures/";
+    private static String JreFontPath = "textures/";
 
     private static int titleFontSize = 80;
     private static int buttonFontSize = 32;
-    private static String FontFile = "LucidaSansRegular.ttf";
+    private static String FontFile = "vinque.ttf";
     private String FontPath;
 
     private static String Title = "ENDLESS SEA";
@@ -99,20 +99,22 @@ public class Menu extends FSMState{
 
     @Override
     public void execute() {
-        textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+        textures.mainMenu.setOrigin(0, 0);
+        //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
 
         try {
             Thread.sleep(10); //1000); // this delays the animation frames if it's too high
         } catch (InterruptedException e) {
             e.printStackTrace();
-
-            displayMenu();
         }
+
+        displayMenu();
     }
 
     public void displayMenu() {
-        textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+        textures.mainMenu.setOrigin(0, 0);
+        //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
 
         window.draw(title);
