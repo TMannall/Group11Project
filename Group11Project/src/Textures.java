@@ -8,7 +8,7 @@ public class Textures {
 
     // splash screens
     public Texture mainMenu_ = loadTexture("textures/main_menu.png");
-    public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1280, 720);
+    public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
     public Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
