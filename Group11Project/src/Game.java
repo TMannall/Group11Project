@@ -1,5 +1,7 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.Event;
+import org.jsfml.window.event.KeyEvent;
 
 import java.util.Random;
 
@@ -52,8 +54,16 @@ public class Game extends FSMState {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     ShipSection clicked = enemyShip.validateClick(xPos, yPos);
-                    if(clicked != null)
+                    if (clicked != null)
                         attack(clicked);
+                case KEY_PRESSED:
+                    KeyEvent keyEvent = event.asKeyEvent();
+                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
+                        stateMachine.setState(stateMachine.getStates().get(0));
+                        break;
+                    } else if (keyEvent.key == Keyboard.Key.M) {
+                        stateMachine.setState(stateMachine.getStates().get(3));
+                    }
             }
         }
     }
