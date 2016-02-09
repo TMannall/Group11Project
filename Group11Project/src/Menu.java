@@ -34,8 +34,8 @@ public class Menu extends FSMState{
     Text title;
 
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-    private static String JdkFontPath = "textures/";
-    private static String JreFontPath = "textures/";
+    private static String JdkFontPath = "Group11Project/textures/";
+    private static String JreFontPath = "Group11Project/textures/";
 
     private static int titleFontSize = 80;
     private static int buttonFontSize = 32;

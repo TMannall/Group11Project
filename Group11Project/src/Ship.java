@@ -46,18 +46,18 @@ public class Ship{
     public void setup(ShipType type){
         switch(type){
             case PLAYER:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this );
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, "Group11Project/textures/ship_gun_deck.png", "Guns", this);
+                masts = new ShipSection(textures, driver, window, "Group11Project/textures/ship_masts.png", "Masts", this);
+                bridge = new ShipSection(textures, driver, window, "Group11Project/textures/ship_bridge.png", "Bridge", this);
+                hold = new ShipSection(textures, driver, window, "Group11Project/textures/ship_hold.png", "Hold", this );
+                quarters = new ShipSection(textures, driver, window, "Group11Project/textures/ship_medical.png", "Quarters", this);
                 break;
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, "Group11Project/textures/ship_gun_deck.png", "Guns", this);
+                masts = new ShipSection(textures, driver, window, "Group11Project/textures/ship_masts.png", "Masts", this);
+                bridge = new ShipSection(textures, driver, window, "Group11Project/textures/ship_bridge.png", "Bridge", this);
+                hold = new ShipSection(textures, driver, window, "Group11Project/textures/ship_hold.png", "Hold", this);
+                quarters = new ShipSection(textures, driver, window, "Group11Project/textures/ship_medical.png", "Quarters", this);
                 break;
             default:
                 System.out.println("ERROR");
