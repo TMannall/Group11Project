@@ -28,6 +28,7 @@ public class GameDriver {
     private FSM machine;
     private FSMState menu;
     private FSMState game;
+    private FSMState settings;
 
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
@@ -42,10 +43,12 @@ public class GameDriver {
         Textures textures = new Textures();
         machine = new FSM();
         menu = new Menu(machine, driver, window, textures);
+        settings = new Settings(machine, driver, window, textures);
         game = new Game(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
+        machine.getStates().add(settings);
         machine.getStates().add(game);
 
         // Set menu state for game launch
