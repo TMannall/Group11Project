@@ -75,7 +75,7 @@ public class Settings extends FSMState{
 
         buttons[1].setFont(sansRegular);
         buttons[1].setColor(Color.BLACK);
-        buttons[1].setString("Setting 2");
+        buttons[1].setString("Sound Volume: " + sound.getSoundVolume());
         buttons[1].setPosition(driver.getWinWidth() / 2 - 90, 270);
 
         buttons[2].setFont(sansRegular);
