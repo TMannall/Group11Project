@@ -17,6 +17,8 @@ import org.jsfml.window.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main menu state for Endless Sea
@@ -43,7 +45,7 @@ public class Menu extends FSMState{
     private String FontPath;
 
     private static String Title = "ENDLESS SEA";
-
+    private SoundClass sound = new SoundClass();
 
     public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
         this.stateMachine = stateMachine;
@@ -65,6 +67,8 @@ public class Menu extends FSMState{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        sound.playBackgroundMusic("sounds/main_menu_music.ogg");
 
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
@@ -116,12 +120,18 @@ public class Menu extends FSMState{
         textures.mainMenu.setOrigin(0, 0);
         //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
-
         window.draw(title);
 
         for (int i = 0; i < numberOfButtons; i++) {
             window.draw(buttons[i]);
         }
+
+        // jack: sprite testing
+        for(int i = 0; i < 5; i++) {
+            driver.marineList.get(i).setPosition((200 * i/2), 500);
+            window.draw(driver.marineList.get(i));
+        }
+        // jack: end sprite testing
 
         window.display();
 
@@ -148,6 +158,7 @@ public class Menu extends FSMState{
                         switch (getButtonIndex()) {
                             case 0: //New Game
                                 stateMachine.setState(stateMachine.getStates().get(1));
+                                sound.stopBackgroundMusic();
                                 break;
                             case 1: //Load Game
 
@@ -168,7 +179,7 @@ public class Menu extends FSMState{
         if (buttonIndex - 1 >= 0) {
             buttons[buttonIndex].setColor(Color.BLACK);
             buttonIndex--;
-            buttons[buttonIndex].setColor(Color.BLUE);
+            buttons[buttonIndex].setColor(Color.YELLOW);
         }
     }
 
@@ -176,7 +187,7 @@ public class Menu extends FSMState{
         if (buttonIndex + 1 < numberOfButtons) {
             buttons[buttonIndex].setColor(Color.BLACK);
             buttonIndex++;
-            buttons[buttonIndex].setColor(Color.BLUE);
+            buttons[buttonIndex].setColor(Color.YELLOW);
         }
     }
 

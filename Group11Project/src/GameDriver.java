@@ -7,6 +7,8 @@ import org.jsfml.system.Clock;
 import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -27,6 +29,10 @@ public class GameDriver {
     private FSMState menu;
     private FSMState game;
 
+    // jack: sprite testing
+    public List<Sprite> marineList = new ArrayList<>();
+    // jack: end sprite testing
+
     public void run(){
         // Initial setup
         RenderWindow window = new RenderWindow();
@@ -45,14 +51,14 @@ public class GameDriver {
         // Set menu state for game launch
         machine.setState(menu);
 
-
-        // jack: testing frames
-       // int frame = new Random().nextInt(40);
-       // int frame2 = new Random().nextInt(40);
-       // int frame3 = new Random().nextInt(40);
-       // int frame4 = new Random().nextInt(40);
-
-       // Clock animClock = new Clock();
+        // jack: frame test
+        SoundClass sound = new SoundClass();
+        Clock animClock = new Clock();
+        int[] frameList = new int[5];
+        for(int i = 0; i < 5; i++) {
+            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
+            frameList[i] = new Random().nextInt(39);
+        }
         // jack: frame test end
 
 
@@ -60,40 +66,27 @@ public class GameDriver {
         while(window.isOpen()){
             window.clear(Color.WHITE);
 
+            // jack: frame test
+            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
+                for(int i = 0; i < 5; i++) {
+                    animClock.restart();
+                    frameList[i] = frameList[i] + 1;
+
+                    /*//if (frameList[i] == 5)
+                        //sound.playSound("sounds/gun_01.ogg");*/
+
+                    if (frameList[i] > 39)
+                        frameList[i] = 0;
+
+                    int frameRow = frameList[i] / 20;
+                    int frameCol = frameList[i] % 20;
+                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
+                }
+            }
+            // jack: frame test end
+
             // Add to window relevant objects depending on state
             machine.run();
-
-            // jack: frame test
-//            if(animClock.getElapsedTime().asMicroseconds() >= 50) {
-//                animClock.restart();
-//                frame++;
-//                frame2++;
-//                frame3++;
-//                frame4++;
-//
-//                if(frame > 39) frame = 0;
-//                if(frame2 > 39) frame2 = 0;
-//                if(frame3 > 39) frame3 = 0;
-//                if(frame4 > 39) frame4 = 0;
-//
-//                int frameRow = frame / 20;
-//                int frameCol = frame % 20;
-//                textures.britishMarineFire.setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
-//
-//                int frameRow2 = frame2 / 20;
-//                int frameCol2 = frame2 % 20;
-//                textures.frenchMarineFire.setTextureRect(new IntRect(frameCol2 * 65, frameRow2 * 185, 65, 185));
-//
-//
-//                int frameRow3 = frame3 / 20;
-//                int frameCol3 = frame3 % 20;
-//                textures.spanishMarineFire.setTextureRect(new IntRect(frameCol3 * 65, frameRow3 * 185, 65, 185));
-//
-//                int frameRow4 = frame4 / 20;
-//                int frameCol4 = frame4 % 20;
-//                textures.neutralMarineFire.setTextureRect(new IntRect(frameCol4 * 65, frameRow4 * 185, 65, 185));
-//            }
-            // jack: frame test end
 
 
             // NOTE: States must call window.display() and poll for relevant events themselves
