@@ -4,22 +4,25 @@ import org.jsfml.system.Vector2f;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Textures class for Endless Sea, handles loading textures and sprites for the game
+ */
 public class Textures {
 
-    // splash screens
+    // Splash screens
     public Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
     public Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
-    // user interface
+    // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
-    // unit sprites
+    // Unit sprites
     public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
     public Texture britishMarine = loadTexture("textures/marine_british_fire_musket.png");
@@ -31,7 +34,7 @@ public class Textures {
     public Sprite spanishMarineFire = createSprite(spanishMarine, 0, 0, 65, 185);
     public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
 
-    // ship models
+    // Ship models
     public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
@@ -47,7 +50,7 @@ public class Textures {
 //    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
 //    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
-    // character portraits
+    // Character portraits
     public Texture captainTestPortrait = loadTexture("textures/captain_portrait_example.png");
 
 

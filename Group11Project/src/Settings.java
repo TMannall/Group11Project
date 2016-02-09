@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * Main menu state for Endless Sea
+ * Settings state for Endless Sea
  */
 public class Settings extends FSMState{
 
@@ -70,7 +70,7 @@ public class Settings extends FSMState{
 
         buttons[0].setFont(sansRegular);
         buttons[0].setColor(Color.BLUE);
-        buttons[0].setString("Setting 1");
+        buttons[0].setString("Music Volume: " + sound.getMusicVolume());
         buttons[0].setPosition(driver.getWinWidth() / 2 - 90, 200);
 
         buttons[1].setFont(sansRegular);
@@ -101,10 +101,10 @@ public class Settings extends FSMState{
             e.printStackTrace();
         }
 
-        displayMenu();
+        displaySettings();
     }
 
-    public void displayMenu() {
+    public void displaySettings() {
         textures.mainMenu.setOrigin(0, 0);
         //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
@@ -113,13 +113,6 @@ public class Settings extends FSMState{
         for (int i = 0; i < numberOfButtons; i++) {
             window.draw(buttons[i]);
         }
-
-        // jack: sprite testing
-        for(int i = 0; i < 5; i++) {
-            driver.marineList.get(i).setPosition((200 * i/2), 500);
-            window.draw(driver.marineList.get(i));
-        }
-        // jack: end sprite testing
 
         window.display();
 
@@ -138,18 +131,19 @@ public class Settings extends FSMState{
                         break;
                     }
 
-                    /*****************************************************************
+                    /**
                      * This part of the code is where the button functionality is implemented.
                      * Use this part for integrating the menu with the main program.
-                     ******************************************************************/
+                     */
                     else if (keyEvent.key == Keyboard.Key.RETURN) {
                         switch (getButtonIndex()) {
                             case 0: //New game
-                                break;
-                            case 1: //Load Game
 
                                 break;
-                            case 2: //Settings button
+                            case 1: //Settings 2
+
+                                break;
+                            case 2: //Settings 3
 
                                 break;
                             case 3: //Main menu
