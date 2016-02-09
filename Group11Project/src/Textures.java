@@ -7,34 +7,34 @@ import java.nio.file.Paths;
 public class Textures {
 
     // splash screens
-    public Texture mainMenu_ = loadTexture("Group11Project/textures/main_menu.png");
+    public Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
-    public Texture ocean_ = loadTexture("Group11Project/textures/ocean.png");
+    public Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
     // user interface
-    public Texture userInterface = loadTexture("Group11Project/textures/user_interface.png");
+    public Texture userInterface = loadTexture("textures/user_interface.png");
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
     // unit sprites
-    public Texture sailor1 = loadTexture("Group11Project/textures/sailor_1.png"); // hello sailor!
+    public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
-    public Texture britishMarine = loadTexture("Group11Project/textures/marine_british_fire_musket.png");
-    public Texture frenchMarine = loadTexture("Group11Project/textures/marine_french_fire_musket.png");
-    public Texture spanishMarine = loadTexture("Group11Project/textures/marine_spanish_fire_musket.png");
-    public Texture neutralMarine = loadTexture("Group11Project/textures/marine_neutral_fire_musket.png");
+    public Texture britishMarine = loadTexture("textures/marine_british_fire_musket.png");
+    public Texture frenchMarine = loadTexture("textures/marine_french_fire_musket.png");
+    public Texture spanishMarine = loadTexture("textures/marine_spanish_fire_musket.png");
+    public Texture neutralMarine = loadTexture("textures/marine_neutral_fire_musket.png");
     public Sprite britishMarineFire = createSprite(britishMarine, 0, 0, 65, 185);
     public Sprite frenchMarineFire = createSprite(frenchMarine, 0, 0, 65, 185);
     public Sprite spanishMarineFire = createSprite(spanishMarine, 0, 0, 65, 185);
     public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
 
     // ship models
-    public Texture shipLv1 = loadTexture("Group11Project/textures/ship_level_1.png");
-    public Texture shipLv2 = loadTexture("Group11Project/textures/ship_level_1.png");
-    public Texture shipLv3 = loadTexture("Group11Project/textures/ship_level_3.png");
+    public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
+    public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
+    public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
@@ -48,7 +48,7 @@ public class Textures {
 //    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
     // character portraits
-    public Texture captainTestPortrait = loadTexture("Group11Project/textures/captain_portrait_example.png");
+    public Texture captainTestPortrait = loadTexture("textures/captain_portrait_example.png");
 
 
     /**
