@@ -4,84 +4,89 @@ import org.jsfml.system.Vector2f;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Textures class for Endless Sea, handles loading textures and sprites for the game
+ */
 public class Textures {
-    // to make the animations work for individual sprites, the sprites need to be loaded in the actual game class files
-    // the framed textures with animations that are loaded here are templates to be copied and used elsewhere with new names
-    // if an animated sprite has the same variable name as another, both of the sprites will animate at the same time
 
+    // Splash screens
+    public Texture mainMenu_ = loadTexture("textures/main_menu.png");
+    public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
+    public Texture ocean_ = loadTexture("textures/ocean.png");
+    public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
-    // splash screens
-    public Sprite mainMenu = LoadTexture("textures/main_menu.png");
-    public Sprite ocean = LoadTexture("textures/ocean.png");
+    // User interface
+    public Texture userInterface = loadTexture("textures/user_interface.png");
+    public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
+    public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
+    public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
-    // user interface
-    public Sprite userInterface1 = LoadTexture("textures/user_interface.png");
-    public Sprite userInterface2 = LoadTexture("textures/user_interface.png");
-    public Sprite userInterface3 = LoadTexture("textures/user_interface.png");
-    public Sprite userInterface4 = LoadTexture("textures/user_interface.png");
-    public Sprite button = setFrame(userInterface1, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
-    public Sprite buttonSmall = setFrame(userInterface2, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
-    public Sprite shipIcon = setFrame(userInterface3, 549, 11, 254, 92);
-    public Sprite waypoint = setFrame(userInterface4, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+    // Unit sprites
+    public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
-    // unit sprites
-    public Sprite sailor1 = LoadTexture("textures/sailor_1.png"); // hello sailor!
+    public Texture britishMarine = loadTexture("textures/marine_british_fire_musket.png");
+    public Texture frenchMarine = loadTexture("textures/marine_french_fire_musket.png");
+    public Texture spanishMarine = loadTexture("textures/marine_spanish_fire_musket.png");
+    public Texture neutralMarine = loadTexture("textures/marine_neutral_fire_musket.png");
+    public Sprite britishMarineFire = createSprite(britishMarine, 0, 0, 65, 185);
+    public Sprite frenchMarineFire = createSprite(frenchMarine, 0, 0, 65, 185);
+    public Sprite spanishMarineFire = createSprite(spanishMarine, 0, 0, 65, 185);
+    public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
 
-    public Sprite britishMarine = LoadTexture("textures/marine_british_fire_musket.png");
-    public Sprite frenchMarine = LoadTexture("textures/marine_french_fire_musket.png");
-    public Sprite spanishMarine = LoadTexture("textures/marine_spanish_fire_musket.png");
-    public Sprite neutralMarine = LoadTexture("textures/marine_neutral_fire_musket.png");
-    public Sprite britishMarineFire = setFrame(britishMarine, 0, 0, 65, 185);
-    public Sprite frenchMarineFire = setFrame(frenchMarine, 0, 0, 65, 185);
-    public Sprite spanishMarineFire = setFrame(spanishMarine, 0, 0, 65, 185);
-    public Sprite neutralMarineFire = setFrame(neutralMarine, 0, 0, 65, 185);
+    // Ship models
+    public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
+    public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
+    public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
+    public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
+    public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
+    public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
+    public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
 
-    // ship models
-    public Sprite ship1 = LoadTexture("textures/ship_level_3.png");
-    public Sprite ship2 = LoadTexture("textures/ship_level_3.png");
-    public Sprite ship3 = LoadTexture("textures/ship_level_3.png");
-    public Sprite ship4 = LoadTexture("textures/ship_level_3.png");
-    public Sprite ship5 = LoadTexture("textures/ship_level_3.png");
-//    public Sprite shipBridge = setFrame(ship1, 0, 0, 525, 365);
-//    public Sprite shipGunDeck = setFrame(ship2, 525, 0, 343, 125);
-//    public Sprite shipMasts = setFrame(ship3, 525, 129, 343, 115);
-//    public Sprite shipSupplies = setFrame(ship4, 525, 241, 343, 125);
-//    public Sprite shipMedical = setFrame(ship5, 868, 0, 826, 365);
+//    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
+//    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
+//    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
+//    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
+//    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
-    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
-    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
-    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
-    public Sprite shipSupplies = LoadTexture("textures/ship_hold.png");
-    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
-
-    // character portraits
-    public Sprite captainTestPortrait = LoadTexture("textures/captain_portrait_example.png");
+    // Character portraits
+    public Texture captainTestPortrait = loadTexture("textures/captain_portrait_example.png");
 
 
     /**
-     * takes the location of the texture and returns the image as a sprite ready
-     * to be used in-game
-     *
-     * sets the origin of the texture to the centre
+     * loads a texture from file, throws exception when this fails
      *
      * @param fileName texture file path
-     * @return loaded texture file
+     * @return returns the loaded texture to be used for sprites
      */
-    public Sprite LoadTexture(String fileName) {
-        Texture texture = new Texture( );
-
+    public Texture loadTexture(String fileName) {
+        Texture texture = new Texture();
         try {
             texture.loadFromFile(Paths.get(fileName));
         } catch (IOException ex) {
             ex.printStackTrace( );
         }
-
         texture.setSmooth(true);
+        return texture;
+    }
 
+    /**
+     * creates a sprite from a texture, this is done separately so we can have
+     * multiple sprites using the same texture
+     *
+     * @param texture texture file to use
+     * @param x x starting coordinate
+     * @param y y starting coordinate
+     * @param width width
+     * @param height height
+     * @return resturns the sprite for in-game use
+     */
+    public Sprite createSprite(Texture texture, int x, int y, int width, int height) {
         Sprite sprite = new Sprite(texture);
+        sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
-                new Vector2f(texture.getSize()), 2));
-
+                new Vector2f(width, height), 2));
         return sprite;
     }
 
@@ -94,17 +99,17 @@ public class Textures {
      *
      * sets the origin of the frame to the centre
      *
-     * @param sprite texture file to use
-     * @param ax x starting coordinate
-     * @param ay y starting coordinate
-     * @param bx width
-     * @param by height
-     * @return returns the frame from the texture
+     * @param sprite sprite to change
+     * @param x x starting coordinate
+     * @param y y starting coordinate
+     * @param width width
+     * @param height height
+     * @return returns the new frame for the sprite
      */
-    public Sprite setFrame(Sprite sprite, int ax, int ay, int bx, int by) {
-        sprite.setTextureRect(new IntRect(ax, ay, bx, by));
+    public Sprite setFrame(Sprite sprite, int x, int y, int width, int height) {
+        sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
-                new Vector2f(bx, by), 2));
+                new Vector2f(width, height), 2));
         return sprite;
     }
 }
