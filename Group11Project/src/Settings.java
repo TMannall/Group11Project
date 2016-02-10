@@ -1,29 +1,19 @@
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
-
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
-
-import java.text.DecimalFormat;
-
 import org.jsfml.graphics.Text;
 import org.jsfml.window.Keyboard;
-import org.jsfml.window.VideoMode;
-import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Main menu state for Endless Sea
+ * Settings state for Endless Sea
  */
-public class Menu extends FSMState{
+public class Settings extends FSMState{
 
     private FSM stateMachine;
     private GameDriver driver;
@@ -44,10 +34,10 @@ public class Menu extends FSMState{
     private static String FontFile = "vinque.ttf";
     private String FontPath;
 
-    private static String Title = "ENDLESS SEA";
+    private static String Title = "ENDLESS SEA Settings";
     private SoundClass sound = new SoundClass();
 
-    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public Settings(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
@@ -68,8 +58,6 @@ public class Menu extends FSMState{
             ex.printStackTrace();
         }
 
-        sound.playBackgroundMusic("music_main_menu");
-
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
@@ -82,22 +70,22 @@ public class Menu extends FSMState{
 
         buttons[0].setFont(sansRegular);
         buttons[0].setColor(Color.BLUE);
-        buttons[0].setString("New Game");
+        buttons[0].setString("Music Volume: " + sound.getMusicVolume());
         buttons[0].setPosition(driver.getWinWidth() / 2 - 90, 200);
 
         buttons[1].setFont(sansRegular);
         buttons[1].setColor(Color.BLACK);
-        buttons[1].setString("Leaderboard");
+        buttons[1].setString("Sound Volume: " + sound.getSoundVolume());
         buttons[1].setPosition(driver.getWinWidth() / 2 - 90, 270);
 
         buttons[2].setFont(sansRegular);
         buttons[2].setColor(Color.BLACK);
-        buttons[2].setString("Settings");
+        buttons[2].setString("Setting 3");
         buttons[2].setPosition(driver.getWinWidth() / 2 - 90, 340);
 
         buttons[3].setFont(sansRegular);
         buttons[3].setColor(Color.BLACK);
-        buttons[3].setString("Exit");
+        buttons[3].setString("Main Menu");
         buttons[3].setPosition(driver.getWinWidth() / 2 - 90, 410);
     }
 
@@ -113,10 +101,10 @@ public class Menu extends FSMState{
             e.printStackTrace();
         }
 
-        displayMenu();
+        displaySettings();
     }
 
-    public void displayMenu() {
+    public void displaySettings() {
         textures.mainMenu.setOrigin(0, 0);
         //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
@@ -125,13 +113,6 @@ public class Menu extends FSMState{
         for (int i = 0; i < numberOfButtons; i++) {
             window.draw(buttons[i]);
         }
-
-        // jack: sprite testing
-//        for(int i = 0; i < 5; i++) {
-//            driver.marineList.get(i).setPosition((200 * i/2), 500);
-//            window.draw(driver.marineList.get(i));
-//        }
-        // jack: end sprite testing
 
         window.display();
 
@@ -150,24 +131,23 @@ public class Menu extends FSMState{
                         break;
                     }
 
-                    /*****************************************************************
+                    /**
                      * This part of the code is where the button functionality is implemented.
                      * Use this part for integrating the menu with the main program.
-                     ******************************************************************/
+                     */
                     else if (keyEvent.key == Keyboard.Key.RETURN) {
                         switch (getButtonIndex()) {
-                            case 0: //New Game
-                                sound.stopBackgroundMusic();
-                                stateMachine.setState(stateMachine.getStates().get(2));
-                                sound.playBackgroundMusic("music_combat"); // <!> temporary combat music placement: remove when combat state is properly implemented <!>
+                            case 0: //New game
+
                                 break;
-                            case 1: //Leaderboards
+                            case 1: //Settings 2
+
                                 break;
-                            case 2: //Settings button
-                                stateMachine.setState(stateMachine.getStates().get(1));
+                            case 2: //Settings 3
+
                                 break;
-                            case 3: //Exit button
-                                window.close();
+                            case 3: //Main menu
+                                stateMachine.setState(stateMachine.getStates().get(0));
                                 break;
                         }
                     }

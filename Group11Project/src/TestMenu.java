@@ -15,16 +15,16 @@ class TestMenu{
 	private static int buttonIndex = 0;
 	Text[] buttons = new Text[numberOfButtons];
 
-	private static String JavaVersion = Runtime.class.getPackage( ).getImplementationVersion( );
-	private static String JdkFontPath = "C:\\Program Files\\Java\\jdk" + JavaVersion +"\\jre\\lib\\fonts\\";
-	private static String JreFontPath = "C:\\Program Files\\Java\\jre" + JavaVersion +"\\lib\\fonts\\";
+	private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
+	private static String JdkFontPath = "textures/";
+	private static String JreFontPath = "textures/";
 
 	private static int titleFontSize = 80;
 	private static int buttonFontSize = 32;
-	private static String FontFile  = "LucidaSansRegular.ttf";
+	private static String FontFile = "vinque.ttf";
 	private String FontPath;
 
-	private static String Title   = "ENDLESS SEA";
+	private static String Title = "ENDLESS SEA";
 	
 	int getButtonIndex(){
 		return buttonIndex;
