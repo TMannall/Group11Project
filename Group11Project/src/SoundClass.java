@@ -35,7 +35,7 @@ public class SoundClass
 	  //Read the config file
 		try
 		{
-			Scanner s = new Scanner(new FileReader("sound_config.ini"));
+			Scanner s = new Scanner(new FileReader("src/sound_config.ini"));
 			while (s.hasNext() && numberOfSamples<MAX_SAMPLES)
 			{
 				String lineText = s.next();
@@ -174,7 +174,7 @@ public class SoundClass
 	/** A method to play a sound in a loop with the control to pause and stop it. It uses the music volume level.
 	* If background music is already playing it wil be replaced by the new background music.
 	* Supported audio file formats: ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam, w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
-	* @param soundName Name of the sound sample as specified in the config file.
+	* @param songName Name of the sound sample as specified in the config file.
 	**/
 	public void playBackgroundMusic(String songName)
 	{
