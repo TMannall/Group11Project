@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 
 import java.util.ArrayList;
@@ -39,8 +40,7 @@ public class EnemyShip extends Ship {
             System.out.println(section.getType());
         }
 
-
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
+        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
