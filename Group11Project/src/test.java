@@ -267,5 +267,34 @@ class Test {
 	public static void main (String args[ ]) {
 		Test t = new Test( );
 		t.run( );
+		t.eventsDemo();
+	}
+
+	public void eventsDemo()
+	{
+		EventExampleDriver exampleEvents = new EventExampleDriver();
+		//effect holders
+		int[][] statEffects = new int[5][10];
+		//Assist
+		exampleEvents.resetProbabilities(100,0,0,0,0);
+		exampleEvents.runEvent();
+		statEffects[0] = exampleEvents.getEventEffects();
+		//Combat
+//		exampleEvents.resetProbabilities(0,100,0,0,0);
+//		exampleEvents.runEvent();
+//		statEffects[1] = exampleEvents.getEventEffects();
+		//Exploration
+		exampleEvents.resetProbabilities(0,0,100,0,0);
+		exampleEvents.runEvent();
+		statEffects[2] = exampleEvents.getEventEffects();
+		//Text
+		exampleEvents.resetProbabilities(0,0,0,100,0);
+		exampleEvents.runEvent();
+		statEffects[3] = exampleEvents.getEventEffects();
+		//Trade
+		exampleEvents.resetProbabilities(0,0,0,0,100);
+		exampleEvents.runEvent();
+		statEffects[4] = exampleEvents.getEventEffects();
+
 	}
 }
