@@ -1,9 +1,12 @@
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 
+import java.util.Random;
+
 public class ShipSection extends Actor{
     private Ship ship;
     private String type;
+    private Random randGenerator;
     private int HP = 100;
     private boolean targetable = true;
 
@@ -11,6 +14,7 @@ public class ShipSection extends Actor{
         super(textures, driver, window, texture);
         this.ship = ship;
         this.type = type;
+        randGenerator = new Random();
     }
 
     public String getType(){
@@ -24,8 +28,9 @@ public class ShipSection extends Actor{
             HP = 0;
             targetable = false;
             System.out.println(type + " HAS BEEN DESTROYED!");
-
-            ship.damageHull(25);        // Section destroyed so damage overall ship integrity
+            // Section destroyed so damage overall ship integrity (rand number 25-40)
+            int hullDmg = randGenerator.nextInt(40 - 25 + 1) + 25;
+            ship.damageHull(hullDmg);
         }
     }
 
