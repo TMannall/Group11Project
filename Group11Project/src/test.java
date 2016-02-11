@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.function.*;
-import java.util.function.*;
 
 import org.jsfml.system.*;
 import org.jsfml.window.*;
@@ -16,8 +15,8 @@ import org.jsfml.window.event.*;
 import org.jsfml.graphics.*;
 
 class Test {
-	private static int screenWidth  = 1280;
-	private static int screenHeight = 720;
+	private static int screenWidth  = 1024;
+	private static int screenHeight = 768;
 
 	//
 	// The Java install comes with a set of fonts but these will
@@ -267,6 +266,35 @@ class Test {
 
 	public static void main (String args[ ]) {
 		Test t = new Test( );
-//		t.run( );
+		t.run( );
+		t.eventsDemo();
+	}
+
+	public void eventsDemo()
+	{
+		EventExampleDriver exampleEvents = new EventExampleDriver();
+		//effect holders
+		int[][] statEffects = new int[5][10];
+		//Assist
+		exampleEvents.resetProbabilities(100,0,0,0,0);
+		exampleEvents.runEvent();
+		statEffects[0] = exampleEvents.getEventEffects();
+		//Combat
+//		exampleEvents.resetProbabilities(0,100,0,0,0);
+//		exampleEvents.runEvent();
+//		statEffects[1] = exampleEvents.getEventEffects();
+		//Exploration
+		exampleEvents.resetProbabilities(0,0,100,0,0);
+		exampleEvents.runEvent();
+		statEffects[2] = exampleEvents.getEventEffects();
+		//Text
+		exampleEvents.resetProbabilities(0,0,0,100,0);
+		exampleEvents.runEvent();
+		statEffects[3] = exampleEvents.getEventEffects();
+		//Trade
+		exampleEvents.resetProbabilities(0,0,0,0,100);
+		exampleEvents.runEvent();
+		statEffects[4] = exampleEvents.getEventEffects();
+
 	}
 }
