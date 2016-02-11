@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Time;
 
@@ -44,20 +45,33 @@ public class Ship{
     }
 
     public void setup(ShipType type){
+
+        Sprite shipBridge = textures.createSprite(textures.shipLv3, 0, 0, 525, 365);
+        Sprite shipGunDeck = textures.createSprite(textures.shipLv3, 525, 0, 343, 125);
+        Sprite shipMasts = textures.createSprite(textures.shipLv3, 525, 129, 343, 115);
+        Sprite shipSupplies = textures.createSprite(textures.shipLv3, 525, 241, 343, 125);
+        Sprite shipMedical = textures.createSprite(textures.shipLv3, 868, 0, 826, 365);
+
+        Sprite AIshipBridge = textures.createSprite(textures.shipLv3, 0, 0, 525, 365);
+        Sprite AIshipGunDeck = textures.createSprite(textures.shipLv3, 525, 0, 343, 125);
+        Sprite AIshipMasts = textures.createSprite(textures.shipLv3, 525, 129, 343, 115);
+        Sprite AIshipSupplies = textures.createSprite(textures.shipLv3, 525, 241, 343, 125);
+        Sprite AIshipMedical = textures.createSprite(textures.shipLv3, 868, 0, 826, 365);
+
         switch(type){
             case PLAYER:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this );
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, shipGunDeck, "Guns", this);
+                masts = new ShipSection(textures, driver, window, shipMasts, "Masts", this);
+                bridge = new ShipSection(textures, driver, window, shipBridge, "Bridge", this);
+                hold = new ShipSection(textures, driver, window, shipSupplies, "Hold", this );
+                quarters = new ShipSection(textures, driver, window, shipMedical, "Quarters", this);
                 break;
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, AIshipGunDeck, "Guns", this);
+                masts = new ShipSection(textures, driver, window, AIshipMasts, "Masts", this);
+                bridge = new ShipSection(textures, driver, window, AIshipBridge, "Bridge", this);
+                hold = new ShipSection(textures, driver, window, AIshipSupplies, "Hold", this);
+                quarters = new ShipSection(textures, driver, window, AIshipMedical, "Quarters", this);
                 break;
             default:
                 System.out.println("ERROR");

@@ -7,7 +7,7 @@ public class ShipSection extends Actor{
     private int HP = 100;
     private boolean targetable = true;
 
-    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, String texture, String type, Ship ship){
+    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, Sprite texture, String type, Ship ship){
         super(textures, driver, window, texture);
         this.ship = ship;
         this.type = type;
