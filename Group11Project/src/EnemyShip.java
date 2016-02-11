@@ -1,9 +1,8 @@
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Clock;
 
-/**
- * Created by Rohjo on 10/02/2016.
- */
+import java.util.ArrayList;
+
 public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
@@ -51,11 +50,11 @@ public class EnemyShip extends Ship {
             section.sprite.scale(scale, scale);
         }
 
-        reloadTimer = new Clock();          // Move this to somewhere better so clock isn't started at construction?
+        reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }
 
-    public ShipSection validateClicked(int x, int y){
-        if(!gunLoaded)
+    public ShipSection validateClicked(Ship player, int x, int y){
+        if(!player.gunLoaded)
             System.out.println("CANNONS STILL RELOADING!");
         else {
             for (ShipSection section : sections) {
@@ -73,53 +72,89 @@ public class EnemyShip extends Ship {
     }
 
     // Attacks a section on the player's ship
-    public void attack(){
-        if(target == null)
-            // choose new target randomly, weighted as follows:
-            // guns: 40%
-            // masts: 20%
-            // quarters: 10%
-            // hold: 15%
-            // bridge: 15%
-            System.out.println("Choose new target!");
+    public void attack(Ship player){
+        if(target == null) {
+            // Set chances of each section to be targeted by AI
+            // All weights must add up to 1.0
+            player.guns.setWeight(0.4);
+            player.masts.setWeight(0.2);
+            player.bridge.setWeight(0.15);
+            player.hold.setWeight(0.15);
+            player.quarters.setWeight(0.1);
 
-            /*
-            How to do weighted randomness:
-            Item[] items = ...;
+            // Determine new target based on weighting
+            target = randomSelect(player);
 
-            // Compute the total weight of all items together
-                double totalWeight = 0.0d;
-                for (Item i : items)
-                {
-                    totalWeight += i.getWeight();
-                }
-                // Now choose a random item
-                    int randomIndex = -1;
-                    double random = Math.random() * totalWeight;
-                    for (int i = 0; i < items.length; ++i)
-                    {
-                        random -= items[i].getWeight();
-                        if (random <= 0.0d)
-                        {
-                            randomIndex = i;
-                            break;
-                        }
-                    }
-                    Item myRandomItem = items[randomIndex];
-             */
-            /* How it works:
-            1. Give some arbitrary ordering to items... (i1, i2, ..., in)... with weights w1, w2, ..., wn.
-            2. Choose a random number between 0 and 1 (with sufficient granularity, by using any randomization function and appropriate scaling). Call this r0.
-            3. Let j = 1
-            4. Subtract wj from your r(j-1) to get rj. If rj <= 0, then you select item ij. Otherwise, increment j and repeat.
-             */
+            // Check target hasn't been destroyed - keep choosing until find one that hasn't
+            while(!target.isTargetable()){
+                target = randomSelect(player);
+            }
+        }
 
+        // Randomly attack section, weighted towards attacking target
+        double targetWeight = 0.6;          // 1 = maximum; guarantees target is selected
+        double random = randGenerator.nextDouble();
+        if(random <= targetWeight){
+            // Attack target
+            System.out.println("--------------AI MOVE-----------------");
+            System.out.println("AI SAVED TARGET: " + target.getType());
+            System.out.println("AI ACTUAL TARGET:  " + target.getType());
+            System.out.println(target.getType() + "HP: " + target.getHP());
 
-        // attack target section
+            int dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+            System.out.println("HIT FOR " + dmg + " DMG");
+            target.damage(dmg);
+            gunLoaded = false;
+            reloadTimer.restart();
 
+            System.out.println(target.getType() + "HP: " + target.getHP());
+            System.out.println("-------------------------------------");
+        }
+        else{
+            // Attack another random section
+            ShipSection toAttack = randomSelect(player);
 
-        // if target section destroyed, set target to null
+            // Check target hasn't been destroyed - keep choosing until find one that hasn't
+            while(!toAttack.isTargetable()) {
+                toAttack = randomSelect(player);
+            }
 
+            // Attack the temporary target
+            System.out.println("--------------AI MOVE-----------------");
+            System.out.println("AI SAVED TARGET: " + target.getType());
+            System.out.println("AI ACTUAL TARGET:  " + toAttack.getType());
+            System.out.println(toAttack.getType() + "HP: " + toAttack.getHP());
+
+            int dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+            System.out.println("HIT FOR " + dmg + " DMG");
+            toAttack.damage(dmg);
+            gunLoaded = false;
+            reloadTimer.restart();
+
+            System.out.println(toAttack.getType() + "HP: " + toAttack.getHP());
+            System.out.println("--------------------------------------");
+
+        }
+
+        // Check if target has been destroyed to find a new one next time around
+        // Done here because the toAttack could select the target anyway by random & destroy it
+        if(!target.isTargetable()){
+            target = null;
+        }
+
+    }
+
+    public ShipSection randomSelect(Ship player){
+        int randIndex = -1;
+        double random = randGenerator.nextDouble() * 1;
+        for (int i = 0; i < player.sections.size(); i++){
+            random -= player.sections.get(i).getWeight();
+            if(random <= 0.0d){
+                randIndex = i;
+                break;
+            }
+        }
+        return player.sections.get(randIndex);
     }
 
 

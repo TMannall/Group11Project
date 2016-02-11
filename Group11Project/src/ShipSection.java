@@ -7,6 +7,7 @@ public class ShipSection extends Actor{
     private Ship ship;
     private String type;
     private Random randGenerator;
+    private double weight;      // Chance of being selected by enemy ship if this belongs to a player
     private int HP = 100;
     private boolean targetable = true;
 
@@ -36,6 +37,14 @@ public class ShipSection extends Actor{
 
     public int getHP(){
         return HP;
+    }
+
+    public double getWeight(){
+        return weight;
+    }
+
+    public void setWeight(double weight){
+        this.weight = weight;
     }
 
     public void repair(int change){
