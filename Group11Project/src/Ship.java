@@ -27,7 +27,7 @@ public abstract class Ship{
     protected ShipSection hold;
     protected ShipSection quarters;
 
-    ArrayList<ShipSection> sections;
+    protected ArrayList<ShipSection> sections;
 
     protected float scale;
     protected int xPos;

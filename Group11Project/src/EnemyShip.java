@@ -34,6 +34,12 @@ public class EnemyShip extends Ship {
                 break;
         }
 
+        System.out.println("LOOP?");
+        for(ShipSection section : sections){
+            System.out.println(section.getType());
+        }
+
+
         guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
