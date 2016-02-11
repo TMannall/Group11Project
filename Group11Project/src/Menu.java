@@ -68,7 +68,7 @@ public class Menu extends FSMState{
             ex.printStackTrace();
         }
 
-        sound.playBackgroundMusic("sounds/main_menu_music.ogg");
+        sound.playBackgroundMusic("music_main_menu");
 
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
@@ -127,10 +127,10 @@ public class Menu extends FSMState{
         }
 
         // jack: sprite testing
-        for(int i = 0; i < 5; i++) {
-            driver.marineList.get(i).setPosition((200 * i/2), 500);
-            window.draw(driver.marineList.get(i));
-        }
+//        for(int i = 0; i < 5; i++) {
+//            driver.marineList.get(i).setPosition((200 * i/2), 500);
+//            window.draw(driver.marineList.get(i));
+//        }
         // jack: end sprite testing
 
         window.display();
@@ -157,15 +157,14 @@ public class Menu extends FSMState{
                     else if (keyEvent.key == Keyboard.Key.RETURN) {
                         switch (getButtonIndex()) {
                             case 0: //New Game
-                                stateMachine.setState(stateMachine.getStates().get(2));
                                 sound.stopBackgroundMusic();
+                                stateMachine.setState(stateMachine.getStates().get(2));
+                                sound.playBackgroundMusic("music_combat"); // <!> temporary combat music placement: remove when combat state is properly implemented <!>
                                 break;
-                            case 1: //Load Game
-
+                            case 1: //Leaderboards
                                 break;
                             case 2: //Settings button
                                 stateMachine.setState(stateMachine.getStates().get(1));
-
                                 break;
                             case 3: //Exit button
                                 window.close();

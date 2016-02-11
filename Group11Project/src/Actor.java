@@ -9,12 +9,13 @@ public abstract class Actor {
     protected Sprite sprite;
     protected Texture t;
 
-    public Actor(Textures textures, GameDriver driver, RenderWindow window, String texture){
+    public Actor(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite){
         this.textures = textures;
         this.driver = driver;
         this.window = window;
-        t = textures.loadTexture(texture);
-        sprite = textures.createSprite(t, 0, 0, 1280, 720); //textures.LoadTexture(texture);
+        //t = textures.loadTexture(texture);
+        //sprite = textures.createSprite(t, 0, 0, 1280, 720); //textures.LoadTexture(texture);
+        this.sprite = sprite;
     }
 
 }

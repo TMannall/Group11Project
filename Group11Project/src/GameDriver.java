@@ -61,13 +61,14 @@ public class GameDriver {
         machine.setState(menu);
 
         // jack: frame test
-        SoundClass sound = new SoundClass();
-        Clock animClock = new Clock();
-        int[] frameList = new int[5];
-        for(int i = 0; i < 5; i++) {
-            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
-            frameList[i] = new Random().nextInt(39);
-        }
+//        SoundClass sound = new SoundClass();
+//        sound.setSoundVolume(60);
+//        Clock animClock = new Clock();
+//        int[] frameList = new int[5];
+//        for(int i = 0; i < 5; i++) {
+//            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
+//            frameList[i] = new Random().nextInt(39);
+//        }
         // jack: frame test end
 
 
@@ -76,22 +77,22 @@ public class GameDriver {
             window.clear(Color.WHITE);
 
             // jack: frame test
-            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
-                for(int i = 0; i < 5; i++) {
-                    animClock.restart();
-                    frameList[i] = frameList[i] + 1;
-
-                    /*//if (frameList[i] == 5)
-                        //sound.playSound("sounds/gun_01.ogg");*/
-
-                    if (frameList[i] > 39)
-                        frameList[i] = 0;
-
-                    int frameRow = frameList[i] / 20;
-                    int frameCol = frameList[i] % 20;
-                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
-                }
-            }
+//            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
+//                for(int i = 0; i < 5; i++) {
+//                    animClock.restart();
+//                    frameList[i] = frameList[i] + 1;
+//
+//                    if (frameList[i] == 5)
+//                        sound.playSoundOnce("gun_01");
+//
+//                    if (frameList[i] > 39)
+//                        frameList[i] = 0;
+//
+//                    int frameRow = frameList[i] / 20;
+//                    int frameCol = frameList[i] % 20;
+//                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
+//                }
+//            }
             // jack: frame test end
 
             // Add to window relevant objects depending on state
