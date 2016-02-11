@@ -15,8 +15,8 @@ public class Game extends FSMState {
     private Textures textures;
     private Random randGenerator;
 
-    private Ship playerShip;
-    private Ship enemyShip;
+    private PlayerShip playerShip;
+    private EnemyShip enemyShip;
 
     public Game(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
         this.stateMachine = stateMachine;
@@ -28,8 +28,8 @@ public class Game extends FSMState {
     }
 
     public void setup(){
-        playerShip = new Ship(textures, driver, window, Ship.ShipType.PLAYER, (float)0.5, 500, 300);
-        enemyShip = new Ship(textures, driver, window, Ship.ShipType.STANDARD, (float)0.5, 500, 800);
+        playerShip = new PlayerShip(textures, driver, window, (float)0.5, 500, 300);
+        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
     }
 
     @Override
@@ -45,6 +45,11 @@ public class Game extends FSMState {
         if(!playerShip.isGunLoaded())
             playerShip.checkReload();
 
+        if(!enemyShip.isGunLoaded())
+            enemyShip.checkReload();
+        else
+            actionAI();     //NOTE AI WILL ATTACK AS SOON AS GUNS RELOAD - CHANGE THIS LATER TO WAIT RANDOM TIME BASED ON DIFFICULTY
+
         for(Event event : window.pollEvents()){
             switch (event.type) {
                 case CLOSED:
@@ -53,9 +58,10 @@ public class Game extends FSMState {
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    ShipSection clicked = enemyShip.validateClick(xPos, yPos);
+                    ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
                     if(clicked != null)
-                        attack(clicked);
+                        playerShip.attack(clicked);
+                        checkWin();
                     // Not sure why this doesn't
 //                case KEY_PRESSED:
 //                    KeyEvent keyEvent = event.asKeyEvent();
@@ -70,30 +76,23 @@ public class Game extends FSMState {
         }
     }
 
-    public void attack(ShipSection clicked) {
-        if (!playerShip.isGunLoaded()){
-            System.out.println("CANNONS STILL RELOADING!");
-            return;
-        }
-        if(clicked.isTargetable()){
-            System.out.println("---------------------------------");
-            System.out.println("ENEMY " + clicked.getType() + " CLICKED!");
-            System.out.println(clicked.getType() + "HP: " + clicked.getHP());
-
-            System.out.println("FIRING GUNS!");
-            int dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * playerShip.getGunStr(); // Random damage between 10 and 15, multiplied by gunStr modifier
-            System.out.println("HIT FOR " + dmg + " DMG");
-            clicked.damage(dmg);
-            playerShip.setGunLoaded(false);
-            playerShip.getReloadTimer().restart();
-
-            System.out.println(clicked.getType() + "HP: " + clicked.getHP());
-            System.out.println("---------------------------------");
-        }
+    public void actionAI(){
+        // choose to attack or run away
+        if(enemyShip.getHullHP() < 20)
+            System.out.println("RUN AWAY!");
         else{
-            System.out.println("---------------------------------");
-            System.out.println(clicked.getType() + " HAS BEEN DESTROYED! CANNOT TARGET!");
-            System.out.println("---------------------------------");
+            enemyShip.attack(playerShip);
+            if(playerShip.getHullHP() <= 0){
+                stateMachine.setState(stateMachine.getStates().get(4));
+            }
+        }
+    }
+
+    public void checkWin(){
+        if(enemyShip.getHullHP() <= 0){
+            // Create new temporary success state & move to it
+            FSMState success = new SuccessState(stateMachine, driver, window, textures);
+            stateMachine.setState(success);
         }
     }
 }
