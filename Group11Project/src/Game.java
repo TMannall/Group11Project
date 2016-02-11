@@ -59,19 +59,21 @@ public class Game extends FSMState {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
-                    if(clicked != null)
+                    if(clicked != null){
                         playerShip.attack(clicked);
                         checkWin();
+                    }
+                    break;
                     // Not sure why this doesn't
-//                case KEY_PRESSED:
-//                    KeyEvent keyEvent = event.asKeyEvent();
-//                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
-//                        stateMachine.setState(stateMachine.getStates().get(0));
-//                        break;
-//                    } else if (keyEvent.key == Keyboard.Key.M) {
-//                        stateMachine.setState(stateMachine.getStates().get(3));
-//                    }
-
+                case KEY_PRESSED:
+                    KeyEvent keyEvent = event.asKeyEvent();
+                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
+                        stateMachine.setState(stateMachine.getStates().get(0));
+                        break;
+                    } else if (keyEvent.key == Keyboard.Key.M) {
+                        stateMachine.setState(stateMachine.getStates().get(3));
+                    }
+                    break;
             }
         }
     }
