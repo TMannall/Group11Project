@@ -16,11 +16,11 @@ public class PlayerShip extends Ship {
     }
 
     public void setup(){
-        guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-        masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-        bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-        hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-        quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this);
+        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this);
+        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this);
+        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this);
+        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this);
 
         guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);

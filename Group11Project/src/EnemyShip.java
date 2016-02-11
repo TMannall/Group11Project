@@ -23,11 +23,11 @@ public class EnemyShip extends Ship {
     public void setup(){
         switch(type){
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this);
+                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this);
+                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this);
+                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this);
+                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this);
                 break;
             default:
                 System.out.println("ERROR");
