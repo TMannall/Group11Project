@@ -48,11 +48,18 @@ public class Textures {
     public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+        // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
     public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
+        // ai ship
+    public Sprite AIshipBridge = createSprite(shipLv3, 0, 0, 525, 365);
+    public Sprite AIshipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
+    public Sprite AIshipMasts = createSprite(shipLv3, 525, 129, 343, 115);
+    public Sprite AIshipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
+    public Sprite AIshipMedical = createSprite(shipLv3, 868, 0, 826, 365);
 
 
     // Character portraits
