@@ -96,9 +96,9 @@ public class Textures {
      */
     public Sprite createSprite(Texture texture, int x, int y, int width, int height) {
         Sprite sprite = new Sprite(texture);
-        sprite.setTextureRect(new IntRect(x, y, width, height));
+      //  sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
-                new Vector2f(width, height), 2));
+                new Vector2f(texture.getSize()), 2));
         return sprite;
     }
 
