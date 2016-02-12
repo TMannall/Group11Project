@@ -4,6 +4,7 @@ import org.jsfml.system.Time;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Ship{
 
@@ -18,7 +19,7 @@ public abstract class Ship{
     protected int gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
     protected int reloadBoost = 1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
     protected boolean gunLoaded = true;   // True when cannons can fire; false when reloading
-    protected Clock reloadTimer;
+    protected Timer reloadTimer;
 
     protected ShipSection guns;
     protected ShipSection masts;
@@ -26,7 +27,7 @@ public abstract class Ship{
     protected ShipSection hold;
     protected ShipSection quarters;
 
-    ArrayList<ShipSection> sections;
+    protected ArrayList<ShipSection> sections;
 
     protected float scale;
     protected int xPos;
@@ -42,7 +43,6 @@ public abstract class Ship{
 
         randGenerator = new Random();
         sections = new ArrayList<>();
-
     }
 
     // Abstract setup method that should be called on all subclasses after the super constructor to set textures/sprites
@@ -55,11 +55,9 @@ public abstract class Ship{
     }
 
     public void checkReload(){
-        Time time = reloadTimer.getElapsedTime();
-        float elapsed = time.asSeconds();
+        long elapsed = reloadTimer.time(TimeUnit.SECONDS);
         if(elapsed >= (2/reloadBoost)){
             gunLoaded = true;
-            System.out.println("CANNONS RELOADED - FIRE!");
         }
         else{
             gunLoaded = false;
@@ -72,7 +70,7 @@ public abstract class Ship{
 
         if(hullHP <= 0){
             hullHP = 0;
-            System.out.println("HULL COMPROMISED! GAME OVER!");
+            System.out.println("HULL COMPROMISED!");
         }
     }
 
@@ -95,7 +93,7 @@ public abstract class Ship{
         return gunStr;
     }
 
-    public Clock getReloadTimer(){
+    public Timer getReloadTimer(){
         return reloadTimer;
     }
 

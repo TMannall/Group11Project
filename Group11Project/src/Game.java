@@ -58,19 +58,22 @@ public class Game extends FSMState {
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    ShipSection clicked = enemyShip.validateClicked(xPos, yPos);
-                    if(clicked != null)
-                       playerShip.attack(clicked);
+                    ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
+                    if(clicked != null){
+                        playerShip.attack(clicked);
+                        checkWin();
+                    }
+                    break;
                     // Not sure why this doesn't
-//                case KEY_PRESSED:
-//                    KeyEvent keyEvent = event.asKeyEvent();
-//                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
-//                        stateMachine.setState(stateMachine.getStates().get(0));
-//                        break;
-//                    } else if (keyEvent.key == Keyboard.Key.M) {
-//                        stateMachine.setState(stateMachine.getStates().get(3));
-//                    }
-
+                case KEY_PRESSED:
+                    KeyEvent keyEvent = event.asKeyEvent();
+                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
+                        stateMachine.setState(stateMachine.getStates().get(0));
+                        break;
+                    } else if (keyEvent.key == Keyboard.Key.M) {
+                        stateMachine.setState(stateMachine.getStates().get(3));
+                    }
+                    break;
             }
         }
     }
@@ -80,7 +83,18 @@ public class Game extends FSMState {
         if(enemyShip.getHullHP() < 20)
             System.out.println("RUN AWAY!");
         else{
-            enemyShip.attack();
+            enemyShip.attack(playerShip);
+            if(playerShip.getHullHP() <= 0){
+                stateMachine.setState(stateMachine.getStates().get(4));
+            }
+        }
+    }
+
+    public void checkWin(){
+        if(enemyShip.getHullHP() <= 0){
+            // Create new temporary success state & move to it
+            FSMState success = new SuccessState(stateMachine, driver, window, textures);
+            stateMachine.setState(success);
         }
     }
 }

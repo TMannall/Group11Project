@@ -1,5 +1,9 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
+import org.jsfml.system.Time;
+
+import java.util.concurrent.TimeUnit;
 
 public class PlayerShip extends Ship {
 
@@ -13,13 +17,13 @@ public class PlayerShip extends Ship {
     }
 
     public void setup(){
-        guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-        masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-        bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-        hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-        quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this);
+        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this);
+        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this);
+        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this);
+        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this);
 
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
+        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
@@ -35,16 +39,16 @@ public class PlayerShip extends Ship {
             section.sprite.scale(scale, scale);
         }
 
-        reloadTimer = new Clock();          // Move this to somewhere better so clock isn't started at construction?
+        reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }
 
     public void attack(ShipSection clicked){
         if (!gunLoaded){
-            System.out.println("CANNONS STILL RELOADING!");
+            System.out.println("PLAYER CANNONS STILL RELOADING!");
             return;
         }
         if(clicked.isTargetable()){
-            System.out.println("---------------------------------");
+            System.out.println("-------------PLAYER MOVE---------------");
             System.out.println("ENEMY " + clicked.getType() + " CLICKED!");
             System.out.println(clicked.getType() + "HP: " + clicked.getHP());
 
@@ -59,9 +63,21 @@ public class PlayerShip extends Ship {
             System.out.println("---------------------------------");
         }
         else{
-            System.out.println("---------------------------------");
+            System.out.println("-------------PLAYER MOVE---------------");
             System.out.println(clicked.getType() + " HAS BEEN DESTROYED! CANNOT TARGET!");
             System.out.println("---------------------------------");
+        }
+    }
+
+    @Override
+    public void checkReload(){
+        long elapsed = reloadTimer.time(TimeUnit.SECONDS);
+        if(elapsed >= (2/reloadBoost)){
+            gunLoaded = true;
+            System.out.println("PLAYER CANNONS RELOADED - FIRE!");
+        }
+        else{
+            gunLoaded = false;
         }
     }
 
