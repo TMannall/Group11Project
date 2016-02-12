@@ -28,8 +28,8 @@ public class Game extends FSMState {
     }
 
     public void setup(){
-        playerShip = new PlayerShip(textures, driver, window, (float)0.5, 500, 300);
-        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
+        playerShip = new PlayerShip(textures, driver, window, (float)0.5, 800, 800);
+        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 600, 300);
     }
 
     @Override
