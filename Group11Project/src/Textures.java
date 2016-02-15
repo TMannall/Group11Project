@@ -42,7 +42,7 @@ public class Textures {
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
 
-    private Texture mapDecoration = loadTexture("textures/map_decoration.png");
+    public Texture mapDecoration = loadTexture("textures/map_decoration.png");
     public Sprite island1 = createSprite(mapDecoration, 0, 0, 179, 114);
     public Sprite island2 = createSprite(mapDecoration, 182, 0, 168, 131);
     public Sprite island3 = createSprite(mapDecoration, 369, 5, 166, 125);
