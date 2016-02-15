@@ -17,7 +17,7 @@ public class Textures {
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
-        // hard-coded
+        // hard-coded - loaded from here
     public Sprite uiShipHullHealthAI = createSprite(userInterface, 22, 264, 994, 73);
     public Sprite uiShipSectionsHealthAI = createSprite(userInterface, 24, 349, 250, 261);
     public Sprite uiShipHullHealthPlayer = createSprite(userInterface, 11, 639, 994, 73);
