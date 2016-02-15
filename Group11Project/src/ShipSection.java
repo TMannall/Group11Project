@@ -11,8 +11,8 @@ public class ShipSection extends Actor{
     private int HP = 100;
     private boolean targetable = true;
 
-    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, String texture, String type, Ship ship){
-        super(textures, driver, window, texture);
+    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite, String type, Ship ship){
+        super(textures, driver, window, sprite);
         this.ship = ship;
         this.type = type;
         randGenerator = new Random();

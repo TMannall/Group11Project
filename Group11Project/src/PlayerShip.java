@@ -16,23 +16,23 @@ public class PlayerShip extends Ship {
     }
 
     public void setup(){
-        guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-        masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-        bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-        hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-        quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
-
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
-        masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
-        bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
-        hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
-        quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
+        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this);
+        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this);
+        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this);
+        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this);
+        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this);
 
         sections.add(guns);
         sections.add(masts);
         sections.add(bridge);
         sections.add(hold);
         sections.add(quarters);
+
+        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
+        masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
+        bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
+        hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
+        quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
 
         for(ShipSection section : sections){
             section.sprite.scale(scale, scale);

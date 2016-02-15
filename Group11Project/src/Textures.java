@@ -22,6 +22,16 @@ public class Textures {
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
 
+    private Texture mapDecoration = loadTexture("textures/map_decoration.png");
+    public Sprite island1 = createSprite(mapDecoration, 0, 0, 179, 114);
+    public Sprite island2 = createSprite(mapDecoration, 182, 0, 168, 131);
+    public Sprite island3 = createSprite(mapDecoration, 369, 5, 166, 125);
+    public Sprite island4 = createSprite(mapDecoration, 540, 5, 167, 193);
+    public Sprite island5 = createSprite(mapDecoration, 4, 144, 164, 194);
+    public Sprite island6 = createSprite(mapDecoration, 10, 360, 127, 67);
+    public Sprite island7 = createSprite(mapDecoration, 431, 227, 200, 192);
+    public Sprite islandPort = createSprite(mapDecoration, 200, 136, 219, 276);
+
     // Unit sprites
     public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
@@ -38,17 +48,19 @@ public class Textures {
     public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
     public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
     public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
+    // ai ship
+    public Sprite AIshipBridge = createSprite(shipLv3, 0, 0, 525, 365);
+    public Sprite AIshipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
+    public Sprite AIshipMasts = createSprite(shipLv3, 525, 129, 343, 115);
+    public Sprite AIshipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
+    public Sprite AIshipMedical = createSprite(shipLv3, 868, 0, 826, 365);
 
-//    public Sprite shipBridge = LoadTexture("textures/ship_bridge.png");
-//    public Sprite shipGunDeck = LoadTexture("textures/ship_gun_deck.png");
-//    public Sprite shipMasts = LoadTexture("textures/ship_masts.png");
-//    public Sprite shipSupplies = LoadTexture("textures/ship_supplies.png");
-//    public Sprite shipMedical = LoadTexture("textures/ship_medical.png");
 
     // Character portraits
     public Texture captainTestPortrait = loadTexture("textures/captain_portrait_example.png");
@@ -84,9 +96,9 @@ public class Textures {
      */
     public Sprite createSprite(Texture texture, int x, int y, int width, int height) {
         Sprite sprite = new Sprite(texture);
-      //  sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
-                new Vector2f(texture.getSize()), 2));
+                new Vector2f(width, height), 2));
         return sprite;
     }
 
@@ -113,3 +125,4 @@ public class Textures {
         return sprite;
     }
 }
+

@@ -23,28 +23,16 @@ public class EnemyShip extends Ship {
     public void setup(){
         switch(type){
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, "textures/ship_gun_deck.png", "Guns", this);
-                masts = new ShipSection(textures, driver, window, "textures/ship_masts.png", "Masts", this);
-                bridge = new ShipSection(textures, driver, window, "textures/ship_bridge.png", "Bridge", this);
-                hold = new ShipSection(textures, driver, window, "textures/ship_hold.png", "Hold", this);
-                quarters = new ShipSection(textures, driver, window, "textures/ship_medical.png", "Quarters", this);
+                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this);
+                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this);
+                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this);
+                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this);
+                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this);
                 break;
             default:
                 System.out.println("ERROR");
                 break;
         }
-
-        System.out.println("LOOP?");
-        for(ShipSection section : sections){
-            System.out.println(section.getType());
-        }
-
-
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
-        masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
-        bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
-        hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
-        quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
 
         sections.add(guns);
         sections.add(masts);
@@ -54,7 +42,14 @@ public class EnemyShip extends Ship {
 
         for(ShipSection section : sections){
             section.sprite.scale(scale, scale);
+            section.sprite.setRotation(180);
         }
+
+        guns.sprite.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+        masts.sprite.setPosition((xPos + 584) * scale, yPos * scale);
+        bridge.sprite.setPosition((xPos + 1099) * scale, yPos * scale);        // was 300
+        hold.sprite.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
+        quarters.sprite.setPosition((xPos) * scale, yPos * scale);
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }
