@@ -69,7 +69,7 @@ public class Textures {
 
     // Ship models
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
-    private Texture shipLv2 = loadTexture("textures/ship_level_1.png");
+    private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
     private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
@@ -77,6 +77,23 @@ public class Textures {
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
     public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
+
+    public Sprite shipBridge_lvl1 = createSprite(shipLv1, 0, 0, 525, 365);
+    public Sprite shipGunDeck_lvl1 = createSprite(shipLv1, 525, 0, 343, 125);
+    public Sprite shipMasts_lvl1 = createSprite(shipLv1, 525, 129, 343, 115);
+    public Sprite shipSupplies_lvl1 = createSprite(shipLv1, 525, 241, 343, 125);
+    public Sprite shipMedical_lvl1 = createSprite(shipLv1, 868, 0, 826, 365);
+    public Sprite shipBridge_lvl2 = createSprite(shipLv2, 0, 0, 525, 365);
+    public Sprite shipGunDeck_lvl2 = createSprite(shipLv2, 525, 0, 343, 125);
+    public Sprite shipMasts_lvl2 = createSprite(shipLv2, 525, 129, 343, 115);
+    public Sprite shipSupplies_lvl2 = createSprite(shipLv2, 525, 241, 343, 125);
+    public Sprite shipMedical_lvl2 = createSprite(shipLv2, 868, 0, 826, 365);
+    public Sprite shipBridge_lvl3 = createSprite(shipLv3, 0, 0, 525, 365);
+    public Sprite shipGunDeck_lvl3 = createSprite(shipLv3, 525, 0, 343, 125);
+    public Sprite shipMasts_lvl3 = createSprite(shipLv3, 525, 129, 343, 115);
+    public Sprite shipSupplies_lvl3 = createSprite(shipLv3, 525, 241, 343, 125);
+    public Sprite shipMedical_lvl3 = createSprite(shipLv3, 868, 0, 826, 365);
+
         // ai ship
     public Sprite AIshipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite AIshipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
