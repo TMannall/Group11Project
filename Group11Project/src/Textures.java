@@ -10,19 +10,42 @@ import java.nio.file.Paths;
 public class Textures {
 
     // Splash screens
-    public Texture mainMenu_ = loadTexture("textures/main_menu.png");
+    private Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
-    public Texture ocean_ = loadTexture("textures/ocean.png");
+    private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
+        // hard-coded - loaded from here
+    public Sprite uiShipHullHealthAI = createSprite(userInterface, 22, 264, 994, 73);
+    public Sprite uiShipSectionsHealthAI = createSprite(userInterface, 24, 349, 250, 261);
+    public Sprite uiShipHullHealthPlayer = createSprite(userInterface, 11, 639, 994, 73);
+    public Sprite uiShipSectionsHealthPlayer = createSprite(userInterface, 643, 353, 250, 261);
+    public Sprite uiShipGunReloadPlayer = createSprite(userInterface, 310, 350, 320, 66);
+
+    public Sprite uiHealthBarPlayer = createSprite(userInterface, 317, 432, 237, 29);
+    public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
+    public Sprite uiHealthUnder = createSprite(userInterface, 317, 528, 237, 29);
+    public Sprite uiHealthBarAI = createSprite(userInterface, 317, 576, 237, 29);
+
+    public Sprite uiIconGunDeck = createSprite(userInterface, 934, 383, 50, 50);
+    public Sprite uiIconMasts = createSprite(userInterface, 988, 383, 50, 50);
+    public Sprite uiIconHold = createSprite(userInterface, 934, 448, 50, 50);
+    public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
+    public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
+
+        // not hard-coded
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+        //events
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll2.png");
+    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
-    private Texture mapDecoration = loadTexture("textures/map_decoration.png");
+
+    public Texture mapDecoration = loadTexture("textures/map_decoration.png");
     public Sprite island1 = createSprite(mapDecoration, 0, 0, 179, 114);
     public Sprite island2 = createSprite(mapDecoration, 182, 0, 168, 131);
     public Sprite island3 = createSprite(mapDecoration, 369, 5, 166, 125);
@@ -45,9 +68,9 @@ public class Textures {
     public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
 
     // Ship models
-    public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
-    public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
-    public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
+    private Texture shipLv2 = loadTexture("textures/ship_level_1.png");
+    private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
@@ -96,9 +119,9 @@ public class Textures {
      */
     public Sprite createSprite(Texture texture, int x, int y, int width, int height) {
         Sprite sprite = new Sprite(texture);
-      //  sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
-                new Vector2f(texture.getSize()), 2));
+                new Vector2f(width, height), 2));
         return sprite;
     }
 

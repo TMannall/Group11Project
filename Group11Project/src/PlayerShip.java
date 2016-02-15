@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Time;
 
@@ -22,7 +23,7 @@ public class PlayerShip extends Ship {
         hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this);
         quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this);
 
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
+        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);

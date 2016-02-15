@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 
 import java.util.ArrayList;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
+    protected int[] shipStats = {0,0,0,0,0,0,0,0,0,0};
 
     public enum ShipType{
         STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
@@ -13,8 +15,10 @@ public class EnemyShip extends Ship {
 
     private ShipType type;
 
-    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
+    public EnemyShip(int[] shipStats, Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
         super(textures, driver, window, scale, xPos, yPos);
+        //"gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"
+        this.shipStats = shipStats;
         this.type=type;
 
         setup();
@@ -39,8 +43,7 @@ public class EnemyShip extends Ship {
             System.out.println(section.getType());
         }
 
-
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 98) * scale);
+        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
