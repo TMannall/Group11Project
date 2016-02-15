@@ -102,12 +102,12 @@ public class EventState extends FSMState {
                 recti[i] = new IntRect(rectf[i]);
             }
             for(int i = 0; i < numberOfButtons; i++){
-                if((recti[i].contains(Mouse.getPosition(window)) && isMouseOver())){
+//                if((recti[i].contains(Mouse.getPosition(window)) && isMouseOver())){
                     textButton[i].setTextureRect(new IntRect(23, 100, 250, 60));
-                }
-                else if(!isMouseOver()){
-                    textButton[i].setTextureRect(new IntRect(23, 21, 250, 60));
-                }
+//                }
+//                else if(!isMouseOver()){
+//                    textButton[i].setTextureRect(new IntRect(23, 21, 250, 60));
+//                }
             }
         }
 
@@ -138,25 +138,25 @@ public class EventState extends FSMState {
         {
 
             for(int i = 0; i < numberOfButtons; i++){
-                if((recti[i].contains(Mouse.getPosition(window)) && isMouseOver())){
+//                if((recti[i].contains(Mouse.getPosition(window)) && isMouseOver())){
                     window.draw(textButton[i]);
                     window.draw(text[i]);
-                }
-                else if(!isMouseOver()){
-                    window.draw(textButton[i]);
-                    window.draw(text[i]);
-                }
+//                }
+//                else if(!isMouseOver()){
+//                    window.draw(textButton[i]);
+//                    window.draw(text[i]);
+//                }
             }
         }
 
-        public boolean isMouseOver(){
-            for(int i = 0; i < numberOfButtons; i++){
-                if(recti[i].contains(Mouse.getPosition(window))){
-                    return true;
-                }
-            }
-            return false;
-        }
+//        public boolean isMouseOver(){
+//            for(int i = 0; i < numberOfButtons; i++){
+//                if(recti[i].contains(Mouse.getPosition(window))){
+//                    return true;
+//                }
+//            }
+//            return false;
+//        }
 
 	/*public int getSpriteIndex(int x, int y){
 		for(int i = 0; i < maxSprites; i++){
