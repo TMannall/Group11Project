@@ -41,7 +41,7 @@ public class Textures {
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
         //events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll2.png");
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll.png");
     public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
 
