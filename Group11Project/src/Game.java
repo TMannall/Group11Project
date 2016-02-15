@@ -15,6 +15,7 @@ public class Game extends FSMState {
     private Textures textures;
     private Random randGenerator;
 
+    private UI ui;
     private PlayerShip playerShip;
     private EnemyShip enemyShip;
 
@@ -28,8 +29,10 @@ public class Game extends FSMState {
     }
 
     public void setup(){
-        playerShip = new PlayerShip(textures, driver, window, (float)0.5, 500, 300);
-        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
+        playerShip = new PlayerShip(textures, driver, window, (float)0.5, 800, 800);
+        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 600, 300);
+
+        ui = new UI(textures, driver, window, playerShip);
     }
 
     @Override
@@ -37,6 +40,9 @@ public class Game extends FSMState {
     public void execute() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
+
+        ui.draw();
+
         playerShip.draw();
         enemyShip.draw();
 
