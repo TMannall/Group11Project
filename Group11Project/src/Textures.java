@@ -17,12 +17,24 @@ public class Textures {
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
-        // hard-coded
-    public Sprite uiShipHullHealth = createSprite(userInterface, 22, 264, 994, 71);
-    public Sprite uiShipSectionsHealth = createSprite(userInterface, 25, 354, 258, 255);
-    public Sprite uiShipGunReload = createSprite(userInterface, 310, 350, 320, 66);
-    public Sprite uiHealthBar = createSprite(userInterface, 317, 432, 237, 29);
+        // hard-coded - loaded from here
+    public Sprite uiShipHullHealthAI = createSprite(userInterface, 22, 264, 994, 73);
+    public Sprite uiShipSectionsHealthAI = createSprite(userInterface, 24, 349, 250, 261);
+    public Sprite uiShipHullHealthPlayer = createSprite(userInterface, 11, 639, 994, 73);
+    public Sprite uiShipSectionsHealthPlayer = createSprite(userInterface, 643, 353, 250, 261);
+    public Sprite uiShipGunReloadPlayer = createSprite(userInterface, 310, 350, 320, 66);
+
+    public Sprite uiHealthBarPlayer = createSprite(userInterface, 317, 432, 237, 29);
     public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
+    public Sprite uiHealthUnder = createSprite(userInterface, 317, 528, 237, 29);
+    public Sprite uiHealthBarAI = createSprite(userInterface, 317, 576, 237, 29);
+
+    public Sprite uiIconGunDeck = createSprite(userInterface, 934, 383, 50, 50);
+    public Sprite uiIconMasts = createSprite(userInterface, 988, 383, 50, 50);
+    public Sprite uiIconHold = createSprite(userInterface, 934, 448, 50, 50);
+    public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
+    public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
+
         // not hard-coded
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
