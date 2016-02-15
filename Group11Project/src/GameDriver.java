@@ -31,6 +31,7 @@ public class GameDriver {
     private FSMState settings;
     private FSMState map;
     private FSMState gameover;
+    private FSMState blank;
 
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
@@ -49,6 +50,7 @@ public class GameDriver {
         game = new Game(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures);
         gameover = new GameOver(machine, driver, window, textures);
+        blank = new BlankState(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -56,18 +58,20 @@ public class GameDriver {
         machine.getStates().add(game);
         machine.getStates().add(map);
         machine.getStates().add(gameover);
+        machine.getStates().add(blank);
 
         // Set menu state for game launch
         machine.setState(menu);
 
         // jack: frame test
-        SoundClass sound = new SoundClass();
-        Clock animClock = new Clock();
-        int[] frameList = new int[5];
-        for(int i = 0; i < 5; i++) {
-            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
-            frameList[i] = new Random().nextInt(39);
-        }
+//        SoundClass sound = new SoundClass();
+//        sound.setSoundVolume(60);
+//        Clock animClock = new Clock();
+//        int[] frameList = new int[5];
+//        for(int i = 0; i < 5; i++) {
+//            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
+//            frameList[i] = new Random().nextInt(39);
+//        }
         // jack: frame test end
 
 
@@ -76,22 +80,22 @@ public class GameDriver {
             window.clear(Color.WHITE);
 
             // jack: frame test
-            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
-                for(int i = 0; i < 5; i++) {
-                    animClock.restart();
-                    frameList[i] = frameList[i] + 1;
-
-                    /*//if (frameList[i] == 5)
-                        //sound.playSound("sounds/gun_01.ogg");*/
-
-                    if (frameList[i] > 39)
-                        frameList[i] = 0;
-
-                    int frameRow = frameList[i] / 20;
-                    int frameCol = frameList[i] % 20;
-                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
-                }
-            }
+//            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
+//                for(int i = 0; i < 5; i++) {
+//                    animClock.restart();
+//                    frameList[i] = frameList[i] + 1;
+//
+//                    if (frameList[i] == 5)
+//                        sound.playSoundOnce("gun_01");
+//
+//                    if (frameList[i] > 39)
+//                        frameList[i] = 0;
+//
+//                    int frameRow = frameList[i] / 20;
+//                    int frameCol = frameList[i] % 20;
+//                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
+//                }
+//            }
             // jack: frame test end
 
             // Add to window relevant objects depending on state
