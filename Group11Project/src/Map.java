@@ -24,6 +24,7 @@ public class Map extends FSMState {
     private RenderWindow window;
     private Textures textures;
     private Random randGenerator;
+    private EventExampleDriver eventDriver;
 	
 	private static int noOfSprites = 8;
 	private static int maxSprites = 8;
@@ -41,6 +42,7 @@ public class Map extends FSMState {
         this.window = window;
         this.textures = textures;
         randGenerator = new Random();
+        eventDriver = new EventExampleDriver();
         setup();
     }
 
@@ -99,27 +101,43 @@ public class Map extends FSMState {
 							switch(i){
 								case 0:	//Island 1
 									System.out.println("Island 1 Clicked");
+                                    eventDriver.resetProbabilities(100,0,0,0,0);
+                                    eventDriver.runEvent();
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");
+                                    eventDriver.resetProbabilities(0,100,0,0,0);
+                                    eventDriver.runEvent();
 									break;
 								case 2: //Island 3
 									System.out.println("Island 3 Clicked");
+                                    eventDriver.resetProbabilities(0,0,100,0,0);
+                                    eventDriver.runEvent();
 									break;
 								case 3: //Island 4
 									System.out.println("Island 4 Clicked");
+                                    eventDriver.resetProbabilities(0,0,0,100,0);
+                                    eventDriver.runEvent();
 									break;
 								case 4: //Island 5
 									System.out.println("Island 5 Clicked");
+                                    eventDriver.resetProbabilities(0,0,0,0,100);
+                                    eventDriver.runEvent();
 									break;
 								case 5: //Island 6
 									System.out.println("Island 6 Clicked");
+                                    eventDriver.resetProbabilities(20,20,20,20,20);
+                                    eventDriver.runEvent();
 									break;
 								case 6: //Island 7
 									System.out.println("Island 7 Clicked");
+                                    eventDriver.resetProbabilities(80,5,5,5,5);
+                                    eventDriver.runEvent();
 									break;
 								case 7: //Island Port
 									System.out.println("Island Port Clicked");
+                                    eventDriver.resetProbabilities(10,10,10,10,60);
+                                    eventDriver.runEvent();
 									break;
 							}
 						}
