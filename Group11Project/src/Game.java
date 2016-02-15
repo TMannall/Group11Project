@@ -14,22 +14,25 @@ public class Game extends FSMState {
     private RenderWindow window;
     private Textures textures;
     private Random randGenerator;
+    private EventExampleDriver eventDriver;
 
     private PlayerShip playerShip;
     private EnemyShip enemyShip;
 
-    public Game(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
+    public Game(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
+        this.eventDriver = eventDriver;
         randGenerator = new Random();
         setup();
     }
 
     public void setup(){
         playerShip = new PlayerShip(textures, driver, window, (float)0.5, 500, 300);
-        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
+        int[] shipStats = eventDriver.getEventEffects();
+        enemyShip = new EnemyShip(shipStats, textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
     }
 
     @Override
@@ -41,6 +44,10 @@ public class Game extends FSMState {
         enemyShip.draw();
 
         window.display();
+
+
+//        int[] shipStats = eventDriver.getEventEffects();
+//        enemyShip = new EnemyShip(shipStats, textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 500, 800);
 
         if(!playerShip.isGunLoaded())
             playerShip.checkReload();

@@ -28,6 +28,9 @@ public class Textures {
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+        //events
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll2.png");
+    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
 
     public Texture mapDecoration = loadTexture("textures/map_decoration.png");

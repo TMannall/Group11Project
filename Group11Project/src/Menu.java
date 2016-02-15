@@ -35,6 +35,8 @@ public class Menu extends FSMState{
     private RenderWindow window;
     private Textures textures;
 
+	private EventExampleDriver eventDriver;
+
     private static int numberOfButtons = 4;
     Text[] text = new Text[numberOfButtons];
     Text title;
@@ -53,12 +55,12 @@ public class Menu extends FSMState{
     private static String Title = "ENDLESS SEA";
     private SoundClass sound = new SoundClass();
 
-    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-
+		this.eventDriver = eventDriver;
         setup();
     }
 
