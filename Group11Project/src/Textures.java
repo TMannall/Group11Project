@@ -10,17 +10,25 @@ import java.nio.file.Paths;
 public class Textures {
 
     // Splash screens
-    public Texture mainMenu_ = loadTexture("textures/main_menu.png");
+    private Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
-    public Texture ocean_ = loadTexture("textures/ocean.png");
+    private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
+        // hard-coded
+    public Sprite uiShipHullHealth = createSprite(userInterface, 22, 264, 994, 71);
+    public Sprite uiShipSectionsHealth = createSprite(userInterface, 25, 354, 258, 255);
+    public Sprite uiShipGunReload = createSprite(userInterface, 310, 350, 320, 66);
+    public Sprite uiHealthBar = createSprite(userInterface, 317, 432, 237, 29);
+    public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
+        // not hard-coded
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
+
 
     private Texture mapDecoration = loadTexture("textures/map_decoration.png");
     public Sprite island1 = createSprite(mapDecoration, 0, 0, 179, 114);
@@ -45,9 +53,9 @@ public class Textures {
     public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
 
     // Ship models
-    public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
-    public Texture shipLv2 = loadTexture("textures/ship_level_1.png");
-    public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
+    private Texture shipLv2 = loadTexture("textures/ship_level_1.png");
+    private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
