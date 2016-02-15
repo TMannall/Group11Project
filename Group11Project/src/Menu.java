@@ -41,7 +41,6 @@ public class Menu extends FSMState{
 	IntRect[] recti = new IntRect[numberOfButtons];
 	FloatRect[] rectf = new FloatRect[numberOfButtons];
 
-<<<<<<< HEAD
 	private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
 	private static String JdkFontPath = "textures/";
 	private static String JreFontPath = "textures/";
@@ -88,60 +87,9 @@ public class Menu extends FSMState{
 		}
 
 		text[0].setFont(fontStyle);
-		text[0].setColor(Color.MAGENTA);
+		text[0].setColor(Color.CYAN);
 		text[0].setString("New Game");
 		text[0].setPosition(driver.getWinWidth() / 2, 280);
-=======
-    private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-    private static String JdkFontPath = "textures/";
-    private static String JreFontPath = "textures/";
-
-    private static int titleFontSize = 80;
-    private static int buttonFontSize = 32;
-    private static String FontFile = "vinque.ttf";
-    private String FontPath;
-
-    private static String Title = "ENDLESS SEA";
-    private SoundClass sound = new SoundClass();
-
-    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
-        this.stateMachine = stateMachine;
-        this.driver = driver;
-        this.window = window;
-        this.textures = textures;
-
-        setup();
-    }
-
-    public void setup(){
-        if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
-        else FontPath = JdkFontPath;
-
-        Font fontStyle = new Font();
-        try {
-            fontStyle.loadFromFile(
-                    Paths.get(FontPath + FontFile));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        sound.playBackgroundMusic("music_main_menu");
-
-        title = new Text(Title, fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 100);
-        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.CYAN);
-        title.setStyle(Text.BOLD);
-
-        for (int i = 0; i < numberOfButtons; i++) {
-            text[i] = new Text();
-        }
-
-        text[0].setFont(fontStyle);
-        text[0].setColor(Color.CYAN);
-        text[0].setString("New Game");
-        text[0].setPosition(driver.getWinWidth() / 2, 280);
->>>>>>> refs/remotes/origin/master
 		text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
 		text[1].setFont(fontStyle);
@@ -199,33 +147,13 @@ public class Menu extends FSMState{
 			hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
 			pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
 		}
-<<<<<<< HEAD
 
-		textButton[0].setPosition(text[0].getPosition().x, text[0].getPosition().y + 8);
-		textButton[1].setPosition(text[1].getPosition().x, text[1].getPosition().y + 8);
-		textButton[2].setPosition(text[2].getPosition().x, text[2].getPosition().y + 8);
-		textButton[3].setPosition(text[3].getPosition().x, text[3].getPosition().y + 8);
-
-		hoverButton[0].setPosition(text[0].getPosition().x, text[0].getPosition().y + 8);
-		hoverButton[1].setPosition(text[1].getPosition().x, text[1].getPosition().y + 8);
-		hoverButton[2].setPosition(text[2].getPosition().x, text[2].getPosition().y + 8);
-		hoverButton[3].setPosition(text[3].getPosition().x, text[3].getPosition().y + 8);
-
-		pushButton[0].setPosition(text[0].getPosition().x, text[0].getPosition().y + 8);
-		pushButton[1].setPosition(text[1].getPosition().x, text[1].getPosition().y + 8);
-		pushButton[2].setPosition(text[2].getPosition().x, text[2].getPosition().y + 8);
-		pushButton[3].setPosition(text[3].getPosition().x, text[3].getPosition().y + 8);
-
-		for(int i = 0; i < numberOfButtons; i++) {
-=======
-			
 		for(int i = 0; i < numberOfButtons; i++){
 			textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
 			pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
 		}
-		
-        for(int i = 0; i < numberOfButtons; i++) {
->>>>>>> refs/remotes/origin/master
+
+		for(int i = 0; i < numberOfButtons; i++) {
 			window.draw(textButton[i]);
 			window.draw(text[i]);
 		}
