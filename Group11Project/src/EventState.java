@@ -101,14 +101,14 @@ public class EventState extends FSMState {
                         textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
                 recti[i] = new IntRect(rectf[i]);
             }
-            for(int i = 0; i < numberOfButtons; i++){
+            /*for(int i = 0; i < numberOfButtons; i++){
 //                if((recti[i].contains(Mouse.getPosition(window)) && isMouseOver())){
                     textButton[i].setTextureRect(new IntRect(23, 100, 250, 60));
 //                }
 //                else if(!isMouseOver()){
 //                    textButton[i].setTextureRect(new IntRect(23, 21, 250, 60));
 //                }
-            }
+            }*/
         }
 
         @Override
@@ -126,12 +126,14 @@ public class EventState extends FSMState {
                     window.draw(textButton[i]);
                     window.draw(text[i]);
                 }
-                window.display();
-            try {
+                //window.display();
+            /*try {
                 Thread.sleep(10); //1000); // this delays the animation frames if it's too high
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
+			
+			displayMenu();
         }
 
         public void displayMenu()
@@ -147,6 +149,14 @@ public class EventState extends FSMState {
 //                    window.draw(text[i]);
 //                }
             }
+			for (Event event : window.pollEvents()) {	
+				switch (event.type) {
+					case CLOSED:
+						window.close();
+						break;
+				}
+			}
+			window.display();
         }
 
 //        public boolean isMouseOver(){
