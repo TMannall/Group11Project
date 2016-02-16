@@ -55,6 +55,9 @@ public class Textures {
     public Sprite island7 = createSprite(mapDecoration, 431, 227, 200, 192);
     public Sprite islandPort = createSprite(mapDecoration, 200, 136, 219, 276);
 
+    public Texture healthBarBg = loadTexture("textures/hpbar_back_test.png");
+    public Texture healthBarFg = loadTexture("textures/hpbar_front_test.png");
+
     // Unit sprites
     public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
@@ -139,6 +142,14 @@ public class Textures {
         sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
                 new Vector2f(width, height), 2));
+        return sprite;
+    }
+
+    public Sprite createSprite(Texture texture, int x, int y, int width, int height, float xScale, float yScale, float xOrig, float yOrig) {
+        Sprite sprite = new Sprite(texture);
+        sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setOrigin(xOrig, yOrig);
+        sprite.setScale(xScale, yScale);
         return sprite;
     }
 

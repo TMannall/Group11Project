@@ -18,6 +18,7 @@ public abstract class Ship{
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
     protected int gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
     protected int reloadBoost = 1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
+    protected int baseReload = 5;     // Base reload time across the game (seconds)
     protected boolean gunLoaded = true;   // True when cannons can fire; false when reloading
     protected Timer reloadTimer;
 
@@ -56,7 +57,7 @@ public abstract class Ship{
 
     public void checkReload(){
         long elapsed = reloadTimer.time(TimeUnit.SECONDS);
-        if(elapsed >= (2/reloadBoost)){
+        if(elapsed >= (baseReload/reloadBoost)){
             gunLoaded = true;
         }
         else{
