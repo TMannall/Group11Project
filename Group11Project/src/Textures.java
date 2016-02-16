@@ -24,6 +24,7 @@ public class Textures {
     public Sprite uiShipSectionsHealthPlayer = createSprite(userInterface, 643, 353, 250, 261);
     public Sprite uiShipGunReloadPlayer = createSprite(userInterface, 310, 350, 320, 66);
 
+        // not hard-coded
     public Sprite uiHealthBarPlayer = createSprite(userInterface, 317, 432, 237, 29);
     public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
     public Sprite uiHealthUnder = createSprite(userInterface, 317, 528, 237, 29);
@@ -35,12 +36,17 @@ public class Textures {
     public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
     public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
 
-        // not hard-coded
+    public Sprite uiIconGunDeckDead = createSprite(userInterface, 1051, 383, 50, 50);
+    public Sprite uiIconMastsDead = createSprite(userInterface, 1105, 383, 50, 50);
+    public Sprite uiIconHoldDead = createSprite(userInterface, 1051, 448, 50, 50);
+    public Sprite uiIconBridgeDead = createSprite(userInterface, 1105, 448, 50, 50);
+    public Sprite uiIconMedicalDead = createSprite(userInterface, 1051, 511, 50, 50);
+
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
-        //events
+        // events
     public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll2.png");
     public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
@@ -139,6 +145,14 @@ public class Textures {
         sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
                 new Vector2f(width, height), 2));
+        return sprite;
+    }
+
+    public Sprite createSprite(Texture texture, int x, int y, int width, int height, float xScale, float yScale, float xOrig, float yOrig) {
+        Sprite sprite = new Sprite(texture);
+        sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setOrigin(xOrig, yOrig);
+        sprite.setScale(xScale, yScale);
         return sprite;
     }
 
