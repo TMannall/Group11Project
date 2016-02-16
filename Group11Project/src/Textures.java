@@ -61,6 +61,9 @@ public class Textures {
     public Sprite island7 = createSprite(mapDecoration, 431, 227, 200, 192);
     public Sprite islandPort = createSprite(mapDecoration, 200, 136, 219, 276);
 
+    public Texture healthBarBg = loadTexture("textures/hpbar_back_test.png");
+    public Texture healthBarFg = loadTexture("textures/hpbar_front_test.png");
+
     // Unit sprites
     public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
