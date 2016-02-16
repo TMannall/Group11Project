@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
-    protected int[] shipStats = {0,0,0,0,0,0,0,0,0,0};
 
     public enum ShipType{
         STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
@@ -15,10 +14,8 @@ public class EnemyShip extends Ship {
 
     private ShipType type;
 
-    public EnemyShip(int[] shipStats, Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
+    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
         super(textures, driver, window, scale, xPos, yPos);
-        //"gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"
-        this.shipStats = shipStats;
         this.type=type;
 
         setup();
