@@ -44,11 +44,17 @@ public class UI {
     private Sprite playerQuartersHPBg;
     private Sprite playerQuartersHPFg;
 
-
     private ArrayList<Sprite> UIelements;
 
-    private int previousHP = 100;
+    private float smallBarScale = (float)0.755;
+    private float largeBarScale = (float)2.955;
+
     private int previousAIHullHP = 100;
+    private int previousAIGunHP = 100;
+    private int previousAIMastHP = 100;
+    private int previousAIBridgeHP = 100;
+    private int previousAIHoldHP = 100;
+    private int previousAIQuartersHP = 100;
 
     public UI(Textures textures, GameDriver driver, RenderWindow window, Ship playerShip, Ship enemyShip){
         this.textures = textures;
@@ -60,26 +66,33 @@ public class UI {
 
 
         // HP bar backgrounds and foregrounds
-        UIelements.add(AIHullHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIHullHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29));
-        UIelements.add(AIGunHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIGunHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29));
-        UIelements.add(AIMastHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIMastHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29));
-        UIelements.add(AIBridgeHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIBridgeHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29));
-        UIelements.add(AIHoldHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIHoldHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29));
-        UIelements.add(AIQuartersHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
-        UIelements.add(AIQuartersHPFg = textures.createSprite(textures.userInterface, 317, 528, 237, 29));
+        UIelements.add(AIHullHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, largeBarScale, 1, 0, 0));
+        UIelements.add(AIHullHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, largeBarScale, 1, 0, 0));
+        UIelements.add(AIGunHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIGunHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIMastHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIMastHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIBridgeHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIBridgeHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIHoldHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIHoldHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIQuartersHPBg = textures.createSprite(textures.userInterface, 317, 528, 237, 29, smallBarScale, 1, 0, 0));
+        UIelements.add(AIQuartersHPFg = textures.createSprite(textures.userInterface, 317, 432, 237, 29, smallBarScale, 1, 0, 0));
         // TO DO: ADD PLAYER VERSIONS
 
-        AIHullHPBg.setOrigin(0,0);
-        AIHullHPBg.setScale((float)2.955,1);
+
         AIHullHPBg.setPosition(290, 20);
-        AIHullHPFg.setOrigin(0,0);
-        AIHullHPFg.setScale((float)2.955,1);
         AIHullHPFg.setPosition(290,20);
+        AIGunHPBg.setPosition(1090, 85);
+        AIGunHPFg.setPosition(1090, 85);
+        AIMastHPBg.setPosition(1090, 135);
+        AIMastHPFg.setPosition(1090, 135);
+        AIHoldHPBg.setPosition(1090, 185);
+        AIHoldHPFg.setPosition(1090, 185);
+        AIBridgeHPBg.setPosition(1090, 235);
+        AIBridgeHPFg.setPosition(1090, 235);
+        AIQuartersHPBg.setPosition(1090, 285);
+        AIQuartersHPFg.setPosition(1090, 285);
 
         // HP bar overlays
         UIelements.add(AIHullHPOverlay = textures.createSprite(textures.userInterface, 22, 264, 994, 73));
@@ -100,12 +113,41 @@ public class UI {
     // Actual implementation draws each sprite as necessary
     public void draw(){
 
-        // Animate AI Hull HP
+        // AI Hull
         if(enemyShip.getHullHP() < previousAIHullHP){
             previousAIHullHP--;
         }
+        AIHullHPFg.setScale((previousAIHullHP/(float)100)*largeBarScale, 1);
 
-        AIHullHPFg.setScale((previousAIHullHP/(float)100)*(float)2.955, 1);
+        // AI Guns
+        if(enemyShip.guns.getHP() < previousAIGunHP){
+            previousAIGunHP--;
+        }
+        AIGunHPFg.setScale((previousAIGunHP/(float)100)*smallBarScale, 1);
+
+        // AI Masts
+        if(enemyShip.masts.getHP() < previousAIMastHP){
+            previousAIMastHP--;
+        }
+        AIMastHPFg.setScale((previousAIMastHP/(float)100)*smallBarScale, 1);
+
+        // AI Hold
+        if(enemyShip.hold.getHP() < previousAIHoldHP){
+            previousAIHoldHP--;
+        }
+        AIHoldHPFg.setScale((previousAIHoldHP/(float)100)*smallBarScale, 1);
+
+        // AI Bridge
+        if(enemyShip.bridge.getHP() < previousAIBridgeHP){
+            previousAIBridgeHP--;
+        }
+        AIBridgeHPFg.setScale((previousAIBridgeHP/(float)100)*smallBarScale, 1);
+
+        // AI Quarters
+        if(enemyShip.quarters.getHP() < previousAIQuartersHP){
+            previousAIQuartersHP--;
+        }
+        AIQuartersHPFg.setScale((previousAIQuartersHP/(float)100)*smallBarScale, 1);
 
         // Draw all UI elements
         for(Sprite sprite : UIelements){

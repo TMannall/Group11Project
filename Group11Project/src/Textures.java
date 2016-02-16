@@ -125,6 +125,14 @@ public class Textures {
         return sprite;
     }
 
+    public Sprite createSprite(Texture texture, int x, int y, int width, int height, float xScale, float yScale, float xOrig, float yOrig) {
+        Sprite sprite = new Sprite(texture);
+        sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setOrigin(xOrig, yOrig);
+        sprite.setScale(xScale, yScale);
+        return sprite;
+    }
+
     /**
      * takes a loaded texture and returns a defined section as a frame
      * this allows us to only load the texture once.
