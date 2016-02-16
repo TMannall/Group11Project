@@ -28,9 +28,21 @@ public class ShipSection extends Actor{
         randGenerator = new Random();
 
         icon.setScale((float)0.75, (float)0.75);
-        float left = sprite.getGlobalBounds().left;
-        float top = sprite.getGlobalBounds().top;
-        icon.setPosition(100, 100);
+        switch(type){
+            case "Guns":
+                icon.setPosition(580, 260);
+                break;
+            case "Masts":
+                icon.setPosition(580, 208);
+                break;
+            case "Bridge":
+                break;
+            case "Hold":
+                icon.setPosition(580, 156);
+                break;
+            case "Quarters":
+                break;
+        }
     }
 
     public String getType(){
