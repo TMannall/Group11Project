@@ -49,15 +49,15 @@ public class GameDriver {
 
         Textures textures = new Textures();
         machine = new FSM();
-        menu = new Menu(machine, driver, window, textures, eventDriver);
+        menu = new Menu(machine, driver, window, textures);
         settings = new Settings(machine, driver, window, textures);
-        game = new Game(machine, driver, window, textures, eventDriver);
+        game = new Game(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
         blank = new BlankState(machine, driver, window, textures, eventDriver);
         events = new EventState(machine, driver, window, textures, eventDriver);
-		volume = new Volume(machine, driver, window, textures);
-		control = new Control(machine, driver, window, textures);
+		//volume = new Volume(machine, driver, window, textures);
+		//control = new Control(machine, driver, window, textures);
 
 
         // Add all states the FSM controls to its ArrayList for access later
