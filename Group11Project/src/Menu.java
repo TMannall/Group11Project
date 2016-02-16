@@ -204,8 +204,8 @@ public class Menu extends FSMState{
 							window.draw(pushButton[0]);
 							window.draw(text[0]);
 							sound.stopBackgroundMusic();
-							//stateMachine.setState(stateMachine.getStates().get(2));
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(2));
+							//stateMachine.setState(stateMachine.getStates().get(5));
 							sound.playBackgroundMusic("music_combat");
 						}
 						//Leaderboards

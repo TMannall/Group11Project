@@ -1,4 +1,5 @@
 import org.jsfml.graphics.RenderWindow;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 
 import java.util.ArrayList;
@@ -40,16 +41,17 @@ public class EnemyShip extends Ship {
         sections.add(hold);
         sections.add(quarters);
 
-        for(ShipSection section : sections){
-            section.sprite.scale(scale, scale);
-            section.sprite.setRotation(180);
-        }
+        guns.sprite.scale(-scale, -scale);
+        masts.sprite.scale(-scale, scale);
+        bridge.sprite.scale(-scale, scale);
+        hold.sprite.scale(-scale, -scale);
+        quarters.sprite.scale(-scale, scale);
 
-        guns.sprite.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+        guns.sprite.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
         masts.sprite.setPosition((xPos + 584) * scale, yPos * scale);
-        bridge.sprite.setPosition((xPos + 1099) * scale, yPos * scale);        // was 300
-        hold.sprite.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
-        quarters.sprite.setPosition((xPos) * scale, yPos * scale);
+        bridge.sprite.setPosition((xPos + 1019) * scale, yPos * scale);        // was 300
+        hold.sprite.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+        quarters.sprite.setPosition(xPos * scale, yPos * scale);
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }

@@ -9,9 +9,11 @@ public class PlayerShip extends Ship {
     private int food;
     private int water;
     private int gold;
+    private UI ui;
 
     public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, float scale, int xPos, int yPos){
         super(textures, driver, window, scale, xPos, yPos);
+        this.ui = ui;
         setup();
     }
 
@@ -56,6 +58,7 @@ public class PlayerShip extends Ship {
             System.out.println("HIT FOR " + dmg + " DMG");
             clicked.damage(dmg);
             gunLoaded = false;
+            ui.setReload(0);
             reloadTimer.restart();
 
             System.out.println(clicked.getType() + "HP: " + clicked.getHP());
@@ -71,13 +74,17 @@ public class PlayerShip extends Ship {
     @Override
     public void checkReload(){
         long elapsed = reloadTimer.time(TimeUnit.SECONDS);
-        if(elapsed >= (2/reloadBoost)){
+        if(elapsed >= (baseReload/reloadBoost)){
             gunLoaded = true;
             System.out.println("PLAYER CANNONS RELOADED - FIRE!");
         }
         else{
             gunLoaded = false;
         }
+    }
+
+    public void setUI(UI ui){
+        this.ui = ui;
     }
 
 }
