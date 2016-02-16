@@ -1,7 +1,5 @@
 AI to do:
 
-- AI's target should detect if it's been destroyed (isTargetable) or not before selecting it as a target
-- As above, AI's actual attack target should detect if it's been destroyed before attacking it
 
 - When AI's hull is destroyed, combat encounter ends & rewards distributed to player. 
 
@@ -11,8 +9,15 @@ AI to do:
 - Maybe need general success state too? So it goes encounter state -> success state -> map state & repeat
 
 
+- Combat shouldn't start until combat message has been presented to player and they press OK to begin
+- AI should then wait until player has attacked first before beginning the encounter
+
+
+
 -------Testing needed:---------
 
 - AI and player cannon reloads seem to be sharing the same clock? Player cannot fire their own cannons on the AI. 
 - THINK AI/PLAYER INTERACTION IS FIXED NOW; WILL NEED TO TEST THOROUGHLY LATER
 
+- AI's target should detect if it's been destroyed (isTargetable) or not before selecting it as a target
+- As above, AI's actual attack target should detect if it's been destroyed before attacking it

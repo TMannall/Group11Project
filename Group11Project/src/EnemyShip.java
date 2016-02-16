@@ -38,26 +38,23 @@ public class EnemyShip extends Ship {
                 break;
         }
 
-        System.out.println("LOOP?");
-        for(ShipSection section : sections){
-            System.out.println(section.getType());
-        }
-
-        guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
-        masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
-        bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
-        hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
-        quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
-
         sections.add(guns);
         sections.add(masts);
         sections.add(bridge);
         sections.add(hold);
         sections.add(quarters);
 
-        for(ShipSection section : sections){
-            section.sprite.scale(scale, scale);
-        }
+        guns.sprite.scale(-scale, -scale);
+        masts.sprite.scale(-scale, scale);
+        bridge.sprite.scale(-scale, scale);
+        hold.sprite.scale(-scale, -scale);
+        quarters.sprite.scale(-scale, scale);
+
+        guns.sprite.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
+        masts.sprite.setPosition((xPos + 584) * scale, yPos * scale);
+        bridge.sprite.setPosition((xPos + 1019) * scale, yPos * scale);        // was 300
+        hold.sprite.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+        quarters.sprite.setPosition(xPos * scale, yPos * scale);
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }
