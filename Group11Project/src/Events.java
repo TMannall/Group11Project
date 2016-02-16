@@ -44,4 +44,9 @@ public abstract class Events
 
     public abstract void loadEvent();
     public abstract void runEvent();
+
+    public String getEventText()
+    {
+        return eventText;
+    }
 }

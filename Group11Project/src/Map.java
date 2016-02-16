@@ -102,6 +102,12 @@ public class Map extends FSMState {
 									System.out.println("Island 1 Clicked");
                                     eventDriver.resetProbabilities(0,100,0,0,0);
                                     eventDriver.runEvent();
+//									try{
+//									stateMachine.getStates().get(6).updateInfo(eventDriver.getEventEffects(), eventDriver.getEventText());}
+//									catch (Exception e)
+//									{
+//										System.out.print("fuck");
+//									}
 									stateMachine.setState(stateMachine.getStates().get(6));
 									break;
 								case 1: //Island 2

@@ -7,6 +7,7 @@ public class EventExampleDriver
     private Events[] events;
     private int[] probabilities;
     private String eventSelected;
+    private Events currentEvent;
 
     public EventExampleDriver()
     {
@@ -33,8 +34,10 @@ public class EventExampleDriver
         int indexOfEvent = 0;
         for (String eventType : eventTypes)
         {
-            if (eventType.equals(eventSelected))
-                events[indexOfEvent].runEvent();
+            if (eventType.equals(eventSelected)) {
+                currentEvent = events[indexOfEvent];
+                currentEvent.runEvent();
+            }
             indexOfEvent++;
         }
         System.out.println();
@@ -55,5 +58,10 @@ public class EventExampleDriver
             indexOfEvent++;
         }
         return null;
+    }
+
+    public String getEventText()
+    {
+        return currentEvent.getEventText();
     }
 }

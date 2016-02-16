@@ -3,13 +3,9 @@
  */
 
 import org.jsfml.graphics.*;
-import org.jsfml.system.Clock;
 import org.jsfml.window.*;
-import org.jsfml.window.event.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.ArrayList;
 
 public class GameDriver {
@@ -53,7 +49,7 @@ public class GameDriver {
         map = new Map(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
         blank = new BlankState(machine, driver, window, textures, eventDriver);
-        events = new EventState(machine, driver, window, textures, eventDriver);
+        events = new CombatEventState(machine, driver, window, textures, eventDriver);
 
 
         // Add all states the FSM controls to its ArrayList for access later
