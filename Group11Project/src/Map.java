@@ -1,5 +1,4 @@
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Sprite;
+import org.jsfml.graphics.*;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
@@ -31,18 +30,19 @@ public class Map extends FSMState {
 	//private static int spriteIndex = 0;
 	
 	Sprite[] island = new Sprite[maxSprites];
+
 	float[] leftBound = new float[maxSprites];
 	float[] rightBound = new float[maxSprites];
 	float[] topBound = new float[maxSprites];
 	float[] bottomBound = new float[maxSprites];
 
-    public Map(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
+    public Map(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
         randGenerator = new Random();
-        eventDriver = new EventExampleDriver();
+        this.eventDriver = eventDriver;
         setup();
     }
 
@@ -65,7 +65,6 @@ public class Map extends FSMState {
 		island[5].setPosition(420, 430);
 		island[6].setPosition(720, 430);
 		island[7].setPosition(1020, 430);
-		
     }
 	
     @Override
@@ -103,6 +102,7 @@ public class Map extends FSMState {
 									System.out.println("Island 1 Clicked");
                                     eventDriver.resetProbabilities(0,100,0,0,0);
                                     eventDriver.runEvent();
+									stateMachine.setState(stateMachine.getStates().get(6));
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");
@@ -138,6 +138,7 @@ public class Map extends FSMState {
 									System.out.println("Island Port Clicked");
                                     eventDriver.resetProbabilities(0,100,0,0,0);
                                     eventDriver.runEvent();
+									stateMachine.setState(stateMachine.getStates().get(2));
 									break;
 							}
 						}
@@ -152,9 +153,9 @@ public class Map extends FSMState {
                     }
             }
         }
-	window.display();
+		window.display();
     }
-	
+
 	/*public int getSpriteIndex(int x, int y){
 		for(int i = 0; i < maxSprites; i++){
 			if (x > leftBound[i] && x < rightBound[i] && y > topBound[i] && y < bottomBound[i]) {

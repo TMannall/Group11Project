@@ -20,6 +20,7 @@ public class BlankState extends FSMState{
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
+    private EventExampleDriver eventDriver;
 	
     private static int numberOfButtons = 2;
     Text[] text = new Text[numberOfButtons];
@@ -35,12 +36,12 @@ public class BlankState extends FSMState{
 
     private static String Title = "ENDLESS SEA";
 
-    public BlankState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public BlankState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-
+        this.eventDriver = eventDriver;
         setup();
     }
 	
