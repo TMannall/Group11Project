@@ -46,6 +46,7 @@ public class CombatEventState extends FSMState
         Sprite[] textButton = new Sprite[numberOfButtons];
         Sprite[] hoverButton = new Sprite[numberOfButtons];
         Sprite[] pushButton = new Sprite[numberOfButtons];
+        Font fontStyle;
 
     public CombatEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
@@ -63,7 +64,7 @@ public class CombatEventState extends FSMState
 
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;
-        Font fontStyle = new Font();
+        fontStyle = new Font();
         try {
             fontStyle.loadFromFile(
                     Paths.get(FontPath + FontFile));
@@ -128,6 +129,11 @@ public class CombatEventState extends FSMState
 
     public void displayMenu()
     {
+        title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
+        title.setPosition(driver.getWinWidth() / 2, 300);
+        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        title.setColor(Color.BLACK);
+        title.setStyle(Text.BOLD);
         for(int i = 0; i < numberOfButtons; i++){
             window.draw(textButton[i]);
             window.draw(text[i]);

@@ -20,8 +20,7 @@ public class TextEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = " \nhas Attacked You!";
-    public String titleString = attackedText;
+    public String titleString = "Text Event\n Text Event\n Text Event";
 
     Sprite messageScroll;
     Text text = new Text();
@@ -44,6 +43,7 @@ public class TextEventState extends FSMState{
     Sprite textButton;
     Sprite hoverButton;
     Sprite pushButton;
+    Font fontStyle;
 
     public TextEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
@@ -61,7 +61,7 @@ public class TextEventState extends FSMState{
 
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;
-        Font fontStyle = new Font();
+        fontStyle = new Font();
         try {
             fontStyle.loadFromFile(
                     Paths.get(FontPath + FontFile));
@@ -80,7 +80,7 @@ public class TextEventState extends FSMState{
         text.setFont(fontStyle);
         text.setColor(Color.RED);
         text.setString("OK");
-        text.setPosition(700, 500);
+        text.setPosition(650, 500);
         text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 
 
@@ -108,6 +108,11 @@ public class TextEventState extends FSMState{
 
     public void displayMenu()
     {
+        title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
+        title.setPosition(driver.getWinWidth() / 2, 300);
+        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        title.setColor(Color.BLACK);
+        title.setStyle(Text.BOLD);
         window.draw(textButton);
         window.draw(text);
         for (Event event : window.pollEvents())
@@ -138,11 +143,5 @@ public class TextEventState extends FSMState{
 //                    break;
         }
         window.display();
-    }
-
-    public void updateInfo(int[] eventEffects, String eventText)
-    {
-        this.eventEffects = eventEffects;
-        this.titleString = eventText + attackedText;
     }
 }

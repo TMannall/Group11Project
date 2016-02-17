@@ -59,4 +59,9 @@ public class EventExampleDriver
     {
         return currentEvent.getEventText();
     }
+
+//    public String[] returnEvent()
+//    {
+//        return currentEvent.returnEvent();
+//    }
 }
