@@ -133,7 +133,14 @@ public class Textures {
 
 
     // Character portraits
-    public Texture captainTestPortrait = loadTexture("textures/captain_portrait_example.png");
+    public Texture cptPortraitA = loadTexture("textures/captain_portrait_example.png");
+    public Texture cptPortraitB = loadTexture("textures/captain_portrait_example.png");
+    public Texture cptPortraitC = loadTexture("textures/captain_portrait_example.png");
+    public Texture cptPortraitD = loadTexture("textures/captain_portrait_example.png");
+    public Texture backgroundCptSel = loadTexture("textures/backgroundCptSel.png");
+		
+		// Leaderboard
+		public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
 
 
     /**

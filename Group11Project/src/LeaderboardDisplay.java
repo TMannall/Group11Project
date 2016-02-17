@@ -110,23 +110,27 @@ public class LeaderboardDisplay extends FSMState{
         window.draw(textures.mainMenu);
         window.draw(title);
 		
-		Sprite[] textButton = new Sprite[numberOfButtons];
-		Sprite[] hoverButton = new Sprite[numberOfButtons];
-		Sprite[] pushButton = new Sprite[numberOfButtons];
-	
-		for(int i = 10; i < numberOfButtons; i++){
-			textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
-			hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
-			pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
-		}
+				Sprite[] textButton = new Sprite[numberOfButtons];
+				Sprite[] hoverButton = new Sprite[numberOfButtons];
+				Sprite[] pushButton = new Sprite[numberOfButtons];
+			
+				for(int i = 10; i < numberOfButtons; i++){
+					textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
+					hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
+					pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
+				}
 
-		for(int i = 10; i < numberOfButtons; i++){
+				for(int i = 10; i < numberOfButtons; i++){
 
-			textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-			hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-			pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-			window.draw(textButton[i]);
-		}		
+					textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+					hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+					pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+					window.draw(textButton[i]);
+				}		
+				
+				Sprite background = textures.createSprite(textures.backgroundLeaderboard, 0, 0, 800, 450);
+				background.setPosition(driver.getWinWidth() / 2, (driver.getWinHeight() / 2)+25);
+				window.draw(background);
 		
         for (int i = 0; i < numberOfButtons; i++) {
             window.draw(text[i]);
