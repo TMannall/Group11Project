@@ -155,11 +155,11 @@ public class AssExpEventState extends FSMState{
                             //System.out.println("Island Clicked!");
                             switch (i) {
                                 case 0:    //Island 1
-                                    System.out.println("Island 1 Clicked");
-                                    stateMachine.setState(stateMachine.getStates().get(2));
+                                    System.out.println("Accepted");
+                                    stateMachine.setState(stateMachine.getStates().get(12));
                                     break;
                                 case 1: //Island 2
-                                    System.out.println("Island 2 Clicked");
+                                    System.out.println("Declined");
                                     stateMachine.setState(stateMachine.getStates().get(3));
                                     break;
                             }

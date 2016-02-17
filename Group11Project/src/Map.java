@@ -106,19 +106,19 @@ public class Map extends FSMState {
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");
-									eventDriver.resetProbabilities(0,100,0,0,0);
+									eventDriver.resetProbabilities(20,20,20,20,20);
 									eventDriver.runEvent();
 									stateMachine.setState(stateMachine.getStates().get(6));
 									break;
 								case 2: //Island 3
 									System.out.println("Island 3 Clicked");
-                                    eventDriver.resetProbabilities(0,100,0,0,0);
+                                    eventDriver.resetProbabilities(20,20,20,20,20);
                                     eventDriver.runEvent();
 									stateMachine.setState(stateMachine.getStates().get(6));
 									break;
 								case 3: //Island 4
 									System.out.println("Island 4 Clicked");
-                                    eventDriver.resetProbabilities(0,100,0,0,0);
+                                    eventDriver.resetProbabilities(20,20,20,20,20);
                                     eventDriver.runEvent();
 									stateMachine.setState(stateMachine.getStates().get(6));
 									break;

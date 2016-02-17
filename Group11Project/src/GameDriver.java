@@ -34,6 +34,7 @@ public class GameDriver {
     private FSMState textEvents;
     private FSMState tradeEvents;
     private FSMState cptSelection;
+    private AfterEventState afterEvent;
     private EventExampleDriver eventDriver = new EventExampleDriver();
 
     // jack: sprite testing
@@ -60,6 +61,7 @@ public class GameDriver {
         textEvents = new TextEventState(machine, driver, window, textures, eventDriver);
         tradeEvents = new TradeEventState(machine, driver, window, textures, eventDriver);
         cptSelection = new CptSelection(machine, driver, window, textures);
+        afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -74,6 +76,8 @@ public class GameDriver {
         machine.getStates().add(textEvents);
         machine.getStates().add(tradeEvents);
         machine.getStates().add(cptSelection);
+        machine.getStates().add(afterEvent);
+
 
         // Set menu state for game launch
         machine.setState(menu);
