@@ -44,7 +44,11 @@ public class Control extends FSMState{
         this.eventDriver = eventDriver;
         setup();
     }
-	
+
+    public Control(FSM machine, GameDriver driver, RenderWindow window, Textures textures) {
+        super();
+    }
+
     public void setup(){
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;

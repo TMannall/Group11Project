@@ -46,7 +46,11 @@ public class Map extends FSMState {
         setup();
     }
 
-    public void setup(){
+	public Map(FSM machine, GameDriver driver, RenderWindow window, Textures textures) {
+		super();
+	}
+
+	public void setup(){
 
 		island[0] = textures.createSprite(textures.mapDecoration, 0, 0, 179, 114);	//island 1
 		island[1] = textures.createSprite(textures.mapDecoration, 182, 0, 168, 131); //island 2

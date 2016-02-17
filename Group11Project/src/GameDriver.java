@@ -32,11 +32,9 @@ public class GameDriver {
     private FSMState map;
     private FSMState gameover;
     private FSMState blank;
-    private FSMState events;
-	private FSMState volume;
-	private FSMState control;
-    private EventExampleDriver eventDriver = new EventExampleDriver();
-
+    private FSMState volume;
+    private FSMState control;
+    private FSMState leaderboard;
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
@@ -52,13 +50,12 @@ public class GameDriver {
         menu = new Menu(machine, driver, window, textures);
         settings = new Settings(machine, driver, window, textures);
         game = new Game(machine, driver, window, textures);
-        map = new Map(machine, driver, window, textures, eventDriver);
+        map = new Map(machine, driver, window, textures);
         gameover = new GameOver(machine, driver, window, textures);
-        blank = new BlankState(machine, driver, window, textures, eventDriver);
-        events = new EventState(machine, driver, window, textures, eventDriver);
-		//volume = new Volume(machine, driver, window, textures);
-		//control = new Control(machine, driver, window, textures);
-
+        blank = new BlankState(machine, driver, window, textures);
+        volume = new Volume(machine, driver, window, textures);
+        control = new Control(machine, driver, window, textures);
+        leaderboard = new Leaderboard(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -67,9 +64,9 @@ public class GameDriver {
         machine.getStates().add(map);
         machine.getStates().add(gameover);
         machine.getStates().add(blank);
-        machine.getStates().add(events);
         machine.getStates().add(volume);
         machine.getStates().add(control);
+        machine.getStates().add(leaderboard);
 
         // Set menu state for game launch
         machine.setState(menu);

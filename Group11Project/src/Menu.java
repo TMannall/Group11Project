@@ -212,6 +212,7 @@ public class Menu extends FSMState{
 						if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[1]);
 							window.draw(text[1]);
+							stateMachine.setState(stateMachine.getStates().get(8));
 						}
 						//Settings
 						if(rectf[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
