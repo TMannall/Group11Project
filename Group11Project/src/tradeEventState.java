@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Aidan on 16/02/2016.
  */
-public class tradeEventState extends FSMState{
+public class TradeEventState extends FSMState{
     /**
      * Event state class for Endless Sea
      */
@@ -46,7 +46,7 @@ public class tradeEventState extends FSMState{
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
 
-    public tradeEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
+    public TradeEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;

@@ -20,7 +20,7 @@ public class AssExpEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = " \nhas Attacked You!";
+    public String attackedText = " LINE1 OF EVENT TEXT\nLINE2 OF EVENT TEXT\n LINE 3 OF EVENT TEXT\n LINE 4VVOSNBVJNB";
     public String titleString = attackedText;
 
     Sprite messageScroll;
@@ -32,7 +32,7 @@ public class AssExpEventState extends FSMState{
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
-    private static int titleFontSize = 50;
+    private static int titleFontSize = 30;
     private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
@@ -81,13 +81,13 @@ public class AssExpEventState extends FSMState{
         }
         text[0].setFont(fontStyle);
         text[0].setColor(Color.RED);
-        text[0].setString("ATTACK!");
+        text[0].setString("ACCEPT!");
         text[0].setPosition(500, 500);
         text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(fontStyle);
         text[1].setColor(Color.YELLOW);
-        text[1].setString("RUN AWAY!");
+        text[1].setString("DECLINE!");
         text[1].setPosition(770, 500);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 

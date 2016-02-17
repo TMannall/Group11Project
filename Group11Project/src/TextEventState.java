@@ -24,11 +24,10 @@ public class TextEventState extends FSMState{
     public String titleString = attackedText;
 
     Sprite messageScroll;
-    private static int numberOfButtons = 2;
-    Text[] text = new Text[numberOfButtons];
+    Text text = new Text();
     Text title;
-    IntRect[] recti = new IntRect[numberOfButtons];
-    FloatRect[] rectf = new FloatRect[numberOfButtons];
+    IntRect recti;
+    FloatRect rectf;
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
@@ -38,13 +37,13 @@ public class TextEventState extends FSMState{
     private String FontPath;
 
 
-    float[] leftBound = new float[2];
-    float[] rightBound = new float[2];
-    float[] topBound = new float[2];
-    float[] bottomBound = new float[2];
-    Sprite[] textButton = new Sprite[numberOfButtons];
-    Sprite[] hoverButton = new Sprite[numberOfButtons];
-    Sprite[] pushButton = new Sprite[numberOfButtons];
+    float leftBound;
+    float rightBound;
+    float topBound;
+    float bottomBound;
+    Sprite textButton;
+    Sprite hoverButton;
+    Sprite pushButton;
 
     public TextEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
         this.stateMachine = stateMachine;
@@ -76,60 +75,43 @@ public class TextEventState extends FSMState{
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
 
-        for (int i = 0; i < numberOfButtons; i++) {
-            text[i] = new Text();
-        }
-        text[0].setFont(fontStyle);
-        text[0].setColor(Color.RED);
-        text[0].setString("ATTACK!");
-        text[0].setPosition(500, 500);
-        text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
-        text[1].setFont(fontStyle);
-        text[1].setColor(Color.YELLOW);
-        text[1].setString("RUN AWAY!");
-        text[1].setPosition(770, 500);
-        text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
+        text = new Text();
+        text.setFont(fontStyle);
+        text.setColor(Color.RED);
+        text.setString("OK");
+        text.setPosition(700, 500);
+        text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 
-        for(int i = 0; i < numberOfButtons; i++){
-            textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
-            hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
-            pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
-        }
-        for(int i = 0; i < numberOfButtons; i++){
-            textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-            pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-        }
-        for(int i = 0; i < numberOfButtons; i++){
-            rectf[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top,
-                    textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
-            recti[i] = new IntRect(rectf[i]);
-        }
+
+        textButton = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
+        hoverButton = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
+        pushButton = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
+        textButton.setPosition(text.getPosition().x, text.getPosition().y + 8);
+        pushButton.setPosition(text.getPosition().x, text.getPosition().y + 8);
+
+        rectf = new FloatRect(textButton.getGlobalBounds().left, textButton.getGlobalBounds().top,
+        textButton.getGlobalBounds().width, textButton.getGlobalBounds().height);
+        recti = new IntRect(rectf);
     }
 
     public void execute() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
-        for(int i = 0; i < numberOfButtons; i++) {
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
+        window.draw(textButton);
+        window.draw(text);
         window.draw(messageScroll);
         window.draw(title);
-        for(int i = 0; i < numberOfButtons; i++){
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
+        window.draw(textButton);
         displayMenu();
     }
 
     public void displayMenu()
     {
-        for(int i = 0; i < numberOfButtons; i++){
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
-        for (Event event : window.pollEvents()) {
+        window.draw(textButton);
+        window.draw(text);
+        for (Event event : window.pollEvents())
+        {
             switch (event.type) {
                 case CLOSED:
                     window.close();
@@ -137,30 +119,20 @@ public class TextEventState extends FSMState{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    for(int i = 0; i < 2; i++){
-                        leftBound[i] = text[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                        topBound[i] = text[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
-                    }
+                    leftBound = text.getGlobalBounds().left;
+                    rightBound = leftBound + text.getGlobalBounds().width;
+                    topBound = text.getGlobalBounds().top;
+                    bottomBound = topBound + text.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
-                    for(int i = 0; i < 2; i++) {
-                        if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
+                        if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
                             //System.out.println("Island Clicked!");
-                            switch (i) {
-                                case 0:    //Island 1
-                                    System.out.println("Island 1 Clicked");
-                                    stateMachine.setState(stateMachine.getStates().get(2));
-                                    break;
-                                case 1: //Island 2
-                                    System.out.println("Island 2 Clicked");
-                                    stateMachine.setState(stateMachine.getStates().get(3));
-                                    break;
-                            }
+                            //Island
+                            System.out.println("Text Event Happens...");
+                            stateMachine.setState(stateMachine.getStates().get(3));
+                            break;
                         }
                     }
-                    break;
-            }
+//                    break;
         }
         window.display();
     }

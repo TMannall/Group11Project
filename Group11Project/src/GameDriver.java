@@ -56,8 +56,8 @@ public class GameDriver {
         combatEvents = new CombatEventState(machine, driver, window, textures, eventDriver);
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
         assExpEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
-        textEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
-        tradeEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
+        textEvents = new TextEventState(machine, driver, window, textures, eventDriver);
+        tradeEvents = new TradeEventState(machine, driver, window, textures, eventDriver);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
