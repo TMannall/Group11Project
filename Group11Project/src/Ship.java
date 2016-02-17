@@ -7,15 +7,15 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public abstract class Ship{
+    public enum ShipType{
+        PLAYER, STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
+    }
+
     protected Textures textures;
     protected GameDriver driver;
     protected RenderWindow window;
 
     protected Random randGenerator;
-
-    public enum ShipType{
-        PLAYER, STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
-    }
 
     protected ShipType shipType;
 

@@ -13,16 +13,15 @@ public class PlayerShip extends Ship {
 
     public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
         super(textures, driver, window, type, scale, xPos, yPos);
-        this.ui = ui;
         setup();
     }
 
     public void setup(){
-        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this);
-        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this);
-        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this);
-        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this);
-        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this);
+        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this, "Player");
+        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this, "Player");
+        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this, "Player");
+        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this, "Player");
+        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this, "Player");
 
         sections.add(guns);
         sections.add(masts);
@@ -36,10 +35,9 @@ public class PlayerShip extends Ship {
 
         guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
-        bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
+        bridge.sprite.setPosition(xPos * scale, yPos * scale);
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
         quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
-
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }
@@ -87,5 +85,4 @@ public class PlayerShip extends Ship {
     public void setUI(UI ui){
         this.ui = ui;
     }
-
 }

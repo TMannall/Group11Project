@@ -16,11 +16,11 @@ public class EnemyShip extends Ship {
     public void setup(){
         switch(shipType){
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this);
-                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this);
-                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this);
-                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this);
-                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this);
+                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this, "Enemy");
+                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this, "Enemy");
+                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this, "Enemy");
+                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this, "Enemy");
+                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this, "Enemy");
                 break;
             default:
                 System.out.println("ERROR");
@@ -34,7 +34,7 @@ public class EnemyShip extends Ship {
         sections.add(quarters);
 
         guns.sprite.scale(-scale, -scale);
-        masts.sprite.scale(-scale, scale);
+        masts.sprite.scale(-scale, -scale);
         bridge.sprite.scale(-scale, scale);
         hold.sprite.scale(-scale, -scale);
         quarters.sprite.scale(-scale, scale);

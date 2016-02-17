@@ -44,7 +44,6 @@ public class Game extends FSMState {
         playerShip.draw();
         enemyShip.draw();
         ui.draw();
-
         window.display();
 
         if(!playerShip.isGunLoaded())

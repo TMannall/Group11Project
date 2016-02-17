@@ -13,38 +13,14 @@ public class ShipSection extends Actor{
     private int HP = 100;
     private boolean targetable = true;
 
-    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite, String type, Ship ship){
+    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite, String type, Ship ship, String shipType){
         super(textures, driver, window, sprite);
-        this.ship = ship;
         this.type = type;
+        this.ship = ship;
         randGenerator = new Random();
 
-        if(ship.shipType == Ship.ShipType.PLAYER){
-            switch(type){
-                case "Guns":
-                    icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
-                    icon.setPosition(0, 0);
-                    break;
-                case "Masts":
-                    icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
-                    icon.setPosition(280, 540);
-                    break;
-                case "Bridge":
-                    icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
-                    icon.setPosition(0,0);
-                    break;
-                case "Hold":
-                    icon =  textures.createSprite(textures.userInterface, 934, 448, 50, 50);
-                    icon.setPosition(0, 0);
-                    break;
-                case "Quarters":
-                    icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
-                    icon.setPosition(0, 0);
-                    break;
-            }
-        }
-        else{
-            switch(type){
+        if(shipType.equals("Enemy")){
+            switch(type) {
                 case "Guns":
                     icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
                     icon.setPosition(580, 260);
@@ -58,7 +34,7 @@ public class ShipSection extends Actor{
                     icon.setPosition(760, 208);
                     break;
                 case "Hold":
-                    icon =  textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    icon = textures.createSprite(textures.userInterface, 934, 448, 50, 50);
                     icon.setPosition(580, 156);
                     break;
                 case "Quarters":
@@ -67,6 +43,33 @@ public class ShipSection extends Actor{
                     break;
             }
         }
+        else{
+            switch(type) {
+                case "Guns":
+                    icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
+                    icon.setPosition(629, 460);
+                    break;
+                case "Masts":
+                    icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
+                    icon.setPosition(629, 508);
+                    break;
+                case "Bridge":
+                    icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
+                    icon.setPosition(450, 508);
+                    break;
+                case "Hold":
+                    icon = textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    icon.setPosition(629, 564);
+                    break;
+                case "Quarters":
+                    icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
+                    icon.setPosition(749, 508);
+                    break;
+            }
+        }
+
+
+
         icon.setScale((float)0.75, (float)0.75);
     }
 
