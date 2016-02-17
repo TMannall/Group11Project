@@ -11,8 +11,8 @@ public class PlayerShip extends Ship {
     private int gold;
     private UI ui;
 
-    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, float scale, int xPos, int yPos){
-        super(textures, driver, window, scale, xPos, yPos);
+    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
+        super(textures, driver, window, type, scale, xPos, yPos);
         this.ui = ui;
         setup();
     }
@@ -30,15 +30,16 @@ public class PlayerShip extends Ship {
         sections.add(hold);
         sections.add(quarters);
 
+        for(ShipSection section : sections){
+            section.sprite.scale(scale, scale);
+        }
+
         guns.sprite.setPosition((xPos + 434) * scale, (yPos - 118) * scale);
         masts.sprite.setPosition((xPos + 434) * scale, yPos * scale);
         bridge.sprite.setPosition(xPos * scale, yPos * scale);        // was 300
         hold.sprite.setPosition((xPos + 434) * scale, (yPos + 118) * scale);
         quarters.sprite.setPosition((xPos + 999) * scale, yPos * scale);
 
-        for(ShipSection section : sections){
-            section.sprite.scale(scale, scale);
-        }
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }

@@ -224,8 +224,8 @@ public class UI {
 
         // Cannon Reload
         float reloadTime = playerShip.baseReload/playerShip.reloadBoost;
-        long elapsed = playerShip.reloadTimer.time(TimeUnit.MILLISECONDS);
-        float reloadPercent = ((elapsed*1000)/reloadTime)*(float)100;
+        long elapsed = playerShip.reloadTimer.time(TimeUnit.SECONDS);
+        float reloadPercent = (elapsed/reloadTime)*(float)100;
         if(reloadPercent > 100)
             reloadPercent = 100;
         if(reloadPercent > reload){

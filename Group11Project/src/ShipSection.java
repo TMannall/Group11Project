@@ -18,19 +18,56 @@ public class ShipSection extends Actor{
         this.ship = ship;
         this.type = type;
         randGenerator = new Random();
-    }
 
-    public ShipSection(Textures textures, GameDriver driver, RenderWindow window, Sprite sprite, Sprite icon, String type, Ship ship){
-        super(textures, driver, window, sprite);
-        this.ship = ship;
-        this.type = type;
-        this.icon = icon;
-        randGenerator = new Random();
-
+        if(ship.shipType == Ship.ShipType.PLAYER){
+            switch(type){
+                case "Guns":
+                    icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
+                    icon.setPosition(0, 0);
+                    break;
+                case "Masts":
+                    icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
+                    icon.setPosition(280, 540);
+                    break;
+                case "Bridge":
+                    icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
+                    icon.setPosition(0,0);
+                    break;
+                case "Hold":
+                    icon =  textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    icon.setPosition(0, 0);
+                    break;
+                case "Quarters":
+                    icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
+                    icon.setPosition(0, 0);
+                    break;
+            }
+        }
+        else{
+            switch(type){
+                case "Guns":
+                    icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
+                    icon.setPosition(580, 260);
+                    break;
+                case "Masts":
+                    icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
+                    icon.setPosition(580, 208);
+                    break;
+                case "Bridge":
+                    icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
+                    icon.setPosition(760, 208);
+                    break;
+                case "Hold":
+                    icon =  textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    icon.setPosition(580, 156);
+                    break;
+                case "Quarters":
+                    icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
+                    icon.setPosition(454, 208);
+                    break;
+            }
+        }
         icon.setScale((float)0.75, (float)0.75);
-        float left = sprite.getGlobalBounds().left;
-        float top = sprite.getGlobalBounds().top;
-        icon.setPosition(100, 100);
     }
 
     public String getType(){

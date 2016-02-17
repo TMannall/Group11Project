@@ -29,8 +29,8 @@ public class Game extends FSMState {
     }
 
     public void setup(){
-        playerShip = new PlayerShip(textures, driver, window,(float)0.5, 800, 1020);
-        enemyShip = new EnemyShip(textures, driver, window, EnemyShip.ShipType.STANDARD, (float)0.5, 600, 420);
+        playerShip = new PlayerShip(textures, driver, window, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
+        enemyShip = new EnemyShip(textures, driver, window, Ship.ShipType.STANDARD, (float)0.5, 600, 420);
 
         ui = new UI(textures, driver, window, playerShip, enemyShip);
         playerShip.setUI(ui);
@@ -41,12 +41,10 @@ public class Game extends FSMState {
     public void execute() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
-
-
         playerShip.draw();
         enemyShip.draw();
-
         ui.draw();
+
         window.display();
 
         if(!playerShip.isGunLoaded())

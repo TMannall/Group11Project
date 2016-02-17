@@ -7,13 +7,17 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public abstract class Ship{
-
-
     protected Textures textures;
     protected GameDriver driver;
     protected RenderWindow window;
 
     protected Random randGenerator;
+
+    public enum ShipType{
+        PLAYER, STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
+    }
+
+    protected ShipType shipType;
 
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
     protected int gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
@@ -34,10 +38,11 @@ public abstract class Ship{
     protected int xPos;
     protected int yPos;
 
-    public Ship(Textures textures, GameDriver driver, RenderWindow window, float scale, int xPos, int yPos){
+    public Ship(Textures textures, GameDriver driver, RenderWindow window, ShipType shipType, float scale, int xPos, int yPos){
         this.textures = textures;
         this.driver = driver;
         this.window = window;
+        this.shipType = shipType;
         this.scale = scale;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -52,6 +57,7 @@ public abstract class Ship{
     public void draw(){
         for(ShipSection section : sections){
             window.draw(section.sprite);
+            window.draw(section.getIcon());
         }
     }
 

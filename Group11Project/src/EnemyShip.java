@@ -8,27 +8,19 @@ public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
 
-    public enum ShipType{
-        STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
-    }
-
-    private ShipType type;
-
     public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
-        super(textures, driver, window, scale, xPos, yPos);
-        this.type=type;
-
+        super(textures, driver, window, type, scale, xPos, yPos);
         setup();
     }
 
     public void setup(){
-        switch(type){
+        switch(shipType){
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, textures.createSprite(textures.userInterface, 934, 383, 50, 50), "Guns", this);
-                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, textures.createSprite(textures.userInterface, 988, 383, 50, 50), "Masts", this);
-                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, textures.createSprite(textures.userInterface, 988, 448, 50, 50), "Bridge", this);
-                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, textures.createSprite(textures.userInterface, 934, 448, 50, 50), "Hold", this);
-                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, textures.createSprite(textures.userInterface, 934, 511, 50, 50), "Quarters", this);
+                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this);
+                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this);
+                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this);
+                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this);
+                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this);
                 break;
             default:
                 System.out.println("ERROR");
@@ -54,13 +46,6 @@ public class EnemyShip extends Ship {
         quarters.sprite.setPosition(xPos * scale, yPos * scale);
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
-    }
-
-    public void draw(){
-        for(ShipSection section : sections){
-            window.draw(section.sprite);
-            window.draw(section.getIcon());
-        }
     }
 
     public ShipSection validateClicked(Ship player, int x, int y){
