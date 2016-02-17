@@ -88,6 +88,7 @@ public class Textures {
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
     private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    private Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
     private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
@@ -95,6 +96,12 @@ public class Textures {
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
     public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
+
+    public Sprite shipBridgeDestroyed = createSprite(shipLv3Dead, 0, 0, 525, 365);
+    public Sprite shipGunDeckDestroyed = createSprite(shipLv3Dead, 525, 0, 343, 125);
+    public Sprite shipMastsDestroyed = createSprite(shipLv3Dead, 525, 129, 343, 115);
+    public Sprite shipSuppliesDestroyed = createSprite(shipLv3Dead, 525, 241, 343, 125);
+    public Sprite shipMedicalDestroyed = createSprite(shipLv3Dead, 868, 0, 826, 365);
 
     public Sprite shipBridgeHighlight = createSprite(shipHighlight, 0, 0, 525, 365);
     public Sprite shipGunDeckHighlight = createSprite(shipHighlight, 525, 0, 343, 125);
