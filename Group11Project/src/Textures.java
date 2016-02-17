@@ -8,7 +8,6 @@ import java.nio.file.Paths;
  * Textures class for Endless Sea, handles loading textures and sprites for the game
  */
 public class Textures {
-
     // Splash screens
     private Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
@@ -48,7 +47,7 @@ public class Textures {
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
         // events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll.png");
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
     public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
 

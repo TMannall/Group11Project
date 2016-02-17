@@ -149,7 +149,6 @@ public class UI {
     // Called to draw HP bar as a single thing where it's meant to be on the UI
     // Actual implementation draws each sprite as necessary
     public void draw(){
-
         // AI Hull
         if(enemyShip.getHullHP() < previousAIHullHP){
             previousAIHullHP--;
