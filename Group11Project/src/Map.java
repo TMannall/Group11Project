@@ -102,49 +102,49 @@ public class Map extends FSMState {
 									System.out.println("Island 1 Clicked");
                                     eventDriver.resetProbabilities(0,100,0,0,0);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(6));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");
 									eventDriver.resetProbabilities(20,20,20,20,20);
 									eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(6));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 2: //Island 3
 									System.out.println("Island 3 Clicked");
                                     eventDriver.resetProbabilities(20,20,20,20,20);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(6));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 3: //Island 4
 									System.out.println("Island 4 Clicked");
                                     eventDriver.resetProbabilities(20,20,20,20,20);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(6));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 4: //Island 5 //Trade
 									System.out.println("Island 5 Clicked");
                                     eventDriver.resetProbabilities(0,0,0,0,100);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(10));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 5: //Island 6 //Text
 									System.out.println("Island 6 Clicked");
                                     eventDriver.resetProbabilities(0,0,0,100,0);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(9));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 6: //Island 7 //Exploration
 									System.out.println("Island 7 Clicked");
                                     eventDriver.resetProbabilities(0,0,100,0,0);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(8));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 								case 7: //Island Port //Assist
 									System.out.println("Island Port Clicked");
                                     eventDriver.resetProbabilities(100,0,0,0,0);
                                     eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(8));
+									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									break;
 							}
 						}

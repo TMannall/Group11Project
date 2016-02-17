@@ -60,6 +60,21 @@ public class EventExampleDriver
         return currentEvent.getEventText();
     }
 
+    public int getEventType()
+    {
+        if (currentEvent.getClass().equals(events[0].getClass()))
+            return 8;
+        else if (currentEvent.getClass().equals(events[1].getClass()))
+            return 6;
+        else if (currentEvent.getClass().equals(events[2].getClass()))
+            return 8;
+        else if (currentEvent.getClass().equals(events[3].getClass()))
+            return 9;
+        else if (currentEvent.getClass().equals(events[4].getClass()))
+            return 10;
+        return 0;
+    }
+
 //    public String[] returnEvent()
 //    {
 //        return currentEvent.returnEvent();
