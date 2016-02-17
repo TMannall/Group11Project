@@ -20,7 +20,7 @@ public class AssExpEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = " LINE1 OF EVENT TEXT\nLINE2 OF EVENT TEXT\n LINE 3 OF EVENT TEXT\n LINE 4VVOSNBVJNB";
+    public String attackedText = "";
     public String titleString = attackedText;
 
     Sprite messageScroll;

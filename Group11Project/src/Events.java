@@ -49,4 +49,8 @@ public abstract class Events
     {
         return eventText;
     }
+
+    public String getConsequence(){
+        return consequence_text;
+    }
 }

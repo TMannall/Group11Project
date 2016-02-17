@@ -20,7 +20,7 @@ public class TextEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String titleString = "Text Event\n Text Event\n Text Event";
+    public String titleString = "";
 
     Sprite messageScroll;
     Text text = new Text();

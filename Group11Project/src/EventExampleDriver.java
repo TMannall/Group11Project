@@ -75,8 +75,8 @@ public class EventExampleDriver
         return 0;
     }
 
-//    public String[] returnEvent()
-//    {
-//        return currentEvent.returnEvent();
-//    }
+    public String getConsequence()
+    {
+        return currentEvent.getConsequence();
+    }
 }
