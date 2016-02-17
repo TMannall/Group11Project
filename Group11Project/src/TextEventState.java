@@ -128,6 +128,9 @@ public class TextEventState extends FSMState{
                             //System.out.println("Island Clicked!");
                             //Island
                             System.out.println("Text Event Happens...");
+                            int[] eventEffects = eventDriver.getEventEffects();
+                            for (int i  = 0; i < eventEffects.length; i++)
+                                System.out.println(eventEffects[i]);
                             stateMachine.setState(stateMachine.getStates().get(3));
                             break;
                         }
