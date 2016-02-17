@@ -79,4 +79,12 @@ public class EventExampleDriver
     {
         return currentEvent.getConsequence();
     }
+
+    public String[] getItemNames(){
+        return currentEvent.getItemNames();
+    }
+
+    public int[][] getItemStats(){
+        return currentEvent.getItemStats();
+    }
 }
