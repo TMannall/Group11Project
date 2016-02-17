@@ -20,10 +20,13 @@ public class TextEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
+    private static final String[] playerStatsList = {"Gold", "Food", "Water", "Hull", "Cannons", "Guns", "Masts", "Bridge", "Hold", "Quarters"};
     public String titleString = "";
 
     Sprite messageScroll;
     Text text = new Text();
+    Text[] statsNames = new Text[playerStatsList.length];
+    Text[] statsChanges = new Text[playerStatsList.length];
     Text title;
     IntRect recti;
     FloatRect rectf;
@@ -75,6 +78,32 @@ public class TextEventState extends FSMState{
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
 
+        statsNames[0] = new Text(playerStatsList[0], fontStyle, 11);
+        statsNames[0].setPosition(380, 400);
+        statsNames[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        statsNames[0].setColor(Color.BLACK);
+        statsNames[0].setStyle(Text.BOLD);
+        for(int i = 1; i < statsNames.length; i++) {
+            statsNames[i] = new Text(playerStatsList[i], fontStyle, 11);
+            statsNames[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 400);
+            statsNames[i].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+            statsNames[i].setColor(Color.BLACK);
+            statsNames[i].setStyle(Text.BOLD);
+        }
+
+        statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
+        statsChanges[0].setPosition(380, 430);
+        statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        statsChanges[0].setColor(Color.BLACK);
+        statsChanges[0].setStyle(Text.BOLD);
+        for(int i = 1; i < statsNames.length; i++) {
+            statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 11);
+            statsChanges[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 430);
+            statsChanges[i].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+            statsChanges[i].setColor(Color.BLACK);
+            statsChanges[i].setStyle(Text.BOLD);
+        }
+
 
         text = new Text();
         text.setFont(fontStyle);
@@ -91,7 +120,7 @@ public class TextEventState extends FSMState{
         pushButton.setPosition(text.getPosition().x, text.getPosition().y + 8);
 
         rectf = new FloatRect(textButton.getGlobalBounds().left, textButton.getGlobalBounds().top,
-        textButton.getGlobalBounds().width, textButton.getGlobalBounds().height);
+                textButton.getGlobalBounds().width, textButton.getGlobalBounds().height);
         recti = new IntRect(rectf);
     }
 
@@ -101,20 +130,39 @@ public class TextEventState extends FSMState{
         window.draw(textButton);
         window.draw(text);
         window.draw(messageScroll);
-        window.draw(title);
         window.draw(textButton);
         displayMenu();
     }
 
     public void displayMenu()
     {
+        this.eventEffects = eventDriver.getEventEffects();
+//        statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
+//        statsChanges[0].setPosition(400, 430);
+//        statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+//        statsChanges[0].setColor(Color.BLACK);
+//        statsChanges[0].setStyle(Text.BOLD);
+        for(int i = 0; i < statsNames.length; i++) {
+            statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 15);
+            statsChanges[i].setPosition(statsNames[i].getPosition().x + 30, 450);
+            statsChanges[i].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+            statsChanges[i].setColor(Color.BLACK);
+            statsChanges[i].setStyle(Text.BOLD);
+        }
+
         title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
+
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
         window.draw(textButton);
         window.draw(text);
+        window.draw(title);
+        for(int i = 0; i < statsNames.length; i++)
+            window.draw(statsNames[i]);
+        for(int i = 0; i < statsChanges.length; i++)
+            window.draw(statsChanges[i]);
         for (Event event : window.pollEvents())
         {
             switch (event.type) {
@@ -129,17 +177,17 @@ public class TextEventState extends FSMState{
                     topBound = text.getGlobalBounds().top;
                     bottomBound = topBound + text.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
-                        if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
-                            //System.out.println("Island Clicked!");
-                            //Island
-                            System.out.println("Text Event Happens...");
-                            int[] eventEffects = eventDriver.getEventEffects();
-                            for (int i  = 0; i < eventEffects.length; i++)
-                                System.out.println(eventEffects[i]);
-                            stateMachine.setState(stateMachine.getStates().get(3));
-                            break;
-                        }
+                    if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
+                        //System.out.println("Island Clicked!");
+                        //Island
+                        System.out.println("Text Event Happens...");
+                        int[] eventEffects = eventDriver.getEventEffects();
+                        for (int i  = 0; i < eventEffects.length; i++)
+                            System.out.println(eventEffects[i]);
+                        stateMachine.setState(stateMachine.getStates().get(3));
+                        break;
                     }
+            }
 //                    break;
         }
         window.display();

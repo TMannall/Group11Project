@@ -20,7 +20,7 @@ public class TradeEventState extends FSMState{
     private Random randGenerator;
     private EventExampleDriver eventDriver;
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = " \nhas Attacked You!";
+    public String attackedText = "";
     public String titleString = attackedText;
 
     Sprite messageScroll;
