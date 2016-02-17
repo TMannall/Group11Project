@@ -14,6 +14,8 @@ public class Textures {
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
     private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
+    private Texture splashTitle_ = loadTexture("textures/main_menu_title.png");
+    public Sprite splashTitle = createSprite(splashTitle_, 0, 0, 720, 171);
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
@@ -24,6 +26,7 @@ public class Textures {
     public Sprite uiShipSectionsHealthPlayer = createSprite(userInterface, 643, 353, 250, 261);
     public Sprite uiShipGunReloadPlayer = createSprite(userInterface, 310, 350, 320, 66);
 
+        // not hard-coded
     public Sprite uiHealthBarPlayer = createSprite(userInterface, 317, 432, 237, 29);
     public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
     public Sprite uiHealthUnder = createSprite(userInterface, 317, 528, 237, 29);
@@ -34,15 +37,19 @@ public class Textures {
     public Sprite uiIconHold = createSprite(userInterface, 934, 448, 50, 50);
     public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
     public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
+    public Sprite uiIconGunDeckDead = createSprite(userInterface, 1051, 383, 50, 50);
+    public Sprite uiIconMastsDead = createSprite(userInterface, 1105, 383, 50, 50);
+    public Sprite uiIconHoldDead = createSprite(userInterface, 1051, 448, 50, 50);
+    public Sprite uiIconBridgeDead = createSprite(userInterface, 1105, 448, 50, 50);
+    public Sprite uiIconMedicalDead = createSprite(userInterface, 1051, 511, 50, 50);
 
-        // not hard-coded
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
-        //events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
-    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 900, 821);
+        // events
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll.png");
+    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
 
     public Texture mapDecoration = loadTexture("textures/map_decoration.png");
@@ -55,6 +62,9 @@ public class Textures {
     public Sprite island7 = createSprite(mapDecoration, 431, 227, 200, 192);
     public Sprite islandPort = createSprite(mapDecoration, 200, 136, 219, 276);
 
+    public Texture healthBarBg = loadTexture("textures/hpbar_back_test.png");
+    public Texture healthBarFg = loadTexture("textures/hpbar_front_test.png");
+
     // Unit sprites
     public Texture sailor1 = loadTexture("textures/sailor_1.png"); // hello sailor!
 
@@ -62,21 +72,35 @@ public class Textures {
     public Texture frenchMarine = loadTexture("textures/marine_french_fire_musket.png");
     public Texture spanishMarine = loadTexture("textures/marine_spanish_fire_musket.png");
     public Texture neutralMarine = loadTexture("textures/marine_neutral_fire_musket.png");
-    public Sprite britishMarineFire = createSprite(britishMarine, 0, 0, 65, 185);
+    public Sprite britishMarineFire = createSprite(britishMarine, 0, 0, 65, 185); // frames: 40
     public Sprite frenchMarineFire = createSprite(frenchMarine, 0, 0, 65, 185);
     public Sprite spanishMarineFire = createSprite(spanishMarine, 0, 0, 65, 185);
     public Sprite neutralMarineFire = createSprite(neutralMarine, 0, 0, 65, 185);
+
+    // Particle effects
+    public Texture cannonSmoke = loadTexture("textures/cannon_smoke.png");
+    public Sprite cannonSmokeParticle = createSprite(cannonSmoke, 0, 0, 51, 114); // frames: 32
+
+    public Sprite solidshot = createSprite(userInterface, 1009, 516, 8, 8);
+    public Sprite chainshot = createSprite(userInterface, 1004, 532, 14, 23);
 
     // Ship models
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
     private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
     public Sprite shipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical = createSprite(shipLv3, 868, 0, 826, 365);
+
+    public Sprite shipBridgeHighlight = createSprite(shipHighlight, 0, 0, 525, 365);
+    public Sprite shipGunDeckHighlight = createSprite(shipHighlight, 525, 0, 343, 125);
+    public Sprite shipMastsHighlight = createSprite(shipHighlight, 525, 129, 343, 115);
+    public Sprite shipSuppliesHighlight = createSprite(shipHighlight, 525, 241, 343, 125);
+    public Sprite shipMedicalHighlight = createSprite(shipHighlight, 868, 0, 826, 365);
 
     public Sprite shipBridge_lvl1 = createSprite(shipLv1, 0, 0, 525, 365);
     public Sprite shipGunDeck_lvl1 = createSprite(shipLv1, 525, 0, 343, 125);
@@ -139,6 +163,14 @@ public class Textures {
         sprite.setTextureRect(new IntRect(x, y, width, height));
         sprite.setOrigin(Vector2f.div(
                 new Vector2f(width, height), 2));
+        return sprite;
+    }
+
+    public Sprite createSprite(Texture texture, int x, int y, int width, int height, float xScale, float yScale, float xOrig, float yOrig) {
+        Sprite sprite = new Sprite(texture);
+        sprite.setTextureRect(new IntRect(x, y, width, height));
+        sprite.setOrigin(xOrig, yOrig);
+        sprite.setScale(xScale, yScale);
         return sprite;
     }
 
