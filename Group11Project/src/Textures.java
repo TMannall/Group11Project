@@ -8,7 +8,6 @@ import java.nio.file.Paths;
  * Textures class for Endless Sea, handles loading textures and sprites for the game
  */
 public class Textures {
-
     // Splash screens
     private Texture mainMenu_ = loadTexture("textures/main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);

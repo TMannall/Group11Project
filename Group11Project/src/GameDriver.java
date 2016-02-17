@@ -28,8 +28,11 @@ public class GameDriver {
     private FSMState map;
     private FSMState gameover;
     private FSMState blank;
-    private FSMState events;
+    private FSMState combatEvents;
     private FSMState leaderboard;
+    private FSMState assExpEvents;
+    private FSMState textEvents;
+    private FSMState tradeEvents;
     private EventExampleDriver eventDriver = new EventExampleDriver();
 
     // jack: sprite testing
@@ -50,9 +53,11 @@ public class GameDriver {
         map = new Map(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
         blank = new BlankState(machine, driver, window, textures, eventDriver);
-        events = new CombatEventState(machine, driver, window, textures, eventDriver);
+        combatEvents = new CombatEventState(machine, driver, window, textures, eventDriver);
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
-
+        assExpEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
+        textEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
+        tradeEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -61,8 +66,11 @@ public class GameDriver {
         machine.getStates().add(map);
         machine.getStates().add(gameover);
         machine.getStates().add(blank);
-        machine.getStates().add(events);
+        machine.getStates().add(combatEvents);
         machine.getStates().add(leaderboard);
+        machine.getStates().add(assExpEvents);
+        machine.getStates().add(textEvents);
+        machine.getStates().add(tradeEvents);
 
         // Set menu state for game launch
         machine.setState(menu);
@@ -106,7 +114,7 @@ public class GameDriver {
             machine.run();
 
 
-            // NOTE: States must call window.display() and poll for relevant events themselves
+            // NOTE: States must call window.display() and poll for relevant combatEvents themselves
         }
     }
 
