@@ -1,20 +1,21 @@
+import events.EventExampleDriver;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Text;
-import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class Control extends FSMState{
+public class Control extends FSMState {
 	
     private FSM stateMachine;
     private GameDriver driver;

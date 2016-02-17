@@ -1,3 +1,5 @@
+package events;
+
 import java.sql.*;
 import java.io.File;
 

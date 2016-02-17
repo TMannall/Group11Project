@@ -1,9 +1,11 @@
+package statemachine;
+
 import java.util.ArrayList;
 
 /**
  * Finite-State Machine
  * An instance of this should be created to manage state switches for a program.
- * States should be classes which implement the FSMState interface.
+ * States should be classes which implement the statemachine.FSMState interface.
  * Note: Is not stack-based; may implement stack if needed
  */
 public class FSM {

@@ -1,9 +1,11 @@
+package events;
+
 /**
  * Created by Aidan on 25/01/2016.
  */
 public class EventExampleDriver
 {
-    private String[] eventTypes = {"Assist Events", "Combat Events", "Exploration Events", "Text Events", "Trade Events"};
+    private String[] eventTypes = {"Assist events.Events", "Combat events.Events", "Exploration events.Events", "Text events.Events", "Trade events.Events"};
     private Events[] events;
     private int[] probabilities;
     private String eventSelected;
@@ -14,7 +16,7 @@ public class EventExampleDriver
     {
         events = new Events[5];
         DbUser myDbUser;
-        myDbUser = new DbUser("Events");
+        myDbUser = new DbUser("events.Events");
         events[0] = new AssistEventGetter(myDbUser);
         events[1] = new CombatEventGetter(myDbUser);
         events[2] = new ExplorationEventGetter(myDbUser);

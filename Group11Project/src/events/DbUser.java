@@ -1,4 +1,4 @@
-// STUBBED FILE
+package events;// STUBBED FILE
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -59,7 +59,7 @@ public class DbUser extends DbBasic {
 					results.add(rs.getString(titles[i]));
 			}
 		}catch (Exception e){
-			System.out.println("Something went wrong ***DbUser getQuery***  " + query);
+			System.out.println("Something went wrong ***events.DbUser getQuery***  " + query);
 		}
 		return results;
 	}
@@ -69,7 +69,7 @@ public class DbUser extends DbBasic {
 		try{
 				stmt.executeUpdate(query);
 		}catch (Exception e){
-			System.out.println("Something went wrong ***DbUser execute***");
+			System.out.println("Something went wrong ***events.DbUser execute***");
 		}
 	}
 }

@@ -2,8 +2,11 @@
  * Driver for Endless Sea
  */
 
+import events.EventExampleDriver;
 import org.jsfml.graphics.*;
 import org.jsfml.window.*;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -63,7 +66,7 @@ public class GameDriver {
         cptSelection = new CptSelection(machine, driver, window, textures);
         afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
 
-        // Add all states the FSM controls to its ArrayList for access later
+        // Add all states the statemachine.FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
         machine.getStates().add(settings);
         machine.getStates().add(game);

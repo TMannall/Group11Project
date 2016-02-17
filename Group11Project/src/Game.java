@@ -1,7 +1,10 @@
+import events.EventExampleDriver;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.util.Random;
 

@@ -1,6 +1,4 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package events;
 
 /**
  * Created by Aidan on 25/01/2016.

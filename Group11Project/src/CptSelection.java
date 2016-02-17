@@ -10,7 +10,8 @@ import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.nio.file.Paths;
 /**
  * CptSelection state for Endless Sea
  */
-public class CptSelection extends FSMState{
+public class CptSelection extends FSMState {
 	
 		private String[] cptNamesAndStats = {"Cpt. #1\n\nStat #1\nStat #2", "Cpt. #2\n\nStat #1\nStat #2", "Cpt. #3\n\nStat #1\nStat #2", "Cpt. #4\n\nStat #1\nStat #2"};
 

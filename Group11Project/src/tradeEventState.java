@@ -1,5 +1,8 @@
+import events.EventExampleDriver;
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +12,7 @@ import java.util.Random;
 /**
  * Created by Aidan on 16/02/2016.
  */
-public class TradeEventState extends FSMState{
+public class TradeEventState extends FSMState {
     /**
      * Event state class for Endless Sea
      */

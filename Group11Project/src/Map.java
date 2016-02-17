@@ -1,16 +1,11 @@
+import events.EventExampleDriver;
 import org.jsfml.graphics.*;
-import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
-import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 
 import org.jsfml.window.Keyboard;
-import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.util.Random;
 

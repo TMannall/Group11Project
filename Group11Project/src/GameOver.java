@@ -1,5 +1,7 @@
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.event.Event;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 public class GameOver extends FSMState {
     private FSM stateMachine;

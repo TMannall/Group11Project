@@ -8,7 +8,8 @@ import org.jsfml.window.event.KeyEvent;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
+import statemachine.FSM;
+import statemachine.FSMState;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.nio.file.Paths;
 /**
  * LeaderboardDisplay state for Endless Sea
  */
-public class LeaderboardDisplay extends FSMState{
+public class LeaderboardDisplay extends FSMState {
 
     private FSM stateMachine;
     private GameDriver driver;
