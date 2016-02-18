@@ -31,14 +31,6 @@ public class CombatEventState extends FSMState
         Text title;
         IntRect[] recti = new IntRect[numberOfButtons];
         FloatRect[] rectf = new FloatRect[numberOfButtons];
-        private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-        private static String JdkFontPath = "textures/";
-        private static String JreFontPath = "textures/";
-        private static int titleFontSize = 50;
-        private static int buttonFontSize = 32;
-        private static String FontFile = "vinque.ttf";
-        private String FontPath;
-
 
         float[] leftBound = new float[2];
         float[] rightBound = new float[2];
@@ -63,17 +55,7 @@ public class CombatEventState extends FSMState
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
-        if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
-        else FontPath = JdkFontPath;
-        fontStyle = new Font();
-        try {
-            fontStyle.loadFromFile(
-                    Paths.get(FontPath + FontFile));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        title = new Text(titleString, fontStyle, titleFontSize);
+       // title = new Text(titleString, fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
@@ -130,7 +112,7 @@ public class CombatEventState extends FSMState
 
     public void displayMenu()
     {
-        title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
+        //title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);

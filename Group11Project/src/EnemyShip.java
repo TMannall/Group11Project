@@ -3,13 +3,14 @@ import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
 
-    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
-        super(textures, driver, window, type, scale, xPos, yPos);
+    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType type, float scale, int xPos, int yPos){
+        super(textures, driver, window, randGenerator, type, scale, xPos, yPos);
         setup();
     }
 

@@ -7,6 +7,7 @@ import org.jsfml.window.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameDriver {
     public static int getWinWidth() {
@@ -33,8 +34,11 @@ public class GameDriver {
     private FSMState afterEvent;
     private FSMState gameover;
 
-    private FSMState game;
-    private FSMState blank;
+    private RenderWindow window = new RenderWindow();
+    private Textures textures = new Textures();
+    private Random randGenerator = new Random();
+
+    private Ship playerShip = new PlayerShip(textures, driver, window, randGenerator, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
 
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
@@ -42,11 +46,9 @@ public class GameDriver {
 
     public void run(){
         // Initial setup
-        RenderWindow window = new RenderWindow();
         window.create(new VideoMode(WIN_WIDTH, WIN_HEIGHT), TITLE, WindowStyle.DEFAULT);
         window.setFramerateLimit(30);
 
-        Textures textures = new Textures();
         machine = new FSM();
         eventGenerator = new EventGenerator(machine, driver, window, textures);
 
@@ -60,10 +62,6 @@ public class GameDriver {
       //  afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
 
-        game = new Game(machine, driver, window, textures);
-
-
-        blank = new BlankState(machine, driver, window, textures);
         cptSelection = new CptSelection(machine, driver, window, textures);
        // afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
 
@@ -126,5 +124,13 @@ public class GameDriver {
     public static void main(String[] args) {
         GameDriver driver = new GameDriver();
         driver.run();
+    }
+
+    public FSMState getEncounter(){
+        return encounter;
+    }
+
+    public void setEncounter(FSMState encounter){
+        this.encounter = encounter;
     }
 }

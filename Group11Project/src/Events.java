@@ -1,14 +1,27 @@
+import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Random;
 
 public abstract class Events extends FSMState {
-    private FSM stateMachine;
-    private GameDriver driver;
-    private RenderWindow window;
-    private Textures textures;
-    private Random randGenerator;
-    private EventGenerator eventGenerator;
+    protected FSM stateMachine;
+    protected GameDriver driver;
+    protected RenderWindow window;
+    protected Textures textures;
+    protected Random randGenerator;
+    protected EventGenerator eventGenerator;
+
+    protected static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
+    protected static String JdkFontPath = "textures/";
+    protected static String JreFontPath = "textures/";
+    protected static int titleFontSize = 50;
+    protected static int buttonFontSize = 32;
+    protected static String FontFile = "vinque.ttf";
+    protected String FontPath;
+    protected Font fontStyle;
 
     public Events(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator){
         this.stateMachine = stateMachine;
@@ -17,6 +30,16 @@ public abstract class Events extends FSMState {
         this.textures = textures;
         this.randGenerator = randGenerator;
         this.eventGenerator = eventGenerator;
+
+        if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
+        else FontPath = JdkFontPath;
+        fontStyle = new Font();
+        try {
+            fontStyle.loadFromFile(
+                    Paths.get(FontPath + FontFile));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public abstract void execute();

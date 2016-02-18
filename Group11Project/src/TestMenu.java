@@ -2,11 +2,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
-import org.jsfml.system.*;
 import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 import org.jsfml.graphics.*;
-import org.jsfml.window.Keyboard.Key;
 
 class TestMenu{
 	private static int menuWidth  = 1024;
@@ -58,7 +56,7 @@ class TestMenu{
 				ex.printStackTrace( );
 			}
 			
-			Text title = new Text (Title, sansRegular, titleFontSize);
+			Text title = new Text(Title, sansRegular, titleFontSize);
 			title.setPosition(menuWidth/2,80);
 			title.setOrigin(title.getLocalBounds().width/2, title.getLocalBounds().height/2);
 			title.setColor(Color.BLACK);

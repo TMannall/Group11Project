@@ -265,28 +265,25 @@ public class EventGenerator {
         totalEventCount = Integer.parseInt(results.get(0));
     }
 
-    public FSMState genEventState(){
+    public void genEventState(){
         switch(currEvent){
             case "ASSIST":
-                //return new AssExpEventState(stateMachine, driver, window, textures, this);
+                driver.setEncounter(new AssistEvent(stateMachine, driver, window, textures, randGenerator, this));
+                break;
             case "COMBAT":
-                //return new CombatEventState(stateMachine, driver, window, textures, this);
-               // stateMachine.getStates().add(new Game(stateMachine, driver, window, textures));
-                return stateMachine.getStates().get(0);
+                driver.setEncounter(new CombatEvent(stateMachine, driver, window, textures, randGenerator, this));
+                break;
             case "EXPLORE":
+                driver.setEncounter(new ExploreEvent(stateMachine, driver, window, textures, randGenerator, this));
                 break;
             case "TEXT":
-                eventType = "text_events";
-                setMaximumEvents();
-                loadTextEvent();
+                driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this));
                 break;
             case "TRADE":
-                eventType = "trade_events";
-                setMaximumEvents();
-                loadTradeEvent();
+                driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this));
                 break;
         }
-        return null;
+        stateMachine.setState(driver.getEncounter());
     }
 
     public int[] getEventEffects(){

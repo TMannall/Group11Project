@@ -3,7 +3,7 @@
  */
 public class EventExampleDriver
 {
-    private String[] eventTypes = {"Assist Events", "Combat Events", "Exploration Events", "Text Events", "Trade Events"};
+    private String[] eventTypes = {"AssistEvent Events", "CombatEvent Events", "Exploration Events", "Text Events", "TradeEvent Events"};
     private EventsAidan[] events;
     private int[] probabilities;
     private String eventSelected;

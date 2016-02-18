@@ -2,6 +2,7 @@ import org.jsfml.graphics.RenderWindow;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Time;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerShip extends Ship {
@@ -11,8 +12,8 @@ public class PlayerShip extends Ship {
     private int gold;
     private UI ui;
 
-    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, ShipType type, float scale, int xPos, int yPos){
-        super(textures, driver, window, type, scale, xPos, yPos);
+    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType type, float scale, int xPos, int yPos){
+        super(textures, driver, window, randGenerator, type, scale, xPos, yPos);
         setup();
     }
 

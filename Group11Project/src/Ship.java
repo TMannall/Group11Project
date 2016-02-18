@@ -38,16 +38,16 @@ public abstract class Ship{
     protected int xPos;
     protected int yPos;
 
-    public Ship(Textures textures, GameDriver driver, RenderWindow window, ShipType shipType, float scale, int xPos, int yPos){
+    public Ship(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType shipType, float scale, int xPos, int yPos){
         this.textures = textures;
         this.driver = driver;
         this.window = window;
+        this.randGenerator = randGenerator;
         this.shipType = shipType;
         this.scale = scale;
         this.xPos = xPos;
         this.yPos = yPos;
 
-        randGenerator = new Random();
         sections = new ArrayList<>();
     }
 
