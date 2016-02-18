@@ -24,6 +24,7 @@ public class Map extends FSMState {
     private Textures textures;
     private Random randGenerator;
     private EventExampleDriver eventDriver;
+	private EventGenerator eventGenerator;
 	
 	private static int noOfSprites = 8;
 	private static int maxSprites = 8;
@@ -36,13 +37,13 @@ public class Map extends FSMState {
 	float[] topBound = new float[maxSprites];
 	float[] bottomBound = new float[maxSprites];
 
-    public Map(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
+    public Map(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventGenerator eventGenerator){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
         randGenerator = new Random();
-        this.eventDriver = eventDriver;
+        this.eventGenerator = eventGenerator;
         setup();
     }
 
@@ -104,51 +105,75 @@ public class Map extends FSMState {
 							switch(i){
 								case 0:	//Island 1
 									System.out.println("Island 1 Clicked");
-                                    eventDriver.resetProbabilities(0,100,0,0,0);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(0,100,0,0,0);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities(0, 1, 0, 0, 0);
+									eventGenerator.genRandomEvent();
+								//	stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");
-									eventDriver.resetProbabilities(20,20,20,20,20);
-									eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									//eventDriver.resetProbabilities(20,20,20,20,20);
+									//eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.genRandomEvent();
+								//	stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 2: //Island 3
 									System.out.println("Island 3 Clicked");
-                                    eventDriver.resetProbabilities(20,20,20,20,20);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(20,20,20,20,20);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.genRandomEvent();
+								//	stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 3: //Island 4
 									System.out.println("Island 4 Clicked");
-                                    eventDriver.resetProbabilities(20,20,20,20,20);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(20,20,20,20,20);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.genRandomEvent();
+									//stateMachine.setState(eventGenerator.genEventState());
 									break;
 								case 4: //Island 5 //Trade
 									System.out.println("Island 5 Clicked");
-                                    eventDriver.resetProbabilities(0,0,0,0,100);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(0,0,0,0,100);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities(0, 0, 0, 0, 1);
+									eventGenerator.genRandomEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 5: //Island 6 //Text
 									System.out.println("Island 6 Clicked");
-                                    eventDriver.resetProbabilities(0,0,0,100,0);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                   // eventDriver.resetProbabilities(0,0,0,100,0);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities(0, 0, 0, 1, 0);
+									eventGenerator.genRandomEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 6: //Island 7 //Exploration
 									System.out.println("Island 7 Clicked");
-                                    eventDriver.resetProbabilities(0,0,100,0,0);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(0,0,100,0,0);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities(0, 0, 1, 0, 0);
+									eventGenerator.genRandomEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 								case 7: //Island Port //Assist
 									System.out.println("Island Port Clicked");
-                                    eventDriver.resetProbabilities(100,0,0,0,0);
-                                    eventDriver.runEvent();
-									stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+                                    //eventDriver.resetProbabilities(100,0,0,0,0);
+                                    //eventDriver.runEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
+									eventGenerator.setProbabilities(1, 0, 0, 0, 0);
+									eventGenerator.genRandomEvent();
+									//stateMachine.setState(stateMachine.getStates().get(eventGenerator.getEventType()));
 									break;
 							}
 						}

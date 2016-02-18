@@ -36,17 +36,12 @@ public class BlankState extends FSMState{
 
     private static String Title = "ENDLESS SEA";
 
-    public BlankState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver) {
+    public BlankState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-        this.eventDriver = eventDriver;
         setup();
-    }
-
-    public BlankState(FSM machine, GameDriver driver, RenderWindow window, Textures textures) {
-        super();
     }
 
     public void setup(){

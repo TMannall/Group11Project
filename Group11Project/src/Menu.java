@@ -55,12 +55,11 @@ public class Menu extends FSMState{
     private static String Title = "ENDLESS SEA";
     private SoundClass sound = new SoundClass();
 
-    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver) {
+    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-		this.eventDriver = eventDriver;
         setup();
     }
 
@@ -207,14 +206,14 @@ public class Menu extends FSMState{
 							window.draw(text[0]);
 							sound.stopBackgroundMusic();
 							//stateMachine.setState(stateMachine.getStates().get(2));
-							stateMachine.setState(stateMachine.getStates().get(11)); //go to cpt selection menu
+							stateMachine.setState(stateMachine.getStates().get(3)); //go to cpt selection menu
 							sound.playBackgroundMusic("music_combat");
 						}
 						//Leaderboards
 						if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[1]);
 							window.draw(text[1]);
-							stateMachine.setState(stateMachine.getStates().get(7));
+							stateMachine.setState(stateMachine.getStates().get(2));
 						}
 						//Settings
 						if(rectf[2].contains(mouseClicked.position.x, mouseClicked.position.y)){

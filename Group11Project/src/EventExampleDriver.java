@@ -4,15 +4,15 @@
 public class EventExampleDriver
 {
     private String[] eventTypes = {"Assist Events", "Combat Events", "Exploration Events", "Text Events", "Trade Events"};
-    private Events[] events;
+    private EventsAidan[] events;
     private int[] probabilities;
     private String eventSelected;
-    private Events currentEvent;
+    private EventsAidan currentEvent;
     protected int[] playerStatsChange = {0,0,0,0,0,0,0,0,0,0};
 
     public EventExampleDriver()
     {
-        events = new Events[5];
+        events = new EventsAidan[5];
         DbUser myDbUser;
         myDbUser = new DbUser("Events");
         events[0] = new AssistEventGetter(myDbUser);

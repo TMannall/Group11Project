@@ -1,11 +1,7 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /**
  * Created by Aidan on 25/01/2016.
  */
-public class TradeEventGetter extends Events
+public class TradeEventGetter extends EventsAidan
 {
     private int[] itemLevelCount = {0,0,0};
     private String[] itemLvlNames = {"low", "medium", "high"};

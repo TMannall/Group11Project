@@ -19,7 +19,8 @@ public class CombatEventState extends FSMState
         private RenderWindow window;
         private Textures textures;
         private Random randGenerator;
-        private EventExampleDriver eventDriver;
+        //private EventExampleDriver eventDriver;
+        private EventGenerator eventGenerator;
         private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
         public String attackedText = "";
         public String titleString = attackedText;
@@ -48,13 +49,13 @@ public class CombatEventState extends FSMState
         Sprite[] pushButton = new Sprite[numberOfButtons];
         Font fontStyle;
 
-    public CombatEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
+    public CombatEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventGenerator eventGenerator){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
         randGenerator = new Random();
-        this.eventDriver = eventDriver;
+        this.eventGenerator = eventGenerator;
         setup();
     }
 
@@ -129,7 +130,7 @@ public class CombatEventState extends FSMState
 
     public void displayMenu()
     {
-        title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
+        title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);

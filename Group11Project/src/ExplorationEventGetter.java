@@ -1,7 +1,7 @@
 /**
  * Created by Aidan on 25/01/2016.
  */
-public class ExplorationEventGetter extends Events
+public class ExplorationEventGetter extends EventsAidan
 {
     private static Boolean accepted = false;
 

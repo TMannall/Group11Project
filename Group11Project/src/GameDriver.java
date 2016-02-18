@@ -22,20 +22,19 @@ public class GameDriver {
     private static final String TITLE = "Endless Sea";
 
     private FSM machine;
+    private EventGenerator eventGenerator;
+
     private FSMState menu;
-    private FSMState game;
     private FSMState settings;
-    private FSMState map;
-    private FSMState gameover;
-    private FSMState blank;
-    private FSMState combatEvents;
     private FSMState leaderboard;
-    private FSMState assExpEvents;
-    private FSMState textEvents;
-    private FSMState tradeEvents;
     private FSMState cptSelection;
-    private AfterEventState afterEvent;
-    private EventExampleDriver eventDriver = new EventExampleDriver();
+    private FSMState map;
+    private FSMState encounter;         // Current encounter event being played
+    private FSMState afterEvent;
+    private FSMState gameover;
+
+    private FSMState game;
+    private FSMState blank;
 
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
@@ -49,35 +48,34 @@ public class GameDriver {
 
         Textures textures = new Textures();
         machine = new FSM();
-        menu = new Menu(machine, driver, window, textures, eventDriver);
+        eventGenerator = new EventGenerator(machine, driver, window, textures);
+
+        // States
+        menu = new Menu(machine, driver, window, textures);
         settings = new Settings(machine, driver, window, textures);
-        game = new Game(machine, driver, window, textures);
-        map = new Map(machine, driver, window, textures, eventDriver);
-        gameover = new GameOver(machine, driver, window, textures);
-        blank = new BlankState(machine, driver, window, textures, eventDriver);
-        combatEvents = new CombatEventState(machine, driver, window, textures, eventDriver);
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
-        assExpEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
-        textEvents = new TextEventState(machine, driver, window, textures, eventDriver);
-        tradeEvents = new TradeEventState(machine, driver, window, textures, eventDriver);
         cptSelection = new CptSelection(machine, driver, window, textures);
-        afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
+        map = new Map(machine, driver, window, textures, eventGenerator);
+
+      //  afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
+        gameover = new GameOver(machine, driver, window, textures);
+
+        game = new Game(machine, driver, window, textures);
+
+
+        blank = new BlankState(machine, driver, window, textures);
+        cptSelection = new CptSelection(machine, driver, window, textures);
+       // afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
         machine.getStates().add(settings);
-        machine.getStates().add(game);
-        machine.getStates().add(map);
-        machine.getStates().add(gameover);
-        machine.getStates().add(blank);
-        machine.getStates().add(combatEvents);
         machine.getStates().add(leaderboard);
-        machine.getStates().add(assExpEvents);
-        machine.getStates().add(textEvents);
-        machine.getStates().add(tradeEvents);
         machine.getStates().add(cptSelection);
+        machine.getStates().add(map);
+        machine.getStates().add(encounter);
         machine.getStates().add(afterEvent);
-
+        machine.getStates().add(gameover);
 
         // Set menu state for game launch
         machine.setState(menu);

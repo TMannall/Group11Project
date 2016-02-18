@@ -1,7 +1,7 @@
 /**
  * Created by Aidan on 25/01/2016.
  */
-public class TextEventGetter extends Events
+public class TextEventGetter extends EventsAidan
 {
     public TextEventGetter(DbUser myDbUser)
     {

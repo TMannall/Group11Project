@@ -1,14 +1,8 @@
 /**
  * Created by Aidan on 25/01/2016.
  */
-import org.w3c.dom.Node;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
-public class AssistEventGetter extends Events
+public class AssistEventGetter extends EventsAidan
 {
     private static Boolean accepted = false;
 
