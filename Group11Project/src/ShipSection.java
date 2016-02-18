@@ -1,3 +1,4 @@
+import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
@@ -83,6 +84,24 @@ public class ShipSection extends Actor{
         if(HP <= 0){
             HP = 0;
             targetable = false;
+
+            switch(type) {
+                case "Guns":
+                    icon.setTextureRect(new IntRect(1051, 383, 50, 50));
+                    break;
+                case "Masts":
+                    icon.setTextureRect(new IntRect(1105, 383, 50, 50));
+                    break;
+                case "Bridge":
+                    icon.setTextureRect(new IntRect(1105, 448, 50, 50));
+                    break;
+                case "Hold":
+                    icon.setTextureRect(new IntRect(1051, 448, 50, 50));
+                    break;
+                case "Quarters":
+                    icon.setTextureRect(new IntRect(1051, 511, 50, 50));
+                    break;
+            }
             System.out.println(type + " HAS BEEN DESTROYED!");
             // Section destroyed so damage overall ship integrity (rand number 25-40)
             int hullDmg = randGenerator.nextInt(40 - 25 + 1) + 25;
