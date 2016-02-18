@@ -12,7 +12,7 @@ public class TradeEventGetter extends Events
 
     private int[] item_ID = {0,0,0,0,0,0};
     private String[] item_level = {"","","","","",""};
-    private String[] itemNames = {"","","","","",""};
+//    private String[] itemNames = {"","","","","",""};
     private int[] gold = {0,0,0,0,0,0};
     private int[] food = {0,0,0,0,0,0};
     private int[] water = {0,0,0,0,0,0};
@@ -39,9 +39,12 @@ public class TradeEventGetter extends Events
         titles = new String[]{"event_ID", "event_text", "low_item_count", "medium_item_count", "high_item_count"};
         results = myDbUser.getQuery(query, titles);
         eventText = results.get(1);
-        itemLevelCount[0] = Integer.parseInt(results.get(2));
-        itemLevelCount[1] = Integer.parseInt(results.get(3));
-        itemLevelCount[2] = Integer.parseInt(results.get(4));
+//        itemLevelCount[0] = Integer.parseInt(results.get(2));
+//        itemLevelCount[1] = Integer.parseInt(results.get(3));
+//        itemLevelCount[2] = Integer.parseInt(results.get(4));
+        itemLevelCount[0] = 1;
+        itemLevelCount[1] = 1;
+        itemLevelCount[2] = 1;
         System.out.println(eventText);
         System.out.println("low: " + itemLevelCount[0] + "  " + "medium: " + itemLevelCount[1] + "  " + "high: " + itemLevelCount[2] + "  ");
         //preload consequence...
@@ -57,7 +60,7 @@ public class TradeEventGetter extends Events
                 results = myDbUser.getQuery(query, titles);
                 item_ID[count] = Integer.parseInt(results.get(0));
                 item_level[count] = results.get(1);
-                itemNames[count] = results.get(2);
+
                 gold[count] = Integer.parseInt(results.get(3));
                 food[count] = Integer.parseInt(results.get(4));
                 water[count] = Integer.parseInt(results.get(5));
@@ -68,6 +71,12 @@ public class TradeEventGetter extends Events
                 bridge[count] = Integer.parseInt(results.get(10));
                 hold[count] = Integer.parseInt(results.get(11));
                 quarters[count] = Integer.parseInt(results.get(12));
+
+                itemNames[count] = results.get(2);
+                for(int stat = 3; stat < 13; stat++)
+                {
+                    itemStats[count][stat-3] = Integer.parseInt(results.get(stat));
+                }
                 count++;
             }
         }
@@ -77,10 +86,12 @@ public class TradeEventGetter extends Events
     {
         loadEvent();
         //Display event
-        for(int count = 0; count < 6; count++)
-            System.out.println(item_ID[count] + "  " + item_level[count] + "  " + itemNames[count] + "  " + gold[count]
-                    + "  " + food[count] + "  " + water[count] + "  " + hull_HP[count] + "  " + cannonStrength[count] +
-                    "  " +  guns[count] + "  " +  masts[count] + "  " +  bridge[count] + "  " +  hold[count] + "  " +
-                    quarters[count]);
+        for(int count = 0; count < 3; count++)
+            for(int i = 0; i < 10; i++)
+            {
+                System.out.println(itemStats[count][i]);
+            }
     }
+
+
 }
