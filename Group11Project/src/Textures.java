@@ -13,6 +13,8 @@ public class Textures {
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
     private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
+    private Texture mapConnections_ = loadTexture("textures/MapConnections.png");
+    public Sprite mapConnections = createSprite(mapConnections_, 0, 0, 1280, 720);
     private Texture splashTitle_ = loadTexture("textures/main_menu_title.png");
     public Sprite splashTitle = createSprite(splashTitle_, 0, 0, 720, 171);
 

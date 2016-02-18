@@ -74,6 +74,7 @@ public class Map extends FSMState {
 		}
 		ship = textures.createSprite(textures.userInterface, 549, 11, 254, 92);
 		ship.setPosition(waypoints[currentWayPoint].getPosition().x,waypoints[currentWayPoint].getPosition().y);
+		ship.setScale((float)0.75, (float)0.75);
 
 		island[0] = textures.createSprite(textures.mapDecoration, 0, 0, 179, 114);	//island 1
 		island[1] = textures.createSprite(textures.mapDecoration, 182, 0, 168, 131); //island 2
@@ -97,7 +98,9 @@ public class Map extends FSMState {
     // Update this method with what should be added to the window (using window variable)
     public void execute() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+		textures.mapConnections.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
+		window.draw(textures.mapConnections);
 		ship.setPosition(waypoints[currentWayPoint].getPosition().x,waypoints[currentWayPoint].getPosition().y);
 		window.draw(ship);
 		for(int i = 0; i < maxSprites; i++){
@@ -107,6 +110,7 @@ public class Map extends FSMState {
 		for(int i = 0; i < maxWaypoints; i++){
 			window.draw(waypoints[i]);
 		}
+		window.draw(ship);
 
         for(Event event : window.pollEvents()){
             switch (event.type) {
