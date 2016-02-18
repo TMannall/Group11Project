@@ -3,13 +3,9 @@
  */
 
 import org.jsfml.graphics.*;
-import org.jsfml.system.Clock;
 import org.jsfml.window.*;
-import org.jsfml.window.event.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.ArrayList;
 
 public class GameDriver {
@@ -32,9 +28,15 @@ public class GameDriver {
     private FSMState map;
     private FSMState gameover;
     private FSMState blank;
-    private FSMState volume;
-    private FSMState control;
+    private FSMState combatEvents;
     private FSMState leaderboard;
+    private FSMState assExpEvents;
+    private FSMState textEvents;
+    private FSMState tradeEvents;
+    private FSMState cptSelection;
+    private AfterEventState afterEvent;
+    private EventExampleDriver eventDriver = new EventExampleDriver();
+
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
@@ -47,15 +49,19 @@ public class GameDriver {
 
         Textures textures = new Textures();
         machine = new FSM();
-        menu = new Menu(machine, driver, window, textures);
+        menu = new Menu(machine, driver, window, textures, eventDriver);
         settings = new Settings(machine, driver, window, textures);
         game = new Game(machine, driver, window, textures);
-        map = new Map(machine, driver, window, textures);
+        map = new Map(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
-        blank = new BlankState(machine, driver, window, textures);
-        volume = new Volume(machine, driver, window, textures);
-        control = new Control(machine, driver, window, textures);
-        leaderboard = new Leaderboard(machine, driver, window, textures);
+        blank = new BlankState(machine, driver, window, textures, eventDriver);
+        combatEvents = new CombatEventState(machine, driver, window, textures, eventDriver);
+        leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
+        assExpEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
+        textEvents = new TextEventState(machine, driver, window, textures, eventDriver);
+        tradeEvents = new TradeEventState(machine, driver, window, textures, eventDriver);
+        cptSelection = new CptSelection(machine, driver, window, textures);
+        afterEvent = new AfterEventState(machine, driver, window, textures, eventDriver);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -64,9 +70,14 @@ public class GameDriver {
         machine.getStates().add(map);
         machine.getStates().add(gameover);
         machine.getStates().add(blank);
-        machine.getStates().add(volume);
-        machine.getStates().add(control);
+        machine.getStates().add(combatEvents);
         machine.getStates().add(leaderboard);
+        machine.getStates().add(assExpEvents);
+        machine.getStates().add(textEvents);
+        machine.getStates().add(tradeEvents);
+        machine.getStates().add(cptSelection);
+        machine.getStates().add(afterEvent);
+
 
         // Set menu state for game launch
         machine.setState(menu);
@@ -110,7 +121,7 @@ public class GameDriver {
             machine.run();
 
 
-            // NOTE: States must call window.display() and poll for relevant events themselves
+            // NOTE: States must call window.display() and poll for relevant combatEvents themselves
         }
     }
 

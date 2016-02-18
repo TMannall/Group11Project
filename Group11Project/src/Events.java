@@ -21,6 +21,8 @@ public abstract class Events
     protected String consequence_text;
     String[] playerStatsList = {"gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
     protected int[] playerStatsChange = {0,0,0,0,0,0,0,0,0,0};
+    String[] itemNames = new String[3];
+    int[][] itemStats = new int[3][10];
 
     public Events(DbUser myDbUser)
     {
@@ -44,4 +46,21 @@ public abstract class Events
 
     public abstract void loadEvent();
     public abstract void runEvent();
+
+    public String getEventText()
+    {
+        return eventText;
+    }
+
+    public String getConsequence(){
+        return consequence_text;
+    }
+
+    public String[] getItemNames(){
+        return itemNames;
+    }
+
+    public int[][] getItemStats(){
+        return itemStats;
+    }
 }

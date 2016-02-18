@@ -21,7 +21,7 @@ public class ShipSection extends Actor{
         randGenerator = new Random();
 
         if(shipType.equals("Enemy")){
-            switch(type) {
+            switch(type){
                 case "Guns":
                     icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
                     icon.setPosition(580, 260);

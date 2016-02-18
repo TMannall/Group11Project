@@ -7,6 +7,8 @@ public class EventExampleDriver
     private Events[] events;
     private int[] probabilities;
     private String eventSelected;
+    private Events currentEvent;
+    protected int[] playerStatsChange = {0,0,0,0,0,0,0,0,0,0};
 
     public EventExampleDriver()
     {
@@ -33,8 +35,11 @@ public class EventExampleDriver
         int indexOfEvent = 0;
         for (String eventType : eventTypes)
         {
-            if (eventType.equals(eventSelected))
-                events[indexOfEvent].runEvent();
+            if (eventType.equals(eventSelected)) {
+                currentEvent = events[indexOfEvent];
+                currentEvent.runEvent();
+                playerStatsChange = currentEvent.getEventEffects();
+            }
             indexOfEvent++;
         }
         System.out.println();
@@ -47,13 +52,39 @@ public class EventExampleDriver
 
     public int[] getEventEffects()
     {
-        int indexOfEvent = 0;
-        for (String eventType : eventTypes)
-        {
-            if (eventType.equals(eventSelected))
-                return events[indexOfEvent].getEventEffects();
-            indexOfEvent++;
-        }
-        return null;
+        return playerStatsChange;
+    }
+
+    public String getEventText()
+    {
+        return currentEvent.getEventText();
+    }
+
+    public int getEventType()
+    {
+        if (currentEvent.getClass().equals(events[0].getClass()))
+            return 8;
+        else if (currentEvent.getClass().equals(events[1].getClass()))
+            return 6;
+        else if (currentEvent.getClass().equals(events[2].getClass()))
+            return 8;
+        else if (currentEvent.getClass().equals(events[3].getClass()))
+            return 9;
+        else if (currentEvent.getClass().equals(events[4].getClass()))
+            return 10;
+        return 0;
+    }
+
+    public String getConsequence()
+    {
+        return currentEvent.getConsequence();
+    }
+
+    public String[] getItemNames(){
+        return currentEvent.getItemNames();
+    }
+
+    public int[][] getItemStats(){
+        return currentEvent.getItemStats();
     }
 }

@@ -36,7 +36,7 @@ public class Volume extends FSMState{
 
     private static String Title = "ENDLESS SEA";
 
-    public Volume(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver) {
+    public Volume(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
@@ -44,11 +44,7 @@ public class Volume extends FSMState{
         this.eventDriver = eventDriver;
         setup();
     }
-
-    public Volume(FSM machine, GameDriver driver, RenderWindow window, Textures textures) {
-        super();
-    }
-
+	
     public void setup(){
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;
