@@ -51,7 +51,7 @@ public class GameDriver {
         machine = new FSM();
         menu = new Menu(machine, driver, window, textures, eventDriver);
         settings = new Settings(machine, driver, window, textures);
-        game = new Game(machine, driver, window, textures, eventDriver);
+        game = new Game(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures);
         blank = new BlankState(machine, driver, window, textures, eventDriver);
