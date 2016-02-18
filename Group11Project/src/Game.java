@@ -97,8 +97,9 @@ public class Game extends FSMState {
     public void checkWin(){
         if(enemyShip.getHullHP() <= 0){
             // Create new temporary success state & move to it
-            FSMState success = new SuccessState(stateMachine, driver, window, textures);
-            stateMachine.setState(success);
+//            FSMState success = new SuccessState(stateMachine, driver, window, textures);
+//            stateMachine.setState(success);
+            stateMachine.setState(stateMachine.getStates().get(12));
         }
     }
 }
