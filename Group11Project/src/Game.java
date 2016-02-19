@@ -98,7 +98,7 @@ public class Game extends FSMState {
             if(playerShip.getHullHP() <= 0){
                 driver.sound.stopBackgroundMusic();
                 musicOn = false;
-                driver.sound.playBackgroundMusic("music_main_menu");
+                driver.sound.playBackgroundMusic("ambient_ocean");
                 stateMachine.setState(stateMachine.getStates().get(4));
             }
         }
@@ -111,7 +111,7 @@ public class Game extends FSMState {
 //            stateMachine.setState(success);
             driver.sound.stopBackgroundMusic();
             musicOn = false;
-            driver.sound.playBackgroundMusic("music_main_menu");
+            driver.sound.playBackgroundMusic("ambient_ocean");
             stateMachine.setState(stateMachine.getStates().get(12));
         }
     }
