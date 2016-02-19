@@ -96,7 +96,7 @@ public class TradeEventState extends FSMState{
             text[item].setFont(fontStyle);
             text[item].setColor(Color.RED);
             text[item].setString("Buy Item");
-            text[item].setPosition(500, itemName[item].getPosition().y - 14);
+            text[item].setPosition(520, itemName[item].getPosition().y - 14);
             text[item].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
             text[item].setScale((float)0.5,(float)0.5);
 
@@ -133,8 +133,8 @@ public class TradeEventState extends FSMState{
             textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
             hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
             pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
-            textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 5);
-            pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 5);
+            textButton[i].setPosition(text[i].getPosition().x + 15, text[i].getPosition().y + 5);
+            pushButton[i].setPosition(text[i].getPosition().x + 15, text[i].getPosition().y + 5);
             textButton[i].setScale((float)0.5, (float)0.5);
             pushButton[i].setScale((float)0.5, (float)0.5);
         }
@@ -166,8 +166,6 @@ public class TradeEventState extends FSMState{
             window.draw(text[i]);
         }
         window.draw(messageScroll);
-        for (int i = 0; i < 4; i++)
-            window.draw(textButton[i]);
         displayMenu();
     }
 
