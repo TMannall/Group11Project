@@ -33,7 +33,7 @@ public class AfterEventState extends FSMState{
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
-    private static int titleFontSize = 50;
+    private static int titleFontSize = 30;
     private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
@@ -150,7 +150,7 @@ public class AfterEventState extends FSMState{
             statsChanges[i].setStyle(Text.BOLD);
         }
         if(eventDriver.getEventType() == 8)
-            title = new Text(eventDriver.getConsequence(), fontStyle, titleFontSize);
+            title = new Text(eventDriver.getConsequence(), fontStyle, 30);
         else if(eventDriver.getEventType() == 6)
             title = new Text("YOU WON!!!!", fontStyle, titleFontSize);
         eventEffects = eventDriver.getEventEffects();

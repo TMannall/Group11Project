@@ -33,7 +33,7 @@ public class CombatEventState extends FSMState
         private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
         private static String JdkFontPath = "textures/";
         private static String JreFontPath = "textures/";
-        private static int titleFontSize = 50;
+        private static int titleFontSize = 30;
         private static int buttonFontSize = 32;
         private static String FontFile = "vinque.ttf";
         private String FontPath;
