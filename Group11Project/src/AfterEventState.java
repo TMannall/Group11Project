@@ -170,10 +170,10 @@ public class AfterEventState extends FSMState{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    leftBound = text.getGlobalBounds().left;
-                    rightBound = leftBound + text.getGlobalBounds().width;
-                    topBound = text.getGlobalBounds().top;
-                    bottomBound = topBound + text.getGlobalBounds().height;
+                    leftBound = textButton.getGlobalBounds().left;
+                    rightBound = leftBound + textButton.getGlobalBounds().width;
+                    topBound = textButton.getGlobalBounds().top;
+                    bottomBound = topBound + textButton.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
                         if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
                             //System.out.println("Island Clicked!");

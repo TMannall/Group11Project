@@ -18,6 +18,15 @@ public class Textures {
     private Texture splashTitle_ = loadTexture("textures/main_menu_title.png");
     public Sprite splashTitle = createSprite(splashTitle_, 0, 0, 720, 171);
 
+    public Texture instructions = loadTexture("textures/Intructions.png");
+    public Sprite instMap = createSprite(instructions, 0, 0, 1280, 720);
+    public Sprite instEvents = createSprite(instructions, 1280, 0, 1280, 720);
+    public Sprite instTrade = createSprite(instructions, 2560, 0, 1280, 720);
+    public Sprite instCombatEvent = createSprite(instructions, 3840, 0, 1280, 720);
+    public Sprite instCombatUI = createSprite(instructions, 5120, 0, 1280, 720);
+    public Sprite instCombatUICont = createSprite(instructions, 6400, 0, 1280, 720);
+    public Sprite instCombatSprite = createSprite(instructions, 8680, 0, 1280, 720);
+
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
         // hard-coded - loaded from here

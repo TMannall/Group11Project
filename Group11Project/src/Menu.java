@@ -37,7 +37,7 @@ public class Menu extends FSMState{
 
 	private EventExampleDriver eventDriver;
 
-    private static int numberOfButtons = 5;
+    private static int numberOfButtons = 6;
     Text[] text = new Text[numberOfButtons];
     Text title;
 	IntRect[] recti = new IntRect[numberOfButtons];
@@ -92,32 +92,38 @@ public class Menu extends FSMState{
         text[0].setFont(fontStyle);
         text[0].setColor(Color.CYAN);
         text[0].setString("New Game");
-        text[0].setPosition(driver.getWinWidth() / 2, 280);
-				text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
+        text[0].setPosition(driver.getWinWidth() / 2, 210);
+		text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
-        text[1].setFont(fontStyle);
-        text[1].setColor(Color.CYAN);
-        text[1].setString("Leaderboard");
-        text[1].setPosition(driver.getWinWidth() / 2, 350);
-				text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
+		text[1].setFont(fontStyle);
+		text[1].setColor(Color.CYAN);
+		text[1].setString("Instructions");
+		text[1].setPosition(driver.getWinWidth() / 2, 280);
+		text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
         text[2].setFont(fontStyle);
         text[2].setColor(Color.CYAN);
-        text[2].setString("Settings");
-        text[2].setPosition(driver.getWinWidth() / 2, 420);
-				text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
+        text[2].setString("Leaderboard");
+        text[2].setPosition(driver.getWinWidth() / 2, 350);
+		text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
 
         text[3].setFont(fontStyle);
         text[3].setColor(Color.CYAN);
-        text[3].setString("Exit");
-        text[3].setPosition(driver.getWinWidth() / 2, 490);
-				text[3].setOrigin(text[3].getLocalBounds().width / 2, text[3].getLocalBounds().height / 2);
+        text[3].setString("Settings");
+        text[3].setPosition(driver.getWinWidth() / 2, 420);
+		text[3].setOrigin(text[3].getLocalBounds().width / 2, text[3].getLocalBounds().height / 2);
 
         text[4].setFont(fontStyle);
         text[4].setColor(Color.CYAN);
-        text[4].setString("GameOver TEST");
-        text[4].setPosition(driver.getWinWidth() / 2, 590);
-				text[4].setOrigin(text[4].getLocalBounds().width / 2, text[4].getLocalBounds().height / 2);				
+        text[4].setString("Exit");
+        text[4].setPosition(driver.getWinWidth() / 2, 490);
+		text[4].setOrigin(text[4].getLocalBounds().width / 2, text[4].getLocalBounds().height / 2);
+
+        text[5].setFont(fontStyle);
+        text[5].setColor(Color.CYAN);
+        text[5].setString("GameOver TEST");
+        text[5].setPosition(driver.getWinWidth() / 2, 590);
+		text[5].setOrigin(text[5].getLocalBounds().width / 2, text[5].getLocalBounds().height / 2);
 		}
 
     @Override
@@ -217,28 +223,34 @@ public class Menu extends FSMState{
 							stateMachine.setState(stateMachine.getStates().get(11)); //go to cpt selection menu
 							sound.playBackgroundMusic("music_combat");
 						}
-						//Leaderboards
+						//Instructions
 						if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[1]);
 							window.draw(text[1]);
-							stateMachine.setState(stateMachine.getStates().get(7));
+							stateMachine.setState(stateMachine.getStates().get(13));
 						}
-						//Settings
+						//Leaderboards
 						if(rectf[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[2]);
 							window.draw(text[2]);
-							stateMachine.setState(stateMachine.getStates().get(1));
+							stateMachine.setState(stateMachine.getStates().get(7));
 						}
-						//Exit
+						//Settings
 						if(rectf[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[3]);
 							window.draw(text[3]);
-							window.close();
+							stateMachine.setState(stateMachine.getStates().get(1));
 						}
-						//Temp GameOver Button <- delete it for the final version
+						//Exit
 						if(rectf[4].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[4]);
 							window.draw(text[4]);
+							window.close();
+						}
+						//Temp GameOver Button <- delete it for the final version
+						if(rectf[5].contains(mouseClicked.position.x, mouseClicked.position.y)){
+							window.draw(pushButton[5]);
+							window.draw(text[5]);
 							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 					}

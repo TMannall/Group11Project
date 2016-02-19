@@ -226,10 +226,10 @@ public class TradeEventState extends FSMState{
                     int yPos = event.asMouseEvent().position.y;
 
                     for(int i = 0; i < 4; i++){
-                        leftBound[i] = text[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                        topBound[i] = text[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
+                        leftBound[i] = textButton[i].getGlobalBounds().left;
+                        rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
+                        topBound[i] = textButton[i].getGlobalBounds().top;
+                        bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
                     for(int i = 0; i < 4; i++) {
