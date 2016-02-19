@@ -92,37 +92,37 @@ public class Menu extends FSMState{
         text[0].setFont(fontStyle);
         text[0].setColor(Color.CYAN);
         text[0].setString("New Game");
-        text[0].setPosition(driver.getWinWidth() / 2, 210);
+        text[0].setPosition(driver.getWinWidth() / 2, 280);
 		text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
 		text[1].setFont(fontStyle);
 		text[1].setColor(Color.CYAN);
 		text[1].setString("Instructions");
-		text[1].setPosition(driver.getWinWidth() / 2, 280);
+		text[1].setPosition(driver.getWinWidth() / 2, 350);
 		text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
         text[2].setFont(fontStyle);
         text[2].setColor(Color.CYAN);
         text[2].setString("Leaderboard");
-        text[2].setPosition(driver.getWinWidth() / 2, 350);
+        text[2].setPosition(driver.getWinWidth() / 2, 420);
 		text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
 
         text[3].setFont(fontStyle);
         text[3].setColor(Color.CYAN);
         text[3].setString("Settings");
-        text[3].setPosition(driver.getWinWidth() / 2, 420);
+        text[3].setPosition(driver.getWinWidth() / 2, 490);
 		text[3].setOrigin(text[3].getLocalBounds().width / 2, text[3].getLocalBounds().height / 2);
 
         text[4].setFont(fontStyle);
         text[4].setColor(Color.CYAN);
         text[4].setString("Exit");
-        text[4].setPosition(driver.getWinWidth() / 2, 490);
+        text[4].setPosition(driver.getWinWidth() / 2, 560);
 		text[4].setOrigin(text[4].getLocalBounds().width / 2, text[4].getLocalBounds().height / 2);
 
         text[5].setFont(fontStyle);
         text[5].setColor(Color.CYAN);
         text[5].setString("GameOver TEST");
-        text[5].setPosition(driver.getWinWidth() / 2, 590);
+        text[5].setPosition(driver.getWinWidth() / 2, 630);
 		text[5].setOrigin(text[5].getLocalBounds().width / 2, text[5].getLocalBounds().height / 2);
 		}
 
