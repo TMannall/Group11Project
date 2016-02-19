@@ -137,11 +137,6 @@ public class TextEventState extends FSMState{
     public void displayMenu()
     {
         this.eventEffects = eventDriver.getEventEffects();
-//        statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
-//        statsChanges[0].setPosition(400, 430);
-//        statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-//        statsChanges[0].setColor(Color.BLACK);
-//        statsChanges[0].setStyle(Text.BOLD);
         for(int i = 0; i < statsNames.length; i++) {
             statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 15);
             statsChanges[i].setPosition(statsNames[i].getPosition().x + 30, 450);

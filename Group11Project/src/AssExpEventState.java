@@ -126,10 +126,7 @@ public class AssExpEventState extends FSMState{
 
     public void displayMenu()
     {
-//        String eventText = unescape(eventDriver.getEventText());
-//        System.out.println(eventDriver.getEventText());
         title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
-//        title = new Text("Argh\nA man be floatin' on a raft\n shall we bring him aboard?", fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
