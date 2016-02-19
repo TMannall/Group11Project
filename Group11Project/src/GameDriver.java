@@ -16,13 +16,10 @@ public class GameDriver {
     public static int getWinHeight() {
         return WIN_HEIGHT;
     }
-		
     private GameDriver driver = this;
     private static final int WIN_WIDTH = 1280;
     private static final int WIN_HEIGHT = 720;
     private static final String TITLE = "Endless Sea";
-		
-		private Leaderboard leaderboardClass = new Leaderboard();
 
     private FSM machine;
     private FSMState menu;
@@ -44,9 +41,6 @@ public class GameDriver {
     public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
 
-		public int score = 9999; //keep player's overall score and make it available to all FSM states
-		public SoundClass sound = new SoundClass(); //one instance of SoundClass needs to be used by all FSM states
-		
     public void run(){
         // Initial setup
         RenderWindow window = new RenderWindow();
@@ -59,10 +53,10 @@ public class GameDriver {
         settings = new Settings(machine, driver, window, textures);
         game = new Game(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventDriver);
-        gameover = new GameOver(machine, driver, window, textures, leaderboardClass);
+        gameover = new GameOver(machine, driver, window, textures);
         blank = new BlankState(machine, driver, window, textures, eventDriver);
         combatEvents = new CombatEventState(machine, driver, window, textures, eventDriver);
-        leaderboard = new LeaderboardDisplay(machine, driver, window, textures, leaderboardClass);
+        leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
         assExpEvents = new AssExpEventState(machine, driver, window, textures, eventDriver);
         textEvents = new TextEventState(machine, driver, window, textures, eventDriver);
         tradeEvents = new TradeEventState(machine, driver, window, textures, eventDriver);
