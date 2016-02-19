@@ -92,13 +92,13 @@ public class AfterEventState extends FSMState{
         }
 
         statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
-        statsChanges[0].setPosition(380, 430);
+        statsChanges[0].setPosition(380, 460);
         statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         statsChanges[0].setColor(Color.BLACK);
         statsChanges[0].setStyle(Text.BOLD);
         for(int i = 1; i < statsNames.length; i++) {
             statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 11);
-            statsChanges[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 430);
+            statsChanges[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 460);
             statsChanges[i].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
             statsChanges[i].setColor(Color.BLACK);
             statsChanges[i].setStyle(Text.BOLD);
