@@ -210,6 +210,7 @@ public class CptSelection extends FSMState{
 						else if(rect[numberOfButtons-1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[numberOfButtons-1]);
 							window.draw(text[numberOfButtons-1]);
+							driver.sound.playBackgroundMusic("music_main_menu");
 							stateMachine.setState(stateMachine.getStates().get(0));
 						}
 					}

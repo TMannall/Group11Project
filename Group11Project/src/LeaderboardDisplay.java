@@ -40,13 +40,14 @@ public class LeaderboardDisplay extends FSMState{
     private String FontPath;
 
     private static String Title = "Leaderboard";
-    private Leaderboard leaderboard = new Leaderboard();
+    private Leaderboard leaderboard;
 
-    public LeaderboardDisplay(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public LeaderboardDisplay(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Leaderboard leaderboard) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
+				this.leaderboard = leaderboard;
 
         setup();
     }
@@ -113,6 +114,10 @@ public class LeaderboardDisplay extends FSMState{
 				Sprite[] textButton = new Sprite[numberOfButtons];
 				Sprite[] hoverButton = new Sprite[numberOfButtons];
 				Sprite[] pushButton = new Sprite[numberOfButtons];
+	
+				for (int i = 0; i < numberOfButtons-1; i++) {
+					text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
+				}	
 			
 				for(int i = 10; i < numberOfButtons; i++){
 					textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
