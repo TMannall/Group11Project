@@ -143,7 +143,10 @@ public class Textures {
 		
 		// Leaderboard
 		public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
-
+		
+		// Game Over
+		public Texture gameover_ = loadTexture("textures/gameover.jpg");
+    public Sprite gameover = createSprite(gameover_, 0, 0, 1280, 720);
 
     /**
      * loads a texture from file, throws exception when this fails
