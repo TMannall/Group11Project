@@ -218,10 +218,10 @@ public class Menu extends FSMState{
 						if(rectf[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[0]);
 							window.draw(text[0]);
-							sound.stopBackgroundMusic();
+//							sound.stopBackgroundMusic();
 							//stateMachine.setState(stateMachine.getStates().get(2));
-							stateMachine.setState(stateMachine.getStates().get(11)); //go to cpt selection menu
-							sound.playBackgroundMusic("music_combat");
+							stateMachine.setState(stateMachine.getStates().get(3)); //go to cpt selection menu
+//							sound.playBackgroundMusic("music_combat");
 						}
 						//Instructions
 						if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
