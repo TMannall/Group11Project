@@ -6,19 +6,12 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
-/**
- * Created by Aidan on 16/02/2016.
- */
-public class AfterEventState extends FSMState{
-    /**
-     * Event state class for Endless Sea
-     */
-    private FSM stateMachine;
-    private GameDriver driver;
-    private RenderWindow window;
-    private Textures textures;
-    private Random randGenerator;
-    private EventExampleDriver eventDriver;
+public class AfterEvent extends Events{
+    public enum Consequence {
+        COMBAT_KILL, COMBAT_AI_RETREAT, COMBAT_PLAYER_RETREAT,
+        ASSIST_ACCEPT, EXPLORE_ACCEPT
+    }
+
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
     private static final String[] playerStatsList = {"Gold", "Food", "Water", "Hull", "Cannons", "Guns", "Masts", "Bridge", "Hold", "Quarters"};
     public String titleString = "";
@@ -30,14 +23,6 @@ public class AfterEventState extends FSMState{
     Text title;
     IntRect recti;
     FloatRect rectf;
-    private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-    private static String JdkFontPath = "textures/";
-    private static String JreFontPath = "textures/";
-    private static int titleFontSize = 50;
-    private static int buttonFontSize = 32;
-    private static String FontFile = "vinque.ttf";
-    private String FontPath;
-
 
     float leftBound;
     float rightBound;
@@ -48,13 +33,11 @@ public class AfterEventState extends FSMState{
     Sprite pushButton;
     Font fontStyle;
 
-    public AfterEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
-        this.stateMachine = stateMachine;
-        this.driver = driver;
-        this.window = window;
-        this.textures = textures;
-        randGenerator = new Random();
-        this.eventDriver = eventDriver;
+    Consequence consequence;
+
+    public AfterEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, Consequence consequence){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
+        this.consequence = consequence;
         setup();
     }
 
@@ -131,17 +114,13 @@ public class AfterEventState extends FSMState{
         window.draw(text);
         window.draw(messageScroll);
         window.draw(textButton);
-        displayMenu();
+        displayAlert();
+
+        window.display();
     }
 
-    public void displayMenu()
-    {
-        this.eventEffects = eventDriver.getEventEffects();
-//        statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
-//        statsChanges[0].setPosition(400, 430);
-//        statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-//        statsChanges[0].setColor(Color.BLACK);
-//        statsChanges[0].setStyle(Text.BOLD);
+    public void displayAlert(){
+        this.eventEffects = eventGenerator.getEventEffects();
         for(int i = 0; i < statsNames.length; i++) {
             statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 15);
             statsChanges[i].setPosition(statsNames[i].getPosition().x + 30, 450);
@@ -149,11 +128,12 @@ public class AfterEventState extends FSMState{
             statsChanges[i].setColor(Color.BLACK);
             statsChanges[i].setStyle(Text.BOLD);
         }
-        if(eventDriver.getEventType() == 8)
-            title = new Text(eventDriver.getConsequence(), fontStyle, titleFontSize);
-        else if(eventDriver.getEventType() == 6)
-            title = new Text("YOU WON!!!!", fontStyle, titleFontSize);
-        eventEffects = eventDriver.getEventEffects();
+
+        if(eventGenerator.getEventType() == 8)
+            title = new Text(eventGenerator.getConsequence(), fontStyle, titleFontSize);
+        else if(eventGenerator.getEventType() == 6) // Combat
+            genMessage();
+        eventEffects = eventGenerator.getEventEffects();
 
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
@@ -166,6 +146,7 @@ public class AfterEventState extends FSMState{
             window.draw(statsNames[i]);
         for(int i = 0; i < statsChanges.length; i++)
             window.draw(statsChanges[i]);
+
         for (Event event : window.pollEvents())
         {
             switch (event.type) {
@@ -181,18 +162,26 @@ public class AfterEventState extends FSMState{
                     bottomBound = topBound + text.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
                         if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
-                            //System.out.println("Island Clicked!");
-                            //Island
-                            System.out.println("Text Event Happens...");
-                            int[] eventEffects = eventDriver.getEventEffects();
-                            for (int i  = 0; i < eventEffects.length; i++)
-                                System.out.println(eventEffects[i]);
-                            stateMachine.setState(stateMachine.getStates().get(3));
+                            stateMachine.setState(stateMachine.getStates().get(4));     // Go to map
                             break;
                         }
                     }
-//                    break;
         }
-        window.display();
     }
+
+    public void genMessage(){
+        switch(consequence){
+            case COMBAT_KILL:
+                title = new Text("Enemy defeated!", fontStyle, titleFontSize);
+                break;
+            case COMBAT_PLAYER_RETREAT:
+                title = new Text("You retreated from the battle", fontStyle, titleFontSize);
+                break;
+            case COMBAT_AI_RETREAT:
+                title = new Text("Your enemy retreated!", fontStyle, titleFontSize);
+                break;
+        }
+    }
+
+
 }

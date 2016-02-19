@@ -51,12 +51,12 @@ public class EventGenerator {
     private int[] quarters = {0,0,0,0,0,0};
 
 
-    public EventGenerator(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
+    public EventGenerator(FSM stateMachine, GameDriver driver, RenderWindow window, Random randGenerator, Textures textures){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
+        this.randGenerator = randGenerator;
         this.textures = textures;
-        randGenerator = new Random();
     }
 
     public void genRandomEvent(){
@@ -271,7 +271,7 @@ public class EventGenerator {
                 driver.setEncounter(new AssistEvent(stateMachine, driver, window, textures, randGenerator, this));
                 break;
             case "COMBAT":
-                driver.setEncounter(new CombatEvent(stateMachine, driver, window, textures, randGenerator, this));
+                driver.setEncounter(new CombatEvent(stateMachine, driver, window, textures, randGenerator, this, driver.getPlayerShip()));
                 break;
             case "EXPLORE":
                 driver.setEncounter(new ExploreEvent(stateMachine, driver, window, textures, randGenerator, this));
@@ -291,7 +291,6 @@ public class EventGenerator {
     }
 
     public String getEventText() {
-        System.out.println("GET EVENT TEXT:" + eventText);
         return eventText;
     }
 

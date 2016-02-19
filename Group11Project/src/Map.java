@@ -23,7 +23,6 @@ public class Map extends FSMState {
     private RenderWindow window;
     private Textures textures;
     private Random randGenerator;
-    private EventExampleDriver eventDriver;
 	private EventGenerator eventGenerator;
 	
 	private static int noOfSprites = 8;
@@ -107,24 +106,23 @@ public class Map extends FSMState {
 									System.out.println("Island 1 Clicked");
 									eventGenerator.setProbabilities(0, 1, 0, 0, 0);
 									eventGenerator.genRandomEvent();
-									//stateMachine.setState(stateMachine.getStates().get(8));
 									eventGenerator.genEventState();
 									break;
 								case 1: //Island 2
 								    System.out.println("Island 2 Clicked");;
-									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.setProbabilities(1, 0, 0, 0, 0);
 									eventGenerator.genRandomEvent();
 									eventGenerator.genEventState();
 									break;
 								case 2: //Island 3
 									System.out.println("Island 3 Clicked");
-									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.setProbabilities(0, 0, 1, 0, 0);
 									eventGenerator.genRandomEvent();
 									eventGenerator.genEventState();
 									break;
 								case 3: //Island 4
 									System.out.println("Island 4 Clicked");
-									eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2);
+									eventGenerator.setProbabilities(0, 0, 0, 1, 0);
 									eventGenerator.genRandomEvent();
 									eventGenerator.genEventState();
 									break;

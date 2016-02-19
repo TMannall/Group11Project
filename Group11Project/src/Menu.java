@@ -35,8 +35,6 @@ public class Menu extends FSMState{
     private RenderWindow window;
     private Textures textures;
 
-	private EventExampleDriver eventDriver;
-
     private static int numberOfButtons = 4;
     Text[] text = new Text[numberOfButtons];
     Text title;

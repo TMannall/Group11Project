@@ -17,11 +17,11 @@ public class EnemyShip extends Ship {
     public void setup(){
         switch(shipType){
             case STANDARD:
-                guns = new ShipSection(textures, driver, window, textures.AIshipGunDeck, "Guns", this, "Enemy");
-                masts = new ShipSection(textures, driver, window, textures.AIshipMasts, "Masts", this, "Enemy");
-                bridge = new ShipSection(textures, driver, window, textures.AIshipBridge, "Bridge", this, "Enemy");
-                hold = new ShipSection(textures, driver, window, textures.AIshipSupplies, "Hold", this, "Enemy");
-                quarters = new ShipSection(textures, driver, window, textures.AIshipMedical, "Quarters", this, "Enemy");
+                guns = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 0, 343, 125), "Guns", this, "Enemy");
+                masts = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 129, 343, 115), "Masts", this, "Enemy");
+                bridge = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 0, 0, 525, 365), "Bridge", this, "Enemy");
+                hold = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 241, 343, 125), "Hold", this, "Enemy");
+                quarters = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 868, 0, 826, 365), "Quarters", this, "Enemy");
                 break;
             default:
                 System.out.println("ERROR");

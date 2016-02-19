@@ -86,7 +86,7 @@ public class Textures {
     // Ship models
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
-    private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    protected Texture shipLv3 = loadTexture("textures/ship_level_3.png");
     private Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
     private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
         // player ship

@@ -20,7 +20,6 @@ public class Volume extends FSMState{
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
-    private EventExampleDriver eventDriver;
 	
     private static int numberOfButtons = 2;
     Text[] text = new Text[numberOfButtons];
@@ -41,7 +40,6 @@ public class Volume extends FSMState{
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-        this.eventDriver = eventDriver;
         setup();
     }
 	
