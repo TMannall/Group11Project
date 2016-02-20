@@ -50,6 +50,9 @@ public class Textures {
     public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
     public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
+    public Sprite leftArrow = createSprite(userInterface, 945, 579, 70, 51);
+    public Sprite rightArrow = createSprite(userInterface, 1016, 579, 70, 51);
+
 
     public Texture mapDecoration = loadTexture("textures/map_decoration.png");
     public Sprite island1 = createSprite(mapDecoration, 0, 0, 179, 114);
