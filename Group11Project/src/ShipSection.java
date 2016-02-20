@@ -9,6 +9,7 @@ public class ShipSection extends Actor{
     private Ship ship;
     private String type;
     private Sprite icon;
+    protected Sprite sectionHighlight;
     private Random randGenerator;
     private double weight;      // Chance of being selected by enemy ship if this belongs to a player
     private int HP = 100;
@@ -24,22 +25,27 @@ public class ShipSection extends Actor{
             switch(type){
                 case "Guns":
                     icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 0, 343, 125);
                     icon.setPosition(580, 260);
                     break;
                 case "Masts":
                     icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 129, 343, 115);
                     icon.setPosition(580, 208);
                     break;
                 case "Bridge":
                     icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 0, 0, 525, 365);
                     icon.setPosition(760, 208);
                     break;
                 case "Hold":
                     icon = textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 241, 343, 125);
                     icon.setPosition(580, 156);
                     break;
                 case "Quarters":
                     icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 868, 0, 826, 365);
                     icon.setPosition(454, 208);
                     break;
             }
@@ -48,22 +54,27 @@ public class ShipSection extends Actor{
             switch(type) {
                 case "Guns":
                     icon = textures.createSprite(textures.userInterface, 934, 383, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 0, 343, 125);
                     icon.setPosition(629, 460);
                     break;
                 case "Masts":
                     icon = textures.createSprite(textures.userInterface, 988, 383, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 129, 343, 115);
                     icon.setPosition(629, 508);
                     break;
                 case "Bridge":
                     icon = textures.createSprite(textures.userInterface, 988, 448, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 0, 0, 525, 365);
                     icon.setPosition(450, 508);
                     break;
                 case "Hold":
                     icon = textures.createSprite(textures.userInterface, 934, 448, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 525, 241, 343, 125);
                     icon.setPosition(629, 564);
                     break;
                 case "Quarters":
                     icon = textures.createSprite(textures.userInterface, 934, 511, 50, 50);
+                    sectionHighlight = textures.createSprite(textures.shipHighlight, 868, 0, 826, 365);
                     icon.setPosition(749, 508);
                     break;
             }
@@ -84,7 +95,7 @@ public class ShipSection extends Actor{
         if(HP <= 0){
             HP = 0;
             targetable = false;
-
+            sprite.setTexture(textures.shipLv3Dead);
             switch(type) {
                 case "Guns":
                     icon.setTextureRect(new IntRect(1051, 383, 50, 50));
@@ -131,6 +142,7 @@ public class ShipSection extends Actor{
             HP = 100;
         if(HP > 0)
             targetable = true;
+        sprite.setTexture(textures.shipLv3);
     }
 
     public boolean isTargetable(){

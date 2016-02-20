@@ -35,18 +35,52 @@ public class EnemyShip extends Ship {
         sections.add(quarters);
 
         guns.sprite.scale(-scale, -scale);
+        guns.sectionHighlight.scale(-scale, -scale);
+
         masts.sprite.scale(-scale, -scale);
+        masts.sectionHighlight.scale(-scale, -scale);
+
         bridge.sprite.scale(-scale, scale);
+        bridge.sectionHighlight.scale(-scale, scale);
+
         hold.sprite.scale(-scale, -scale);
+        hold.sectionHighlight.scale(-scale, -scale);
+
         quarters.sprite.scale(-scale, scale);
+        quarters.sectionHighlight.scale(-scale, scale);
 
         guns.sprite.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
+        guns.sectionHighlight.setPosition((xPos + 584) * scale, (yPos + 118) * scale);
+
         masts.sprite.setPosition((xPos + 584) * scale, yPos * scale);
+        masts.sectionHighlight.setPosition((xPos + 584) * scale, yPos * scale);
+
         bridge.sprite.setPosition((xPos + 1019) * scale, yPos * scale);        // was 300
+        bridge.sectionHighlight.setPosition((xPos + 1019) * scale, yPos * scale);
+
         hold.sprite.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+        hold.sectionHighlight.setPosition((xPos + 584) * scale, (yPos - 118) * scale);
+
         quarters.sprite.setPosition(xPos * scale, yPos * scale);
+        quarters.sectionHighlight.setPosition(xPos * scale, yPos * scale);
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
+
+        for(int i = 0; i < 10; i++) {
+            gunAnimations.get(i).setScale(-scale, -scale);
+        }
+        // Position gun smoke animations for each gun
+        gunAnimations.get(0).setPosition(859, 294);         // Starting from right to mirror playerShip
+        gunAnimations.get(1).setPosition(797, 299);
+        gunAnimations.get(2).setPosition(735, 303);
+        gunAnimations.get(3).setPosition(685, 306);
+        gunAnimations.get(4).setPosition(668, 306);
+        gunAnimations.get(5).setPosition(637, 308);
+        gunAnimations.get(6).setPosition(604, 308);
+        gunAnimations.get(7).setPosition(575, 308);
+        gunAnimations.get(8).setPosition(542, 307);
+        gunAnimations.get(9).setPosition(478, 306);
+
     }
 
     public ShipSection validateClicked(Ship player, int x, int y){
@@ -103,6 +137,10 @@ public class EnemyShip extends Ship {
             gunLoaded = false;
             reloadTimer.restart();
 
+            // Animate cannon fire
+            resetAnimation();
+            animating = true;
+
             System.out.println(target.getType() + "HP: " + target.getHP());
             System.out.println("-------------------------------------");
         }
@@ -126,6 +164,10 @@ public class EnemyShip extends Ship {
             toAttack.damage(dmg);
             gunLoaded = false;
             reloadTimer.restart();
+
+            // Animate cannon fire
+            resetAnimation();
+            animating = true;
 
             System.out.println(toAttack.getType() + "HP: " + toAttack.getHP());
             System.out.println("--------------------------------------");
@@ -153,5 +195,7 @@ public class EnemyShip extends Ship {
         return player.sections.get(randIndex);
     }
 
-
+    public void drawHighlight(ShipSection section){
+        window.draw(section.sectionHighlight);
+    }
 }

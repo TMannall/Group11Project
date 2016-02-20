@@ -1,12 +1,14 @@
 import org.jsfml.graphics.*;
+import org.jsfml.system.Clock;
 import org.jsfml.window.Keyboard;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
 
 import java.util.Random;
 
 public class CombatEvent extends Events {
-    private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
+    private int[] eventEffects = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     public String attackedText = "";
     public String titleString = attackedText;
 
@@ -31,15 +33,14 @@ public class CombatEvent extends Events {
     private PlayerShip playerShip;
     private EnemyShip enemyShip;
 
-
-    public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, PlayerShip playerShip){
+    public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, PlayerShip playerShip) {
         super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
         this.playerShip = playerShip;
         setup();
     }
 
-    public void setup(){
-        messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
+    public void setup() {
+        messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);    //MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
@@ -63,29 +64,29 @@ public class CombatEvent extends Events {
         text[1].setPosition(770, 500);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
-        for(int i = 0; i < numberOfButtons; i++){
+        for (int i = 0; i < numberOfButtons; i++) {
             textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
             hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
             pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
         }
-        for(int i = 0; i < numberOfButtons; i++){
+        for (int i = 0; i < numberOfButtons; i++) {
             textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
             pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
         }
-        for(int i = 0; i < numberOfButtons; i++){
+        for (int i = 0; i < numberOfButtons; i++) {
             rectf[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top,
                     textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
             recti[i] = new IntRect(rectf[i]);
         }
 
-        enemyShip = new EnemyShip(textures, driver, window, randGenerator, Ship.ShipType.STANDARD, (float)0.5, 600, 420);
+        enemyShip = new EnemyShip(textures, driver, window, randGenerator, Ship.ShipType.STANDARD, (float) 0.5, 600, 420);
 
         ui = new UI(textures, driver, window, playerShip, enemyShip);
         playerShip.setUI(ui);
     }
 
-    public void execute(){
-        if(activeCombat)
+    public void execute() {
+        if (activeCombat)
             executeCombat();
         else
             displayAlert();
@@ -93,13 +94,13 @@ public class CombatEvent extends Events {
         window.display();
     }
 
-    public void displayAlert(){
+    public void displayAlert() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
 
         window.draw(messageScroll);
         window.draw(title);
-        for(int i = 0; i < numberOfButtons; i++){
+        for (int i = 0; i < numberOfButtons; i++) {
             window.draw(textButton[i]);
             window.draw(text[i]);
         }
@@ -111,14 +112,14 @@ public class CombatEvent extends Events {
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    for(int i = 0; i < 2; i++){
+                    for (int i = 0; i < 2; i++) {
                         leftBound[i] = text[i].getGlobalBounds().left;
                         rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
                         topBound[i] = text[i].getGlobalBounds().top;
                         bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
-                    for(int i = 0; i < 2; i++) {
+                    for (int i = 0; i < 2; i++) {
                         if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
                             //System.out.println("Island Clicked!");
                             switch (i) {
@@ -140,23 +141,31 @@ public class CombatEvent extends Events {
 
     }
 
-    public void executeCombat(){
+    public void executeCombat() {
         window.clear();
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         playerShip.draw();
         enemyShip.draw();
+        ShipSection hovered = mouseOver();
+        if (hovered != null)
+            window.draw(hovered.sectionHighlight);
         ui.draw();
 
-        if(!playerShip.isGunLoaded())
+        // Cannon animation
+        playerShip.animateGuns();
+        enemyShip.animateGuns();
+
+        if (!playerShip.isGunLoaded())
             playerShip.checkReload();
 
-        if(!enemyShip.isGunLoaded())
+        if (!enemyShip.isGunLoaded())
             enemyShip.checkReload();
         else
             actionAI();     //NOTE AI WILL ATTACK AS SOON AS GUNS RELOAD - CHANGE THIS LATER TO WAIT RANDOM TIME BASED ON DIFFICULTY
 
-        for(Event event : window.pollEvents()){
+
+        for (Event event : window.pollEvents()) {
             switch (event.type) {
                 case CLOSED:
                     window.close();
@@ -165,76 +174,74 @@ public class CombatEvent extends Events {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
-                    if(clicked != null){
+                    if (clicked != null) {
                         playerShip.attack(clicked);
                         checkWin();
-                    }
-                    break;
-                // Not sure why this doesn't
-                case KEY_PRESSED:
-                    KeyEvent keyEvent = event.asKeyEvent();
-                    if (keyEvent.key == Keyboard.Key.ESCAPE) {
-                        stateMachine.setState(stateMachine.getStates().get(0));
-                        break;
-                    } else if (keyEvent.key == Keyboard.Key.M) {
-                        stateMachine.setState(stateMachine.getStates().get(3));
                     }
                     break;
             }
         }
     }
 
-    public void actionAI(){
+    public void actionAI() {
         boolean attack;
 
         // Test whether to attack or retreat
         // Test if masts are still in tact; if not, enemy cannot retreat and must always attack until it or player dies
-        if(!enemyShip.masts.isTargetable())
+        if (!enemyShip.masts.isTargetable())
             attack = true;
-        else{
+        else {
             // Masts are OK, can retreat if wanted
-            if(enemyShip.getHullHP() < 50 && enemyShip.getHullHP() >= 25){
+            if (enemyShip.getHullHP() < 50 && enemyShip.getHullHP() >= 25) {
                 // V. low chance to retreat
                 double rand = randGenerator.nextDouble();
-                if(rand >= .95){
+                if (rand >= .95) {
                     attack = false;
-                }
-                else
+                } else
                     attack = true;
-            }
-            else if(enemyShip.getHullHP() < 25){
+            } else if (enemyShip.getHullHP() < 25) {
                 // Higher chance to retreat
                 double rand = randGenerator.nextDouble();
-                if(rand >= .90){
+                if (rand >= .90) {
                     attack = false;
-                }
-                else{
+                } else {
                     attack = true;
                 }
-            }
-            else{
+            } else {
                 attack = true;
             }
         }
 
-        if(attack){
+        if (attack) {
             enemyShip.attack(playerShip);
-            if(playerShip.getHullHP() <= 0){
+            if (playerShip.getHullHP() <= 0) {
                 stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player ship destroyed
             }
         }
         // Retreat instead
-        else{
+        else {
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.COMBAT_AI_RETREAT);
             stateMachine.setState(success);
         }
     }
 
-    public void checkWin(){
-        if(enemyShip.getHullHP() <= 0){
+    public void checkWin() {
+        if (enemyShip.getHullHP() <= 0) {
             // Create new temporary success state & move to it
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.COMBAT_KILL);
             stateMachine.setState(success);
         }
+    }
+
+    public ShipSection mouseOver() {
+        ShipSection hovered = enemyShip.validateHover(Mouse.getPosition(window).x, Mouse.getPosition(window).y);
+        if (hovered != null)
+            return hovered;
+
+        hovered = playerShip.validateHover(Mouse.getPosition(window).x, Mouse.getPosition(window).y);
+        if (hovered != null)
+            return hovered;
+
+        return null;
     }
 }

@@ -89,8 +89,8 @@ public class Textures {
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
     protected Texture shipLv3 = loadTexture("textures/ship_level_3.png");
-    private Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
-    private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
+    protected Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
+    protected Texture shipHighlight = loadTexture("textures/ship_highlights.png");
     // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
