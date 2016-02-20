@@ -33,8 +33,8 @@ public class CombatEvent extends Events {
     private PlayerShip playerShip;
     private EnemyShip enemyShip;
 
-    public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, PlayerShip playerShip) {
-        super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
+    public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, PlayerShip playerShip) {
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         this.playerShip = playerShip;
         setup();
     }
@@ -79,7 +79,7 @@ public class CombatEvent extends Events {
             recti[i] = new IntRect(rectf[i]);
         }
 
-        enemyShip = new EnemyShip(textures, driver, window, randGenerator, Ship.ShipType.STANDARD, (float) 0.5, 600, 420);
+        enemyShip = new EnemyShip(textures, driver, window, randGenerator, sound, Ship.ShipType.STANDARD, (float) 0.5, 600, 420);
 
         ui = new UI(textures, driver, window, playerShip, enemyShip);
         playerShip.setUI(ui);
@@ -129,7 +129,7 @@ public class CombatEvent extends Events {
                                     break;
                                 case 1: // Run
                                     System.out.println("Run Clicked");
-                                    FSMState run = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.COMBAT_PLAYER_RETREAT);
+                                    FSMState run = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_PLAYER_RETREAT);
                                     stateMachine.setState(run);
                                     break;
                             }
@@ -220,7 +220,7 @@ public class CombatEvent extends Events {
         }
         // Retreat instead
         else {
-            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.COMBAT_AI_RETREAT);
+            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_AI_RETREAT);
             stateMachine.setState(success);
         }
     }
@@ -228,7 +228,7 @@ public class CombatEvent extends Events {
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
             // Create new temporary success state & move to it
-            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.COMBAT_KILL);
+            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_KILL);
             stateMachine.setState(success);
         }
     }

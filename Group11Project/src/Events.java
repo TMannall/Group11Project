@@ -13,6 +13,7 @@ public abstract class Events extends FSMState {
     protected Textures textures;
     protected Random randGenerator;
     protected EventGenerator eventGenerator;
+    protected SoundFX sound;
 
     protected static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     protected static String JdkFontPath = "textures/";
@@ -23,13 +24,14 @@ public abstract class Events extends FSMState {
     protected String FontPath;
     protected Font fontStyle;
 
-    public Events(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator){
+    public Events(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
         this.randGenerator = randGenerator;
         this.eventGenerator = eventGenerator;
+        this.sound = sound;
 
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;

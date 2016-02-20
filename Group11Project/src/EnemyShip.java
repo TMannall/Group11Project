@@ -9,8 +9,8 @@ public class EnemyShip extends Ship {
 
     private ShipSection target = null;     // Current target ShipSection of the enemy when attacking
 
-    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType type, float scale, int xPos, int yPos){
-        super(textures, driver, window, randGenerator, type, scale, xPos, yPos);
+    public EnemyShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, SoundFX sound, ShipType type, float scale, int xPos, int yPos){
+        super(textures, driver, window, randGenerator, sound, type, scale, xPos, yPos);
         setup();
     }
 
@@ -139,7 +139,6 @@ public class EnemyShip extends Ship {
 
             // Animate cannon fire
             resetAnimation();
-            animating = true;
 
             System.out.println(target.getType() + "HP: " + target.getHP());
             System.out.println("-------------------------------------");
@@ -167,7 +166,6 @@ public class EnemyShip extends Ship {
 
             // Animate cannon fire
             resetAnimation();
-            animating = true;
 
             System.out.println(toAttack.getType() + "HP: " + toAttack.getHP());
             System.out.println("--------------------------------------");

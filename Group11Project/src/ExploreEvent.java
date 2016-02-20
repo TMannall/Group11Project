@@ -23,8 +23,8 @@ public class ExploreEvent extends Events {
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
 
-    public ExploreEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator){
-        super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
+    public ExploreEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         setup();
     }
 
@@ -108,7 +108,7 @@ public class ExploreEvent extends Events {
                         if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
                             switch (i) {
                                 case 0:
-                                    FSMState consequence = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, AfterEvent.Consequence.EXPLORE_ACCEPT);
+                                    FSMState consequence = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.EXPLORE_ACCEPT);
                                     stateMachine.setState(consequence);
                                     break;
                                 case 1:

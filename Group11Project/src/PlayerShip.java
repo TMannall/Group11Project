@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 public class PlayerShip extends Ship {
     private UI ui;
 
-    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType type, float scale, int xPos, int yPos){
-        super(textures, driver, window, randGenerator, type, scale, xPos, yPos);
+    public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, SoundFX sound, ShipType type, float scale, int xPos, int yPos){
+        super(textures, driver, window, randGenerator, sound, type, scale, xPos, yPos);
         setup();
     }
 
@@ -82,7 +82,6 @@ public class PlayerShip extends Ship {
 
             // Animate cannon fire
             resetAnimation();
-            animating = true;
 
             System.out.println(clicked.getType() + "HP: " + clicked.getHP());
             System.out.println("---------------------------------");

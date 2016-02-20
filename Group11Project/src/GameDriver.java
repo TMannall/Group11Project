@@ -37,8 +37,9 @@ public class GameDriver {
     private RenderWindow window = new RenderWindow();
     private Textures textures = new Textures();
     private Random randGenerator = new Random();
+    private SoundFX sound = new SoundFX();
 
-    private PlayerShip playerShip = new PlayerShip(textures, driver, window, randGenerator, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
+    private PlayerShip playerShip = new PlayerShip(textures, driver, window, randGenerator, sound, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
 
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
@@ -50,11 +51,11 @@ public class GameDriver {
         window.setFramerateLimit(30);
 
         machine = new FSM();
-        eventGenerator = new EventGenerator(machine, driver, window, randGenerator, textures);
+        eventGenerator = new EventGenerator(machine, driver, window, randGenerator, sound, textures);
 
         // States
-        menu = new Menu(machine, driver, window, textures);
-        settings = new Settings(machine, driver, window, textures);
+        menu = new Menu(machine, driver, window, textures, sound);
+        settings = new Settings(machine, driver, window, textures, sound);
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
         cptSelection = new CptSelection(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventGenerator);
@@ -79,7 +80,7 @@ public class GameDriver {
         machine.setState(menu);
 
         // jack: frame test
-//        SoundClass sound = new SoundClass();
+//        SoundFX sound = new SoundFX();
 //        sound.setSoundVolume(60);
 //        Clock animClock = new Clock();
 //        int[] frameList = new int[5];

@@ -8,7 +8,6 @@ import org.jsfml.window.event.KeyEvent;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +22,7 @@ public class Settings extends FSMState{
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
+    private SoundFX sound;
 
     private static int numberOfButtons = 4;
     private static int buttonIndex = 0;
@@ -40,14 +40,13 @@ public class Settings extends FSMState{
     private String FontPath;
 
     private static String Title = "Settings";
-    private SoundClass sound = new SoundClass();
 
-    public Settings(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public Settings(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, SoundFX sound) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-
+        this.sound = sound;
         setup();
     }
 

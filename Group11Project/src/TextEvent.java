@@ -33,8 +33,8 @@ public class TextEvent extends Events {
     Sprite hoverButton;
     Sprite pushButton;
 
-    public TextEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator){
-        super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
+    public TextEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         setup();
     }
 

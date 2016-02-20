@@ -1,3 +1,4 @@
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ public class EventGenerator {
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
+    private SoundFX sound;
 
     private DbUser dbUser = new DbUser("Events");
     private String[] eventTypes = {"ASSIST", "COMBAT", "EXPLORE", "TEXT", "TRADE"};
@@ -51,11 +53,12 @@ public class EventGenerator {
     private int[] quarters = {0,0,0,0,0,0};
 
 
-    public EventGenerator(FSM stateMachine, GameDriver driver, RenderWindow window, Random randGenerator, Textures textures){
+    public EventGenerator(FSM stateMachine, GameDriver driver, RenderWindow window, Random randGenerator, SoundFX sound, Textures textures){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.randGenerator = randGenerator;
+        this.sound = sound;
         this.textures = textures;
     }
 
@@ -268,19 +271,19 @@ public class EventGenerator {
     public void genEventState(){
         switch(currEvent){
             case "ASSIST":
-                driver.setEncounter(new AssistEvent(stateMachine, driver, window, textures, randGenerator, this));
+                driver.setEncounter(new AssistEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
             case "COMBAT":
-                driver.setEncounter(new CombatEvent(stateMachine, driver, window, textures, randGenerator, this, driver.getPlayerShip()));
+                driver.setEncounter(new CombatEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));
                 break;
             case "EXPLORE":
-                driver.setEncounter(new ExploreEvent(stateMachine, driver, window, textures, randGenerator, this));
+                driver.setEncounter(new ExploreEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
             case "TEXT":
-                driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this));
+                driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
             case "TRADE":
-                driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this));
+                driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
         }
         stateMachine.setState(driver.getEncounter());

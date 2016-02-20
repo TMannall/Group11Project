@@ -35,8 +35,8 @@ public class AfterEvent extends Events{
 
     Consequence consequence;
 
-    public AfterEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, Consequence consequence){
-        super(stateMachine, driver, window, textures, randGenerator, eventGenerator);
+    public AfterEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, Consequence consequence){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         this.consequence = consequence;
         setup();
     }

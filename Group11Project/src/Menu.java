@@ -3,27 +3,18 @@ import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 
 import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
 
-import java.text.DecimalFormat;
-
 import org.jsfml.graphics.Text;
-import org.jsfml.window.VideoMode;
-import org.jsfml.window.Window;
 import org.jsfml.window.Mouse;
-import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Main menu state for Endless Sea
@@ -34,6 +25,7 @@ public class Menu extends FSMState{
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
+    private SoundFX sound;
 
     private static int numberOfButtons = 4;
     Text[] text = new Text[numberOfButtons];
@@ -51,13 +43,13 @@ public class Menu extends FSMState{
     private String FontPath;
 
     private static String Title = "ENDLESS SEA";
-    private SoundClass sound = new SoundClass();
 
-    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, SoundFX sound) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
+        this.sound = sound;
         setup();
     }
 

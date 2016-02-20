@@ -16,6 +16,7 @@ public abstract class Ship{
     protected Textures textures;
     protected GameDriver driver;
     protected RenderWindow window;
+    protected SoundFX sound;
 
     protected Random randGenerator;
     protected Timer reloadTimer;
@@ -50,17 +51,17 @@ public abstract class Ship{
     protected ArrayList<Sprite> gunAnimations;
     protected Clock animClock;
     int[] gunAnimFrames = new int[10];
-    protected boolean animating = false;            // Set to true when cannon fire should be playing
 
     protected float scale;
     protected int xPos;
     protected int yPos;
 
-    public Ship(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, ShipType shipType, float scale, int xPos, int yPos){
+    public Ship(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, SoundFX sound, ShipType shipType, float scale, int xPos, int yPos){
         this.textures = textures;
         this.driver = driver;
         this.window = window;
         this.randGenerator = randGenerator;
+        this.sound = sound;
         this.shipType = shipType;
         this.scale = scale;
         this.xPos = xPos;
@@ -75,7 +76,7 @@ public abstract class Ship{
             gunAnimations.add(textures.createSprite(textures.cannonSmoke, 0, 0, 51, 114));
             gunAnimations.get(i).setTextureRect(new IntRect(0, 0, 0, 0));       // Hides to begin with
             gunAnimations.get(i).setScale(scale, scale);
-            gunAnimFrames[i] = 0;          // "empty"
+            gunAnimFrames[i] = 28;          // prevents firing straight away (only when attacking)
         }
     }
 
@@ -94,16 +95,18 @@ public abstract class Ship{
 
     // Animate ONE loop of the cannon fire
     public void animateGuns(){
-        if(animating){
-            if(animClock.getElapsedTime().asMilliseconds() >= 50){
+        if(animClock.getElapsedTime().asMilliseconds() >= 50){
                 animClock.restart();
 
                 for(int i = 0; i < 10; i++){
                     gunAnimFrames[i]++;
 
+                    if (gunAnimFrames[i] == 5) {
+                        sound.playSoundOnce("cannon_02");
+                    }
+
                     if(gunAnimFrames[i] > 27) {
                         gunAnimFrames[i] = 28;
-                        animating = false;
                     }
 
                     int frameRow = gunAnimFrames[i] / 12;
@@ -113,14 +116,13 @@ public abstract class Ship{
 
                 }
             }
-        }
 
     }
 
     // MUST BE CALLED BEFORE ANOTHER GUN ANIMATION CAN HAPPEN
     public void resetAnimation(){
         for (int i = 0; i < 10; i++){
-            gunAnimFrames[i] = 0;
+            gunAnimFrames[i] = (i*3) - 30;
         }
     }
 
