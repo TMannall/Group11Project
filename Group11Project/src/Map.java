@@ -132,7 +132,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("1 Clicked");
-										eventGenerator.setProbabilities(0, 1, 0, 0, 0);
+										eventGenerator.setProbabilities(1, 0, 0, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}

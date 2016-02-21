@@ -92,18 +92,6 @@ public class CombatEvent extends Events {
             displayAlert();
 
         window.display();
-    }
-
-    public void displayAlert() {
-        textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
-        window.draw(textures.ocean);
-
-        window.draw(messageScroll);
-        window.draw(title);
-        for (int i = 0; i < numberOfButtons; i++) {
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
         for (Event event : window.pollEvents()) {
             switch (event.type) {
                 case CLOSED:
@@ -137,6 +125,18 @@ public class CombatEvent extends Events {
                     }
                     break;
             }
+        }
+    }
+
+    public void displayAlert() {
+        textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+        window.draw(textures.ocean);
+
+        window.draw(messageScroll);
+        window.draw(title);
+        for (int i = 0; i < numberOfButtons; i++) {
+            window.draw(textButton[i]);
+            window.draw(text[i]);
         }
 
     }

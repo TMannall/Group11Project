@@ -11,7 +11,6 @@ public class AssistEvent extends Events {
     Text title;
     IntRect[] recti = new IntRect[numberOfButtons];
     FloatRect[] rectf = new FloatRect[numberOfButtons];
-    private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
     public String attackedText = "";
     public String titleString = attackedText;
 
