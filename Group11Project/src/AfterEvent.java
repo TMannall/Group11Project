@@ -18,7 +18,6 @@ public class AfterEvent extends Events{
     private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
     private static final String[] playerStatsList = {"Gold", "Food", "Water", "Hull HP", "Cannons", "Cannon HP", "Mast HP", "Bridge HP", "Hold HP", "Quarters HP"};
     private static final String[] playerStatsListDisplay = {"Gold: ", "Food: ", "Water: ", "Hull HP: ", "Cannon HP: ", "Mast HP: ", "Bridge HP: ", "Hold HP: ", "Quarters HP: "};
-    public String titleString = "";
 
     Sprite messageScroll;
     Text btn;
@@ -52,7 +51,7 @@ public class AfterEvent extends Events{
         if(consequence == Consequence.ASSIST_ACCEPT || consequence == Consequence.EXPLORE_ACCEPT)
             applyChanges();
 
-        // Set ups scroll + title
+        // Set up scroll
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
@@ -60,36 +59,36 @@ public class AfterEvent extends Events{
 
         // Get current stats of ship
         currStats[0] = new Text(Integer.toString(playerShip.getCurrGold()), fontStyle, 24);
-        currStats[1] = new Text(Integer.toString(playerShip.getCurrFood()), fontStyle, 24);
-        currStats[2] = new Text(Integer.toString(playerShip.getCurrWater()), fontStyle, 24);
-        currStats[3] = new Text(Integer.toString(playerShip.getHullHP()), fontStyle, 24);
-        currStats[4] = new Text(Integer.toString(playerShip.guns.getHP()), fontStyle, 24);
-        currStats[5] = new Text(Integer.toString(playerShip.masts.getHP()), fontStyle, 24);
-        currStats[6] = new Text(Integer.toString(playerShip.bridge.getHP()), fontStyle, 24);
-        currStats[7] = new Text(Integer.toString(playerShip.hold.getHP()), fontStyle, 24);
-        currStats[8] = new Text(Integer.toString(playerShip.quarters.getHP()), fontStyle, 24);
+        currStats[1] = new Text(Integer.toString(playerShip.getCurrFood()) + "/" + Integer.toString(playerShip.getMaxFood()), fontStyle, 24);
+        currStats[2] = new Text(Integer.toString(playerShip.getCurrWater()) + "/" + Integer.toString(playerShip.getMaxWater()), fontStyle, 24);
+        currStats[3] = new Text(Integer.toString(playerShip.getHullHP()) + "/100", fontStyle, 24);
+        currStats[4] = new Text(Integer.toString(playerShip.guns.getHP()) + "/100", fontStyle, 24);
+        currStats[5] = new Text(Integer.toString(playerShip.masts.getHP()) + "/100", fontStyle, 24);
+        currStats[6] = new Text(Integer.toString(playerShip.bridge.getHP()) + "/100", fontStyle, 24);
+        currStats[7] = new Text(Integer.toString(playerShip.hold.getHP()) + "/100", fontStyle, 24);
+        currStats[8] = new Text(Integer.toString(playerShip.quarters.getHP()) + "/100", fontStyle, 24);
 
         // Set up array of Text to display each stat + position of current stats
         for(int i = 0; i < 5; i++){
             statsNames[i] = new Text(playerStatsListDisplay[i], fontStyle, 24);
-            statsNames[i].setPosition(280, 300 +(90 * i));
+            statsNames[i].setPosition(280, 270 +(90 * i));
             statsNames[i].setOrigin(0, 0);
             statsNames[i].setColor(Color.BLACK);
             statsNames[i].setStyle(Text.REGULAR);
 
-            currStats[i].setPosition(400, 300 + (90 * i));
+            currStats[i].setPosition(400, 270 + (90 * i));
             currStats[i].setOrigin(0, 0);
             currStats[i].setColor(Color.BLACK);
             currStats[i].setStyle(Text.REGULAR);
         }
         for(int c = 4; c < playerStatsListDisplay.length; c++){
             statsNames[c] = new Text(playerStatsListDisplay[c], fontStyle, 24);
-            statsNames[c].setPosition(640, 300 + (68 * (c - 4)));
+            statsNames[c].setPosition(640, 270 + (68 * (c - 4)));
             statsNames[c].setOrigin(0, 0);
             statsNames[c].setColor(Color.BLACK);
             statsNames[c].setStyle(Text.REGULAR);
 
-            currStats[c].setPosition(860, 300 + (68 * (c - 4)));
+            currStats[c].setPosition(840, 270 + (68 * (c - 4)));
             currStats[c].setOrigin(0, 0);
             currStats[c].setColor(Color.BLACK);
             currStats[c].setStyle(Text.REGULAR);
@@ -112,7 +111,7 @@ public class AfterEvent extends Events{
                 changeStr = "";
             }
             statsChanges[j].setString(changeStr);
-            statsChanges[j].setPosition(480,300 +(90 * j));
+            statsChanges[j].setPosition(520, 270 +(90 * j));
             statsChanges[j].setOrigin(0, 0);
             statsChanges[j].setStyle(Text.REGULAR);
         }
@@ -131,10 +130,10 @@ public class AfterEvent extends Events{
             else{
                 changeStr = "";
             }
-            statsChanges[j] = new Text(changeStr, fontStyle, 24);
-            statsChanges[j].setPosition(940, 300 + (68 * (j - 5)));
+
+            statsChanges[j].setString(changeStr);
+            statsChanges[j].setPosition(960, 270 + (68 * (j - 5)));
             statsChanges[j].setOrigin(0, 0);
-            statsChanges[j].setColor(Color.BLACK);
             statsChanges[j].setStyle(Text.REGULAR);
         }
 
@@ -159,6 +158,7 @@ public class AfterEvent extends Events{
     }
 
     public void execute() {
+        window.clear();
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         window.draw(messageScroll);
@@ -225,7 +225,7 @@ public class AfterEvent extends Events{
             case EXPLORE_ACCEPT:
                 title = new Text(eventGenerator.getConsequence(), fontStyle, titleFontSize);
         }
-        title.setPosition(driver.getWinWidth() / 2 - 35, 150);
+        title.setPosition(driver.getWinWidth() / 2 - 35, 100);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);

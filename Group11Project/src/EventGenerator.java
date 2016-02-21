@@ -277,7 +277,7 @@ public class EventGenerator {
                 driver.setEncounter(new ExploreEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
             case "TEXT":
-                driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
+                driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));
                 break;
             case "TRADE":
                 driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));

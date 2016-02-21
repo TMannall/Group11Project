@@ -125,14 +125,13 @@ public class Map extends FSMState {
 					// Add events/actions here when islands are clicked on
 					for(int i = 0; i < maxWaypoints; i++){
 						if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
-							//System.out.println("Island Clicked!");
 							switch(i){
 								case 0:	//Island 1
 									if (canTravelTo(i)){
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("1 Clicked");
-										eventGenerator.setProbabilities(1, 0, 0, 0, 0);
+										eventGenerator.setProbabilities(0, 1, 0, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -142,7 +141,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("2 Clicked");
-										eventGenerator.setProbabilities(1, 0, 0, 0, 0);
+										eventGenerator.setProbabilities(0, 1, 0, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
