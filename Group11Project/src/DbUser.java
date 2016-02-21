@@ -1,8 +1,9 @@
-// STUBBED FILE
 import java.sql.*;
 import java.util.ArrayList;
 
-// this is the class through which all Database calls go
+/**
+ * The class in which all Database calls go, this is inherits DbBasic
+ */
 public class DbUser extends DbBasic {
 
 	private Statement stmt;

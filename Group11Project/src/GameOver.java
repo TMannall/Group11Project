@@ -1,29 +1,18 @@
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
-
 import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
-
-import java.text.DecimalFormat;
-
 import org.jsfml.graphics.Text;
-import org.jsfml.window.VideoMode;
-import org.jsfml.window.Window;
 import org.jsfml.window.Mouse;
-import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 import org.jsfml.window.event.TextEvent;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class GameOver extends FSMState {
     private FSM stateMachine;
@@ -155,7 +144,9 @@ public class GameOver extends FSMState {
         displayGameOver();		
     }
 
-
+	/**
+	 * Manages the displaying of the game over state
+	 */
     public void displayGameOver() {
         textures.gameover.setOrigin(0, 0);
         window.draw(textures.gameover);
@@ -225,106 +216,110 @@ public class GameOver extends FSMState {
                 case CLOSED:
                     window.close();
                     break;
-								case TEXT_ENTERED:
-									if(textEntry)
-									{
-										TextEvent textEvent = event.asTextEvent();
-										if((textEvent.character > 47 && textEvent.character < 58) || (textEvent.character > 64 && textEvent.character < 91) || (textEvent.character > 96 && textEvent.character < 123))
-										{ //only valid characters allowed
-											if(playerName.length() == 1 && playerName.charAt(0) == '|')
-											{
-												playerName = "" + textEvent.character + "|";
-												name.setPosition(name.getPosition().x-7, name.getPosition().y);
-											}
-											else if(playerName.length() == 10 && playerName.charAt(9) == '|')
-											{
-												char[] temp = playerName.toCharArray();
-												temp[9] = textEvent.character;
-												playerName = String.valueOf(temp);
-												textEntry = false;
-												name.setPosition(name.getPosition().x-7, name.getPosition().y);
-											}
-											else
-											{
-												int index = playerName.length();
-												char[] temp = playerName.toCharArray();
-												temp[index-1] = textEvent.character;
-												playerName = String.valueOf(temp);
-												playerName += "|";
-												name.setPosition(name.getPosition().x-8, name.getPosition().y);
-											}
-										}
-									}
-									break;										
-								case MOUSE_BUTTON_PRESSED:
-									MouseEvent mouseClicked = event.asMouseButtonEvent();
-									if(mouseClicked.type == Event.Type.MOUSE_BUTTON_PRESSED){
-										for(int i = 0; i < numberOfButtons; i++){
-											rectf[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top, 
-														textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
-										}
-										//Main Menu
-										if(rectf[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
-											window.draw(pushButton[0]);
-											window.draw(text[0]);
-											playerName = "|";
-											textEntry = true;
-											disabled[2] = false;
-											name.setPosition(driver.getWinWidth() / 2, 300);
-											stateMachine.setState(stateMachine.getStates().get(0));
-										}
-										//Exit
-										else if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
-											window.draw(pushButton[1]);
-											window.draw(text[1]);
-											window.close();
-										}
-										//Submit score
-										else if(rectf[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
-											if(playerName.length() > 0 && playerName.charAt(0) != '|')
-											{
-												window.draw(pushButton[2]);
-												window.draw(text[2]);
-												if(playerName.charAt(playerName.length()-1) == '|')
-												{
-													char[] temp = playerName.toCharArray();
-													temp[playerName.length()-1] = ' ';
-													playerName = String.valueOf(temp);
-												}
-												if(leaderboard.submit(playerName, driver.score))
-												{
-													playerName = "";
-													disabled[2] = true;
-													messageText = "Your score is now in the leaderboard.";
-													message.setString(messageText);
-													message.setPosition(driver.getWinWidth() / 2, 250);
-													message.setOrigin(message.getLocalBounds().width / 2, message.getLocalBounds().height / 2);
-												}
-												else
-												{
-													playerName = "";
-													disabled[2] = true;
-													messageText = "Your score was too low for the leaderboard.";
-													message.setString(messageText);
-													message.setPosition(driver.getWinWidth() / 2, 250);
-													message.setOrigin(message.getLocalBounds().width / 2, message.getLocalBounds().height / 2);
-												}
-											}	
-										}
-									}
-									break;					
+				case TEXT_ENTERED:
+					if(textEntry)
+					{
+						TextEvent textEvent = event.asTextEvent();
+						if((textEvent.character > 47 && textEvent.character < 58) || (textEvent.character > 64 && textEvent.character < 91) || (textEvent.character > 96 && textEvent.character < 123))
+						{ //only valid characters allowed
+							if(playerName.length() == 1 && playerName.charAt(0) == '|')
+							{
+								playerName = "" + textEvent.character + "|";
+								name.setPosition(name.getPosition().x-7, name.getPosition().y);
+							}
+							else if(playerName.length() == 10 && playerName.charAt(9) == '|')
+							{
+								char[] temp = playerName.toCharArray();
+								temp[9] = textEvent.character;
+								playerName = String.valueOf(temp);
+								textEntry = false;
+								name.setPosition(name.getPosition().x-7, name.getPosition().y);
+							}
+							else
+							{
+								int index = playerName.length();
+								char[] temp = playerName.toCharArray();
+								temp[index-1] = textEvent.character;
+								playerName = String.valueOf(temp);
+								playerName += "|";
+								name.setPosition(name.getPosition().x-8, name.getPosition().y);
+							}
+						}
+					}
+					break;
+				case MOUSE_BUTTON_PRESSED:
+					MouseEvent mouseClicked = event.asMouseButtonEvent();
+					if(mouseClicked.type == Event.Type.MOUSE_BUTTON_PRESSED){
+						for(int i = 0; i < numberOfButtons; i++){
+							rectf[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top,
+									textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
+						}
+						//Main Menu
+						if(rectf[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
+							window.draw(pushButton[0]);
+							window.draw(text[0]);
+							playerName = "|";
+							textEntry = true;
+							disabled[2] = false;
+							name.setPosition(driver.getWinWidth() / 2, 300);
+							stateMachine.setState(stateMachine.getStates().get(0));
+						}
+						//Exit
+						else if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
+							window.draw(pushButton[1]);
+							window.draw(text[1]);
+							window.close();
+						}
+						//Submit score
+						else if(rectf[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
+							if(playerName.length() > 0 && playerName.charAt(0) != '|')
+							{
+								window.draw(pushButton[2]);
+								window.draw(text[2]);
+								if(playerName.charAt(playerName.length()-1) == '|')
+								{
+									char[] temp = playerName.toCharArray();
+									temp[playerName.length()-1] = ' ';
+									playerName = String.valueOf(temp);
+								}
+								if(leaderboard.submit(playerName, driver.score))
+								{
+									playerName = "";
+									disabled[2] = true;
+									messageText = "Your score is now in the leaderboard.";
+									message.setString(messageText);
+									message.setPosition(driver.getWinWidth() / 2, 250);
+									message.setOrigin(message.getLocalBounds().width / 2, message.getLocalBounds().height / 2);
+								}
+								else
+								{
+									playerName = "";
+									disabled[2] = true;
+									messageText = "Your score was too low for the leaderboard.";
+									message.setString(messageText);
+									message.setPosition(driver.getWinWidth() / 2, 250);
+									message.setOrigin(message.getLocalBounds().width / 2, message.getLocalBounds().height / 2);
+								}
+							}
+						}
+					}
+					break;
 						}
 				}
 			window.display();
 		}
-		
-		public boolean isMouseOver(){
-			for(int i = 0; i < numberOfButtons; i++){
-				if(recti[i].contains(Mouse.getPosition(window))){
-					return true;
-				}
+
+	/**
+	 * Checks whether user has mouse over button
+	 * @return true
+     */
+	public boolean isMouseOver(){
+		for(int i = 0; i < numberOfButtons; i++){
+			if(recti[i].contains(Mouse.getPosition(window))){
+				return true;
 			}
-			return false; 
-		}		
+		}
+		return false;
+	}
 		
 }

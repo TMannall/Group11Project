@@ -1,32 +1,19 @@
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
-
 import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
-
-import java.text.DecimalFormat;
-
 import org.jsfml.graphics.Text;
-import org.jsfml.window.VideoMode;
-import org.jsfml.window.Window;
 import org.jsfml.window.Mouse;
-import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Main menu state for Endless Sea
+ * Main menu state for Endless Sea, consists of a number of buttons which can be pressed to changed states
  */
 public class Menu extends FSMState{
 
@@ -259,7 +246,11 @@ public class Menu extends FSMState{
 				}
 			window.display();
 		}
-		
+
+	/**
+	 * Checks whether user has mouse over button
+	 * @return true
+	 */
 	public boolean isMouseOver(){
 		for(int i = 0; i < numberOfButtons; i++){
 			if(recti[i].contains(Mouse.getPosition(window))){

@@ -1,18 +1,18 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
 /**
- * Created by Aidan on 16/02/2016.
+ * @Author Aidan Lennie on 25/01/2016.
+ */
+/**
+ * Event state class for Endless Sea, used to display the events for trading items
  */
 public class TradeEventState extends FSMState{
-    /**
-     * Event state class for Endless Sea
-     */
+
     private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;

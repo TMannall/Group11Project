@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Finite-State Machine
+ * Finite-State Machine, used to manage the changes of the game states
  * An instance of this should be created to manage state switches for a program.
  * States should be classes which implement the FSMState interface.
  * Note: Is not stack-based; may implement stack if needed

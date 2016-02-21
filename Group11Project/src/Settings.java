@@ -8,14 +8,12 @@ import org.jsfml.window.event.KeyEvent;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * Settings state for Endless Sea
+ * Settings state for Endless Sea, allows user to change a number of different settings to customize game
  */
 public class Settings extends FSMState{
 
@@ -232,6 +230,9 @@ public class Settings extends FSMState{
 		window.display();
     }
 
+    /**
+     * Method for moving which button is selected when going past the top button
+     */
     public void moveUp() {
         if (buttonIndex - 1 >= 0) {
             text[buttonIndex].setColor(Color.CYAN);
@@ -240,6 +241,9 @@ public class Settings extends FSMState{
         }
     }
 
+    /**
+     * Method for moving which button is selected when going past the bottom button
+     */
     public void moveDown() {
         if (buttonIndex + 1 < numberOfButtons) {
             text[buttonIndex].setColor(Color.CYAN);
@@ -248,6 +252,10 @@ public class Settings extends FSMState{
         }
     }
 
+    /**
+     * Method for getting the current button index
+     * @return buttonIndex
+     */
     int getButtonIndex(){
         return buttonIndex;
     }

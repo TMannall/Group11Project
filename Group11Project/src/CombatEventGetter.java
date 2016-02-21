@@ -1,5 +1,5 @@
 /**
- * Created by Aidan on 25/01/2016.
+ * @Author Aidan Lennie on 25/01/2016.
  */
 public class CombatEventGetter extends Events{
 
