@@ -27,7 +27,7 @@ public abstract class Ship{
 
     // Game-mutable ship stats
     private int playerScore = 0;    // Player's score for the leaderboard
-    private int currGold = 0;
+    private int currGold = 100;
     private int maxFood = 100;
     private int currFood = maxFood;
     private int maxWater = 100;
@@ -218,8 +218,8 @@ public abstract class Ship{
         return maxFood;
     }
 
-    public void setMaxFood(int maxFood) {
-        this.maxFood = maxFood;
+    public void addMaxFood(int change) {
+        maxFood += change;
     }
 
     public int getCurrGold() {

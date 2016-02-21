@@ -26,10 +26,10 @@ public class EventGenerator {
     protected int event_ID = 0;
     protected int consequence_ID = 0;
     protected String consequence_text;
-    String[] playerStatsList = {"gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
-    protected int[] playerStatsChange = {0,0,0,0,0,0,0,0,0,0};
+    String[] playerStatsList = {"gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters", "reloadBoost", "mastSpeed", "bridgeDefence", "quartersRegainStr", "maxWater", "maxFood"};
+    protected int[] playerStatsChange = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     String[] itemNames = new String[3];
-    int[][] itemStats = new int[3][10];
+    int[][] itemStats = new int[3][16];
 
     // For combat events
     private int enemyID;
@@ -125,7 +125,7 @@ public class EventGenerator {
         titles = new String[]{"event_ID", "consequence_ID", "consequence_text", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
         consequence_text = results.get(2);
-        for(int i = 0; i < playerStatsList.length; i++)
+        for(int i = 0; i < playerStatsList.length - 6; i++)
             playerStatsChange[i] = Integer.parseInt(results.get(i+3));
 
         //display random event
@@ -150,7 +150,7 @@ public class EventGenerator {
         titles = new String[]{"event_ID", "enemyID", "enemyNation", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
         consequence_text = results.get(2);
-        for(int i = 0; i < playerStatsList.length; i++)
+        for(int i = 0; i < playerStatsList.length - 6; i++)
             playerStatsChange[i] = Integer.parseInt(results.get(i+3));
 
         //display random event
@@ -174,7 +174,7 @@ public class EventGenerator {
         titles = new String[]{"event_ID", "consequence_ID", "consequence_text", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
         consequence_text = results.get(2);
-        for(int i = 0; i < playerStatsList.length; i++)
+        for(int i = 0; i < playerStatsList.length - 6; i++)
             playerStatsChange[i] = Integer.parseInt(results.get(i+3));
 
         //display event
@@ -192,7 +192,7 @@ public class EventGenerator {
         titles = new String[]{"event_ID", "event_text", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
         eventText = results.get(1);
-        for(int i = 0; i < playerStatsList.length; i++)
+        for(int i = 0; i < playerStatsList.length - 6; i++)
             playerStatsChange[i] = Integer.parseInt(results.get(i+2));
         System.out.println(eventText);
 
@@ -210,9 +210,6 @@ public class EventGenerator {
         titles = new String[]{"event_ID", "event_text", "low_item_count", "medium_item_count", "high_item_count"};
         results = dbUser.getQuery(query, titles);
         eventText = results.get(1);
-//        itemLevelCount[0] = Integer.parseInt(results.get(2));
-//        itemLevelCount[1] = Integer.parseInt(results.get(3));
-//        itemLevelCount[2] = Integer.parseInt(results.get(4));
         itemLevelCount[0] = 1;
         itemLevelCount[1] = 1;
         itemLevelCount[2] = 1;
@@ -283,7 +280,7 @@ public class EventGenerator {
                 driver.setEncounter(new TextEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
                 break;
             case "TRADE":
-                driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this, sound));
+                driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));
                 break;
         }
         stateMachine.setState(driver.getEncounter());
