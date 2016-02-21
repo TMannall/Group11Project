@@ -37,6 +37,7 @@ public class AfterEvent extends Events{
     Sprite pushButton;
 
     Consequence consequence;
+    EnemyShip.Difficulty combatDifficulty;
 
     public AfterEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, Consequence consequence){
         super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
@@ -45,11 +46,25 @@ public class AfterEvent extends Events{
         setup();
     }
 
+    public AfterEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, Consequence consequence, EnemyShip.Difficulty difficulty){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
+        this.consequence = consequence;
+        this.playerShip = driver.getPlayerShip();
+        combatDifficulty = difficulty;
+        setup();
+    }
+
     public void setup(){
+        playerShip.addEventComplete();
+        System.out.println("EVENTS COMPLETED: " + playerShip.getEventsCompleted());
+
+
         // Get consequences/stat changes & apply them to player for assist/exploration events
         this.eventEffects = eventGenerator.getEventEffects();
         if(consequence == Consequence.ASSIST_ACCEPT || consequence == Consequence.EXPLORE_ACCEPT)
             applyChanges();
+        else if(consequence == Consequence.COMBAT_KILL)
+            applyCombatChanges();
 
         // Set up scroll
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
@@ -211,7 +226,7 @@ public class AfterEvent extends Events{
     public void genMessage(){
         switch(consequence){
             case COMBAT_KILL:
-                title = new Text("Enemy defeated!", fontStyle, titleFontSize);
+                title = new Text("Enemy defeated!\nYou plundered some resources!", fontStyle, titleFontSize);
                 break;
             case COMBAT_PLAYER_RETREAT:
                 title = new Text("You retreated from the battle", fontStyle, titleFontSize);
@@ -269,6 +284,26 @@ public class AfterEvent extends Events{
         System.out.println("BRIDGE HP:" + playerShip.bridge.getHP());
         System.out.println("HOLD HP: " + playerShip.hold.getHP());
         System.out.println("QUARTERS HP: " + playerShip.quarters.getHP());
+    }
+
+    public void applyCombatChanges(){
+        int difficultyMod = 1;
+        switch(combatDifficulty){
+            case MEDIUM:
+                difficultyMod = 2;      // Double rewards
+                break;
+            case HARD:
+                difficultyMod = 3;      // Triple rewards
+                break;
+        }
+
+        playerShip.addGold(eventEffects[0] * difficultyMod);
+        playerShip.addFood(eventEffects[1]);
+        playerShip.addWater(eventEffects[2]);
+
+        System.out.println("GOLD: " + playerShip.getCurrGold());
+        System.out.println("FOOD: " + playerShip.getCurrFood());
+        System.out.println("WATER: " + playerShip.getCurrWater());
     }
 
     public boolean isMouseOver(){

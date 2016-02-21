@@ -11,8 +11,8 @@ public class EventGenerator {
     private SoundFX sound;
 
     private DbUser dbUser = new DbUser("Events");
-    private String[] eventTypes = {"ASSIST", "COMBAT", "EXPLORE", "TEXT", "TRADE"};
-    private float[] probabilities = {(float)0.5, (float)0.15, (float)0.15, (float)0.1, (float)0.1};          // Should add up to 1, note index[0] = ASSIST, index[1] = COMBAT etc
+    private String[] eventTypes = {"ASSIST", "COMBAT", "EXPLORE", "TEXT", "TRADE", "BOSS"};
+    private float[] probabilities = {(float)0.5, (float)0.15, (float)0.15, (float)0.1, (float)0.1, 0};          // Should add up to 1, note index[0] = ASSIST, index[1] = COMBAT etc
     private String currEvent = null;
     private Random randGenerator = new Random();
 
@@ -76,8 +76,8 @@ public class EventGenerator {
         loadEvent();
     }
 
-    public void setProbabilities(float assist, float combat, float explore, float text, float trade){
-        probabilities = new float[]{assist, combat, explore, text, trade};
+    public void setProbabilities(float assist, float combat, float explore, float text, float trade, float boss){
+        probabilities = new float[]{assist, combat, explore, text, trade, boss};
     }
 
 
@@ -107,6 +107,8 @@ public class EventGenerator {
                 eventType = "trade_events";
                 setMaximumEvents();
                 loadTradeEvent();
+                break;
+            case "BOSS":
                 break;
         }
     }
@@ -257,6 +259,7 @@ public class EventGenerator {
             }
     }
 
+
     public void setMaximumEvents(){
         //Get the count of events
         query = "SELECT COUNT(event_ID) AS count_of_events FROM " + eventType + ";";
@@ -281,6 +284,9 @@ public class EventGenerator {
                 break;
             case "TRADE":
                 driver.setEncounter(new TradeEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));
+                break;
+            case "BOSS":
+                driver.setEncounter(new BossEvent(stateMachine, driver, window, textures, randGenerator, this, sound, driver.getPlayerShip()));
                 break;
         }
         stateMachine.setState(driver.getEncounter());

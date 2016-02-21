@@ -34,10 +34,10 @@ public abstract class Ship{
     private int currWater = maxWater;
 
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
-    protected int gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
-    protected int reloadBoost = 1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
+    protected float gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
+    protected float reloadBoost = (float)1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
     private int mastSpeed = 1; // Mast speed modifier. 1 standard rate, 2 = double rate
-    private int bridgeDefence = 1; // Defence modifier. 1 = standard defence, 2 = double defence
+    protected float bridgeDefence = 1; // Defence modifier. 1 = standard defence, 2 = double defence (halves dmg received)
     private int quartersRegainStr = 1; // Quarters HP regain modifier. 1 = standard, 2 = double regain
 
     protected ShipSection guns;
@@ -174,7 +174,7 @@ public abstract class Ship{
         gunLoaded = loaded;
     }
 
-    public int getGunStr(){
+    public float getGunStr(){
         return gunStr;
     }
 
@@ -242,7 +242,7 @@ public abstract class Ship{
         gunStr += change;
     }
 
-    public int getReloadBoost() {
+    public float getReloadBoost() {
         return reloadBoost;
     }
 
@@ -258,7 +258,7 @@ public abstract class Ship{
         mastSpeed += change;
     }
 
-    public int getBridgeDefence() {
+    public float getBridgeDefence() {
         return bridgeDefence;
     }
 

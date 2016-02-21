@@ -6,7 +6,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerShip extends Ship {
+    private EnemyShip enemyShip = null;     // Current enemy ship when in combat
     private UI ui;
+    private int eventsCompleted = 0;        // Tracks number of events completed by the player
 
     public PlayerShip(Textures textures, GameDriver driver, RenderWindow window, Random randGenerator, SoundFX sound, ShipType type, float scale, int xPos, int yPos){
         super(textures, driver, window, randGenerator, sound, type, scale, xPos, yPos);
@@ -73,7 +75,18 @@ public class PlayerShip extends Ship {
             System.out.println(clicked.getType() + "HP: " + clicked.getHP());
 
             System.out.println("FIRING GUNS!");
-            int dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+            int dmg;
+            if(guns.isTargetable())
+                dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * (int)gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+            else{
+                dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * (gunStr / 2));
+            }
+
+            System.out.println("PRE-ARMOUR DMG: " + dmg);
+            if(enemyShip.bridge.isTargetable())
+                dmg = (int)(dmg / enemyShip.getBridgeDefence());
+            else
+                dmg = (int)(dmg / (enemyShip.getBridgeDefence()/2));   // Enemy bridge destroyed, deal double damage
             System.out.println("HIT FOR " + dmg + " DMG");
             clicked.damage(dmg);
             gunLoaded = false;
@@ -111,5 +124,17 @@ public class PlayerShip extends Ship {
 
     public void setUI(UI ui){
         this.ui = ui;
+    }
+
+    public void addEventComplete(){
+        eventsCompleted++;
+    }
+
+    public int getEventsCompleted(){
+        return eventsCompleted;
+    }
+
+    public void setEnemyShip(EnemyShip enemyShip){
+        this.enemyShip = enemyShip;
     }
 }

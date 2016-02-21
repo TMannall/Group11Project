@@ -222,15 +222,16 @@ public class UI {
         playerQuartersHPFg.setScale((previousPlayerQuartersHP/(float)100)*smallBarScale, 1);
 
         // Cannon Reload
-        float reloadTime = playerShip.baseReload/playerShip.reloadBoost;
-        long elapsed = playerShip.reloadTimer.time(TimeUnit.SECONDS);
+        float reloadTime = (playerShip.baseReload/playerShip.reloadBoost)*1000;
+        long elapsed = playerShip.reloadTimer.time(TimeUnit.MILLISECONDS);
         float reloadPercent = (elapsed/reloadTime)*(float)100;
         if(reloadPercent > 100)
             reloadPercent = 100;
-        if(reloadPercent > reload){
+        if(reloadPercent >= reload){
             reload++;
         }
-        cannonReloadFg.setScale(reload/(float)100*reloadBarScale, 1);
+        float scale = reload/(float)100*reloadBarScale;
+        cannonReloadFg.setScale(reload/(float)100*(reloadBarScale), 1);
 
         // Draw all UI elements
         for(Sprite sprite : UIelements){

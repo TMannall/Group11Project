@@ -30,6 +30,9 @@ public class TradeEvent extends Events{
     }
 
     public void setup() {
+        playerShip.addEventComplete();
+        System.out.println("EVENTS COMPLETED: " + playerShip.getEventsCompleted());
+
         // Get relevant stuff from database
         this.itemStats = eventGenerator.getItemStats();
         this.itemStrings = eventGenerator.getItemNames();

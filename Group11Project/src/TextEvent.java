@@ -35,6 +35,9 @@ public class TextEvent extends Events {
     }
 
     public void setup(){
+        playerShip.addEventComplete();
+        System.out.println("EVENTS COMPLETED: " + playerShip.getEventsCompleted());
+
         // Get stat changes
         this.eventEffects = eventGenerator.getEventEffects();
         applyChanges();

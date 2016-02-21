@@ -1,17 +1,9 @@
 import org.jsfml.graphics.*;
-import org.jsfml.system.Clock;
-import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
-import org.jsfml.window.event.KeyEvent;
-
 import java.util.Random;
 
 public class CombatEvent extends Events {
-    private int[] eventEffects = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    public String attackedText = "";
-    public String titleString = attackedText;
-
     Sprite messageScroll;
     private static int numberOfButtons = 2;
     Text[] text = new Text[numberOfButtons];
@@ -29,9 +21,10 @@ public class CombatEvent extends Events {
 
     boolean activeCombat = false;       // Set to true to disable "entering combat" alert & begin encounter
 
-    private UI ui;
-    private PlayerShip playerShip;
-    private EnemyShip enemyShip;
+    protected UI ui;
+    protected PlayerShip playerShip;
+    protected EnemyShip enemyShip;
+    protected EnemyShip.Difficulty difficulty;
 
     public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, PlayerShip playerShip) {
         super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
@@ -43,11 +36,7 @@ public class CombatEvent extends Events {
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);    //MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
-        title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 300);
-        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.BLACK);
-        title.setStyle(Text.BOLD);
+        setTitle();
 
         for (int i = 0; i < numberOfButtons; i++) {
             text[i] = new Text();
@@ -79,9 +68,11 @@ public class CombatEvent extends Events {
             recti[i] = new IntRect(rectf[i]);
         }
 
-        enemyShip = new EnemyShip(textures, driver, window, randGenerator, sound, Ship.ShipType.STANDARD, (float) 0.5, 600, 420);
+        chooseDifficulty();
+        enemyShip = new EnemyShip(textures, driver, window, randGenerator, sound, Ship.ShipType.STANDARD, (float) 0.5, 600, 420, difficulty);
 
         ui = new UI(textures, driver, window, playerShip, enemyShip);
+        playerShip.setEnemyShip(enemyShip);
         playerShip.setUI(ui);
     }
 
@@ -92,6 +83,18 @@ public class CombatEvent extends Events {
             displayAlert();
 
         window.display();
+    }
+
+    public void displayAlert() {
+        textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+        window.draw(textures.ocean);
+
+        window.draw(messageScroll);
+        window.draw(title);
+        for (int i = 0; i < numberOfButtons; i++) {
+            window.draw(textButton[i]);
+            window.draw(text[i]);
+        }
         for (Event event : window.pollEvents()) {
             switch (event.type) {
                 case CLOSED:
@@ -125,18 +128,6 @@ public class CombatEvent extends Events {
                     }
                     break;
             }
-        }
-    }
-
-    public void displayAlert() {
-        textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
-        window.draw(textures.ocean);
-
-        window.draw(messageScroll);
-        window.draw(title);
-        for (int i = 0; i < numberOfButtons; i++) {
-            window.draw(textButton[i]);
-            window.draw(text[i]);
         }
 
     }
@@ -228,7 +219,7 @@ public class CombatEvent extends Events {
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
             // Create new temporary success state & move to it
-            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_KILL);
+            FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_KILL, difficulty);
             stateMachine.setState(success);
         }
     }
@@ -243,5 +234,22 @@ public class CombatEvent extends Events {
             return hovered;
 
         return null;
+    }
+
+    public void chooseDifficulty(){
+        if(playerShip.getEventsCompleted() < 4)
+            difficulty = EnemyShip.Difficulty.EASY;
+        else if(playerShip.getEventsCompleted() < 9)
+            difficulty = EnemyShip.Difficulty.MEDIUM;
+        else
+            difficulty = EnemyShip.Difficulty.HARD;
+    }
+
+    public void setTitle(){
+        title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
+        title.setPosition(driver.getWinWidth() / 2, 300);
+        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        title.setColor(Color.BLACK);
+        title.setStyle(Text.BOLD);
     }
 }

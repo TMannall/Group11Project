@@ -41,6 +41,7 @@ public class GameDriver {
 
     private PlayerShip playerShip = new PlayerShip(textures, driver, window, randGenerator, sound, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
 
+    private Leaderboard leaderboardObj = new Leaderboard();
     // jack: sprite testing
     public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
@@ -56,12 +57,12 @@ public class GameDriver {
         // States
         menu = new Menu(machine, driver, window, textures, sound);
         settings = new Settings(machine, driver, window, textures, sound);
-        leaderboard = new LeaderboardDisplay(machine, driver, window, textures);
+        leaderboard = new LeaderboardDisplay(machine, driver, window, textures, leaderboardObj);
         cptSelection = new CptSelection(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventGenerator);
 
       //  afterEvent = new AfterEvent(machine, driver, window, textures, eventDriver);
-        gameover = new GameOver(machine, driver, window, textures);
+        gameover = new GameOver(machine, driver, window, textures, leaderboardObj);
 
         cptSelection = new CptSelection(machine, driver, window, textures);
        // afterEvent = new AfterEvent(machine, driver, window, textures, eventDriver);
