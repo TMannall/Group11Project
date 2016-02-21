@@ -1,19 +1,16 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Random;
 
 /**
- * Created by Aidan on 15/02/2016.
+ * Class used to display the instructions for the game, these are divided up into different pages
+ * to explain each aspect of the game
  */
 public class InstructionsState extends FSMState
 {
-    /**
-     * Event state class for Endless Sea
-     */
+
     private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;

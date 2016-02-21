@@ -1,6 +1,6 @@
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.Texture;
+
 
 public abstract class Actor {
     protected Textures textures;

@@ -1,11 +1,11 @@
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.system.Clock;
-import org.jsfml.system.Time;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class used to manage a basic ship
+ */
 public abstract class Ship{
     public enum ShipType{
         PLAYER, STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER
@@ -26,6 +26,7 @@ public abstract class Ship{
     protected boolean gunLoaded = true;   // True when cannons can fire; false when reloading
     protected Timer reloadTimer;
 
+    //Define ship sections
     protected ShipSection guns;
     protected ShipSection masts;
     protected ShipSection bridge;
@@ -61,6 +62,9 @@ public abstract class Ship{
         }
     }
 
+    /**
+     * Method for checking whether weapons have been reloaded
+     */
     public void checkReload(){
         long elapsed = reloadTimer.time(TimeUnit.SECONDS);
         if(elapsed >= (baseReload/reloadBoost)){
@@ -71,6 +75,10 @@ public abstract class Ship{
         }
     }
 
+    /**
+     * Method takes a damage amount and applies it to ship's hull, also manages whether hull has been destroyed
+     * @param change
+     */
     public void damageHull(int change){
         System.out.println("SHIP HULL DAMAGED!");
         hullHP -= change;
@@ -81,29 +89,52 @@ public abstract class Ship{
         }
     }
 
+    /**
+     * Method used to repair the hull of the ship, prevents hull being set higher than 100
+     * @param change
+     */
     public void repairHull(int change){
         hullHP += change;
         if(hullHP > 100)
             hullHP = 100;
     }
 
-
+    /**
+     * Method checks whether gun is currently loaded
+     * @return gunLoaded
+     */
     public boolean isGunLoaded(){
         return gunLoaded;
     }
 
+    /**
+     * Method used to set the gun to loaded
+     * @param loaded
+     */
     public void setGunLoaded(boolean loaded){
         gunLoaded = loaded;
     }
 
+    /**
+     * Method for checking gun strength
+     * @return gunStr
+     */
     public int getGunStr(){
         return gunStr;
     }
 
+    /**
+     * Method for getting current reload timer
+     * @return reloadTimer
+     */
     public Timer getReloadTimer(){
         return reloadTimer;
     }
 
+    /**
+     * Method for getting the current Hull health
+     * @return hullHP
+     */
     public int getHullHP(){
         return hullHP;
     }

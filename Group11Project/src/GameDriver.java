@@ -1,12 +1,10 @@
-/**
- * Driver for Endless Sea
- */
-
 import org.jsfml.graphics.*;
 import org.jsfml.window.*;
-
 import java.util.List;
 import java.util.ArrayList;
+/**
+ * Main class for Endless Sea, manages declaration of Finite State Machines for each game state
+ */
 
 public class GameDriver {
     public static int getWinWidth() {
@@ -39,6 +37,7 @@ public class GameDriver {
     private FSMState cptSelection;
     private FSMState afterEvent;
     private FSMState instructionState;
+    private FSMState volume;
     private EventExampleDriver eventDriver = new EventExampleDriver();
 
     // jack: sprite testing
@@ -86,7 +85,6 @@ public class GameDriver {
         machine.getStates().add(cptSelection);
         machine.getStates().add(afterEvent);
         machine.getStates().add(instructionState);
-
 
         // Set menu state for game launch
         machine.setState(menu);

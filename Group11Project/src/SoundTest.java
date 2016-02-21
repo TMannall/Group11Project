@@ -1,5 +1,8 @@
 public class SoundTest
 {
+	/**
+	 * Class used to test the SoundClass file
+     */
 	public static void main(String[] Args)
 	{
 		SoundClass audio = new SoundClass();

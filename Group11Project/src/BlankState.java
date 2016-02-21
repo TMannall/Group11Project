@@ -3,13 +3,10 @@ import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Text;
-import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;

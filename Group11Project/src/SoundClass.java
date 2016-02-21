@@ -1,20 +1,20 @@
 import org.jsfml.audio.*;
 import java.nio.file.*;
 import java.io.IOException;
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.io.File;
 
-/*
-  Notes:
-	- Supported audio file formats: ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam, w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
-	- Sounds stop automatically when finished playing, so there is no need to call the stop function.
-	- Background music is in a loop (when finished playing it starts again from the begining) so it has to be stopped manually.
-*/
+/**
+ * Class for playing sounds within the game
+ *
+ * *Notes:
+ - Supported audio file formats: ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam, w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+ - Sounds stop automatically when finished playing, so there is no need to call the stop function.
+ - Background music is in a loop (when finished playing it starts again from the beginning) so it has to be stopped manually.
+ */
 
 public class SoundClass
 {
@@ -254,8 +254,8 @@ public class SoundClass
 	}
 
 	/**
-	* A method to stop the sound played using playSound(). Once stopped it can't be resumed by resumeSound().
-	**/
+	 * A method to stop the sound played using playSound(). Once stopped it can't be resumed by resumeSound().
+	 */
 	public void stopSound()
 	{
 		sound.stop();

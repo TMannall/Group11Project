@@ -6,7 +6,7 @@ import org.jsfml.window.event.KeyEvent;
 import java.util.Random;
 
 /**
- * Game state class for Endless Sea
+ * Game state class for Endless Sea, manages sound, placing of ship and keyboard usage
  */
 public class Game extends FSMState {
     private FSM stateMachine;

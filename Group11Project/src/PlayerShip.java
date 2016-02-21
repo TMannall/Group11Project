@@ -70,6 +70,9 @@ public class PlayerShip extends Ship {
         }
     }
 
+    /**
+     * Check if reload has happened
+     */
     @Override
     public void checkReload(){
         long elapsed = reloadTimer.time(TimeUnit.SECONDS);
