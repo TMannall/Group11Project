@@ -242,6 +242,8 @@ public class TextEvent extends Events {
         else
             playerShip.quarters.repair(eventEffects[9]);
 
+        playerShip.addPlayerScore(20);
+
         System.out.println("GOLD: " + playerShip.getCurrGold());
         System.out.println("FOOD: " + playerShip.getCurrFood());
         System.out.println("WATER: " + playerShip.getCurrWater());

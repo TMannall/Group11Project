@@ -278,6 +278,8 @@ public class AfterEvent extends Events{
         else
             playerShip.quarters.repair(eventEffects[9]);
 
+        playerShip.addPlayerScore(20);
+
         System.out.println("GOLD: " + playerShip.getCurrGold());
         System.out.println("FOOD: " + playerShip.getCurrFood());
         System.out.println("WATER: " + playerShip.getCurrWater());
@@ -306,6 +308,8 @@ public class AfterEvent extends Events{
         playerShip.addGold(eventEffects[0] * difficultyMod);
         playerShip.addFood(eventEffects[1]);
         playerShip.addWater(eventEffects[2]);
+
+        playerShip.addPlayerScore(250);
 
         System.out.println("GOLD: " + playerShip.getCurrGold());
         System.out.println("FOOD: " + playerShip.getCurrFood());

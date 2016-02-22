@@ -34,7 +34,7 @@ public abstract class Ship{
     private int currWater = maxWater;
 
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
-    protected float gunStr = 10; // Cannon strength (modifies damage dealt). 1 = default starting strength
+    protected float gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
     protected float reloadBoost = (float)1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
     private int mastSpeed = 1; // Mast speed modifier. 1 standard rate, 2 = double rate
     protected float bridgeDefence = 1; // Defence modifier. 1 = standard defence, 2 = double defence (halves dmg received)
