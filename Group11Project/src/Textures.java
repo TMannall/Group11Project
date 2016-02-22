@@ -8,7 +8,7 @@ import java.nio.file.Paths;
  */
 public class Textures {
     // Splash screens
-    private Texture mainMenu_ = loadTexture("textures/main_menu.png");
+    private Texture mainMenu_ = loadTexture("textures/splash_main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
     private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
@@ -16,6 +16,8 @@ public class Textures {
     public Sprite mapConnections = createSprite(mapConnections_, 0, 0, 1280, 720);
     private Texture splashTitle_ = loadTexture("textures/main_menu_title.png");
     public Sprite splashTitle = createSprite(splashTitle_, 0, 0, 720, 171);
+    public Texture gameover_ = loadTexture("textures/splash_game_over.png");
+    public Sprite gameover = createSprite(gameover_, 0, 0, 1280, 720);
 
     public Texture instructions = loadTexture("textures/Intructions.png");
     public Sprite instMap = createSprite(instructions, 0, 0, 1280, 720);
@@ -144,6 +146,11 @@ public class Textures {
     public Sprite AIshipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite AIshipMedical = createSprite(shipLv3, 868, 0, 826, 365);
 
+    public Sprite AIshipBridgeDestroyed = createSprite(shipLv3Dead, 0, 0, 525, 365);
+    public Sprite AIshipGunDeckDestroyed = createSprite(shipLv3Dead, 525, 0, 343, 125);
+    public Sprite AIshipMastsDestroyed = createSprite(shipLv3Dead, 525, 129, 343, 115);
+    public Sprite AIshipSuppliesDestroyed = createSprite(shipLv3Dead, 525, 241, 343, 125);
+    public Sprite AIshipMedicalDestroyed = createSprite(shipLv3Dead, 868, 0, 826, 365);
 
     // Character portraits
     public Texture cptPortraitA = loadTexture("textures/captain_portrait_example.png");
@@ -151,13 +158,10 @@ public class Textures {
     public Texture cptPortraitC = loadTexture("textures/captain_portrait_example.png");
     public Texture cptPortraitD = loadTexture("textures/captain_portrait_example.png");
     public Texture backgroundCptSel = loadTexture("textures/backgroundCptSel.png");
-		
-		// Leaderboard
-		public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
-		
-		// Game Over
-		public Texture gameover_ = loadTexture("textures/gameover.jpg");
-    public Sprite gameover = createSprite(gameover_, 0, 0, 1280, 720);
+
+	// Leaderboard
+	public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
+
 
     /**
      * loads a texture from file, throws exception when this fails
