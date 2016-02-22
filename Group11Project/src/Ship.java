@@ -27,7 +27,7 @@ public abstract class Ship{
 
     // Game-mutable ship stats
     private int playerScore = 0;    // Player's score for the leaderboard
-    private int currGold = 100;
+    private int currGold = 0;
     private int maxFood = 100;
     private int currFood = maxFood;
     private int maxWater = 100;
@@ -238,7 +238,7 @@ public abstract class Ship{
         playerScore += change;
     }
 
-    public void addGunStr(int change) {
+    public void addGunStr(float change) {
         gunStr += change;
     }
 
@@ -246,7 +246,7 @@ public abstract class Ship{
         return reloadBoost;
     }
 
-    public void addReloadBoost(int change) {
+    public void addReloadBoost(float change) {
         reloadBoost += change;
     }
 
@@ -262,7 +262,7 @@ public abstract class Ship{
         return bridgeDefence;
     }
 
-    public void addBridgeDefence(int change) {
+    public void addBridgeDefence(float change) {
         bridgeDefence += change;
     }
 

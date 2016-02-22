@@ -19,7 +19,7 @@ import java.nio.file.Paths;
  */
 public class CptSelection extends FSMState{
 	
-	private String[] cptNamesAndStats = {"Cpt. #1\n\nStat #1\nStat #2", "Cpt. #2\n\nStat #1\nStat #2", "Cpt. #3\n\nStat #1\nStat #2", "Cpt. #4\n\nStat #1\nStat #2"};
+	private String[] cptNamesAndStats = {"Nemo\n\n+ Gun Strength\n- Defence", "Bluetooth\n\n+ Max Resources\n- Gun Reload", "Keira Swann\n\n+ Defence\n- Food", "Barbossa\n\n+ 50 Gold\n- Hull HP"};
 
 	private FSM stateMachine;
     private GameDriver driver;
@@ -44,7 +44,7 @@ public class CptSelection extends FSMState{
     private static String FontFile = "vinque.ttf";
     private String FontPath;
 
-    private static String Title = "New Game";
+    private static String Title = "Choose your Captain";
 
     public CptSelection(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, SoundFX sound) {
         this.stateMachine = stateMachine;
@@ -192,18 +192,36 @@ public class CptSelection extends FSMState{
 						}
 						if(recti[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #1 Selected");
+							driver.getPlayerShip().addGunStr((float)0.5);
+							driver.getPlayerShip().addBridgeDefence(-(float)0.5);
+							System.out.println("GUN STR: " + driver.getPlayerShip().getGunStr());
+							System.out.println("BRIDGE DEF: " + driver.getPlayerShip().getBridgeDefence());
 							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #2 Selected");
+							driver.getPlayerShip().addMaxFood(10);
+							driver.getPlayerShip().addMaxWater(10);
+							driver.getPlayerShip().addReloadBoost(-(float)0.1);
+							System.out.println("MAX FOOD: " + driver.getPlayerShip().getMaxFood());
+							System.out.println("MAX WATER: " + driver.getPlayerShip().getMaxWater());
+							System.out.println("RELOAD BOOST: " +driver.getPlayerShip().getReloadBoost() );
 							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #3 Selected");
+							driver.getPlayerShip().addBridgeDefence((float)0.5);
+							driver.getPlayerShip().addFood(-15);
+							System.out.println("BRIDGE DEF: " + driver.getPlayerShip().getBridgeDefence());
+							System.out.println("STARTING FOOD:" + driver.getPlayerShip().getCurrFood());
 							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #4 Selected");
+							driver.getPlayerShip().addGold(50);
+							driver.getPlayerShip().damageHull(25);
+							System.out.println("GOLD: " + driver.getPlayerShip().getCurrGold());
+							System.out.println("HULL HP:" + driver.getPlayerShip().getHullHP());
 							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						//Main Menu
