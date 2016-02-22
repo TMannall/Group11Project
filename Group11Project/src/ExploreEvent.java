@@ -1,26 +1,9 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
+
 import java.util.Random;
 
-/**
- * @Author Aidan Lennie on 25/01/2016.
- */
-public class AssExpEventState extends FSMState{
-    /**
-     * Event state class for Endless Sea
-     */
-    private FSM stateMachine;
-    private GameDriver driver;
-    private RenderWindow window;
-    private Textures textures;
-    private Random randGenerator;
-    private EventExampleDriver eventDriver;
-    private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = "";
-    public String titleString = attackedText;
+public class ExploreEvent extends Events {
 
     Sprite messageScroll;
     private static int numberOfButtons = 2;
@@ -28,14 +11,9 @@ public class AssExpEventState extends FSMState{
     Text title;
     IntRect[] recti = new IntRect[numberOfButtons];
     FloatRect[] rectf = new FloatRect[numberOfButtons];
-    private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
-    private static String JdkFontPath = "textures/";
-    private static String JreFontPath = "textures/";
-    private static int titleFontSize = 30;
-    private static int buttonFontSize = 32;
-    private static String FontFile = "vinque.ttf";
-    private String FontPath;
-
+    private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
+    public String attackedText = "";
+    public String titleString = attackedText;
 
     float[] leftBound = new float[2];
     float[] rightBound = new float[2];
@@ -44,33 +22,18 @@ public class AssExpEventState extends FSMState{
     Sprite[] textButton = new Sprite[numberOfButtons];
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
-    Font fontStyle;
 
-    public AssExpEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
-        this.stateMachine = stateMachine;
-        this.driver = driver;
-        this.window = window;
-        this.textures = textures;
-        randGenerator = new Random();
-        this.eventDriver = eventDriver;
+    public ExploreEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound){
+        super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         setup();
     }
 
     public void setup(){
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 400);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
+        messageScroll.setScale((float)1.25, 1);
 
-        if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
-        else FontPath = JdkFontPath;
-        fontStyle = new Font();
-        try {
-            fontStyle.loadFromFile(
-                    Paths.get(FontPath + FontFile));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        title = new Text(titleString, fontStyle, titleFontSize);
+        title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
@@ -105,9 +68,17 @@ public class AssExpEventState extends FSMState{
                     textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
             recti[i] = new IntRect(rectf[i]);
         }
+
     }
 
-    public void execute() {
+
+    public void execute(){
+        if(consumeResources) {
+            consumeResources = false;
+            consumeResources();
+        }
+        window.clear();
+
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         for(int i = 0; i < numberOfButtons; i++) {
@@ -120,20 +91,9 @@ public class AssExpEventState extends FSMState{
             window.draw(textButton[i]);
             window.draw(text[i]);
         }
-        displayMenu();
-    }
 
-    public void displayMenu()
-    {
-        title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 300);
-        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.BLACK);
-        title.setStyle(Text.BOLD);
-        for(int i = 0; i < numberOfButtons; i++){
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
+        displayMenu();
+        window.display();
         for (Event event : window.pollEvents()) {
             switch (event.type) {
                 case CLOSED:
@@ -143,23 +103,21 @@ public class AssExpEventState extends FSMState{
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     for(int i = 0; i < 2; i++){
-                        leftBound[i] = textButton[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
-                        topBound[i] = textButton[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
+                        leftBound[i] = text[i].getGlobalBounds().left;
+                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
+                        topBound[i] = text[i].getGlobalBounds().top;
+                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
                     for(int i = 0; i < 2; i++) {
                         if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
-                            //System.out.println("Island Clicked!");
                             switch (i) {
-                                case 0:    //Island 1
-                                    System.out.println("Accepted");
-                                    stateMachine.setState(stateMachine.getStates().get(12));
+                                case 0:
+                                    FSMState consequence = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.EXPLORE_ACCEPT);
+                                    stateMachine.setState(consequence);
                                     break;
-                                case 1: //Island 2
-                                    System.out.println("Declined");
-                                    stateMachine.setState(stateMachine.getStates().get(3));
+                                case 1:
+                                    stateMachine.setState(stateMachine.getStates().get(4)); // Declined, return to map
                                     break;
                             }
                         }
@@ -167,6 +125,12 @@ public class AssExpEventState extends FSMState{
                     break;
             }
         }
-        window.display();
+    }
+
+    public void displayMenu(){
+        for(int i = 0; i < numberOfButtons; i++){
+            window.draw(textButton[i]);
+            window.draw(text[i]);
+        }
     }
 }

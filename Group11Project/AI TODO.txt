@@ -9,7 +9,7 @@ AI to do:
 - Maybe need general success state too? So it goes encounter state -> success state -> map state & repeat
 
 
-- Combat shouldn't start until combat message has been presented to player and they press OK to begin
+- CombatEvent shouldn't start until combat message has been presented to player and they press OK to begin
 - AI should then wait until player has attacked first before beginning the encounter
 
 

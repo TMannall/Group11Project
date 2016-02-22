@@ -19,12 +19,13 @@ import java.nio.file.Paths;
  */
 public class CptSelection extends FSMState{
 	
-		private String[] cptNamesAndStats = {"Cpt. #1\n\nStat #1\nStat #2", "Cpt. #2\n\nStat #1\nStat #2", "Cpt. #3\n\nStat #1\nStat #2", "Cpt. #4\n\nStat #1\nStat #2"};
+	private String[] cptNamesAndStats = {"Cpt. #1\n\nStat #1\nStat #2", "Cpt. #2\n\nStat #1\nStat #2", "Cpt. #3\n\nStat #1\nStat #2", "Cpt. #4\n\nStat #1\nStat #2"};
 
-		private FSM stateMachine;
+	private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
+	private SoundFX sound;
 
     private static int numberOfButtons = 5;
     private static int buttonIndex = 0;
@@ -45,11 +46,12 @@ public class CptSelection extends FSMState{
 
     private static String Title = "New Game";
 
-    public CptSelection(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures) {
+    public CptSelection(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, SoundFX sound) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
+		this.sound = sound;
         setup();
     }
 
@@ -190,25 +192,25 @@ public class CptSelection extends FSMState{
 						}
 						if(recti[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #1 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #2 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #3 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #4 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						//Main Menu
 						else if(rect[numberOfButtons-1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[numberOfButtons-1]);
 							window.draw(text[numberOfButtons-1]);
-							driver.sound.playBackgroundMusic("music_main_menu");
+							sound.playBackgroundMusic("music_main_menu");
 							stateMachine.setState(stateMachine.getStates().get(0));
 						}
 					}
