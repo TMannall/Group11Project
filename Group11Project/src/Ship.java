@@ -5,6 +5,7 @@ import org.jsfml.system.Clock;
 import org.jsfml.system.Time;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -52,6 +53,9 @@ public abstract class Ship{
     protected Clock animClock;
     int[] gunAnimFrames = new int[10];
 
+    protected ArrayList<Sprite> marineAnimations;
+    int[] marineAnimFrames = new int[10];
+
     protected float scale;
     protected int xPos;
     protected int yPos;
@@ -69,6 +73,7 @@ public abstract class Ship{
 
         sections = new ArrayList<>();
         gunAnimations = new ArrayList<>();
+        marineAnimations = new ArrayList<>();
 
         // Setup cannon smoke animation sprites - must be positioned individually for player and enemy ships
         animClock = new Clock();

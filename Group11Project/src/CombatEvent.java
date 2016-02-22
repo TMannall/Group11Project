@@ -33,7 +33,7 @@ public class CombatEvent extends Events {
     }
 
     public void setup() {
-        messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);    //MESSAGE SCROLL
+        messageScroll = textures.createSprite(textures.ingameWindow_, 0, 0, 800, 500);    //MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
         setTitle();
