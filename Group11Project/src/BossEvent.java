@@ -34,8 +34,7 @@ public class BossEvent extends CombatEvent {
 
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
-            // Create new temporary success state & move to it
-            stateMachine.setState(stateMachine.getStates().get(2));
+            stateMachine.setState(stateMachine.getStates().get(7));         // Game over, enemy ship destroyed
         }
     }
 }

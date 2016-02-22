@@ -1,6 +1,5 @@
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
-
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -17,6 +16,15 @@ public class Textures {
     public Sprite mapConnections = createSprite(mapConnections_, 0, 0, 1280, 720);
     private Texture splashTitle_ = loadTexture("textures/main_menu_title.png");
     public Sprite splashTitle = createSprite(splashTitle_, 0, 0, 720, 171);
+
+    public Texture instructions = loadTexture("textures/Intructions.png");
+    public Sprite instMap = createSprite(instructions, 0, 0, 1280, 720);
+    public Sprite instEvents = createSprite(instructions, 1280, 0, 1280, 720);
+    public Sprite instTrade = createSprite(instructions, 2560, 0, 1280, 720);
+    public Sprite instCombatEvent = createSprite(instructions, 3840, 0, 1280, 720);
+    public Sprite instCombatUI = createSprite(instructions, 5120, 0, 1280, 720);
+    public Sprite instCombatUICont = createSprite(instructions, 6400, 0, 1280, 720);
+    public Sprite instCombatSprite = createSprite(instructions, 8680, 0, 1280, 720);
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
@@ -49,8 +57,11 @@ public class Textures {
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
     // events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
+    public Texture messageScroll_ = loadTexture("textures/Assembled_Scrol3.png");
     public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
+
+    public Sprite leftArrow = createSprite(userInterface, 945, 579, 70, 51);
+    public Sprite rightArrow = createSprite(userInterface, 1016, 579, 70, 51);
 
 
     public Texture mapDecoration = loadTexture("textures/map_decoration.png");

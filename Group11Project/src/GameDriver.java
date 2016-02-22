@@ -33,6 +33,7 @@ public class GameDriver {
     private FSMState encounter;         // Current encounter event being played
     private FSMState afterEvent;
     private FSMState gameover;
+    private FSMState instructions;
 
     private RenderWindow window = new RenderWindow();
     private Textures textures = new Textures();
@@ -60,12 +61,9 @@ public class GameDriver {
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures, leaderboardObj);
         cptSelection = new CptSelection(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventGenerator);
-
-      //  afterEvent = new AfterEvent(machine, driver, window, textures, eventDriver);
         gameover = new GameOver(machine, driver, window, textures, leaderboardObj);
-
         cptSelection = new CptSelection(machine, driver, window, textures);
-       // afterEvent = new AfterEvent(machine, driver, window, textures, eventDriver);
+        instructions = new Instructions(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
         machine.getStates().add(menu);
@@ -76,6 +74,7 @@ public class GameDriver {
         machine.getStates().add(encounter);
         machine.getStates().add(afterEvent);
         machine.getStates().add(gameover);
+        machine.getStates().add(instructions);
 
         // Set menu state for game launch
         machine.setState(menu);
