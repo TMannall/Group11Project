@@ -28,14 +28,14 @@ public class Textures {
 
     // User interface
     public Texture userInterface = loadTexture("textures/user_interface.png");
-        // hard-coded - loaded from here
+    // hard-coded - loaded from here
     public Sprite uiShipHullHealthAI = createSprite(userInterface, 22, 264, 994, 73);
     public Sprite uiShipSectionsHealthAI = createSprite(userInterface, 24, 349, 250, 261);
     public Sprite uiShipHullHealthPlayer = createSprite(userInterface, 11, 639, 994, 73);
     public Sprite uiShipSectionsHealthPlayer = createSprite(userInterface, 643, 353, 250, 261);
     public Sprite uiShipGunReloadPlayer = createSprite(userInterface, 310, 350, 320, 66);
 
-        // not hard-coded
+    // not hard-coded
     public Sprite uiHealthBarPlayer = createSprite(userInterface, 317, 432, 237, 29);
     public Sprite uiReloadBar = createSprite(userInterface, 317, 481, 237, 29);
     public Sprite uiHealthUnder = createSprite(userInterface, 317, 528, 237, 29);
@@ -99,10 +99,10 @@ public class Textures {
     // Ship models
     private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
     private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
-    private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
-    private Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
-    private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
-        // player ship
+    protected Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    protected Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
+    protected Texture shipHighlight = loadTexture("textures/ship_highlights.png");
+    // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite shipMasts = createSprite(shipLv3, 525, 129, 343, 115);
@@ -137,7 +137,7 @@ public class Textures {
     public Sprite shipSupplies_lvl3 = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite shipMedical_lvl3 = createSprite(shipLv3, 868, 0, 826, 365);
 
-        // ai ship
+    // ai ship
     public Sprite AIshipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite AIshipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
     public Sprite AIshipMasts = createSprite(shipLv3, 525, 129, 343, 115);
@@ -151,12 +151,12 @@ public class Textures {
     public Texture cptPortraitC = loadTexture("textures/captain_portrait_example.png");
     public Texture cptPortraitD = loadTexture("textures/captain_portrait_example.png");
     public Texture backgroundCptSel = loadTexture("textures/backgroundCptSel.png");
-		
-		// Leaderboard
-		public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
-		
-		// Game Over
-		public Texture gameover_ = loadTexture("textures/gameover.jpg");
+
+    // Leaderboard
+    public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
+
+    // Game Over
+    public Texture gameover_ = loadTexture("textures/gameover.jpg");
     public Sprite gameover = createSprite(gameover_, 0, 0, 1280, 720);
 
     /**

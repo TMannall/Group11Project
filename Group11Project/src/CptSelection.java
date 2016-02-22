@@ -190,19 +190,19 @@ public class CptSelection extends FSMState{
 						}
 						if(recti[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #1 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #2 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #3 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						else if(recti[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #4 Selected");
-							stateMachine.setState(stateMachine.getStates().get(5));
+							stateMachine.setState(stateMachine.getStates().get(4));
 						}
 						//Main Menu
 						else if(rect[numberOfButtons-1].contains(mouseClicked.position.x, mouseClicked.position.y)){
