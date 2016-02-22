@@ -1,11 +1,11 @@
-import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
-import org.jsfml.system.Clock;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class used for loaded the in game User Interface (UI
+ */
 public class UI {
 
     private Textures textures;

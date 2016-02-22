@@ -10,14 +10,12 @@ import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * CptSelection state for Endless Sea
+ * CptSelection state for Endless Sea, used to allow the player to select a captain before the game begins
  */
 public class CptSelection extends FSMState{
 	

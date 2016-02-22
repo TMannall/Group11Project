@@ -6,7 +6,7 @@ import org.jsfml.window.event.KeyEvent;
 import java.util.Random;
 
 /**
- * Game state class for Endless Sea
+ * Game state class for Endless Sea, manages sound, placing of ship and keyboard usage
  */
 public class Game extends FSMState {
     private FSM stateMachine;
@@ -14,6 +14,7 @@ public class Game extends FSMState {
     private RenderWindow window;
     private Textures textures;
     private Random randGenerator;
+    private boolean musicOn = false;
 
     private UI ui;
     private PlayerShip playerShip;
@@ -39,6 +40,12 @@ public class Game extends FSMState {
     @Override
     // Update this method with what should be added to the window (using window variable)
     public void execute() {
+        if (!musicOn){
+            musicOn = true;
+            driver.sound.stopBackgroundMusic();
+            driver.sound.playBackgroundMusic("music_combat");
+        }
+
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         playerShip.draw();
@@ -89,6 +96,9 @@ public class Game extends FSMState {
         else{
             enemyShip.attack(playerShip);
             if(playerShip.getHullHP() <= 0){
+                driver.sound.stopBackgroundMusic();
+                musicOn = false;
+                driver.sound.playBackgroundMusic("ambient_ocean");
                 stateMachine.setState(stateMachine.getStates().get(4));
             }
         }
@@ -99,6 +109,9 @@ public class Game extends FSMState {
             // Create new temporary success state & move to it
 //            FSMState success = new SuccessState(stateMachine, driver, window, textures);
 //            stateMachine.setState(success);
+            driver.sound.stopBackgroundMusic();
+            musicOn = false;
+            driver.sound.playBackgroundMusic("ambient_ocean");
             stateMachine.setState(stateMachine.getStates().get(12));
         }
     }

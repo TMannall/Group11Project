@@ -6,27 +6,27 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class Strings {
-    // main menu
+    // Main menu
     public static String title = "Endless Sea";
     public static String newGame2 = "New Game";
     public static String loadGame = "Load Game";
     public static String credits = "Credits";
     public static String quit = "Exit";
 
-    // map & trading
+    // Map & trading
     public static String returnToMenu = "Return To Menu";
     public static String store = "Trading Post";
     public static String fort = "Fortress";
     public static String trade = "Start Trading";
     public static String buy = "Buy";
 
-    // variable prefixes
+    // Variable prefixes
     public static String funds = "Gold: ";
     public static String resources = "Resources: ";
     public static String shipHealth = "Hull Strength: ";
     public static String mastHealth = "Mast Strength: ";
 
-    // combat
+    // Combat
     public static String ammoTypeCanister = "Canister Shot";
     public static String ammoTypeSolid = "Round Shot";
     public static String ammoTypeChain = "Chain SHot";

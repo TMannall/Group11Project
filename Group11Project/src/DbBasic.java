@@ -1,6 +1,7 @@
 import java.sql.*;
 import java.io.File;
 
+
 public class DbBasic {
 	/**
 	 * Set to true to enable debug messages
@@ -10,14 +11,14 @@ public class DbBasic {
 	/**
 	 * Name of database driver
 	 *
-	 * @see Class#forName( )
+	 * @see Class( )
 	 */
 	private static final String JDBC_DRIVER		= "org.sqlite.JDBC";
 
 	/**
 	 * URI prefix for database location
 	 *
-	 * @see java.sql.DriverManager#getConnection( )
+	 * @see java.sql.DriverManager( )
 	 */
 	private static final String DATABASE_LOCATION	= "jdbc:sqlite:";
 	

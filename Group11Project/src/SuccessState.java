@@ -1,7 +1,9 @@
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.event.Event;
 
-// State after an event has been successful. Map state should be invoked after this to move to next event.
+/**
+ * State after an event has been successful. Map state should be invoked after this to move to next event.
+ */
 public class SuccessState extends FSMState{
     private FSM stateMachine;
     private GameDriver driver;

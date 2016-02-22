@@ -1,21 +1,12 @@
 import org.jsfml.graphics.*;
-import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
-import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-
 import org.jsfml.window.Keyboard;
-import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
 
 import java.util.Random;
 
 /**
- * Map state class for Endless Sea
+ * Map state class for Endless Sea, displays an interactive map for the user to navigate the player ship
  */
 public class Map extends FSMState {
     private FSM stateMachine;
@@ -40,7 +31,7 @@ public class Map extends FSMState {
 				{10,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},{2,11,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},{3,10,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 					{3,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}};
 	int currentWayPoint = 0;
-	int tavelledCount = 0;
+	int travelledCount = 0;
 	Sprite ship;
 
 
@@ -136,7 +127,7 @@ public class Map extends FSMState {
 								case 0:	//Island 1
 									if (canTravelTo(i)){
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("1 Clicked");
 										eventDriver.resetProbabilities(0,100,0,0,0);
 										eventDriver.runEvent();
@@ -146,7 +137,7 @@ public class Map extends FSMState {
 								case 1: //Island 2
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("2 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
@@ -156,7 +147,7 @@ public class Map extends FSMState {
 								case 2: //Island 3
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("3 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
@@ -166,7 +157,7 @@ public class Map extends FSMState {
 								case 3: //Island 4
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("4 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
@@ -176,7 +167,7 @@ public class Map extends FSMState {
 								case 4: //Island 5 //Trade
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("5 Clicked");
 										eventDriver.resetProbabilities(0, 0, 0, 0, 100);
 										eventDriver.runEvent();
@@ -186,7 +177,7 @@ public class Map extends FSMState {
 								case 5: //Island 6 //Text
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("6 Clicked");
 										eventDriver.resetProbabilities(0, 0, 0, 100, 0);
 										eventDriver.runEvent();
@@ -196,7 +187,7 @@ public class Map extends FSMState {
 								case 6: //Island 7 //Exploration
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("7 Clicked");
 										eventDriver.resetProbabilities(0, 0, 100, 0, 0);
 										eventDriver.runEvent();
@@ -206,47 +197,47 @@ public class Map extends FSMState {
 								case 7: //Island Port //Assist
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("8 Clicked");
 										eventDriver.resetProbabilities(100, 0, 0, 0, 0);
 										eventDriver.runEvent();
 										stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									}
 									break;
-								case 8: //Island 3
+								case 8: //Island 9
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("9 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
 										stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									}
 									break;
-								case 9: //Island 3
+								case 9: //Island 10
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("10 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
 										stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									}
 									break;
-								case 10: //Island 3
+								case 10: //Island 11
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("11 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
 										stateMachine.setState(stateMachine.getStates().get(eventDriver.getEventType()));
 									}
 									break;
-								case 11: //Island 3
+								case 11: //Island 12
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("12 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
@@ -256,7 +247,7 @@ public class Map extends FSMState {
 								case 12: //Island 13
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
-										tavelledCount++;
+										travelledCount++;
 										System.out.println("13 Clicked");
 										eventDriver.resetProbabilities(20, 20, 20, 20, 20);
 										eventDriver.runEvent();
@@ -279,6 +270,11 @@ public class Map extends FSMState {
 		window.display();
     }
 
+	/**
+	 * Check wether travelling to island is possible
+	 * @param pointClicked
+	 * @return true/false
+     */
 	public boolean canTravelTo(int pointClicked)
 	{
 		for(int i = 0; i < wayPointConnections.length; i++)

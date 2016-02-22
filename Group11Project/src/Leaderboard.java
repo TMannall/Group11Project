@@ -1,15 +1,16 @@
 import java.util.Date;
 import java.util.Scanner;
-import java.nio.file.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 
-/*
-Notes:
-- All data is saved in leaderboard.ini file,
-- If the file is missing or is corrupted it will be replaced by default data (clean leaderboard),
-- When submitting a new score using submit(), handle the return value (T/F) to give feedback to player so they know if their score was high enough to make it to the leaderboard,
-*/
+/**
+ * Class used for managing the player leaderboard
+ *
+ * Notes:
+ * - All data is saved in leaderboard.ini file,
+ * - If the file is missing or is corrupted it will be replaced by default data (clean leaderboard),
+ * - When submitting a new score using submit(), handle the return value (T/F) to give feedback to player so they know if their score was high enough to make it to the leaderboard,
+**/
 
 public class Leaderboard
 {

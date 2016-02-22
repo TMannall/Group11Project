@@ -3,62 +3,53 @@ import org.jsfml.window.event.Event;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Random;
 
 /**
- * @Author Aidan Lennie on 25/01/2016.
+ * Class used to display the instructions for the game, these are divided up into different pages
+ * to explain each aspect of the game
  */
-public class AssExpEventState extends FSMState{
-    /**
-     * Event state class for Endless Sea
-     */
+public class InstructionsState extends FSMState
+{
+
     private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
-    private Random randGenerator;
-    private EventExampleDriver eventDriver;
-    private int[] eventEffects = {0,0,0,0,0,0,0,0,0,0};
-    public String attackedText = "";
-    public String titleString = attackedText;
 
-    Sprite messageScroll;
-    private static int numberOfButtons = 2;
+    private static int numberOfButtons = 3;
     Text[] text = new Text[numberOfButtons];
-    Text title;
     IntRect[] recti = new IntRect[numberOfButtons];
     FloatRect[] rectf = new FloatRect[numberOfButtons];
-    private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
+    String[] buttonString= {"Previous","Menu", "Next"};
+    Sprite[] instBackdrop = new Sprite[7];
+    int[] backdropYPos = {0,720,1440,2160,2880,3600,4320};
+
+    int currentInstruction = 0;
+
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
-    private static int titleFontSize = 30;
-    private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
 
 
-    float[] leftBound = new float[2];
-    float[] rightBound = new float[2];
-    float[] topBound = new float[2];
-    float[] bottomBound = new float[2];
+    float[] leftBound = new float[numberOfButtons];
+    float[] rightBound = new float[numberOfButtons];
+    float[] topBound = new float[numberOfButtons];
+    float[] bottomBound = new float[numberOfButtons];
     Sprite[] textButton = new Sprite[numberOfButtons];
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
     Font fontStyle;
 
-    public AssExpEventState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, EventExampleDriver eventDriver){
+    public InstructionsState(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures){
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-        randGenerator = new Random();
-        this.eventDriver = eventDriver;
         setup();
     }
 
     public void setup(){
-        messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 400);
 
         if ((new File(JreFontPath)).exists()) FontPath = JreFontPath;
         else FontPath = JdkFontPath;
@@ -70,26 +61,24 @@ public class AssExpEventState extends FSMState{
             ex.printStackTrace();
         }
 
-        title = new Text(titleString, fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 300);
-        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.BLACK);
-        title.setStyle(Text.BOLD);
-
         for (int i = 0; i < numberOfButtons; i++) {
             text[i] = new Text();
         }
-        text[0].setFont(fontStyle);
-        text[0].setColor(Color.RED);
-        text[0].setString("ACCEPT!");
-        text[0].setPosition(500, 500);
-        text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
-        text[1].setFont(fontStyle);
-        text[1].setColor(Color.YELLOW);
-        text[1].setString("DECLINE!");
-        text[1].setPosition(770, 500);
-        text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
+        for(int i = 0; i < 7; i++)
+        {
+            instBackdrop[i] = textures.createSprite(textures.instructions, 0, backdropYPos[i], 1280, 720);
+            instBackdrop[i].setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
+        }
+
+        for(int i = 0; i < numberOfButtons; i++)
+        {
+            text[i].setFont(fontStyle);
+            text[i].setColor(Color.CYAN);
+            text[i].setString(buttonString[i]);
+            text[i].setPosition(295 + (i*350), 680);
+            text[i].setOrigin(text[i].getLocalBounds().width / 2, text[i].getLocalBounds().height / 2);
+        }
 
         for(int i = 0; i < numberOfButtons; i++){
             textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
@@ -107,29 +96,17 @@ public class AssExpEventState extends FSMState{
         }
     }
 
+    @Override
+    // Update this method with what should be added to the window (using window variable)
     public void execute() {
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
-        for(int i = 0; i < numberOfButtons; i++) {
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
-        window.draw(messageScroll);
-        window.draw(title);
-        for(int i = 0; i < numberOfButtons; i++){
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
         displayMenu();
     }
 
     public void displayMenu()
     {
-        title = new Text(eventDriver.getEventText(), fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 300);
-        title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.BLACK);
-        title.setStyle(Text.BOLD);
+        window.draw(instBackdrop[currentInstruction]);
         for(int i = 0; i < numberOfButtons; i++){
             window.draw(textButton[i]);
             window.draw(text[i]);
@@ -142,24 +119,29 @@ public class AssExpEventState extends FSMState{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    for(int i = 0; i < 2; i++){
+                    for(int i = 0; i < 3; i++){
                         leftBound[i] = textButton[i].getGlobalBounds().left;
                         rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
                         topBound[i] = textButton[i].getGlobalBounds().top;
                         bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                     }
-                    // Add events/actions here when islands are clicked on
-                    for(int i = 0; i < 2; i++) {
+                    for(int i = 0; i < 3; i++) {
                         if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
-                            //System.out.println("Island Clicked!");
                             switch (i) {
-                                case 0:    //Island 1
-                                    System.out.println("Accepted");
-                                    stateMachine.setState(stateMachine.getStates().get(12));
+                                case 0:    //Previous
+                                    System.out.println("Previous");
+                                    if(currentInstruction > 0)
+                                        currentInstruction--;
                                     break;
-                                case 1: //Island 2
-                                    System.out.println("Declined");
-                                    stateMachine.setState(stateMachine.getStates().get(3));
+                                case 1: //Menu
+                                    System.out.println("Menu");
+                                    currentInstruction = 0;
+                                    stateMachine.setState(stateMachine.getStates().get(0));
+                                    break;
+                                case 2: //Next
+                                    System.out.println("Next");
+                                    if(currentInstruction < 6)
+                                        currentInstruction++;
                                     break;
                             }
                         }

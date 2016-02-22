@@ -1,18 +1,18 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
 /**
- * Created by Aidan on 16/02/2016.
+ * @Author Aidan Lennie on 25/01/2016.
+ */
+/**
+ * Event state class for Endless Sea, used to display the events for trading items
  */
 public class TradeEventState extends FSMState{
-    /**
-     * Event state class for Endless Sea
-     */
+
     private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;
@@ -35,7 +35,7 @@ public class TradeEventState extends FSMState{
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
-    private static int titleFontSize = 50;
+    private static int titleFontSize = 30;
     private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
@@ -96,7 +96,7 @@ public class TradeEventState extends FSMState{
             text[item].setFont(fontStyle);
             text[item].setColor(Color.RED);
             text[item].setString("Buy Item");
-            text[item].setPosition(500, itemName[item].getPosition().y - 14);
+            text[item].setPosition(520, itemName[item].getPosition().y - 14);
             text[item].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
             text[item].setScale((float)0.5,(float)0.5);
 
@@ -133,8 +133,8 @@ public class TradeEventState extends FSMState{
             textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
             hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
             pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
-            textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 5);
-            pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 5);
+            textButton[i].setPosition(text[i].getPosition().x + 15, text[i].getPosition().y + 5);
+            pushButton[i].setPosition(text[i].getPosition().x + 15, text[i].getPosition().y + 5);
             textButton[i].setScale((float)0.5, (float)0.5);
             pushButton[i].setScale((float)0.5, (float)0.5);
         }
@@ -166,8 +166,6 @@ public class TradeEventState extends FSMState{
             window.draw(text[i]);
         }
         window.draw(messageScroll);
-        for (int i = 0; i < 4; i++)
-            window.draw(textButton[i]);
         displayMenu();
     }
 
@@ -228,10 +226,10 @@ public class TradeEventState extends FSMState{
                     int yPos = event.asMouseEvent().position.y;
 
                     for(int i = 0; i < 4; i++){
-                        leftBound[i] = text[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                        topBound[i] = text[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
+                        leftBound[i] = textButton[i].getGlobalBounds().left;
+                        rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
+                        topBound[i] = textButton[i].getGlobalBounds().top;
+                        bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
                     for(int i = 0; i < 4; i++) {

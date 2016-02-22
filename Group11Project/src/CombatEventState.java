@@ -1,13 +1,12 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
 /**
- * Created by Aidan on 15/02/2016.
+ * @Author Aidan Lennie on 25/01/2016.
  */
 public class CombatEventState extends FSMState
 {
@@ -33,7 +32,7 @@ public class CombatEventState extends FSMState
         private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
         private static String JdkFontPath = "textures/";
         private static String JreFontPath = "textures/";
-        private static int titleFontSize = 50;
+        private static int titleFontSize = 30;
         private static int buttonFontSize = 32;
         private static String FontFile = "vinque.ttf";
         private String FontPath;
@@ -147,10 +146,10 @@ public class CombatEventState extends FSMState
                 int xPos = event.asMouseEvent().position.x;
                 int yPos = event.asMouseEvent().position.y;
                 for(int i = 0; i < 2; i++){
-                    leftBound[i] = text[i].getGlobalBounds().left;
-                    rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                    topBound[i] = text[i].getGlobalBounds().top;
-                    bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
+                    leftBound[i] = textButton[i].getGlobalBounds().left;
+                    rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
+                    topBound[i] = textButton[i].getGlobalBounds().top;
+                    bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                 }
                 // Add events/actions here when islands are clicked on
                 for(int i = 0; i < 2; i++) {

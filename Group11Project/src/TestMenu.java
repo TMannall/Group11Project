@@ -1,12 +1,9 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-
-import org.jsfml.system.*;
 import org.jsfml.window.*;
 import org.jsfml.window.event.*;
 import org.jsfml.graphics.*;
-import org.jsfml.window.Keyboard.Key;
 
 class TestMenu{
 	private static int menuWidth  = 1024;

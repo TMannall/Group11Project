@@ -1,13 +1,12 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
 /**
- * Created by Aidan on 16/02/2016.
+ * @Author Aidan Lennie on 25/01/2016.
  */
 public class AfterEventState extends FSMState{
     /**
@@ -33,7 +32,7 @@ public class AfterEventState extends FSMState{
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
     private static String JreFontPath = "textures/";
-    private static int titleFontSize = 50;
+    private static int titleFontSize = 30;
     private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
@@ -92,13 +91,13 @@ public class AfterEventState extends FSMState{
         }
 
         statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
-        statsChanges[0].setPosition(380, 430);
+        statsChanges[0].setPosition(380, 460);
         statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         statsChanges[0].setColor(Color.BLACK);
         statsChanges[0].setStyle(Text.BOLD);
         for(int i = 1; i < statsNames.length; i++) {
             statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 11);
-            statsChanges[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 430);
+            statsChanges[i].setPosition(statsNames[i - 1].getPosition().x + 15 + (playerStatsList[i-1].length() * 7), 460);
             statsChanges[i].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
             statsChanges[i].setColor(Color.BLACK);
             statsChanges[i].setStyle(Text.BOLD);
@@ -137,11 +136,6 @@ public class AfterEventState extends FSMState{
     public void displayMenu()
     {
         this.eventEffects = eventDriver.getEventEffects();
-//        statsChanges[0] = new Text(Integer.toString(eventEffects[0]), fontStyle, 11);
-//        statsChanges[0].setPosition(400, 430);
-//        statsChanges[0].setOrigin(text.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-//        statsChanges[0].setColor(Color.BLACK);
-//        statsChanges[0].setStyle(Text.BOLD);
         for(int i = 0; i < statsNames.length; i++) {
             statsChanges[i] = new Text(Integer.toString(eventEffects[i]), fontStyle, 15);
             statsChanges[i].setPosition(statsNames[i].getPosition().x + 30, 450);
@@ -150,7 +144,7 @@ public class AfterEventState extends FSMState{
             statsChanges[i].setStyle(Text.BOLD);
         }
         if(eventDriver.getEventType() == 8)
-            title = new Text(eventDriver.getConsequence(), fontStyle, titleFontSize);
+            title = new Text(eventDriver.getConsequence(), fontStyle, 30);
         else if(eventDriver.getEventType() == 6)
             title = new Text("YOU WON!!!!", fontStyle, titleFontSize);
         eventEffects = eventDriver.getEventEffects();
@@ -175,10 +169,10 @@ public class AfterEventState extends FSMState{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    leftBound = text.getGlobalBounds().left;
-                    rightBound = leftBound + text.getGlobalBounds().width;
-                    topBound = text.getGlobalBounds().top;
-                    bottomBound = topBound + text.getGlobalBounds().height;
+                    leftBound = textButton.getGlobalBounds().left;
+                    rightBound = leftBound + textButton.getGlobalBounds().width;
+                    topBound = textButton.getGlobalBounds().top;
+                    bottomBound = topBound + textButton.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
                         if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
                             //System.out.println("Island Clicked!");
