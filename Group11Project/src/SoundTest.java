@@ -1,8 +1,11 @@
 public class SoundTest
 {
+	/**
+	 * Class used to test the SoundClass file
+     */
 	public static void main(String[] Args)
 	{
-		SoundClass audio = new SoundClass();
+		SoundFX audio = new SoundFX();
 		System.out.println("Playing a sound w/o control...");
 		audio.playSoundOnce("TEST_SOUND2");
 		int i = 0;

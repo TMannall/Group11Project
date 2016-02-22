@@ -1,5 +1,8 @@
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Timer class used for game logic
+ */
 public class Timer {
     private long start;
 

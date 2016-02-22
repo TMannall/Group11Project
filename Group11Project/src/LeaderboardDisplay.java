@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * LeaderboardDisplay state for Endless Sea
+ * LeaderboardDisplay state for Endless Sea, displays leaderboar data onto the state
  */
 public class LeaderboardDisplay extends FSMState{
 
@@ -28,7 +28,7 @@ public class LeaderboardDisplay extends FSMState{
     private static int buttonIndex = 0;
     Text[] text = new Text[numberOfButtons];
     Text title;
-	FloatRect[] rect = new FloatRect[numberOfButtons];
+    FloatRect[] rect = new FloatRect[numberOfButtons];
 
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
@@ -47,7 +47,7 @@ public class LeaderboardDisplay extends FSMState{
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-				this.leaderboard = leaderboard;
+        this.leaderboard = leaderboard;
 
         setup();
     }
@@ -74,20 +74,20 @@ public class LeaderboardDisplay extends FSMState{
             text[i] = new Text();
         }
 
-		for (int i = 0; i < numberOfButtons-1; i++) {
-			text[i].setFont(sansRegular);
-			text[i].setColor(Color.CYAN);
-			
-			text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
-			text[i].setPosition(driver.getWinWidth() / 2, 200+(i*40));
-			text[i].setOrigin(text[i].getLocalBounds().width / 2, text[i].getLocalBounds().height / 2);
+        for (int i = 0; i < numberOfButtons-1; i++) {
+            text[i].setFont(sansRegular);
+            text[i].setColor(Color.CYAN);
+
+            text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
+            text[i].setPosition(driver.getWinWidth() / 2, 200+(i*40));
+            text[i].setOrigin(text[i].getLocalBounds().width / 2, text[i].getLocalBounds().height / 2);
         }
 
         text[10].setFont(sansRegular);
         text[10].setColor(Color.CYAN);
         text[10].setString("Main Menu");
         text[10].setPosition(driver.getWinWidth() / 2, 660);
-		text[10].setOrigin(text[10].getLocalBounds().width / 2, text[10].getLocalBounds().height / 2);
+        text[10].setOrigin(text[10].getLocalBounds().width / 2, text[10].getLocalBounds().height / 2);
     }
 
     @Override
@@ -110,37 +110,37 @@ public class LeaderboardDisplay extends FSMState{
         //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
         window.draw(title);
-		
-				Sprite[] textButton = new Sprite[numberOfButtons];
-				Sprite[] hoverButton = new Sprite[numberOfButtons];
-				Sprite[] pushButton = new Sprite[numberOfButtons];
-	
-				for (int i = 0; i < numberOfButtons-1; i++) {
-					text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
-				}	
-			
-				for(int i = 10; i < numberOfButtons; i++){
-					textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
-					hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
-					pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
-				}
 
-				for(int i = 10; i < numberOfButtons; i++){
+        Sprite[] textButton = new Sprite[numberOfButtons];
+        Sprite[] hoverButton = new Sprite[numberOfButtons];
+        Sprite[] pushButton = new Sprite[numberOfButtons];
 
-					textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-					hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-					pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-					window.draw(textButton[i]);
-				}		
-				
-				Sprite background = textures.createSprite(textures.backgroundLeaderboard, 0, 0, 800, 450);
-				background.setPosition(driver.getWinWidth() / 2, (driver.getWinHeight() / 2)+25);
-				window.draw(background);
-		
+        for (int i = 0; i < numberOfButtons-1; i++) {
+            text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
+        }
+
+        for(int i = 10; i < numberOfButtons; i++){
+            textButton[i] = textures.createSprite(textures.userInterface, 23, 21, 250, 60);
+            hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
+            pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
+        }
+
+        for(int i = 10; i < numberOfButtons; i++){
+
+            textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+            hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+            pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+            window.draw(textButton[i]);
+        }
+
+        Sprite background = textures.createSprite(textures.backgroundLeaderboard, 0, 0, 800, 450);
+        background.setPosition(driver.getWinWidth() / 2, (driver.getWinHeight() / 2)+25);
+        window.draw(background);
+
         for (int i = 0; i < numberOfButtons; i++) {
             window.draw(text[i]);
         }
-		
+
 
         for (Event event : window.pollEvents()) {
             switch (event.type) {
@@ -150,27 +150,27 @@ public class LeaderboardDisplay extends FSMState{
                 case KEY_PRESSED:
                     KeyEvent keyEvent = event.asKeyEvent();
                     if (keyEvent.key == Keyboard.Key.RETURN) {
-						stateMachine.setState(stateMachine.getStates().get(0));
+                        stateMachine.setState(stateMachine.getStates().get(0));
                     }
-					break;
-				case MOUSE_BUTTON_PRESSED:
-					MouseEvent mouseClicked = event.asMouseButtonEvent();
-					if(mouseClicked.type == Event.Type.MOUSE_BUTTON_PRESSED){
-						//System.out.println("Pos Clicked: " + mouseClicked.position);
-						for(int i = 10; i < numberOfButtons; i++){
-							rect[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top, 
-										textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
-						}
-						//Main Menu
-						if(rect[10].contains(mouseClicked.position.x, mouseClicked.position.y)){
-							window.draw(pushButton[10]);
-							window.draw(text[10]);
-							stateMachine.setState(stateMachine.getStates().get(0));
-						}
-					}
-					break;
-				}
-			}
-		window.display();
+                    break;
+                case MOUSE_BUTTON_PRESSED:
+                    MouseEvent mouseClicked = event.asMouseButtonEvent();
+                    if(mouseClicked.type == Event.Type.MOUSE_BUTTON_PRESSED){
+                        //System.out.println("Pos Clicked: " + mouseClicked.position);
+                        for(int i = 10; i < numberOfButtons; i++){
+                            rect[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top,
+                                    textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
+                        }
+                        //Main Menu
+                        if(rect[10].contains(mouseClicked.position.x, mouseClicked.position.y)){
+                            window.draw(pushButton[10]);
+                            window.draw(text[10]);
+                            stateMachine.setState(stateMachine.getStates().get(0));
+                        }
+                    }
+                    break;
+            }
+        }
+        window.display();
     }
 }

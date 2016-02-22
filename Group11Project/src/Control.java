@@ -3,13 +3,10 @@ import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.graphics.Text;
-import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.MouseEvent;
-import org.jsfml.window.event.MouseButtonEvent;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -20,7 +17,6 @@ public class Control extends FSMState{
     private GameDriver driver;
     private RenderWindow window;
     private Textures textures;
-    private EventExampleDriver eventDriver;
 	
     private static int numberOfButtons = 2;
     Text[] text = new Text[numberOfButtons];
@@ -41,7 +37,6 @@ public class Control extends FSMState{
         this.driver = driver;
         this.window = window;
         this.textures = textures;
-        this.eventDriver = eventDriver;
         setup();
     }
 	
