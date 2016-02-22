@@ -189,10 +189,10 @@ public class AfterEvent extends Events{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    leftBound = btn.getGlobalBounds().left;
-                    rightBound = leftBound + btn.getGlobalBounds().width;
-                    topBound = btn.getGlobalBounds().top;
-                    bottomBound = topBound + btn.getGlobalBounds().height;
+                    leftBound = textButton.getGlobalBounds().left;
+                    rightBound = leftBound + textButton.getGlobalBounds().width;
+                    topBound = textButton.getGlobalBounds().top;
+                    bottomBound = topBound + textButton.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
                     if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
                         stateMachine.setState(stateMachine.getStates().get(4));     // Go to map

@@ -34,6 +34,10 @@ public class CptSelection extends FSMState{
 		IntRect[] recti = new IntRect[numberOfButtons];
 		FloatRect[] rectf = new FloatRect[numberOfButtons];
 		FloatRect[] rect = new FloatRect[numberOfButtons];
+	float leftBound;
+	float rightBound;
+	float topBound;
+	float bottomBound;
 
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
     private static String JdkFontPath = "textures/";
@@ -91,6 +95,8 @@ public class CptSelection extends FSMState{
         text[numberOfButtons-1].setString("Main Menu");
         text[numberOfButtons-1].setPosition(driver.getWinWidth() / 2, 660);
 				text[numberOfButtons-1].setOrigin(text[numberOfButtons-1].getLocalBounds().width / 2, text[numberOfButtons-1].getLocalBounds().height / 2);
+
+
     }
 
     @Override
@@ -132,7 +138,12 @@ public class CptSelection extends FSMState{
 					hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
 					pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
 					window.draw(textButton[i]);
-				}	
+				}
+
+				leftBound = textButton[4].getGlobalBounds().left;
+				rightBound = leftBound + textButton[4].getGlobalBounds().width;
+				topBound = textButton[4].getGlobalBounds().top;
+				bottomBound = topBound + textButton[4].getGlobalBounds().height;
 
 				portrait[0] = textures.createSprite(textures.cptPortraitA, 0, 0, 163, 200);
 				portrait[1] = textures.createSprite(textures.cptPortraitB, 0, 0, 163, 200);
@@ -229,12 +240,12 @@ public class CptSelection extends FSMState{
 							startGame();
 						}
 						//Main Menu
-						else if(rect[numberOfButtons-1].contains(mouseClicked.position.x, mouseClicked.position.y)){
-							window.draw(pushButton[numberOfButtons-1]);
-							window.draw(text[numberOfButtons-1]);
+						else if(mouseClicked.position.x > leftBound && mouseClicked.position.x < rightBound && mouseClicked.position.y > topBound && mouseClicked.position.y < bottomBound){
+							window.draw(pushButton[4]);
+							window.draw(text[4]);
 							sound.playBackgroundMusic("music_main_menu");
-							//stateMachine.setState(stateMachine.getStates().get(0));
-							startGame();
+							stateMachine.setState(stateMachine.getStates().get(0));
+//							startGame();
 						}
 					}
 					break;
