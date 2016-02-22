@@ -62,7 +62,12 @@ public class Map extends FSMState {
 
 	public void setup(){
 		for(int point = 0; point < maxWaypoints; point++) {
-			waypoints[point] = textures.createSprite(textures.userInterface, 466, 24, 56, 56);
+			if(point == 5 || point == 9)
+				waypoints[point] = textures.createSprite(textures.userInterface, 1163, 316, 58, 56);
+			else if (point == 6)
+				waypoints[point] = textures.createSprite(textures.userInterface, 466, 104, 56, 56);
+			else
+				waypoints[point] = textures.createSprite(textures.userInterface, 466, 24, 56, 56);
 			waypoints[point].setPosition(wayPointsXY[point][0],wayPointsXY[point][1]);
 		}
 		ship = textures.createSprite(textures.userInterface, 549, 11, 254, 92);
