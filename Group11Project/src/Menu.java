@@ -210,8 +210,11 @@ public class Menu extends FSMState{
                             window.draw(text[0]);
                             sound.stopBackgroundMusic();
                             sound.playBackgroundMusic("ambient_ocean");
+                            // Reset game
+                            driver.genNewPlayer();
+                            driver.map = new Map(stateMachine, driver, window, textures, driver.eventGenerator);
+                            stateMachine.getStates().set(4, driver.map);
                             stateMachine.setState(stateMachine.getStates().get(3)); //go to cpt selection menu
-
                         }
                         //Instructions
                         if(rectf[1].contains(mouseClicked.position.x, mouseClicked.position.y)){

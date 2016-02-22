@@ -16,11 +16,11 @@ public class PlayerShip extends Ship {
     }
 
     public void setup(){
-        guns = new ShipSection(textures, driver, window, textures.shipGunDeck, "Guns", this, "Player");
-        masts = new ShipSection(textures, driver, window, textures.shipMasts, "Masts", this, "Player");
-        bridge = new ShipSection(textures, driver, window, textures.shipBridge, "Bridge", this, "Player");
-        hold = new ShipSection(textures, driver, window, textures.shipSupplies, "Hold", this, "Player");
-        quarters = new ShipSection(textures, driver, window, textures.shipMedical, "Quarters", this, "Player");
+        guns = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 0, 343, 125), "Guns", this, "Player");
+        masts = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 129, 343, 115), "Masts", this, "Player");
+        bridge = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 0, 0, 525, 365), "Bridge", this, "Player");
+        hold = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 525, 241, 343, 125), "Hold", this, "Player");
+        quarters = new ShipSection(textures, driver, window, textures.createSprite(textures.shipLv3, 868, 0, 826, 365), "Quarters", this, "Player");
 
         sections.add(guns);
         sections.add(masts);

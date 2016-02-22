@@ -23,13 +23,13 @@ public class GameDriver {
     private static final String TITLE = "Endless Sea";
 
     private FSM machine;
-    private EventGenerator eventGenerator;
+    protected EventGenerator eventGenerator;
 
     private FSMState menu;
     private FSMState settings;
     private FSMState leaderboard;
     private FSMState cptSelection;
-    private FSMState map;
+    protected FSMState map;
     private FSMState encounter;         // Current encounter event being played
     private FSMState afterEvent;
     private FSMState gameover;
@@ -40,6 +40,7 @@ public class GameDriver {
     private Random randGenerator = new Random();
     private SoundFX sound = new SoundFX();
 
+    //private PlayerShip playerShip;
     private PlayerShip playerShip = new PlayerShip(textures, driver, window, randGenerator, sound, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
 
     private Leaderboard leaderboardObj = new Leaderboard();
@@ -136,5 +137,9 @@ public class GameDriver {
 
     public PlayerShip getPlayerShip(){
         return playerShip;
+    }
+
+    public void genNewPlayer(){
+        playerShip = new PlayerShip(textures, driver, window, randGenerator, sound, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
     }
 }

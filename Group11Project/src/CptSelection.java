@@ -196,7 +196,8 @@ public class CptSelection extends FSMState{
 							driver.getPlayerShip().addBridgeDefence(-(float)0.5);
 							System.out.println("GUN STR: " + driver.getPlayerShip().getGunStr());
 							System.out.println("BRIDGE DEF: " + driver.getPlayerShip().getBridgeDefence());
-							stateMachine.setState(stateMachine.getStates().get(4));
+							//stateMachine.setState(stateMachine.getStates().get(4));
+							startGame();
 						}
 						else if(recti[1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #2 Selected");
@@ -206,7 +207,8 @@ public class CptSelection extends FSMState{
 							System.out.println("MAX FOOD: " + driver.getPlayerShip().getMaxFood());
 							System.out.println("MAX WATER: " + driver.getPlayerShip().getMaxWater());
 							System.out.println("RELOAD BOOST: " +driver.getPlayerShip().getReloadBoost() );
-							stateMachine.setState(stateMachine.getStates().get(4));
+							//stateMachine.setState(stateMachine.getStates().get(4));
+							startGame();
 						}
 						else if(recti[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #3 Selected");
@@ -214,7 +216,8 @@ public class CptSelection extends FSMState{
 							driver.getPlayerShip().addFood(-15);
 							System.out.println("BRIDGE DEF: " + driver.getPlayerShip().getBridgeDefence());
 							System.out.println("STARTING FOOD:" + driver.getPlayerShip().getCurrFood());
-							stateMachine.setState(stateMachine.getStates().get(4));
+							//stateMachine.setState(stateMachine.getStates().get(4));
+							startGame();
 						}
 						else if(recti[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							System.out.println("Cpt #4 Selected");
@@ -222,14 +225,16 @@ public class CptSelection extends FSMState{
 							driver.getPlayerShip().damageHull(25);
 							System.out.println("GOLD: " + driver.getPlayerShip().getCurrGold());
 							System.out.println("HULL HP:" + driver.getPlayerShip().getHullHP());
-							stateMachine.setState(stateMachine.getStates().get(4));
+							//stateMachine.setState(stateMachine.getStates().get(4));
+							startGame();
 						}
 						//Main Menu
 						else if(rect[numberOfButtons-1].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[numberOfButtons-1]);
 							window.draw(text[numberOfButtons-1]);
 							sound.playBackgroundMusic("music_main_menu");
-							stateMachine.setState(stateMachine.getStates().get(0));
+							//stateMachine.setState(stateMachine.getStates().get(0));
+							startGame();
 						}
 					}
 					break;
@@ -244,5 +249,11 @@ public class CptSelection extends FSMState{
 			}
 		}
 		return false; 
-	}		
+	}
+
+	public void startGame(){
+		driver.eventGenerator.setProbabilities(0, 0, 1, 0, 0, 0);
+		driver.eventGenerator.genRandomEvent();
+		driver.eventGenerator.genEventState();
+	}
 }
