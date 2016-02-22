@@ -38,7 +38,10 @@ public class Menu extends FSMState{
     private static String FontFile = "vinque.ttf";
     private String FontPath;
 
-    private static String Title = "ENDLESS SEA";
+    public Color BROWN = new Color(56, 35, 5);
+
+    //private static String Title = "ENDLESS SEA";
+    private static String Title = "";
 
     public Menu(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, SoundFX sound) {
         this.stateMachine = stateMachine;
@@ -66,7 +69,7 @@ public class Menu extends FSMState{
         title = new Text(Title, fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 100);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.CYAN);
+        title.setColor(BROWN);
         title.setStyle(Text.BOLD);
 
         for (int i = 0; i < numberOfButtons; i++) {
@@ -74,37 +77,37 @@ public class Menu extends FSMState{
         }
 
         text[0].setFont(fontStyle);
-        text[0].setColor(Color.CYAN);
+        text[0].setColor(BROWN);
         text[0].setString("New Game");
         text[0].setPosition(driver.getWinWidth() / 2, 280);
         text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(fontStyle);
-        text[1].setColor(Color.CYAN);
+        text[1].setColor(BROWN);
         text[1].setString("Instructions");
         text[1].setPosition(driver.getWinWidth() / 2, 350);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
         text[2].setFont(fontStyle);
-        text[2].setColor(Color.CYAN);
+        text[2].setColor(BROWN);
         text[2].setString("Leaderboard");
         text[2].setPosition(driver.getWinWidth() / 2, 420);
         text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
 
         text[3].setFont(fontStyle);
-        text[3].setColor(Color.CYAN);
+        text[3].setColor(BROWN);
         text[3].setString("Settings");
         text[3].setPosition(driver.getWinWidth() / 2, 490);
         text[3].setOrigin(text[3].getLocalBounds().width / 2, text[3].getLocalBounds().height / 2);
 
         text[4].setFont(fontStyle);
-        text[4].setColor(Color.CYAN);
+        text[4].setColor(BROWN);
         text[4].setString("Exit");
         text[4].setPosition(driver.getWinWidth() / 2, 560);
         text[4].setOrigin(text[4].getLocalBounds().width / 2, text[4].getLocalBounds().height / 2);
 
         text[5].setFont(fontStyle);
-        text[5].setColor(Color.CYAN);
+        text[5].setColor(BROWN);
         text[5].setString("GameOver TEST");
         text[5].setPosition(driver.getWinWidth() / 2, 630);
         text[5].setOrigin(text[5].getLocalBounds().width / 2, text[5].getLocalBounds().height / 2);
@@ -130,6 +133,9 @@ public class Menu extends FSMState{
         //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
         window.draw(title);
+
+        textures.splashTitle.setPosition(driver.getWinWidth() / 2, 100);
+        window.draw(textures.splashTitle);
 
         Sprite[] textButton = new Sprite[numberOfButtons];
         Sprite[] hoverButton = new Sprite[numberOfButtons];
