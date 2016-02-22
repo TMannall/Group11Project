@@ -8,8 +8,10 @@ import java.nio.file.Paths;
  */
 public class Textures {
     // Splash screens
-    private Texture mainMenu_ = loadTexture("textures/main_menu.png");
+    private Texture mainMenu_ = loadTexture("textures/splash_main_menu.png");
     public Sprite mainMenu = createSprite(mainMenu_, 0, 0, 1920, 1080);
+    private Texture gameover_ = loadTexture("textures/splash_game_over.png");
+    public Sprite gameover = createSprite(gameover_, 0, 0, 1920, 1080);
     private Texture ocean_ = loadTexture("textures/ocean.png");
     public Sprite ocean = createSprite(ocean_, 0, 0, 1280, 720);
     private Texture mapConnections_ = loadTexture("textures/MapConnections.png");
@@ -46,19 +48,29 @@ public class Textures {
     public Sprite uiIconHold = createSprite(userInterface, 934, 448, 50, 50);
     public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
     public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
+    public Sprite uiIconFood = createSprite(userInterface, 1168, 383, 50, 50);
+    public Sprite uiIconGold = createSprite(userInterface, 1168, 448, 50, 50);
+    public Sprite uiIconWater = createSprite(userInterface, 1168, 511, 50, 50);
     public Sprite uiIconGunDeckDead = createSprite(userInterface, 1051, 383, 50, 50);
     public Sprite uiIconMastsDead = createSprite(userInterface, 1105, 383, 50, 50);
     public Sprite uiIconHoldDead = createSprite(userInterface, 1051, 448, 50, 50);
     public Sprite uiIconBridgeDead = createSprite(userInterface, 1105, 448, 50, 50);
     public Sprite uiIconMedicalDead = createSprite(userInterface, 1051, 511, 50, 50);
 
+    public Sprite uiTradeIcon = createSprite(userInterface, 1163, 316, 58, 56);
+
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite retreatButton = createSprite(userInterface, 1127, 21, 125, 60); // hover: 1127, 100, 125, 60   push: 1127, 179, 125, 60
+
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
-    // events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scrol3.png");
-    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
+        // events
+    public Texture ingameWindow_ = loadTexture("textures/ingame_menu_window.png");
+    public Sprite ingameWindow = createSprite(ingameWindow_, 0, 0, 800, 500);
+
+    //public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
+    //public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
     public Sprite leftArrow = createSprite(userInterface, 945, 579, 70, 51);
     public Sprite rightArrow = createSprite(userInterface, 1016, 579, 70, 51);
@@ -97,11 +109,11 @@ public class Textures {
     public Sprite chainshot = createSprite(userInterface, 1004, 532, 14, 23);
 
     // Ship models
-    private Texture shipLv1 = loadTexture("textures/ship_level_1.png");
-    private Texture shipLv2 = loadTexture("textures/ship_level_2.png");
-    private Texture shipLv3 = loadTexture("textures/ship_level_3.png");
-    private Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
-    private Texture shipHighlight = loadTexture("textures/ship_highlights.png");
+    public Texture shipLv1 = loadTexture("textures/ship_level_1.png");
+    public Texture shipLv2 = loadTexture("textures/ship_level_2.png");
+    public Texture shipLv3 = loadTexture("textures/ship_level_3.png");
+    public Texture shipLv3Dead = loadTexture("textures/ship_level_3_destroyed.png");
+    public Texture shipHighlight = loadTexture("textures/ship_highlights.png");
         // player ship
     public Sprite shipBridge = createSprite(shipLv3, 0, 0, 525, 365);
     public Sprite shipGunDeck = createSprite(shipLv3, 525, 0, 343, 125);
@@ -144,6 +156,11 @@ public class Textures {
     public Sprite AIshipSupplies = createSprite(shipLv3, 525, 241, 343, 125);
     public Sprite AIshipMedical = createSprite(shipLv3, 868, 0, 826, 365);
 
+    public Sprite AIshipBridgeDestroyed = createSprite(shipLv3Dead, 0, 0, 525, 365);
+    public Sprite AIshipGunDeckDestroyed = createSprite(shipLv3Dead, 525, 0, 343, 125);
+    public Sprite AIshipMastsDestroyed = createSprite(shipLv3Dead, 525, 129, 343, 115);
+    public Sprite AIshipSuppliesDestroyed = createSprite(shipLv3Dead, 525, 241, 343, 125);
+    public Sprite AIshipMedicalDestroyed = createSprite(shipLv3Dead, 868, 0, 826, 365);
 
     // Character portraits
     public Texture cptPortraitA = loadTexture("textures/captain_portrait_example.png");
@@ -151,13 +168,10 @@ public class Textures {
     public Texture cptPortraitC = loadTexture("textures/captain_portrait_example.png");
     public Texture cptPortraitD = loadTexture("textures/captain_portrait_example.png");
     public Texture backgroundCptSel = loadTexture("textures/backgroundCptSel.png");
-		
-		// Leaderboard
-		public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
-		
-		// Game Over
-		public Texture gameover_ = loadTexture("textures/gameover.jpg");
-    public Sprite gameover = createSprite(gameover_, 0, 0, 1280, 720);
+
+	// Leaderboard
+	public Texture backgroundLeaderboard = loadTexture("textures/backgroundLeaderboard.png");
+
 
     /**
      * loads a texture from file, throws exception when this fails
