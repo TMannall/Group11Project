@@ -43,7 +43,7 @@ public class TextEvent extends Events {
         applyChanges();
 
         // Set up scroll + title
-        messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
+        messageScroll = textures.createSprite(textures.ingameWindow_, 0, 0, 800, 500);	//MESSAGE SCROLL
         messageScroll.setPosition(driver.getWinWidth() / 2, 380);
         messageScroll.setScale((float) 1.25, 1);
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
@@ -241,6 +241,8 @@ public class TextEvent extends Events {
             playerShip.quarters.damage((-1) * eventEffects[9]);
         else
             playerShip.quarters.repair(eventEffects[9]);
+
+        playerShip.addPlayerScore(20);
 
         System.out.println("GOLD: " + playerShip.getCurrGold());
         System.out.println("FOOD: " + playerShip.getCurrFood());

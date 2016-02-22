@@ -48,19 +48,29 @@ public class Textures {
     public Sprite uiIconHold = createSprite(userInterface, 934, 448, 50, 50);
     public Sprite uiIconBridge = createSprite(userInterface, 988, 448, 50, 50);
     public Sprite uiIconMedical = createSprite(userInterface, 934, 511, 50, 50);
+    public Sprite uiIconFood = createSprite(userInterface, 1168, 383, 50, 50);
+    public Sprite uiIconGold = createSprite(userInterface, 1168, 448, 50, 50);
+    public Sprite uiIconWater = createSprite(userInterface, 1168, 511, 50, 50);
     public Sprite uiIconGunDeckDead = createSprite(userInterface, 1051, 383, 50, 50);
     public Sprite uiIconMastsDead = createSprite(userInterface, 1105, 383, 50, 50);
     public Sprite uiIconHoldDead = createSprite(userInterface, 1051, 448, 50, 50);
     public Sprite uiIconBridgeDead = createSprite(userInterface, 1105, 448, 50, 50);
     public Sprite uiIconMedicalDead = createSprite(userInterface, 1051, 511, 50, 50);
 
+    public Sprite uiTradeIcon = createSprite(userInterface, 1163, 316, 58, 56);
+
     public Sprite button = createSprite(userInterface, 23, 21, 250, 60); // hover: 23, 100, 250, 60   push: 23, 179, 250, 60
     public Sprite buttonSmall = createSprite(userInterface, 300, 21, 125, 60); // hover: 300, 100, 125, 60   push: 300, 179, 125, 60
+    public Sprite retreatButton = createSprite(userInterface, 1127, 21, 125, 60); // hover: 1127, 100, 125, 60   push: 1127, 179, 125, 60
+
     public Sprite shipIcon = createSprite(userInterface, 549, 11, 254, 92);
     public Sprite waypoint = createSprite(userInterface, 466, 24, 56, 56); // visited: 466, 103, 56, 56
         // events
-    public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
-    public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
+    public Texture ingameWindow_ = loadTexture("textures/ingame_menu_window.png");
+    public Sprite ingameWindow = createSprite(ingameWindow_, 0, 0, 800, 500);
+
+    //public Texture messageScroll_ = loadTexture("textures/Assembled_Scroll3.png");
+    //public Sprite messageScroll = createSprite(messageScroll_, 0, 0, 782, 713);
 
     public Sprite leftArrow = createSprite(userInterface, 945, 579, 70, 51);
     public Sprite rightArrow = createSprite(userInterface, 1016, 579, 70, 51);

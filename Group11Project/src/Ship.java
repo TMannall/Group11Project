@@ -5,6 +5,7 @@ import org.jsfml.system.Clock;
 import org.jsfml.system.Time;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +35,7 @@ public abstract class Ship{
     private int currWater = maxWater;
 
     private int hullHP = 100;  // Overall ship integrity; 0 = game over, ship sinks
-    protected float gunStr = 10; // Cannon strength (modifies damage dealt). 1 = default starting strength
+    protected float gunStr = 1; // Cannon strength (modifies damage dealt). 1 = default starting strength
     protected float reloadBoost = (float)1;   // Cannon reload modifier. 1 = reloads at standard rate, 2 = double rate etc
     private int mastSpeed = 1; // Mast speed modifier. 1 standard rate, 2 = double rate
     protected float bridgeDefence = 1; // Defence modifier. 1 = standard defence, 2 = double defence (halves dmg received)
@@ -51,6 +52,9 @@ public abstract class Ship{
     protected ArrayList<Sprite> gunAnimations;
     protected Clock animClock;
     int[] gunAnimFrames = new int[10];
+
+    protected ArrayList<Sprite> marineAnimations;
+    int[] marineAnimFrames = new int[10];
 
     protected float scale;
     protected int xPos;
@@ -69,6 +73,7 @@ public abstract class Ship{
 
         sections = new ArrayList<>();
         gunAnimations = new ArrayList<>();
+        marineAnimations = new ArrayList<>();
 
         // Setup cannon smoke animation sprites - must be positioned individually for player and enemy ships
         animClock = new Clock();

@@ -34,6 +34,7 @@ public class BossEvent extends CombatEvent {
 
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
+            playerShip.addPlayerScore(1500);
             stateMachine.setState(stateMachine.getStates().get(7));         // Game over, enemy ship destroyed
         }
     }
