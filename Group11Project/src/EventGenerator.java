@@ -122,7 +122,11 @@ public class EventGenerator {
         System.out.println(eventText);
 
         //preload consequence...
-        consequence_ID = randGenerator.nextInt(5) + 1;
+        query = "SELECT COUNT(*) AS count FROM exploration_consequences WHERE event_ID = " + event_ID + " GROUP BY event_ID";
+        titles = new String[]{"count"};
+        results = dbUser.getQuery(query, titles);
+        int x = Integer.parseInt(results.get(0));
+        consequence_ID = randGenerator.nextInt(x) + 1;
         query = "SELECT * FROM assist_consequences WHERE event_ID =" + event_ID + " AND consequence_ID = " + consequence_ID + ";";
         titles = new String[]{"event_ID", "consequence_ID", "consequence_text", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
@@ -171,7 +175,11 @@ public class EventGenerator {
         System.out.println(eventText);
 
         //preload consequence...
-        consequence_ID = randGenerator.nextInt(5) + 1;
+        query = "SELECT COUNT(*) AS count FROM exploration_consequences WHERE event_ID = " + event_ID + " GROUP BY event_ID";
+        titles = new String[]{"count"};
+        results = dbUser.getQuery(query, titles);
+        int x = Integer.parseInt(results.get(0));
+        consequence_ID = randGenerator.nextInt(x) + 1;
         query = "SELECT * FROM exploration_consequences WHERE event_ID =" + event_ID + " AND consequence_ID = " + consequence_ID + ";";
         titles = new String[]{"event_ID", "consequence_ID", "consequence_text", "gold", "food", "water", "hull_HP", "cannonStrength", "guns", "masts", "bridge", "hold", "quarters"};
         results = dbUser.getQuery(query, titles);
