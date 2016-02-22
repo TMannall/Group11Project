@@ -3,6 +3,10 @@ import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import java.util.Random;
 
+/**
+ * Trade Event state class for dealing with the trade events the player comes across, this includes the displaying
+ * of the different items the user can buy along with support for this.
+*/
 public class TradeEvent extends Events{
     private PlayerShip playerShip;
     private static final int amountOfItems = 3;

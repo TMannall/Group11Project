@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Controls state class used to manage the different key bindings the user can alter.
+ */
 public class Control extends FSMState{
 	
     private FSM stateMachine;

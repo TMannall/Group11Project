@@ -1,12 +1,12 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Random;
 
+/**
+ * After event class for dealing with the consequences of an event occurring, this includes changing the values
+ * for the ship based on the outcome and feeding these changes back to the user.
+ */
 public class AfterEvent extends Events{
     public enum Consequence {
         COMBAT_KILL, COMBAT_AI_RETREAT, COMBAT_PLAYER_RETREAT,

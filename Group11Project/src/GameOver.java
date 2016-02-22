@@ -13,7 +13,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-
+/**
+ * Game over state, this state is shown when the game has been won or lost. This class allows the player to save their high
+ * score and return to the main menu.
+ */
 public class GameOver extends FSMState {
     private FSM stateMachine;
     private GameDriver driver;

@@ -4,7 +4,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 
 /**
- * Class used for managing the player leaderboard
+ * Class used for managing the player leaderboard, deals with all of the methods for adding to, encrypting and loading
+ * and saving the data.
  *
  * Notes:
  * - All data is saved in leaderboard.ini file,

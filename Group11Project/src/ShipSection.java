@@ -1,9 +1,12 @@
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
-
 import java.util.Random;
 
+/**
+ * Ship Section class used to deal with the different sprites to piece the ship together, including managing the
+ * different stats for each section.
+ */
 public class ShipSection extends Actor{
     private Ship ship;
     private String type;

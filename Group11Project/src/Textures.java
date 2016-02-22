@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * Textures class for Endless Sea, handles loading textures and sprites for the game
+ * Textures class for Endless Sea, handles loading textures and sprites for the game including the coordinates for
+ * where they should be located on the game window.
  */
 public class Textures {
     // Splash screens

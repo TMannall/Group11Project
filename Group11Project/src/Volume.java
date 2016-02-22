@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- *
+ * Volume state class, allows the player to alter the in game volumes.
  */
 public class Volume extends FSMState{
 	

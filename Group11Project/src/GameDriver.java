@@ -1,5 +1,5 @@
 /**
- * Driver for Endless Sea
+ * Driver and Main function for The Endless Sea Game
  */
 
 import org.jsfml.graphics.*;

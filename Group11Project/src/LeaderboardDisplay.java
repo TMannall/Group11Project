@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * LeaderboardDisplay state for Endless Sea, displays leaderboar data onto the state
+ * LeaderboardDisplay state for Endless Sea, displays leaderboard data onto the state.
  */
 public class LeaderboardDisplay extends FSMState{
 

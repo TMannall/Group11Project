@@ -1,7 +1,7 @@
 public class SoundTest
 {
 	/**
-	 * Class used to test the SoundClass file
+	 * Class used to test the SoundFX class file.
      */
 	public static void main(String[] Args)
 	{

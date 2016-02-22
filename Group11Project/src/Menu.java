@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * Main menu state for Endless Sea, consists of a number of buttons which can be pressed to changed states
+ * Main menu state for Endless Sea, consists of a number of buttons which can be pressed to change which state is
+ * being shown.
  */
 public class Menu extends FSMState{
 
@@ -23,7 +24,7 @@ public class Menu extends FSMState{
     private Textures textures;
     private SoundFX sound;
 
-    private static int numberOfButtons = 6;
+    private static int numberOfButtons = 5;
     Text[] text = new Text[numberOfButtons];
     Text title;
     IntRect[] recti = new IntRect[numberOfButtons];
@@ -106,11 +107,6 @@ public class Menu extends FSMState{
         text[4].setPosition(driver.getWinWidth() / 2, 560);
         text[4].setOrigin(text[4].getLocalBounds().width / 2, text[4].getLocalBounds().height / 2);
 
-        text[5].setFont(fontStyle);
-        text[5].setColor(BROWN);
-        text[5].setString("GameOver TEST");
-        text[5].setPosition(driver.getWinWidth() / 2, 630);
-        text[5].setOrigin(text[5].getLocalBounds().width / 2, text[5].getLocalBounds().height / 2);
     }
 
     @Override
@@ -239,12 +235,6 @@ public class Menu extends FSMState{
                             window.draw(pushButton[4]);
                             window.draw(text[4]);
                             window.close();
-                        }
-                        //Temp GameOver Button <- delete it for the final version
-                        if(rectf[5].contains(mouseClicked.position.x, mouseClicked.position.y)){
-                            window.draw(pushButton[5]);
-                            window.draw(text[5]);
-                            stateMachine.setState(stateMachine.getStates().get(7));
                         }
                     }
                     break;

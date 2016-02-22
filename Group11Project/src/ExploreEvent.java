@@ -3,6 +3,10 @@ import org.jsfml.window.event.Event;
 
 import java.util.Random;
 
+/**
+ * Explore Event class used to display the exploring the map events, this class deals with the window text and displaying of event text to the
+ * player.
+ */
 public class ExploreEvent extends Events {
 
     Sprite messageScroll;

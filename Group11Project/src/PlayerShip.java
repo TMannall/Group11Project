@@ -1,10 +1,11 @@
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.system.Clock;
-import org.jsfml.system.Time;
-
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Settings state class, deals with the displaying and changing of the settings for the game including the resolution
+ * (still to be implemented) and volume levels.
+ */
 public class PlayerShip extends Ship {
     private EnemyShip enemyShip = null;     // Current enemy ship when in combat
     private UI ui;

@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * Class used to display the instructions for the game, these are divided up into different pages
- * to explain each aspect of the game
+ * Class used to display the instructions for the game, these are divided up into different pages in order to explain
+ * each aspect of the game.
  */
 public class Instructions extends FSMState{
 

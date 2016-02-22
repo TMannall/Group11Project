@@ -4,6 +4,9 @@ import org.jsfml.graphics.Text;
 
 import java.util.Random;
 
+/**
+ * Boss State class used to manage the final boss level, which occurs at the last waypoint of the map.
+ */
 public class BossEvent extends CombatEvent {
 
     public BossEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, PlayerShip playerShip) {

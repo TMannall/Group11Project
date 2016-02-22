@@ -5,6 +5,10 @@ import org.jsfml.system.Clock;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Enemy Ship class which is used to create the AI ship the player is fighting. In this class everything from the
+ * sprites for the ship to the AI functionality is created, including methods for scaling the difficulty.
+ */
 public class EnemyShip extends Ship {
     public enum Difficulty{
         EASY, MEDIUM, HARD, BOSS

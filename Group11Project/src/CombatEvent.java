@@ -3,6 +3,9 @@ import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import java.util.Random;
 
+/**
+ * Combat Event state class for dealing with the combat events, including setting difficulty and initiating the AI.
+ */
 public class CombatEvent extends Events {
     Sprite messageScroll;
     private static int numberOfButtons = 2;
