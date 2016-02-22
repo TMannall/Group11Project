@@ -59,10 +59,9 @@ public class GameDriver {
         menu = new Menu(machine, driver, window, textures, sound);
         settings = new Settings(machine, driver, window, textures, sound);
         leaderboard = new LeaderboardDisplay(machine, driver, window, textures, leaderboardObj);
-        cptSelection = new CptSelection(machine, driver, window, textures);
         map = new Map(machine, driver, window, textures, eventGenerator);
         gameover = new GameOver(machine, driver, window, textures, leaderboardObj);
-        cptSelection = new CptSelection(machine, driver, window, textures);
+        cptSelection = new CptSelection(machine, driver, window, textures, sound);
         instructions = new Instructions(machine, driver, window, textures);
 
         // Add all states the FSM controls to its ArrayList for access later
