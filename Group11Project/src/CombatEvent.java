@@ -77,6 +77,10 @@ public class CombatEvent extends Events {
     }
 
     public void execute() {
+        if(consumeResources) {
+            consumeResources = false;
+            consumeResources();
+        }
         if (activeCombat)
             executeCombat();
         else

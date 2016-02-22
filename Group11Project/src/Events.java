@@ -24,6 +24,8 @@ public abstract class Events extends FSMState {
     protected String FontPath;
     protected Font fontStyle;
 
+    protected boolean consumeResources = true;
+
     public Events(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound){
         this.stateMachine = stateMachine;
         this.driver = driver;
@@ -45,4 +47,28 @@ public abstract class Events extends FSMState {
     }
 
     public abstract void execute();
+
+    public void consumeResources(){
+        System.out.println("CONSUMING RESOURCES");
+        int consumed;
+        // Consume food
+        consumed = randGenerator.nextInt(25 - 15 + 1) + 15;
+        System.out.println("FOOD CONSUMED: " + consumed);
+        driver.getPlayerShip().addFood(-consumed);
+
+        // Consume water
+        consumed = randGenerator.nextInt(30 - 20 + 1) + 20;
+        System.out.println("WATER CONSUMED: " + consumed);
+        driver.getPlayerShip().addWater(-consumed);
+
+        // Check game isn't over
+        checkGameOver();
+    }
+
+    public void checkGameOver(){
+        if(driver.getPlayerShip().getCurrFood() <= 0 || driver.getPlayerShip().getCurrWater() <= 0){
+            System.out.println("RUN OUT OF FOOD/WATER!");
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed or out of food/water
+        }
+    }
 }

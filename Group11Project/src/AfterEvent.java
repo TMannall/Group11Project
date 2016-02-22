@@ -68,7 +68,8 @@ public class AfterEvent extends Events{
 
         // Set up scroll
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 400);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
+        messageScroll.setScale((float)1.25, 1);
 
         genMessage();       // Generate title based on what event this is displayed after
 
@@ -250,7 +251,10 @@ public class AfterEvent extends Events{
         playerShip.addGold(eventEffects[0]);
         playerShip.addFood(eventEffects[1]);
         playerShip.addWater(eventEffects[2]);
-        playerShip.damageHull(eventEffects[3]);
+        if(eventEffects[3] < 0)
+            playerShip.damageHull((-1) * eventEffects[3]);
+        else
+            playerShip.repairHull(eventEffects[3]);
         playerShip.addGunStr(eventEffects[4]);
 
         if(eventEffects[5] < 0)
@@ -284,6 +288,8 @@ public class AfterEvent extends Events{
         System.out.println("BRIDGE HP:" + playerShip.bridge.getHP());
         System.out.println("HOLD HP: " + playerShip.hold.getHP());
         System.out.println("QUARTERS HP: " + playerShip.quarters.getHP());
+
+        checkGameOverAfter();
     }
 
     public void applyCombatChanges(){
@@ -311,5 +317,15 @@ public class AfterEvent extends Events{
                 return true;
             }
         return false;
+    }
+
+    public void checkGameOverAfter(){
+        if(playerShip.getHullHP() <= 0 || playerShip.getCurrFood() <= 0 || playerShip.getCurrWater() <= 0){
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed or out of food/water
+        }
+    }
+
+    public void consumeResources(){
+        // Do nothing, overrides Events one
     }
 }

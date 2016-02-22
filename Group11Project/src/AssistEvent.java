@@ -29,7 +29,8 @@ public class AssistEvent extends Events {
 
     public void setup(){
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 400);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
+        messageScroll.setScale((float)1.25, 1);
 
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 300);
@@ -71,6 +72,10 @@ public class AssistEvent extends Events {
 
 
     public void execute(){
+        if(consumeResources) {
+            consumeResources = false;
+            consumeResources();
+        }
         window.clear();
 
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);

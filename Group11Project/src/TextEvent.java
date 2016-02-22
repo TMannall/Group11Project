@@ -44,7 +44,8 @@ public class TextEvent extends Events {
 
         // Set up scroll + title
         messageScroll = textures.createSprite(textures.messageScroll_, 0, 0, 900, 821);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 400);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
+        messageScroll.setScale((float) 1.25, 1);
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 100);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
@@ -150,6 +151,10 @@ public class TextEvent extends Events {
         recti = new IntRect(rectf);
     }
     public void execute(){
+        if(consumeResources) {
+            consumeResources = false;
+            consumeResources();
+        }
         window.clear();
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
@@ -247,6 +252,8 @@ public class TextEvent extends Events {
         System.out.println("BRIDGE HP:" + playerShip.bridge.getHP());
         System.out.println("HOLD HP: " + playerShip.hold.getHP());
         System.out.println("QUARTERS HP: " + playerShip.quarters.getHP());
+
+        checkGameOverAfter();
     }
 
     public boolean isMouseOver(){
@@ -254,5 +261,11 @@ public class TextEvent extends Events {
             return true;
         }
         return false;
+    }
+
+    public void checkGameOverAfter(){
+        if(playerShip.getHullHP() <= 0 || playerShip.getCurrFood() <= 0 || playerShip.getCurrWater() <= 0){
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed or out of food/water
+        }
     }
 }
