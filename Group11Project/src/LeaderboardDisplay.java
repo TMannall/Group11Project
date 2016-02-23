@@ -67,7 +67,7 @@ public class LeaderboardDisplay extends FSMState{
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.CYAN);
+        title.setColor(driver.BROWN);
         title.setStyle(Text.BOLD);
 
         for (int i = 0; i < numberOfButtons; i++) {
@@ -76,7 +76,7 @@ public class LeaderboardDisplay extends FSMState{
 
         for (int i = 0; i < numberOfButtons-1; i++) {
             text[i].setFont(sansRegular);
-            text[i].setColor(Color.CYAN);
+            text[i].setColor(Color.WHITE);
 
             text[i].setString((i+1) + ". " + leaderboard.getName(i+1) + " - " + leaderboard.getScore(i+1) + " - " + leaderboard.getDate(i+1));
             text[i].setPosition(driver.getWinWidth() / 2, 200+(i*40));
@@ -84,7 +84,7 @@ public class LeaderboardDisplay extends FSMState{
         }
 
         text[10].setFont(sansRegular);
-        text[10].setColor(Color.CYAN);
+        text[10].setColor(driver.BROWN);
         text[10].setString("Main Menu");
         text[10].setPosition(driver.getWinWidth() / 2, 660);
         text[10].setOrigin(text[10].getLocalBounds().width / 2, text[10].getLocalBounds().height / 2);
