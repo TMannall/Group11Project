@@ -81,13 +81,13 @@ public class GameOver extends FSMState {
         title = new Text(Title, fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.CYAN);
+        title.setColor(Color.WHITE);
         title.setStyle(Text.BOLD);
 
         subtitle = new Text("", fontStyle, 40);
         subtitle.setPosition((driver.getWinWidth() / 2), 170);
         subtitle.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        subtitle.setColor(Color.CYAN);
+        subtitle.setColor(Color.WHITE);
         subtitle.setStyle(Text.REGULAR);
 
         genMessage();
@@ -97,32 +97,32 @@ public class GameOver extends FSMState {
         }
 
         text[0].setFont(fontStyle);
-        text[0].setColor(Color.CYAN);
+        text[0].setColor(driver.BROWN);
         text[0].setString("Main Menu");
         text[0].setPosition(driver.getWinWidth() / 2, 520);
         text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(fontStyle);
-        text[1].setColor(Color.CYAN);
+        text[1].setColor(driver.BROWN);
         text[1].setString("Exit");
         text[1].setPosition(driver.getWinWidth() / 2, 590);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
         text[2].setFont(fontStyle);
-        text[2].setColor(Color.CYAN);
+        text[2].setColor(driver.BROWN);
         text[2].setString("Submit Score");
         text[2].setPosition(driver.getWinWidth() / 2, 360);
         text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
 
         message.setFont(fontStyle);
-        message.setColor(Color.CYAN);
+        message.setColor(Color.WHITE);
         messageText = "Your score is: " + driver.getPlayerShip().getPlayerScore() + "\nEnter your name below:";
         message.setString(messageText);
         message.setPosition(driver.getWinWidth() / 2, 250);
         message.setOrigin(message.getLocalBounds().width / 2, message.getLocalBounds().height / 2);
 
         name.setFont(fontStyle);
-        name.setColor(Color.CYAN);
+        name.setColor(Color.WHITE);
         name.setString("|");
         name.setPosition(driver.getWinWidth() / 2, 300);
         name.setOrigin(name.getLocalBounds().width / 2, name.getLocalBounds().height / 2);
