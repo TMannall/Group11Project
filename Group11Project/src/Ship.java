@@ -2,13 +2,13 @@ import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Clock;
-import org.jsfml.system.Time;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Abstract ship class, used to initiate the ship settings to be inherited by the PlayerShip and EnemyShip classes.
+ */
 public abstract class Ship{
     public enum ShipType{
         PLAYER, STANDARD            // STANDARD = STANDARD ENEMY SHIP, REPLACE W/ BRITISH, DUTCH ETC LATER

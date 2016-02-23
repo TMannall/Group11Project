@@ -15,7 +15,8 @@ import org.jsfml.window.event.KeyEvent;
 import java.util.Random;
 
 /**
- * Map state class for Endless Sea
+ * Map state class for Endless Sea, displays all the islands and waypoint data, along with dealing with which waypoint
+ * the player has selected.
  */
 public class Map extends FSMState {
 	private FSM stateMachine;

@@ -1,7 +1,7 @@
 import java.util.concurrent.TimeUnit;
 
 /**
- * Timer class used for game logic
+ * Timer class used for the game logic, methods in this class are called in order to base timings in the game.
  */
 public class Timer {
     private long start;

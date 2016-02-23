@@ -38,6 +38,8 @@ public class Settings extends FSMState{
     private static int buttonFontSize = 32;
     private static String FontFile = "vinque.ttf";
     private String FontPath;
+    public Color BROWN = new Color(56, 35, 5);
+
 
     private static String Title = "Settings";
 
@@ -65,7 +67,7 @@ public class Settings extends FSMState{
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(Color.CYAN);
+        title.setColor(BROWN);
         title.setStyle(Text.BOLD);
 
         for (int i = 0; i < numberOfButtons; i++) {
@@ -73,25 +75,25 @@ public class Settings extends FSMState{
         }
 
         text[0].setFont(sansRegular);
-        text[0].setColor(Color.MAGENTA);
-        text[0].setString("Music Volume: " + sound.getMusicVolume());
+        text[0].setColor(BROWN);
+        text[0].setString("Music : " + sound.getMusicVolume() + "%");
         text[0].setPosition(driver.getWinWidth() / 2, 260);
 		text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(sansRegular);
-        text[1].setColor(Color.CYAN);
-        text[1].setString("Sound Volume: " + sound.getSoundVolume());
+        text[1].setColor(BROWN);
+        text[1].setString("Sound : " + sound.getSoundVolume() + "%");
         text[1].setPosition(driver.getWinWidth() / 2, 330);
 		text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
         text[2].setFont(sansRegular);
-        text[2].setColor(Color.CYAN);
-        text[2].setString("Setting 3");
+        text[2].setColor(BROWN);
+        text[2].setString("Res: " + GameDriver.getWinWidth() + " x " + GameDriver.getWinHeight());
         text[2].setPosition(driver.getWinWidth() / 2, 400);
 		text[2].setOrigin(text[2].getLocalBounds().width / 2, text[2].getLocalBounds().height / 2);
 
         text[3].setFont(sansRegular);
-        text[3].setColor(Color.CYAN);
+        text[3].setColor(BROWN);
         text[3].setString("Main Menu");
         text[3].setPosition(driver.getWinWidth() / 2, 470);
 		text[3].setOrigin(text[3].getLocalBounds().width / 2, text[3].getLocalBounds().height / 2);
@@ -133,6 +135,16 @@ public class Settings extends FSMState{
 			hoverButton[i] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
 			pushButton[i] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
 		}
+
+        for(int i = 0; i < numberOfButtons; i++){
+            textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+            pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+        }
+
+        for(int i = 0; i < numberOfButtons; i++) {
+            window.draw(textButton[i]);
+            window.draw(text[i]);
+        }
 			
 		textButton[0].setPosition(text[0].getPosition().x, text[0].getPosition().y + 8);
 		textButton[1].setPosition(text[1].getPosition().x, text[1].getPosition().y + 8);
@@ -202,7 +214,7 @@ public class Settings extends FSMState{
 										textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
 						}
 						//Music Vol
-						/*if(rect[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
+						if(rect[0].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[0]);
 							window.draw(text[0]);
 						}
@@ -217,8 +229,8 @@ public class Settings extends FSMState{
 						if(rect[2].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[2]);
 							window.draw(text[2]);
-						}*/
-						//Main Menu
+						}
+                        //Main Menu
 						if(rect[3].contains(mouseClicked.position.x, mouseClicked.position.y)){
 							window.draw(pushButton[3]);
 							window.draw(text[3]);

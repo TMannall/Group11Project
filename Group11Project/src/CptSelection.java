@@ -15,7 +15,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 /**
- * CptSelection state for Endless Sea, used to allow the player to select a captain before the game begins
+ * Captain Selection state for Endless Sea, used to allow the player to select a captain before the game begins.
+ * Each captain has different positive and negative modifiers associated with them.
  */
 public class CptSelection extends FSMState{
 	

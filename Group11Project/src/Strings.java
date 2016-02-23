@@ -1,10 +1,12 @@
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.Text;
-
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Strings class file used to define the strings used within the game states.
+ */
 public class Strings {
     // Main menu
     public static String title = "Endless Sea";

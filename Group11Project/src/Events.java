@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Random;
 
+/**
+ * Abstract class used to provide a basic template for each type of event class to inherit.
+ */
 public abstract class Events extends FSMState {
     protected FSM stateMachine;
     protected GameDriver driver;

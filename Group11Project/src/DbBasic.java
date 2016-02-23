@@ -1,7 +1,9 @@
 import java.sql.*;
 import java.io.File;
 
-
+/**
+ * Database Basic class used to deal with the connection to the JDBC driver.
+ */
 public class DbBasic {
 	/**
 	 * Set to true to enable debug messages

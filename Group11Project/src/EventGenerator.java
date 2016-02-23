@@ -1,8 +1,11 @@
-import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderWindow;
-
 import java.util.ArrayList;
 import java.util.Random;
+
+/**
+ * Event Generator class used to facilitate the randomising of events, this class has methods for querying the
+ * SQL database and randomly choosing which event to be generated.
+ */
 public class EventGenerator {
     private FSM stateMachine;
     private GameDriver driver;
