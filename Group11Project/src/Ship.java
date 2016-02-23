@@ -317,7 +317,10 @@ public abstract class Ship{
     }
 
     public void addGold(int change) {
-         currGold += change;
+        currGold += change;
+        if(currGold < 0){
+            currGold = 0;
+        }
     }
 
     public int getPlayerScore() {
