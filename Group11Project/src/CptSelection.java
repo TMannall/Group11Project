@@ -34,6 +34,8 @@ public class CptSelection extends FSMState{
 	IntRect[] recti = new IntRect[numberOfButtons];
 	FloatRect[] rectf = new FloatRect[numberOfButtons];
 	FloatRect[] rect = new FloatRect[numberOfButtons];
+	IntRect[] rectiM = new IntRect[1];
+	FloatRect[] rectfM = new FloatRect[1];
 
 	float leftBound;
 	float rightBound;
@@ -172,6 +174,19 @@ public class CptSelection extends FSMState{
 				window.draw(background[i]);
 			}
 		}
+		
+	    rectfM[0] = new FloatRect(textButton[4].getGlobalBounds().left, textButton[4].getGlobalBounds().top, 
+									textButton[4].getGlobalBounds().width, textButton[4].getGlobalBounds().height);
+		rectiM[0] = new IntRect(rectfM[0]);
+					
+		if((rectiM[0].contains(Mouse.getPosition(window)) && mouseOverButton())){
+			textButton[4].setTextureRect(new IntRect(23, 100, 250, 60));
+			window.draw(textButton[4]);
+		}
+		else if(!mouseOverButton()){
+			textButton[4].setTextureRect(new IntRect(23, 21, 250, 60));
+			window.draw(textButton[4]);
+		}
 
 		for (int i = 0; i < numberOfButtons; i++) {
 			window.draw(text[i]);
@@ -256,6 +271,13 @@ public class CptSelection extends FSMState{
 			if(recti[i].contains(Mouse.getPosition(window))){
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	public boolean mouseOverButton(){
+		if(rectiM[0].contains(Mouse.getPosition(window))){
+			return true;
 		}
 		return false;
 	}
