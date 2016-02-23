@@ -55,12 +55,12 @@ public abstract class Events extends FSMState {
         System.out.println("CONSUMING RESOURCES");
         int consumed;
         // Consume food
-        consumed = randGenerator.nextInt(20 - 10 + 1) + 10;
+        consumed = randGenerator.nextInt(10 - 5 + 1) + 5;
         System.out.println("FOOD CONSUMED: " + consumed);
         driver.getPlayerShip().addFood(-consumed);
 
         // Consume water
-        consumed = randGenerator.nextInt(20 - 10 + 1) + 10;
+        consumed = randGenerator.nextInt(10 - 5 + 1) + 5;
         System.out.println("WATER CONSUMED: " + consumed);
         driver.getPlayerShip().addWater(-consumed);
 
