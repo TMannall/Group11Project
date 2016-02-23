@@ -205,7 +205,7 @@ public class Menu extends FSMState{
                             window.draw(pushButton[0]);
                             window.draw(text[0]);
                             sound.stopBackgroundMusic();
-                            sound.playBackgroundMusic("ambient_ocean");
+                            sound.playBackgroundMusic("ambient_ocean"); // jack: fix music
                             // Reset game
                             driver.genNewPlayer();
                             driver.map = new Map(stateMachine, driver, window, textures, driver.eventGenerator);
