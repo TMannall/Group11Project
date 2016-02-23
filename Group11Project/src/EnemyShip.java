@@ -136,7 +136,7 @@ public class EnemyShip extends Ship {
 
             int dmg;
             if(guns.isTargetable())
-                dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * (int)gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+                dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr); // Random damage between 10 and 15, multiplied by gunStr modifier
             else
                 dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * (gunStr / 2)); // AI guns destroyed, halved damage dealt
             System.out.println("PRE-ARMOUR DMG: " + dmg);
@@ -172,7 +172,7 @@ public class EnemyShip extends Ship {
 
             int dmg;
             if(guns.isTargetable())
-                dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * (int)gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+                dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr); // Random damage between 10 and 15, multiplied by gunStr modifier
             else
                 dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * (gunStr / 2)); // AI guns destroyed, halved damage dealt
             System.out.println("PRE-ARMOUR DMG: " + dmg);
@@ -230,7 +230,8 @@ public class EnemyShip extends Ship {
                 playerShip.bridge.setWeight(0.2);
                 playerShip.hold.setWeight(0.3);
                 playerShip.quarters.setWeight(0.3);
-                targetWeight = 0.4;
+                targetWeight = 0.25;
+                gunStr = (float)0.75;
                 break;
             case MEDIUM:    // Fires faster & hits harder
                 baseReload = 6;

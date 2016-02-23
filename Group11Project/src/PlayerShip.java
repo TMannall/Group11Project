@@ -101,7 +101,7 @@ public class PlayerShip extends Ship {
             System.out.println("FIRING GUNS!");
             int dmg;
             if(guns.isTargetable())
-                dmg = (randGenerator.nextInt(15 - 10 + 1) + 10) * (int)gunStr; // Random damage between 10 and 15, multiplied by gunStr modifier
+                dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * gunStr); // Random damage between 10 and 15, multiplied by gunStr modifier
             else{
                 dmg = (int)((randGenerator.nextInt(15 - 10 + 1) + 10) * (gunStr / 2));
             }
