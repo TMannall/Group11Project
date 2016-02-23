@@ -25,6 +25,7 @@ public class Map extends FSMState {
 	private Textures textures;
 	private Random randGenerator;
 	private EventGenerator eventGenerator;
+	private SoundFX sound;
 
 	private static int noOfSprites = 8;
 	private static int maxSprites = 8;
@@ -58,6 +59,7 @@ public class Map extends FSMState {
 		this.textures = textures;
 		randGenerator = new Random();
 		this.eventGenerator = eventGenerator;
+		this.sound = new SoundFX();
 		setup();
 	}
 

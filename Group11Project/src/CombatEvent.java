@@ -32,6 +32,7 @@ public class CombatEvent extends Events {
     public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, PlayerShip playerShip) {
         super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         this.playerShip = playerShip;
+        sound.stopBackgroundMusic();
         sound.playBackgroundMusic("music_combat");
         setup();
     }
