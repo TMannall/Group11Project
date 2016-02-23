@@ -22,7 +22,7 @@ public class CombatEvent extends Events {
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
 	
-        private static int noOfCrew = 4;
+    private static int noOfCrew = 4;
 	Sprite[] crewSprite = new Sprite[noOfCrew];
 	float[] spriteXPos = new float[noOfCrew];
 	float[] spriteYPos = new float[noOfCrew];
@@ -89,7 +89,7 @@ public class CombatEvent extends Events {
             recti[i] = new IntRect(rectf[i]);
         }
 		
-		crewSprite[0] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
+		/*crewSprite[0] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
 		crewSprite[1] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
 		crewSprite[2] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
 		crewSprite[3] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
@@ -102,7 +102,7 @@ public class CombatEvent extends Events {
 		
 		for(int i = 0; i < noOfCrew; i++){
 			crewSprite[i].setScale((float)0.5,(float)0.5);
-		}
+		}*/
 
         chooseDifficulty();
         enemyShip = new EnemyShip(textures, driver, window, randGenerator, sound, Ship.ShipType.STANDARD, (float) 0.5, 600, 420, difficulty);
@@ -173,7 +173,6 @@ public class CombatEvent extends Events {
                     break;
             }
         }
-
     }
 
     public void executeCombat() {
@@ -186,9 +185,9 @@ public class CombatEvent extends Events {
         if (hovered != null)
             window.draw(hovered.sectionHighlight);
 		
-		for(int i = 0; i < noOfCrew; i++){
+		/*for(int i = 0; i < noOfCrew; i++){
 			window.draw(crewSprite[i]);
-		}
+		}*/
 		
         ui.draw();
 
@@ -216,7 +215,7 @@ public class CombatEvent extends Events {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
 					
-					for(int i = 0; i < 4; i++){
+					/*for(int i = 0; i < 4; i++){
 						crewleftBound[i] = crewSprite[i].getGlobalBounds().left;
 						crewrightBound[i] = crewleftBound[i] + crewSprite[i].getGlobalBounds().width;
 						crewtopBound[i] = crewSprite[i].getGlobalBounds().top;
@@ -344,7 +343,7 @@ public class CombatEvent extends Events {
 									break;
 							}
 						}
-					}
+					}*/
 					
                     ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
                     if (clicked != null) {
