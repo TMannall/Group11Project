@@ -64,7 +64,7 @@ public class Instructions extends FSMState{
             text[i] = new Text();
         }
 
-        for(int i = 0; i < 7; i++)
+        for(int i = 0; i < 6; i++)
         {
             instBackdrop[i] = textures.createSprite(textures.instructions, 0, backdropYPos[i], 1280, 720);
             instBackdrop[i].setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
@@ -73,7 +73,7 @@ public class Instructions extends FSMState{
         for(int i = 0; i < numberOfButtons; i++)
         {
             text[i].setFont(fontStyle);
-            text[i].setColor(Color.CYAN);
+            text[i].setColor(driver.BROWN);
             text[i].setString(buttonString[i]);
             text[i].setPosition(295 + (i*350), 680);
             text[i].setOrigin(text[i].getLocalBounds().width / 2, text[i].getLocalBounds().height / 2);
@@ -139,7 +139,7 @@ public class Instructions extends FSMState{
                                     break;
                                 case 2: //Next
                                     System.out.println("Next");
-                                    if(currentInstruction < 6)
+                                    if(currentInstruction < 5)
                                         currentInstruction++;
                                     break;
                             }
