@@ -51,9 +51,11 @@ public class GameDriver {
     //public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
 
+    private int style = WindowStyle.CLOSE | WindowStyle.TITLEBAR;
+
     public void run(){
         // Initial setup
-        window.create(new VideoMode(WIN_WIDTH, WIN_HEIGHT), TITLE, WindowStyle.DEFAULT);
+        window.create(new VideoMode(WIN_WIDTH, WIN_HEIGHT), TITLE, style);
         window.setFramerateLimit(30);
 
         // some quick icon loading thing, it's kind of ugly
