@@ -210,9 +210,15 @@ public class AfterEvent extends Events{
             window.draw(currStats[i]);
         }
 
-        for(int j = 0; j < statsChanges.length; j++){
-            if(j != 4)
-                window.draw(statsChanges[j]);
+        // Don't display changes if combat wasn't successful
+        if(consequence == Consequence.COMBAT_AI_RETREAT || consequence == Consequence.COMBAT_PLAYER_RETREAT){
+            // Do nothing
+        }
+        else {
+            for (int j = 0; j < statsChanges.length; j++) {
+                if (j != 4)
+                    window.draw(statsChanges[j]);
+            }
         }
 
         if ((recti.contains(Mouse.getPosition(window)) && isMouseOver()))
@@ -324,8 +330,18 @@ public class AfterEvent extends Events{
     }
 
     public void checkGameOverAfter(){
-        if(playerShip.getHullHP() <= 0 || playerShip.getCurrFood() <= 0 || playerShip.getCurrWater() <= 0){
-            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed or out of food/water
+        if(playerShip.getHullHP() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_HULL_DESTROYED));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed
+        }
+        else if(playerShip.getCurrFood() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_NO_FOOD));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, out of food
+        }
+        else if(playerShip.getCurrWater() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_NO_WATER));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, out of water
+
         }
     }
 

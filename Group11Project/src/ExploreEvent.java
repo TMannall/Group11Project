@@ -1,4 +1,5 @@
 import org.jsfml.graphics.*;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 
 import java.util.Random;
@@ -91,10 +92,6 @@ public class ExploreEvent extends Events {
         }
         window.draw(messageScroll);
         window.draw(title);
-        for(int i = 0; i < numberOfButtons; i++){
-            window.draw(textButton[i]);
-            window.draw(text[i]);
-        }
 
         displayMenu();
         window.display();
@@ -133,8 +130,21 @@ public class ExploreEvent extends Events {
 
     public void displayMenu(){
         for(int i = 0; i < numberOfButtons; i++){
+            if ((recti[i].contains(Mouse.getPosition(window)) && isMouseOver()))
+                textButton[i].setTextureRect(new IntRect(23, 100, 250, 60));
+            else if (!isMouseOver())
+                textButton[i].setTextureRect(new IntRect(23, 21, 250, 60));
             window.draw(textButton[i]);
             window.draw(text[i]);
         }
+    }
+
+    public boolean isMouseOver(){
+        for(int i = 0; i < numberOfButtons; i++){
+            if(recti[i].contains(Mouse.getPosition(window))){
+                return true;
+            }
+        }
+        return false;
     }
 }

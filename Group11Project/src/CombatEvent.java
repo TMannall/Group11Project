@@ -99,7 +99,11 @@ public class CombatEvent extends Events {
 
         window.draw(messageScroll);
         window.draw(title);
-        for (int i = 0; i < numberOfButtons; i++) {
+        for(int i = 0; i < numberOfButtons; i++){
+            if ((recti[i].contains(Mouse.getPosition(window)) && isMouseOver()))
+                textButton[i].setTextureRect(new IntRect(23, 100, 250, 60));
+            else if (!isMouseOver())
+                textButton[i].setTextureRect(new IntRect(23, 21, 250, 60));
             window.draw(textButton[i]);
             window.draw(text[i]);
         }
@@ -216,6 +220,7 @@ public class CombatEvent extends Events {
         if (attack) {
             enemyShip.attack(playerShip);
             if (playerShip.getHullHP() <= 0) {
+                stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_HULL_DESTROYED));
                 stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player ship destroyed
                 sound.stopBackgroundMusic();
             }
@@ -264,5 +269,14 @@ public class CombatEvent extends Events {
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
+    }
+
+    public boolean isMouseOver(){
+        for(int i = 0; i < numberOfButtons; i++){
+            if(recti[i].contains(Mouse.getPosition(window))){
+                return true;
+            }
+        }
+        return false;
     }
 }

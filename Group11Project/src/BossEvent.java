@@ -31,13 +31,15 @@ public class BossEvent extends CombatEvent {
     public void actionAI() {
             enemyShip.attack(playerShip);
             if (playerShip.getHullHP() <= 0) {
-                stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player ship destroyed
+                stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_HULL_DESTROYED));
+                stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed
             }
     }
 
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
             playerShip.addPlayerScore(1500);
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.BOSS_KILL));
             stateMachine.setState(stateMachine.getStates().get(7));         // Game over, enemy ship destroyed
         }
     }

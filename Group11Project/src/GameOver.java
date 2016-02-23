@@ -18,6 +18,12 @@ import java.nio.file.Paths;
  * score and return to the main menu.
  */
 public class GameOver extends FSMState {
+    public enum Reason{
+        DEFAULT, BOSS_KILL, PLAYER_HULL_DESTROYED, PLAYER_NO_FOOD, PLAYER_NO_WATER
+    }
+
+    private Reason reason;
+
     private FSM stateMachine;
     private GameDriver driver;
     private RenderWindow window;
@@ -26,6 +32,7 @@ public class GameOver extends FSMState {
     private Text[] text = new Text[numberOfButtons];
     private boolean[] disabled = new boolean[numberOfButtons];
     private Text title;
+    private Text subtitle;
     private Text message = new Text();
     private String messageText = "";
     private IntRect[] recti = new IntRect[numberOfButtons];
@@ -49,12 +56,13 @@ public class GameOver extends FSMState {
 
     private Sprite background;
 
-    public GameOver(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Leaderboard leaderboard) {
+    public GameOver(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Leaderboard leaderboard, Reason reason) {
         this.stateMachine = stateMachine;
         this.driver = driver;
         this.window = window;
         this.textures = textures;
         this.leaderboard = leaderboard;
+        this.reason = reason;
         setup();
     }
 
@@ -71,10 +79,18 @@ public class GameOver extends FSMState {
         }
 
         title = new Text(Title, fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 100);
+        title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.CYAN);
         title.setStyle(Text.BOLD);
+
+        subtitle = new Text("", fontStyle, 40);
+        subtitle.setPosition((driver.getWinWidth() / 2) - 25, 170);
+        subtitle.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        subtitle.setColor(Color.CYAN);
+        subtitle.setStyle(Text.REGULAR);
+
+        genMessage();
 
         for (int i = 0; i < numberOfButtons; i++) {
             text[i] = new Text();
@@ -121,20 +137,6 @@ public class GameOver extends FSMState {
 
     @Override
     public void execute() {
- /*       System.out.println("GAME OVER!");
-
-        System.exit(0);
-
-        window.display();
-
-        for(Event event : window.pollEvents()){
-            switch (event.type) {
-                case CLOSED:
-                    window.close();
-                    break;
-            }
-        }
-*/
         textures.gameover.setOrigin(0, 0);
         window.draw(textures.gameover);
 
@@ -154,6 +156,7 @@ public class GameOver extends FSMState {
         textures.gameover.setOrigin(0, 0);
         window.draw(textures.gameover);
         window.draw(title);
+        window.draw(subtitle);
         window.draw(background);
         if(!disabled[2])
         {
@@ -323,6 +326,26 @@ public class GameOver extends FSMState {
             }
         }
         return false;
+    }
+
+    public void genMessage(){
+        switch(reason){
+            case BOSS_KILL:
+                subtitle.setString("You beat Endless Sea!");
+                break;
+            case PLAYER_HULL_DESTROYED:
+                subtitle.setString("Your ship was destroyed!");
+                break;
+            case PLAYER_NO_FOOD:
+                subtitle.setString("You ran out of food!");
+                break;
+            case PLAYER_NO_WATER:
+                subtitle.setString("You ran out of water!");
+                break;
+            case DEFAULT:
+                subtitle.setString("");
+                break;
+        }
     }
 
 }

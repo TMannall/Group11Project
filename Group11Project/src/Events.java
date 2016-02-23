@@ -69,9 +69,18 @@ public abstract class Events extends FSMState {
     }
 
     public void checkGameOver(){
-        if(driver.getPlayerShip().getCurrFood() <= 0 || driver.getPlayerShip().getCurrWater() <= 0){
-            System.out.println("RUN OUT OF FOOD/WATER!");
-            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed or out of food/water
+        if(driver.getPlayerShip().getHullHP() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_HULL_DESTROYED));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player hull destroyed
+        }
+        else if(driver.getPlayerShip().getCurrFood() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_NO_FOOD));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, out of food
+        }
+        else if(driver.getPlayerShip().getCurrWater() <= 0){
+            stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_NO_WATER));
+            stateMachine.setState(stateMachine.getStates().get(7));     // Game over, out of water
+
         }
     }
 }
