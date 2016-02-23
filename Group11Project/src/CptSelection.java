@@ -77,7 +77,7 @@ public class CptSelection extends FSMState{
 		title = new Text(Title, sansRegular, titleFontSize);
 		title.setPosition(driver.getWinWidth() / 2, 80);
 		title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-		title.setColor(Color.CYAN);
+		title.setColor(driver.BROWN);
 		title.setStyle(Text.BOLD);
 
 		for (int i = 0; i < numberOfButtons; i++) {
@@ -86,7 +86,7 @@ public class CptSelection extends FSMState{
 
 		for (int i = 0; i < numberOfButtons-1; i++) { //cpts
 			text[i].setFont(sansRegular);
-			text[i].setColor(Color.CYAN);
+			text[i].setColor(Color.WHITE);
 			text[i].setString(cptNamesAndStats[i]);
 			text[i].setPosition(220+(i*300), (driver.getWinHeight()/2)+140);
 			text[i].setOrigin(text[i].getLocalBounds().width / 2, text[i].getLocalBounds().height / 2);
@@ -94,7 +94,7 @@ public class CptSelection extends FSMState{
 
 		//back to menu button
 		text[numberOfButtons-1].setFont(sansRegular);
-		text[numberOfButtons-1].setColor(Color.CYAN);
+		text[numberOfButtons-1].setColor(driver.BROWN);
 		text[numberOfButtons-1].setString("Main Menu");
 		text[numberOfButtons-1].setPosition(driver.getWinWidth() / 2, 660);
 		text[numberOfButtons-1].setOrigin(text[numberOfButtons-1].getLocalBounds().width / 2, text[numberOfButtons-1].getLocalBounds().height / 2);

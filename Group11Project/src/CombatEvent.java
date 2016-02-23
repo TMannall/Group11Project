@@ -89,10 +89,10 @@ public class CombatEvent extends Events {
             recti[i] = new IntRect(rectf[i]);
         }
 		
-		crewSprite[0] = textures.createSprite(textures.frenchMarine, 0, 0, 65, 185);
-		crewSprite[1] = textures.createSprite(textures.britishMarine, 0, 0, 65, 185);
-		crewSprite[2] = textures.createSprite(textures.spanishMarine, 0, 0, 65, 185);
-		crewSprite[3] = textures.createSprite(textures.neutralMarine, 0, 0, 65, 185);
+		crewSprite[0] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
+		crewSprite[1] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
+		crewSprite[2] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
+		crewSprite[3] = textures.createSprite(textures.sailor1, 0, 0, 35, 35);
 		//crewSprite[0] = textures.createSprite(textures.sailor1, 0, 0, 100, 100);
 		
 		crewSprite[0].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 20, playerShip.sections.get(3).sprite.getPosition().y - 47);

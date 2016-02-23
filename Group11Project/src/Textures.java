@@ -164,10 +164,10 @@ public class Textures {
     public Sprite AIshipMedicalDestroyed = createSprite(shipLv3Dead, 868, 0, 826, 365);
 
     // Character portraits
-    public Texture cptPortraitA = loadTexture("textures/captain_portrait_example.png");
-    public Texture cptPortraitB = loadTexture("textures/captain_portrait_example.png");
-    public Texture cptPortraitC = loadTexture("textures/captain_portrait_example.png");
-    public Texture cptPortraitD = loadTexture("textures/captain_portrait_example.png");
+    public Texture cptPortraitA = loadTexture("textures/captain_portrait_01.png");
+    public Texture cptPortraitB = loadTexture("textures/captain_portrait_02.png");
+    public Texture cptPortraitC = loadTexture("textures/captain_portrait_03.png");
+    public Texture cptPortraitD = loadTexture("textures/captain_portrait_04.png");
     public Texture backgroundCptSel = loadTexture("textures/backgroundCptSel.png");
 
 	// Leaderboard
