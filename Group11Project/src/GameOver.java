@@ -85,7 +85,7 @@ public class GameOver extends FSMState {
         title.setStyle(Text.BOLD);
 
         subtitle = new Text("", fontStyle, 40);
-        subtitle.setPosition((driver.getWinWidth() / 2) - 25, 170);
+        subtitle.setPosition((driver.getWinWidth() / 2), 170);
         subtitle.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         subtitle.setColor(Color.CYAN);
         subtitle.setStyle(Text.REGULAR);
@@ -332,15 +332,19 @@ public class GameOver extends FSMState {
         switch(reason){
             case BOSS_KILL:
                 subtitle.setString("You beat Endless Sea!");
+                subtitle.setPosition(((driver.getWinWidth() / 2) + 5), 170);
                 break;
             case PLAYER_HULL_DESTROYED:
                 subtitle.setString("Your ship was destroyed!");
+                subtitle.setPosition(((driver.getWinWidth() / 2) - 25), 170);
                 break;
             case PLAYER_NO_FOOD:
                 subtitle.setString("You ran out of food!");
+                subtitle.setPosition(((driver.getWinWidth() / 2) + 30), 170);
                 break;
             case PLAYER_NO_WATER:
                 subtitle.setString("You ran out of water!");
+                subtitle.setPosition(((driver.getWinWidth() / 2) + 10), 170);
                 break;
             case DEFAULT:
                 subtitle.setString("");

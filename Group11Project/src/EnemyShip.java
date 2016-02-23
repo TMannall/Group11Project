@@ -231,8 +231,7 @@ public class EnemyShip extends Ship {
                 playerShip.hold.setWeight(0.3);
                 playerShip.quarters.setWeight(0.3);
                 targetWeight = 0.25;
-                //gunStr = (float)0.75;
-                gunStr = 10;
+                gunStr = (float)0.75;
                 break;
             case MEDIUM:    // Fires faster & hits harder
                 baseReload = 6;
@@ -260,6 +259,9 @@ public class EnemyShip extends Ship {
                 targetWeight = 0.75;
                 break;
             case BOSS:
+                baseReload = 5;
+                gunStr = 2;
+                bridgeDefence = 2;
                 // Set chances of each section to be targeted by AI
                 // All weights must add up to 1.0
                 playerShip.guns.setWeight(0.4);
