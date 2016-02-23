@@ -42,14 +42,14 @@ public class CombatEvent extends Events {
             text[i] = new Text();
         }
         text[0].setFont(fontStyle);
-        text[0].setColor(Color.RED);
-        text[0].setString("ATTACK!");
+        text[0].setColor(driver.BROWN);
+        text[0].setString("Attack");
         text[0].setPosition(500, 500);
         text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(fontStyle);
-        text[1].setColor(Color.YELLOW);
-        text[1].setString("RETREAT!");
+        text[1].setColor(driver.BROWN);
+        text[1].setString("Retreat");
         text[1].setPosition(770, 500);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
@@ -108,10 +108,10 @@ public class CombatEvent extends Events {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     for (int i = 0; i < 2; i++) {
-                        leftBound[i] = text[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                        topBound[i] = text[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
+                        leftBound[i] = textButton[i].getGlobalBounds().left;
+                        rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
+                        topBound[i] = textButton[i].getGlobalBounds().top;
+                        bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
                     for (int i = 0; i < 2; i++) {

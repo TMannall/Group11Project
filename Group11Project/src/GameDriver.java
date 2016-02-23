@@ -22,6 +22,8 @@ public class GameDriver {
     private static final int WIN_HEIGHT = 720;
     private static final String TITLE = "Endless Sea";
 
+    public Color BROWN = new Color(56, 35, 5);
+
     private FSM machine;
     protected EventGenerator eventGenerator;
 

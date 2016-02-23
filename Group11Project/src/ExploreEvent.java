@@ -30,11 +30,11 @@ public class ExploreEvent extends Events {
 
     public void setup(){
         messageScroll = textures.createSprite(textures.ingameWindow_, 0, 0, 800, 500);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 360);
         messageScroll.setScale((float)1.25, 1);
 
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
-        title.setPosition(driver.getWinWidth() / 2, 300);
+        title.setPosition(driver.getWinWidth() / 2 - 35, 300);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
@@ -43,14 +43,14 @@ public class ExploreEvent extends Events {
             text[i] = new Text();
         }
         text[0].setFont(fontStyle);
-        text[0].setColor(Color.RED);
-        text[0].setString("ACCEPT!");
+        text[0].setColor(driver.BROWN);
+        text[0].setString("Explore");
         text[0].setPosition(500, 500);
         text[0].setOrigin(text[0].getLocalBounds().width / 2, text[0].getLocalBounds().height / 2);
 
         text[1].setFont(fontStyle);
-        text[1].setColor(Color.YELLOW);
-        text[1].setString("DECLINE!");
+        text[1].setColor(driver.BROWN);
+        text[1].setString("Decline");
         text[1].setPosition(770, 500);
         text[1].setOrigin(text[1].getLocalBounds().width / 2, text[1].getLocalBounds().height / 2);
 
@@ -103,10 +103,10 @@ public class ExploreEvent extends Events {
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
                     for(int i = 0; i < 2; i++){
-                        leftBound[i] = text[i].getGlobalBounds().left;
-                        rightBound[i] = leftBound[i] + text[i].getGlobalBounds().width;
-                        topBound[i] = text[i].getGlobalBounds().top;
-                        bottomBound[i] = topBound[i] + text[i].getGlobalBounds().height;
+                        leftBound[i] = textButton[i].getGlobalBounds().left;
+                        rightBound[i] = leftBound[i] + textButton[i].getGlobalBounds().width;
+                        topBound[i] = textButton[i].getGlobalBounds().top;
+                        bottomBound[i] = topBound[i] + textButton[i].getGlobalBounds().height;
                     }
                     // Add events/actions here when islands are clicked on
                     for(int i = 0; i < 2; i++) {

@@ -39,8 +39,8 @@ public class TradeEvent extends Events{
 
         // Set up scroll + title
         messageScroll = textures.createSprite(textures.ingameWindow_, 0, 0, 800, 500);    //MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
-        messageScroll.setScale((float) 1.25, 1);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 360);
+        messageScroll.setScale((float) 1.25, (float)1.25);
 
         title = new Text(eventGenerator.getEventText(), fontStyle, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2 - 35, 150);
@@ -65,7 +65,7 @@ public class TradeEvent extends Events{
             btn[i] = new Text("Buy", fontStyle, 24);
             btn[i].setPosition(820, 290 + (100*i));
             btn[i].setOrigin(0,0);
-            btn[i].setColor(Color.CYAN);
+            btn[i].setColor(driver.BROWN);
             btn[i].setStyle(Text.REGULAR);
 
             textButton[i] = textures.createSprite(textures.userInterface, 300, 21, 125, 60);
@@ -77,17 +77,17 @@ public class TradeEvent extends Events{
         }
 
         btn[3] = new Text("Leave", fontStyle, 28);
-        btn[3].setPosition(564, 632);
+        btn[3].setPosition(606, 578);
         btn[3].setOrigin(0,0);
-        btn[3].setColor(Color.CYAN);
+        btn[3].setColor(driver.BROWN);
         btn[3].setStyle(Text.REGULAR);
 
         textButton[3] =  textures.createSprite(textures.userInterface, 23, 21, 250, 60);
         hoverButton[3] = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
         pushButton[3] = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
 
-        textButton[3].setPosition(600, 650);
-        pushButton[3].setPosition(600, 700);
+        textButton[3].setPosition(640, 595);
+        pushButton[3].setPosition(640, 595);
 
         // Set bounds for buy buttons
         for(int i = 0; i < amountOfItems + 1; i++){

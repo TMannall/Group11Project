@@ -126,132 +126,133 @@ public class Map extends FSMState {
 					for(int i = 0; i < maxWaypoints; i++){
 						if (xPos > leftBound[i] && xPos < rightBound[i] && yPos > topBound[i] && yPos < bottomBound[i]) {
 							switch(i){
-								case 0:	//Island 1
+								case 0:	//Island 0 - Explore
 									if (canTravelTo(i)){
 										currentWayPoint = i;
 										tavelledCount++;
-										System.out.println("1 Clicked");
-										eventGenerator.setProbabilities(1, 0, 0, 0, 0, 0);
-										eventGenerator.genRandomEvent();
-										eventGenerator.genEventState();
-									}
-									break;
-								case 1: //Island 2
-									if (canTravelTo(i)) {
-										currentWayPoint = i;
-										tavelledCount++;
-										System.out.println("2 Clicked");
-										eventGenerator.setProbabilities(0, 1, 0, 0, 0, 0);
-										eventGenerator.genRandomEvent();
-										eventGenerator.genEventState();
-									}
-									break;
-								case 2: //Island 3
-									if (canTravelTo(i)) {
-										currentWayPoint = i;
-										tavelledCount++;
-										System.out.println("3 Clicked");
+										System.out.println("0 Clicked");
 										eventGenerator.setProbabilities(0, 0, 1, 0, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 3: //Island 4
+								case 1: //Island 1 - Combat
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
-										System.out.println("4 Clicked");
+										System.out.println("1 Clicked");
+										//eventGenerator.setProbabilities(0, 1, 0, 0, 0, 0);
+										eventGenerator.setProbabilities(1, 0, 0, 0, 0, 0);
+										eventGenerator.genRandomEvent();
+										eventGenerator.genEventState();
+									}
+									break;
+								case 2: //Island 2 - Text
+									if (canTravelTo(i)) {
+										currentWayPoint = i;
+										tavelledCount++;
+										System.out.println("2 Clicked");
 										eventGenerator.setProbabilities(0, 0, 0, 1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 4: //Island 5 //Trade
+								case 3: //Island 3 - Random
+									if (canTravelTo(i)) {
+										currentWayPoint = i;
+										tavelledCount++;
+										System.out.println("3 Clicked");
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
+										eventGenerator.genRandomEvent();
+										eventGenerator.genEventState();
+									}
+									break;
+								case 4: //Island 4 - Random
+									if (canTravelTo(i)) {
+										currentWayPoint = i;
+										tavelledCount++;
+										System.out.println("4 Clicked");
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
+										eventGenerator.genRandomEvent();
+										eventGenerator.genEventState();
+									}
+									break;
+								case 5: //Island 5 - Trade
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("5 Clicked");
-										eventGenerator.setProbabilities(0, 0, 0, 0, 1,0);
+										eventGenerator.setProbabilities(0, 0, 0, 0, 1, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 5: //Island 6 //Text
+								case 6: //Island 6 - Boss
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("6 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float)0.2, (float)0.2, (float)0.2, 0);
+										eventGenerator.setProbabilities(0, 0, 0, 0, 0, 1);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 6: //Island 7 //Exploration
+								case 7: //Island 7 - Random
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("7 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, 0);
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 7: //Island Port //Assist
+								case 8: //Island 8 - Combat
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("8 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, 0);
-										eventGenerator.genRandomEvent();
-										eventGenerator.genEventState();
-									}
-									break;
-								case 8: //Island 3
-									if (canTravelTo(i)) {
-										currentWayPoint = i;
-										tavelledCount++;
-										System.out.println("9 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, 0);
+										eventGenerator.setProbabilities(0, 1, 0, 0, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 										break;
-								case 9: //Island 3
+								case 9: //Island 9 - Trade
+									if (canTravelTo(i)) {
+										currentWayPoint = i;
+										tavelledCount++;
+										System.out.println("9 Clicked");
+										eventGenerator.setProbabilities(0, 0, 0, 0, 1, 0);
+										eventGenerator.genRandomEvent();
+										eventGenerator.genEventState();
+									}
+									break;
+								case 10: //Island 10 - Random
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("10 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float)0.2, (float)0.2, (float)0.2, 0);
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 10: //Island 3
+								case 11: //Island 11 - Random
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("11 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, 0);
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
 									break;
-								case 11: //Island 3
+								case 12: //Island 12 - Random
 									if (canTravelTo(i)) {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("12 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2, (float) 0.2 ,0);
-										eventGenerator.genRandomEvent();
-										eventGenerator.genEventState();
-									}
-									break;
-								case 12: //Island 13
-									if (canTravelTo(i)) {
-										currentWayPoint = i;
-										tavelledCount++;
-										System.out.println("13 Clicked");
-										eventGenerator.setProbabilities((float) 0.2, (float) 0.2, (float)0.2, (float)0.2, (float)0.2, 0);
+										eventGenerator.setProbabilities((float)0.2, (float)0.2, (float)0.2, (float)0.2, (float)0.2, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}

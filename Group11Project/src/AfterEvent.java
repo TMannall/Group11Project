@@ -68,8 +68,8 @@ public class AfterEvent extends Events{
 
         // Set up scroll
         messageScroll = textures.createSprite(textures.ingameWindow_, 0, 0, 800, 500);	//MESSAGE SCROLL
-        messageScroll.setPosition(driver.getWinWidth() / 2, 380);
-        messageScroll.setScale((float)1.25, 1);
+        messageScroll.setPosition(driver.getWinWidth() / 2, 360);
+        messageScroll.setScale((float)1.25, (float)1.25);
 
         genMessage();       // Generate title based on what event this is displayed after
 
@@ -87,24 +87,24 @@ public class AfterEvent extends Events{
         // Set up array of Text to display each stat + position of current stats
         for(int i = 0; i < 5; i++){
             statsNames[i] = new Text(playerStatsListDisplay[i], fontStyle, 24);
-            statsNames[i].setPosition(280, 270 +(90 * i));
+            statsNames[i].setPosition(260, 270 +(77 * i));
             statsNames[i].setOrigin(0, 0);
             statsNames[i].setColor(Color.BLACK);
             statsNames[i].setStyle(Text.REGULAR);
 
-            currStats[i].setPosition(400, 270 + (90 * i));
+            currStats[i].setPosition(380, 270 + (77 * i));
             currStats[i].setOrigin(0, 0);
             currStats[i].setColor(Color.BLACK);
             currStats[i].setStyle(Text.REGULAR);
         }
         for(int c = 4; c < playerStatsListDisplay.length; c++){
             statsNames[c] = new Text(playerStatsListDisplay[c], fontStyle, 24);
-            statsNames[c].setPosition(640, 270 + (68 * (c - 4)));
+            statsNames[c].setPosition(620, 270 + (58 * (c - 4)));
             statsNames[c].setOrigin(0, 0);
             statsNames[c].setColor(Color.BLACK);
             statsNames[c].setStyle(Text.REGULAR);
 
-            currStats[c].setPosition(840, 270 + (68 * (c - 4)));
+            currStats[c].setPosition(820, 270 + (58 * (c - 4)));
             currStats[c].setOrigin(0, 0);
             currStats[c].setColor(Color.BLACK);
             currStats[c].setStyle(Text.REGULAR);
@@ -127,7 +127,7 @@ public class AfterEvent extends Events{
                 changeStr = "";
             }
             statsChanges[j].setString(changeStr);
-            statsChanges[j].setPosition(520, 270 +(90 * j));
+            statsChanges[j].setPosition(500, 270 +(77 * j));
             statsChanges[j].setOrigin(0, 0);
             statsChanges[j].setStyle(Text.REGULAR);
         }
@@ -148,24 +148,24 @@ public class AfterEvent extends Events{
             }
 
             statsChanges[j].setString(changeStr);
-            statsChanges[j].setPosition(960, 270 + (68 * (j - 5)));
+            statsChanges[j].setPosition(940, 270 + (58 * (j - 5)));
             statsChanges[j].setOrigin(0, 0);
             statsChanges[j].setStyle(Text.REGULAR);
         }
 
        // Set up "OK" button
         btn = new Text("OK", fontStyle, 28);
-        btn.setPosition(618, 633);
+        btn.setPosition(618, 578);
         btn.setOrigin(0, 0);
-        btn.setColor(Color.CYAN);
+        btn.setColor(driver.BROWN);
         btn.setStyle(Text.REGULAR);
 
         textButton =  textures.createSprite(textures.userInterface, 23, 21, 250, 60);
         hoverButton = textures.createSprite(textures.userInterface, 23, 100, 250, 60);
         pushButton = textures.createSprite(textures.userInterface, 23, 179, 250, 60);
 
-        textButton.setPosition(640, 650);
-        pushButton.setPosition(640, 700);
+        textButton.setPosition(640, 595);
+        pushButton.setPosition(640, 595);
 
         rectf = new FloatRect(textButton.getGlobalBounds().left, textButton.getGlobalBounds().top,
                     textButton.getGlobalBounds().width, textButton.getGlobalBounds().height);
@@ -189,10 +189,10 @@ public class AfterEvent extends Events{
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
-                    leftBound = btn.getGlobalBounds().left;
-                    rightBound = leftBound + btn.getGlobalBounds().width;
-                    topBound = btn.getGlobalBounds().top;
-                    bottomBound = topBound + btn.getGlobalBounds().height;
+                    leftBound = textButton.getGlobalBounds().left;
+                    rightBound = leftBound + textButton.getGlobalBounds().width;
+                    topBound = textButton.getGlobalBounds().top;
+                    bottomBound = topBound + textButton.getGlobalBounds().height;
                     // Add events/actions here when islands are clicked on
                     if (xPos > leftBound && xPos < rightBound && yPos > topBound && yPos < bottomBound) {
                         stateMachine.setState(stateMachine.getStates().get(4));     // Go to map
@@ -227,7 +227,7 @@ public class AfterEvent extends Events{
     public void genMessage(){
         switch(consequence){
             case COMBAT_KILL:
-                title = new Text("Enemy defeated!\nYou plundered some resources!", fontStyle, titleFontSize);
+                title = new Text("Enemy defeated!\nYou plundered some resources!", fontStyle, 40);
                 break;
             case COMBAT_PLAYER_RETREAT:
                 title = new Text("You retreated from the battle", fontStyle, titleFontSize);
@@ -241,7 +241,7 @@ public class AfterEvent extends Events{
             case EXPLORE_ACCEPT:
                 title = new Text(eventGenerator.getConsequence(), fontStyle, titleFontSize);
         }
-        title.setPosition(driver.getWinWidth() / 2 - 35, 100);
+        title.setPosition(driver.getWinWidth() / 2, 150);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
