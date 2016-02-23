@@ -169,7 +169,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("3 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -179,7 +179,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("4 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -209,7 +209,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("7 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -239,7 +239,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("10 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -249,7 +249,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("11 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
@@ -259,7 +259,7 @@ public class Map extends FSMState {
 										currentWayPoint = i;
 										tavelledCount++;
 										System.out.println("12 Clicked");
-										eventGenerator.setProbabilities((float)0.25, (float)0.25, (float)0.25, (float)0.25, 0, 0);
+										eventGenerator.setProbabilities((float)0.20, (float)0.5, (float)0.20, (float)0.1, 0, 0);
 										eventGenerator.genRandomEvent();
 										eventGenerator.genEventState();
 									}
