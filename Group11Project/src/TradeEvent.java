@@ -7,11 +7,21 @@ import java.util.Random;
  * Trade Event state class for dealing with the trade events the player comes across, this includes the displaying
  * of the different items the user can buy along with support for this.
 */
+
+//public Sprite uiIconGold = createSprite(userInterface, 1168, 448, 50, 50);
+//playerShip.getCurrentGold();
+//playerShip.getCurrentFood();
+//playerShip.getCurrentWater();
+
 public class TradeEvent extends Events{
     private PlayerShip playerShip;
     private static final int amountOfItems = 3;
     private String[] itemStrings;
     private int[][] itemStats;
+
+    public Sprite[] icons = new Sprite[3];
+    public Text[] stats = new Text[3];
+    public String[] statNames = new String[3];
 
     Sprite messageScroll;
     Text[] btn = new Text[4];
@@ -37,6 +47,20 @@ public class TradeEvent extends Events{
         playerShip.addEventComplete();
         System.out.println("EVENTS COMPLETED: " + playerShip.getEventsCompleted());
 
+
+        icons = new Sprite[3];
+        icons[0] = textures.createSprite(textures.userInterface, 1168, 448, 50, 50);
+        icons[1] = textures.createSprite(textures.userInterface, 1168, 383, 50, 50);
+        icons[2] = textures.createSprite(textures.userInterface, 1168, 511, 50, 50);
+
+
+//        public Text[] stats = new Text[3];
+
+        //public Sprite uiIconGold = createSprite(userInterface, 1168, 448, 50, 50);
+//;
+//playerShip.getCurrentFood();
+//playerShip.getCurrentWater();
+
         // Get relevant stuff from database
         this.itemStats = eventGenerator.getItemStats();
         this.itemStrings = eventGenerator.getItemNames();
@@ -51,6 +75,12 @@ public class TradeEvent extends Events{
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
         title.setColor(Color.BLACK);
         title.setStyle(Text.BOLD);
+
+        for(int i = 0; i < 3; i++)
+        {
+            icons[i].setPosition(1400, 300+(i*100));
+            icons[i].setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+        }
 
         // Add item names to array for displaying later + set up "buy" buttons
         for(int i = 0; i < amountOfItems; i++){
@@ -102,6 +132,17 @@ public class TradeEvent extends Events{
     }
 
     public void execute() {
+        statNames[0] = Integer.toString(playerShip.getCurrGold());
+        statNames[1] = Integer.toString(playerShip.getCurrFood());
+        statNames[2] = Integer.toString(playerShip.getCurrWater());
+        for(int i = 0; i < 3; i++)
+        {
+            stats[i] = new Text(statNames[i], fontStyle, titleFontSize-10);
+            stats[i].setPosition(1400, 350+(i*100));
+            stats[i].setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
+            stats[i].setColor(Color.BLACK);
+            stats[i].setStyle(Text.BOLD);
+        }
         if(consumeResources) {
             consumeResources = false;
             consumeResources();
@@ -110,6 +151,13 @@ public class TradeEvent extends Events{
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
         window.draw(messageScroll);
+
+        for(int i = 0; i < 3; i++)
+        {
+            window.draw(stats[i]);
+            window.draw(icons[i]);
+        }
+
 
         displayItems();
 
