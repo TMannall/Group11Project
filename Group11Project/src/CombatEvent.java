@@ -387,25 +387,25 @@ public class CombatEvent extends Events {
         if (attack) {
             enemyShip.attack(playerShip);
             if (playerShip.getHullHP() <= 0) {
+                sound.stopBackgroundMusic();
                 stateMachine.getStates().set(7, new GameOver(stateMachine, driver, window, textures, driver.leaderboardObj, GameOver.Reason.PLAYER_HULL_DESTROYED));
                 stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player ship destroyed
-                sound.stopBackgroundMusic();
             }
         }
         // Retreat instead
         else {
+            sound.stopBackgroundMusic();
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_AI_RETREAT);
             stateMachine.setState(success);
-            sound.stopBackgroundMusic();
         }
     }
 
     public void checkWin() {
         if (enemyShip.getHullHP() <= 0) {
             // Create new temporary success state & move to it
+            sound.stopBackgroundMusic();
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_KILL, difficulty);
             stateMachine.setState(success);
-            sound.stopBackgroundMusic();
         }
     }
 
