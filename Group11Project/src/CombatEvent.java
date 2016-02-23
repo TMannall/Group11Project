@@ -306,7 +306,7 @@ public class CombatEvent extends Events {
 									
 								case 2:	//Spanish Marine
 									//Hold to Bridge
-									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+									if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
 										crewSprite[2].setPosition(playerShip.sections.get(2).sprite.getPosition().x + 85, playerShip.sections.get(2).sprite.getPosition().y - 40);
 									}
 									//Bridge to Hold
