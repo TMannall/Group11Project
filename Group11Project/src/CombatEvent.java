@@ -21,6 +21,22 @@ public class CombatEvent extends Events {
     Sprite[] textButton = new Sprite[numberOfButtons];
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
+	
+	private static int noOfCrew = 4;
+	Sprite[] crewSprite = new Sprite[noOfCrew];
+	float[] spriteXPos = new float[noOfCrew];
+	float[] spriteYPos = new float[noOfCrew];
+	
+	private float[] crewleftBound = new float[noOfCrew];
+	private float[] crewrightBound = new float[noOfCrew];
+	private float[] crewtopBound = new float[noOfCrew];
+	private float[] crewbottomBound = new float[noOfCrew];
+	
+	private float[] shipleftBound = new float[5];
+	private float[] shiprightBound = new float[5];
+	private float[] shiptopBound = new float[5];
+	private float[] shipbottomBound = new float[5];
+
 
     boolean activeCombat = false;       // Set to true to disable "entering combat" alert & begin encounter
 
@@ -72,6 +88,21 @@ public class CombatEvent extends Events {
                     textButton[i].getGlobalBounds().width, textButton[i].getGlobalBounds().height);
             recti[i] = new IntRect(rectf[i]);
         }
+		
+		crewSprite[0] = textures.createSprite(textures.frenchMarine, 0, 0, 65, 185);
+		crewSprite[1] = textures.createSprite(textures.britishMarine, 0, 0, 65, 185);
+		crewSprite[2] = textures.createSprite(textures.spanishMarine, 0, 0, 65, 185);
+		crewSprite[3] = textures.createSprite(textures.neutralMarine, 0, 0, 65, 185);
+		//crewSprite[0] = textures.createSprite(textures.sailor1, 0, 0, 100, 100);
+		
+		crewSprite[0].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 20, playerShip.sections.get(3).sprite.getPosition().y - 47);
+		crewSprite[1].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 50, playerShip.sections.get(3).sprite.getPosition().y - 47);
+		crewSprite[2].setPosition(playerShip.sections.get(3).sprite.getPosition().x + 35, playerShip.sections.get(3).sprite.getPosition().y - 47);
+		//crewSprite[3].setPosition(playerShip.sections.get(3).sprite.getPosition().x + 65, playerShip.sections.get(3).sprite.getPosition().y - 47);
+		
+		for(int i = 0; i < noOfCrew; i++){
+			crewSprite[i].setScale((float)0.5,(float)0.5);
+		}
 
         chooseDifficulty();
         enemyShip = new EnemyShip(textures, driver, window, randGenerator, sound, Ship.ShipType.STANDARD, (float) 0.5, 600, 420, difficulty);
@@ -154,6 +185,11 @@ public class CombatEvent extends Events {
         ShipSection hovered = mouseOver();
         if (hovered != null)
             window.draw(hovered.sectionHighlight);
+		
+		for(int i = 0; i < noOfCrew; i++){
+			window.draw(crewSprite[i]);
+		}
+		
         ui.draw();
 
         // Cannon animation
@@ -179,6 +215,137 @@ public class CombatEvent extends Events {
                 case MOUSE_BUTTON_PRESSED:
                     int xPos = event.asMouseEvent().position.x;
                     int yPos = event.asMouseEvent().position.y;
+					
+					for(int i = 0; i < 4; i++){
+						crewleftBound[i] = crewSprite[i].getGlobalBounds().left;
+						crewrightBound[i] = crewleftBound[i] + crewSprite[i].getGlobalBounds().width;
+						crewtopBound[i] = crewSprite[i].getGlobalBounds().top;
+						crewbottomBound[i] = crewtopBound[i] + crewSprite[i].getGlobalBounds().height;
+					}
+					
+					for(int i = 0; i < 5; i++){
+						shipleftBound[i] = playerShip.sections.get(i).sprite.getGlobalBounds().left;
+						shiprightBound[i] = shipleftBound[i] + playerShip.sections.get(i).sprite.getGlobalBounds().width;
+						shiptopBound[i] = playerShip.sections.get(i).sprite.getGlobalBounds().top;
+						shipbottomBound[i] = shiptopBound[i] + playerShip.sections.get(i).sprite.getGlobalBounds().height;
+					}
+					
+					// Add events/actions here when islands are clicked on
+					for(int i = 0; i < 4; i++){
+						if (xPos > crewleftBound[i] && xPos < crewrightBound[i] && yPos > crewtopBound[i] && yPos < crewbottomBound[i]) {
+							switch(i){
+								case 0:	//French Marine
+									//Hold to Bridge
+									if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[0].setPosition(playerShip.sections.get(2).sprite.getPosition().x - 20, playerShip.sections.get(2).sprite.getPosition().y - 40);
+									}
+									//Bridge to Hold
+									else if((xPos > shipleftBound[2] && xPos < shiprightBound[2] && yPos > shiptopBound[2] && yPos < shipbottomBound[2]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[0].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 20, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Quarters
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[0].setPosition(playerShip.sections.get(4).sprite.getPosition().x - 130, playerShip.sections.get(4).sprite.getPosition().y);
+									}
+									//Quarters to Hold
+									else if((xPos > shipleftBound[4] && xPos < shiprightBound[4] && yPos > shiptopBound[4] && yPos < shipbottomBound[4]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[0].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 20, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Masts
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.MIDDLE)){
+										crewSprite[0].setPosition(playerShip.sections.get(1).sprite.getPosition().x - 20, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}
+									//Masts to Guns
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[0].setPosition(playerShip.sections.get(0).sprite.getPosition().x - 20, playerShip.sections.get(0).sprite.getPosition().y - 15);
+									}									
+									//Guns to Masts
+									else if((xPos > shipleftBound[0] && xPos < shiprightBound[0] && yPos > shiptopBound[0] && yPos < shipbottomBound[0]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[0].setPosition(playerShip.sections.get(1).sprite.getPosition().x - 20, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}	
+									//Masts to Hold
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[0].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 20, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}									
+									break;
+									
+								case 1:	//British Marine
+									//Hold to Bridge
+									if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[1].setPosition(playerShip.sections.get(2).sprite.getPosition().x - 50, playerShip.sections.get(2).sprite.getPosition().y - 40);
+									}
+									//Bridge to Hold
+									else if((xPos > shipleftBound[2] && xPos < shiprightBound[2] && yPos > shiptopBound[2] && yPos < shipbottomBound[2]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[1].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 50, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Quarters
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[1].setPosition(playerShip.sections.get(4).sprite.getPosition().x - 160, playerShip.sections.get(4).sprite.getPosition().y);
+									}
+									//Quarters to Hold
+									else if((xPos > shipleftBound[4] && xPos < shiprightBound[4] && yPos > shiptopBound[4] && yPos < shipbottomBound[4]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[1].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 50, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Masts
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.MIDDLE)){
+										crewSprite[1].setPosition(playerShip.sections.get(1).sprite.getPosition().x - 50, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}
+									//Masts to Guns
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[1].setPosition(playerShip.sections.get(0).sprite.getPosition().x - 50, playerShip.sections.get(0).sprite.getPosition().y - 15);
+									}									
+									//Guns to Masts
+									else if((xPos > shipleftBound[0] && xPos < shiprightBound[0] && yPos > shiptopBound[0] && yPos < shipbottomBound[0]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[1].setPosition(playerShip.sections.get(1).sprite.getPosition().x - 50, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}	
+									//Masts to Hold
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[1].setPosition(playerShip.sections.get(3).sprite.getPosition().x - 50, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}	
+									break;
+									
+								case 2:	//Spanish Marine
+									//Hold to Bridge
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[2].setPosition(playerShip.sections.get(2).sprite.getPosition().x + 85, playerShip.sections.get(2).sprite.getPosition().y - 40);
+									}
+									//Bridge to Hold
+									else if((xPos > shipleftBound[2] && xPos < shiprightBound[2] && yPos > shiptopBound[2] && yPos < shipbottomBound[2]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[2].setPosition(playerShip.sections.get(3).sprite.getPosition().x + 35, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Quarters
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[2].setPosition(playerShip.sections.get(4).sprite.getPosition().x - 130, playerShip.sections.get(4).sprite.getPosition().y - 60);
+									}
+									//Quarters to Hold
+									else if((xPos > shipleftBound[4] && xPos < shiprightBound[4] && yPos > shiptopBound[4] && yPos < shipbottomBound[4]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[2].setPosition(playerShip.sections.get(3).sprite.getPosition().x + 35, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}
+									//Hold to Masts
+									else if((xPos > shipleftBound[3] && xPos < shiprightBound[3] && yPos > shiptopBound[3] && yPos < shipbottomBound[3]) && Mouse.isButtonPressed(Mouse.Button.MIDDLE)){
+										crewSprite[2].setPosition(playerShip.sections.get(1).sprite.getPosition().x + 35, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}
+									//Masts to Guns
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.LEFT)){
+										crewSprite[2].setPosition(playerShip.sections.get(0).sprite.getPosition().x + 35, playerShip.sections.get(0).sprite.getPosition().y - 15);
+									}									
+									//Guns to Masts
+									else if((xPos > shipleftBound[0] && xPos < shiprightBound[0] && yPos > shiptopBound[0] && yPos < shipbottomBound[0]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[2].setPosition(playerShip.sections.get(1).sprite.getPosition().x + 35, playerShip.sections.get(1).sprite.getPosition().y - 40);
+									}	
+									//Masts to Hold
+									else if((xPos > shipleftBound[1] && xPos < shiprightBound[1] && yPos > shiptopBound[1] && yPos < shipbottomBound[1]) && Mouse.isButtonPressed(Mouse.Button.RIGHT)){
+										crewSprite[2].setPosition(playerShip.sections.get(3).sprite.getPosition().x + 35, playerShip.sections.get(3).sprite.getPosition().y - 47);
+									}	
+									break;
+									
+								case 3:
+									//System.out.println("Sprite 4");
+									break;
+							}
+						}
+					}
+					
                     ShipSection clicked = enemyShip.validateClicked(playerShip, xPos, yPos);
                     if (clicked != null) {
                         playerShip.attack(clicked);
