@@ -3,10 +3,11 @@
  */
 
 import org.jsfml.graphics.*;
+import org.jsfml.graphics.Color;
 import org.jsfml.window.*;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class GameDriver {
@@ -54,6 +55,15 @@ public class GameDriver {
         // Initial setup
         window.create(new VideoMode(WIN_WIDTH, WIN_HEIGHT), TITLE, WindowStyle.DEFAULT);
         window.setFramerateLimit(30);
+
+        // some quick icon loading thing, it's kind of ugly
+        try {
+            Image icon = new Image();
+            icon.loadFromFile(Paths.get("textures/icon.png"));
+            window.setIcon(icon);
+        } catch(IOException e) {
+            System.err.println("ERROR: problem loading application icon");
+        }
 
         machine = new FSM();
         eventGenerator = new EventGenerator(machine, driver, window, randGenerator, sound, textures);
