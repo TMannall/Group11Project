@@ -22,7 +22,7 @@ public class CombatEvent extends Events {
     Sprite[] hoverButton = new Sprite[numberOfButtons];
     Sprite[] pushButton = new Sprite[numberOfButtons];
 	
-	private static int noOfCrew = 4;
+        private static int noOfCrew = 4;
 	Sprite[] crewSprite = new Sprite[noOfCrew];
 	float[] spriteXPos = new float[noOfCrew];
 	float[] spriteYPos = new float[noOfCrew];
