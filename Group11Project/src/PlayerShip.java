@@ -1,10 +1,11 @@
 import org.jsfml.graphics.RenderWindow;
-import org.jsfml.system.Clock;
-import org.jsfml.system.Time;
-
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Settings state class, deals with the displaying and changing of the settings for the game including the resolution
+ * (still to be implemented) and volume levels.
+ */
 public class PlayerShip extends Ship {
     private EnemyShip enemyShip = null;     // Current enemy ship when in combat
     private UI ui;
@@ -60,6 +61,29 @@ public class PlayerShip extends Ship {
         gunAnimations.get(8).setPosition(666, 413);
         gunAnimations.get(9).setPosition(721, 418);
 
+        // jack: for some reason the game doesn't like it when these sprites are positioned elsewhere
+        marineBritishAnimations.get(0).setPosition(776, 276);
+        marineBritishAnimations.get(1).setPosition(752, 281);
+        marineBritishAnimations.get(2).setPosition(717, 276);
+        marineBritishAnimations.get(3).setPosition(696, 283);
+        marineBritishAnimations.get(4).setPosition(664, 281);
+        marineBritishAnimations.get(5).setPosition(641, 278);
+        marineBritishAnimations.get(6).setPosition(612, 282);
+        marineBritishAnimations.get(7).setPosition(547, 284);
+        marineBritishAnimations.get(8).setPosition(515, 285);
+        marineBritishAnimations.get(9).setPosition(458, 282);
+
+        marineNeutralAnimations.get(0).setPosition(436, 434);
+        marineNeutralAnimations.get(1).setPosition(458, 439);
+        marineNeutralAnimations.get(2).setPosition(490, 441);
+        marineNeutralAnimations.get(3).setPosition(513, 435);
+        marineNeutralAnimations.get(4).setPosition(543, 428);
+        marineNeutralAnimations.get(5).setPosition(566, 432);
+        marineNeutralAnimations.get(6).setPosition(594, 427);
+        marineNeutralAnimations.get(7).setPosition(660, 430);
+        marineNeutralAnimations.get(8).setPosition(700, 427);
+        marineNeutralAnimations.get(9).setPosition(742, 433);
+        // jack: end sprite positioning
 
         reloadTimer = new Timer();          // Move this to somewhere better so clock isn't started at construction?
     }

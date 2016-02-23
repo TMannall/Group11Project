@@ -1,9 +1,12 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
-
 import java.util.Random;
 
+/**
+ * Event class for Text events within the game which simply serve a response of what has occured to the player, this
+ * class deals with the window text and displaying of event text to the player.
+ */
 public class TextEvent extends Events {
     private PlayerShip playerShip;
 

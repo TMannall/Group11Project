@@ -2,7 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * The class in which all Database calls go, this is inherits DbBasic
+ * Database User class in which all Database calls go and deals with the SQL database, this class inherits DbBasic
+ * in order to ensure a connection to the JDBC library can be made.
  */
 public class DbUser extends DbBasic {
 

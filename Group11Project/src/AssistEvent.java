@@ -1,8 +1,11 @@
 import org.jsfml.graphics.*;
 import org.jsfml.window.event.Event;
-
 import java.util.Random;
 
+/**
+ * Event class for assisting AI players, this class deals with the window text and displaying of event text to the
+ * player.
+ */
 public class AssistEvent extends Events {
 
     Sprite messageScroll;

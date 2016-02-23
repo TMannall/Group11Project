@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Class used for loaded the in game User Interface (UI
+ * Class used for defining the in game User Interface (UI) and all coordinates.
  */
 public class UI {
 

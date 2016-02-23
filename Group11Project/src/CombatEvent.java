@@ -3,6 +3,9 @@ import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import java.util.Random;
 
+/**
+ * Combat Event state class for dealing with the combat events, including setting difficulty and initiating the AI.
+ */
 public class CombatEvent extends Events {
     Sprite messageScroll;
     private static int numberOfButtons = 2;
@@ -29,6 +32,7 @@ public class CombatEvent extends Events {
     public CombatEvent(FSM stateMachine, GameDriver driver, RenderWindow window, Textures textures, Random randGenerator, EventGenerator eventGenerator, SoundFX sound, PlayerShip playerShip) {
         super(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound);
         this.playerShip = playerShip;
+        sound.playBackgroundMusic("music_combat");
         setup();
     }
 
@@ -140,8 +144,8 @@ public class CombatEvent extends Events {
         window.clear();
         textures.ocean.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.ocean);
-        playerShip.draw();
         enemyShip.draw();
+        playerShip.draw();
         ShipSection hovered = mouseOver();
         if (hovered != null)
             window.draw(hovered.sectionHighlight);
@@ -150,6 +154,8 @@ public class CombatEvent extends Events {
         // Cannon animation
         playerShip.animateGuns();
         enemyShip.animateGuns();
+
+        playerShip.animateMarine();
 
         if (!playerShip.isGunLoaded())
             playerShip.checkReload();
@@ -211,12 +217,14 @@ public class CombatEvent extends Events {
             enemyShip.attack(playerShip);
             if (playerShip.getHullHP() <= 0) {
                 stateMachine.setState(stateMachine.getStates().get(7));     // Game over, player ship destroyed
+                sound.stopBackgroundMusic();
             }
         }
         // Retreat instead
         else {
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_AI_RETREAT);
             stateMachine.setState(success);
+            sound.stopBackgroundMusic();
         }
     }
 
@@ -225,6 +233,7 @@ public class CombatEvent extends Events {
             // Create new temporary success state & move to it
             FSMState success = new AfterEvent(stateMachine, driver, window, textures, randGenerator, eventGenerator, sound, AfterEvent.Consequence.COMBAT_KILL, difficulty);
             stateMachine.setState(success);
+            sound.stopBackgroundMusic();
         }
     }
 

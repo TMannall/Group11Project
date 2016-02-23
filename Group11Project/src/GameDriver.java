@@ -1,5 +1,5 @@
 /**
- * Driver for Endless Sea
+ * Driver and Main function for The Endless Sea Game
  */
 
 import org.jsfml.graphics.*;
@@ -47,7 +47,7 @@ public class GameDriver {
 
     private Leaderboard leaderboardObj = new Leaderboard();
     // jack: sprite testing
-    public List<Sprite> marineList = new ArrayList<>();
+    //public List<Sprite> marineList = new ArrayList<>();
     // jack: end sprite testing
 
     public void run(){
