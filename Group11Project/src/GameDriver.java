@@ -46,10 +46,7 @@ public class GameDriver {
     //private PlayerShip playerShip;
     private PlayerShip playerShip = new PlayerShip(textures, driver, window, randGenerator, sound, Ship.ShipType.PLAYER, (float)0.5, 800, 1020);
 
-    protected Leaderboard leaderboardObj = new Leaderboard();
-    // jack: sprite testing
-    //public List<Sprite> marineList = new ArrayList<>();
-    // jack: end sprite testing
+    public Leaderboard leaderboardObj = new Leaderboard();
 
     private int style = WindowStyle.CLOSE | WindowStyle.TITLEBAR;
 
@@ -93,45 +90,12 @@ public class GameDriver {
         // Set menu state for game launch
         machine.setState(menu);
 
-        // jack: frame test
-//        SoundFX sound = new SoundFX();
-//        sound.setSoundVolume(60);
-//        Clock animClock = new Clock();
-//        int[] frameList = new int[5];
-//        for(int i = 0; i < 5; i++) {
-//            marineList.add(i, textures.createSprite(textures.britishMarine, 0, 0, 65, 185));
-//            frameList[i] = new Random().nextInt(39);
-//        }
-        // jack: frame test end
-
 
         // Game loop
         while(window.isOpen()){
             window.clear(Color.WHITE);
-
-            // jack: frame test
-//            if (animClock.getElapsedTime().asMicroseconds() >= 50) {
-//                for(int i = 0; i < 5; i++) {
-//                    animClock.restart();
-//                    frameList[i] = frameList[i] + 1;
-//
-//                    if (frameList[i] == 5)
-//                        sound.playSoundOnce("gun_01");
-//
-//                    if (frameList[i] > 39)
-//                        frameList[i] = 0;
-//
-//                    int frameRow = frameList[i] / 20;
-//                    int frameCol = frameList[i] % 20;
-//                    marineList.get(i).setTextureRect(new IntRect(frameCol * 65, frameRow * 185, 65, 185));
-//                }
-//            }
-            // jack: frame test end
-
             // Add to window relevant objects depending on state
             machine.run();
-
-
             // NOTE: States must call window.display() and poll for relevant combatEvents themselves
         }
     }

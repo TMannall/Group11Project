@@ -1,4 +1,3 @@
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.Font;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.graphics.Sprite;
@@ -108,7 +107,6 @@ public class Menu extends FSMState{
     @Override
     public void execute() {
         textures.mainMenu.setOrigin(0, 0);
-        //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
 
         try {
@@ -122,7 +120,6 @@ public class Menu extends FSMState{
 
     public void displayMenu() {
         textures.mainMenu.setOrigin(0, 0);
-        //textures.mainMenu.setPosition(driver.getWinWidth() / 2, driver.getWinHeight() / 2);
         window.draw(textures.mainMenu);
         window.draw(title);
 
@@ -154,16 +151,6 @@ public class Menu extends FSMState{
             window.draw(textButton[i]);
             window.draw(text[i]);
         }
-
-        // jack: sprite testing
-        /*for(int i = 0; i < 5; i++) {
-            driver.marineList.get(i).setPosition((200 * i/2), 500);
-            window.draw(driver.marineList.get(i));
-        }*/
-        // jack: end sprite testing
-
-        //window.draw(hoverButton[0]);
-        //window.display();
 
         for(int i = 0; i < numberOfButtons; i++){
             rectf[i] = new FloatRect(textButton[i].getGlobalBounds().left, textButton[i].getGlobalBounds().top,
