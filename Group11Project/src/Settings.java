@@ -75,7 +75,7 @@ public class Settings extends FSMState{
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(BROWN);
+        title.setColor(Color.WHITE);
         title.setStyle(Text.BOLD);
 
         for (int i = 0; i < numberOfButtons; i++) {

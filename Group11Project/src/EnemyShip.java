@@ -232,6 +232,7 @@ public class EnemyShip extends Ship {
                 playerShip.quarters.setWeight(0.3);
                 targetWeight = 0.25;
                 gunStr = (float)0.75;
+                //gunStr = 10;
                 break;
             case MEDIUM:    // Fires faster & hits harder
                 baseReload = 6;

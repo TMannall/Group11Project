@@ -251,6 +251,17 @@ public class GameOver extends FSMState {
                                 name.setPosition(name.getPosition().x-8, name.getPosition().y);
                             }
                         }
+                        else if(textEvent.character == 8){
+                            if(playerName.length() == 1 && playerName.charAt(0) == '|'){
+                                name.setPosition(name.getPosition().x+7, name.getPosition().y);
+                            }
+                            else if(playerName.length() > 1){
+                                playerName = playerName.substring(0, playerName.length() - 2);
+                                playerName += "|";
+                                name.setPosition(name.getPosition().x+8, name.getPosition().y);
+                            }
+                        }
+
                     }
                     break;
                 case MOUSE_BUTTON_PRESSED:

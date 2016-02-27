@@ -1,12 +1,8 @@
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.Font;
-import org.jsfml.graphics.RenderWindow;
-import org.jsfml.graphics.Text;
+import org.jsfml.graphics.*;
 import org.jsfml.window.Keyboard;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 import org.jsfml.window.event.KeyEvent;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.graphics.FloatRect;
 import org.jsfml.window.event.MouseEvent;
 import org.jsfml.window.event.MouseButtonEvent;
 
@@ -28,6 +24,7 @@ public class LeaderboardDisplay extends FSMState{
     private static int buttonIndex = 0;
     Text[] text = new Text[numberOfButtons];
     Text title;
+    IntRect[] recti = new IntRect[numberOfButtons];
     FloatRect[] rect = new FloatRect[numberOfButtons];
 
     private static String JavaVersion = Runtime.class.getPackage().getImplementationVersion();
@@ -67,7 +64,7 @@ public class LeaderboardDisplay extends FSMState{
         title = new Text(Title, sansRegular, titleFontSize);
         title.setPosition(driver.getWinWidth() / 2, 80);
         title.setOrigin(title.getLocalBounds().width / 2, title.getLocalBounds().height / 2);
-        title.setColor(driver.BROWN);
+        title.setColor(Color.WHITE);
         title.setStyle(Text.BOLD);
 
         for (int i = 0; i < numberOfButtons; i++) {
@@ -126,10 +123,23 @@ public class LeaderboardDisplay extends FSMState{
         }
 
         for(int i = 10; i < numberOfButtons; i++){
-
             textButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
-            hoverButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
             pushButton[i].setPosition(text[i].getPosition().x, text[i].getPosition().y + 8);
+        }
+
+            rect[0] = new FloatRect(textButton[numberOfButtons-1].getGlobalBounds().left, textButton[numberOfButtons-1].getGlobalBounds().top,
+                    textButton[numberOfButtons-1].getGlobalBounds().width, textButton[numberOfButtons-1].getGlobalBounds().height);
+            recti[0] = new IntRect(rect[0]);
+
+            if((recti[0].contains(Mouse.getPosition(window)) && isMouseOver())){
+                textButton[numberOfButtons-1].setTextureRect(new IntRect(23, 100, 250, 60));
+            }
+            else if(!isMouseOver()){
+                textButton[numberOfButtons-1].setTextureRect(new IntRect(23, 21, 250, 60));
+            }
+
+
+        for(int i = 10; i < numberOfButtons; i++) {
             window.draw(textButton[i]);
         }
 
@@ -172,5 +182,11 @@ public class LeaderboardDisplay extends FSMState{
             }
         }
         window.display();
+    }
+    public boolean isMouseOver(){
+            if(recti[0].contains(Mouse.getPosition(window))){
+                return true;
+            }
+        return false;
     }
 }
